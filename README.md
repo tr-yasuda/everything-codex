@@ -1,25 +1,22 @@
 # everything-codex
 
-Codex の設定ファイル（`AGENTS.md`）を管理するリポジトリです。
+このリポジトリは、`~/.codex` で使う `AGENTS.md` と `config.toml` を管理するためのものです。
 
-## セットアップ
-
-このリポジトリの `AGENTS.md` を正本として、`~/.codex/AGENTS.md` にシンボリックリンクを作成します。
+## 実行コマンド
 
 ```bash
 bash install.sh
 ```
 
-事前要件:
-- `realpath` または `readlink -f` が利用できること（どちらも無い場合、`install.sh` はエラー終了します）。
-- 事前確認コマンド:
+## 実行すると起きること
 
-  ```bash
-  command -v realpath || command -v readlink
-  ```
+- `~/.codex/AGENTS.md` -> `<repo>/AGENTS.md` のリンクを作成します
+- `~/.codex/config.toml` -> `<repo>/config.toml` のリンクを作成します
+- すでに `~/.codex/AGENTS.md` や `~/.codex/config.toml` がある場合は、`*.bak.<random>` という名前でバックアップが保存されます
+- すでに正しいリンクがある場合は、変更しません
 
-- Ubuntu / Debian 系では通常 `coreutils` に含まれます。
+## 注意点
 
-補足:
-- 既存の `~/.codex/AGENTS.md` がある場合は `~/.codex/AGENTS.md.bak.<random>` に退避します。
-- 再実行しても、正しいリンクなら変更しません（冪等）。
+- `realpath` または `readlink -f` が使える必要があります
+- 確認コマンド: `command -v realpath || command -v readlink`
+- Ubuntu / Debian 系では通常 `coreutils` に含まれます

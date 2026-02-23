@@ -3,8 +3,10 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_AGENTS="${SCRIPT_DIR}/AGENTS.md"
+REPO_CONFIG="${SCRIPT_DIR}/config.toml"
 CODEX_DIR="${HOME}/.codex"
-TARGET="${CODEX_DIR}/AGENTS.md"
+TARGET_AGENTS="${CODEX_DIR}/AGENTS.md"
+TARGET_CONFIG="${CODEX_DIR}/config.toml"
 
 canonicalize_path() {
   local path="$1"
@@ -28,22 +30,39 @@ if [[ ! -f "${REPO_AGENTS}" ]]; then
   exit 1
 fi
 
-mkdir -p "${CODEX_DIR}"
-REPO_AGENTS_REALPATH="$(canonicalize_path "${REPO_AGENTS}")"
+if [[ ! -f "${REPO_CONFIG}" ]]; then
+  echo "Error: ${REPO_CONFIG} が見つかりません。" >&2
+  exit 1
+fi
 
-if [[ -L "${TARGET}" ]]; then
-  CURRENT_TARGET_REALPATH="$(canonicalize_path "${TARGET}" 2>/dev/null || true)"
-  if [[ -n "${CURRENT_TARGET_REALPATH}" ]] && [[ "${CURRENT_TARGET_REALPATH}" == "${REPO_AGENTS_REALPATH}" ]]; then
-    echo "OK: 既に正しいリンクです: ${TARGET} -> ${CURRENT_TARGET_REALPATH}"
-    exit 0
+ensure_link() {
+  local source="$1"
+  local target="$2"
+
+  local source_realpath
+  source_realpath="$(canonicalize_path "${source}")"
+
+  if [[ -L "${target}" ]]; then
+    local current_target_realpath
+    current_target_realpath="$(canonicalize_path "${target}" 2>/dev/null || true)"
+    if [[ -n "${current_target_realpath}" ]] && [[ "${current_target_realpath}" == "${source_realpath}" ]]; then
+      echo "OK: 既に正しいリンクです: ${target} -> ${current_target_realpath}"
+      return
+    fi
   fi
-fi
 
-if [[ -e "${TARGET}" || -L "${TARGET}" ]]; then
-  BACKUP="$(mktemp "${TARGET}.bak.XXXXXX")"
-  mv "${TARGET}" "${BACKUP}"
-  echo "Backup: ${TARGET} -> ${BACKUP}"
-fi
+  if [[ -e "${target}" || -L "${target}" ]]; then
+    local backup
+    backup="$(mktemp "${target}.bak.XXXXXX")"
+    mv "${target}" "${backup}"
+    echo "Backup: ${target} -> ${backup}"
+  fi
 
-ln -s "${REPO_AGENTS_REALPATH}" "${TARGET}"
-echo "Linked: ${TARGET} -> ${REPO_AGENTS_REALPATH}"
+  ln -s "${source_realpath}" "${target}"
+  echo "Linked: ${target} -> ${source_realpath}"
+}
+
+mkdir -p "${CODEX_DIR}"
+
+ensure_link "${REPO_AGENTS}" "${TARGET_AGENTS}"
+ensure_link "${REPO_CONFIG}" "${TARGET_CONFIG}"
