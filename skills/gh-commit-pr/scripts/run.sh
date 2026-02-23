@@ -103,31 +103,113 @@ kind_is_valid() {
   return 1
 }
 
+remote_exists() {
+  local remote="$1"
+  if [[ -z "${remote}" ]]; then
+    return 1
+  fi
+  git remote get-url "${remote}" >/dev/null 2>&1
+}
+
+resolve_default_remote() {
+  local default_branch="${1:-}"
+  local remote
+  local current_branch
+  local remote_list=()
+  local head_ref
+  local head_remote
+
+  if [[ -n "${default_branch}" ]]; then
+    remote="$(git config --get "branch.${default_branch}.remote" 2>/dev/null || true)"
+    if remote_exists "${remote}"; then
+      printf '%s' "${remote}"
+      return
+    fi
+  fi
+
+  remote="$(git config --get remote.pushDefault 2>/dev/null || true)"
+  if remote_exists "${remote}"; then
+    printf '%s' "${remote}"
+    return
+  fi
+
+  current_branch="$(git branch --show-current 2>/dev/null || true)"
+  if [[ -n "${current_branch}" ]]; then
+    remote="$(git config --get "branch.${current_branch}.remote" 2>/dev/null || true)"
+    if remote_exists "${remote}"; then
+      printf '%s' "${remote}"
+      return
+    fi
+  fi
+
+  mapfile -t remote_list < <(git remote)
+  if (( ${#remote_list[@]} == 1 )); then
+    printf '%s' "${remote_list[0]}"
+    return
+  fi
+
+  if remote_exists "origin"; then
+    printf 'origin'
+    return
+  fi
+
+  head_ref="$(git for-each-ref --format='%(refname:short)' refs/remotes/*/HEAD | head -n 1 || true)"
+  if [[ -n "${head_ref}" ]]; then
+    head_remote="${head_ref%/HEAD}"
+    if remote_exists "${head_remote}"; then
+      printf '%s' "${head_remote}"
+      return
+    fi
+  fi
+
+  printf ''
+}
+
 get_default_branch() {
+  local remote="${1:-}"
+  local branch
   local ref
-  ref="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null || true)"
-  if [[ -n "${ref}" ]]; then
-    printf '%s' "${ref#origin/}"
+  local remote_name
+
+  branch="$(gh repo view --json defaultBranchRef --jq '.defaultBranchRef.name' 2>/dev/null || true)"
+  if [[ -n "${branch}" ]] && [[ "${branch}" != "null" ]]; then
+    printf '%s' "${branch}"
     return
   fi
 
-  if git show-ref --verify --quiet refs/remotes/origin/main || git show-ref --verify --quiet refs/heads/main; then
-    printf 'main'
-    return
+  if [[ -n "${remote}" ]]; then
+    ref="$(git symbolic-ref --quiet --short "refs/remotes/${remote}/HEAD" 2>/dev/null || true)"
+    if [[ -n "${ref}" ]]; then
+      printf '%s' "${ref#${remote}/}"
+      return
+    fi
+
+    branch="$(git remote show -n "${remote}" 2>/dev/null | sed -n 's/^[[:space:]]*HEAD branch: //p' | head -n 1)"
+    if [[ -n "${branch}" ]] && [[ "${branch}" != "(unknown)" ]]; then
+      printf '%s' "${branch}"
+      return
+    fi
   fi
 
-  if git show-ref --verify --quiet refs/remotes/origin/master || git show-ref --verify --quiet refs/heads/master; then
-    printf 'master'
-    return
-  fi
+  while IFS= read -r remote_name; do
+    [[ -z "${remote_name}" ]] && continue
+    ref="$(git symbolic-ref --quiet --short "refs/remotes/${remote_name}/HEAD" 2>/dev/null || true)"
+    if [[ -n "${ref}" ]]; then
+      printf '%s' "${ref#${remote_name}/}"
+      return
+    fi
+  done < <(git remote)
 
-  printf 'main'
+  printf ''
 }
 
 branch_exists_locally() {
   local branch="$1"
+  local remote="${2:-}"
   git show-ref --verify --quiet "refs/heads/${branch}" && return 0
-  git show-ref --verify --quiet "refs/remotes/origin/${branch}" && return 0
+  if [[ -n "${remote}" ]]; then
+    git show-ref --verify --quiet "refs/remotes/${remote}/${branch}" && return 0
+  fi
   return 1
 }
 
@@ -193,9 +275,10 @@ find_pr_template() {
 
 resolve_base_ref() {
   local base_branch="$1"
+  local remote="${2:-}"
 
-  if git rev-parse --verify --quiet "origin/${base_branch}" >/dev/null 2>&1; then
-    printf 'origin/%s' "${base_branch}"
+  if [[ -n "${remote}" ]] && git rev-parse --verify --quiet "${remote}/${base_branch}" >/dev/null 2>&1; then
+    printf '%s/%s' "${remote}" "${base_branch}"
     return
   fi
 
@@ -321,6 +404,7 @@ merge_body_with_auto() {
 
 main() {
   local current_branch
+  local default_remote
   local default_branch
   local base_branch
   local kind
@@ -374,7 +458,19 @@ main() {
     exit 1
   fi
 
-  default_branch="$(get_default_branch)"
+  default_remote="$(resolve_default_remote)"
+  default_branch="$(get_default_branch "${default_remote}")"
+  if [[ -z "${default_branch}" ]]; then
+    print_error "デフォルトブランチを判定できません。'gh repo view' の実行可否、または 'git remote set-head <remote> -a' を確認してください。"
+    exit 1
+  fi
+
+  default_remote="$(resolve_default_remote "${default_branch}")"
+  if [[ -z "${default_remote}" ]]; then
+    print_error "push 先リモートを判定できません。'git config remote.pushDefault <remote>' などで既定リモートを設定してください。"
+    exit 1
+  fi
+
   printf '言語ポリシー: commit subject / scope / branch slug / PR title は英語を推奨します。\n'
 
   while true; do
@@ -419,7 +515,7 @@ main() {
     done
 
     target_branch="$(build_branch_name "${kind}" "${scope}" "${slug}")"
-    if branch_exists_locally "${target_branch}"; then
+    if branch_exists_locally "${target_branch}" "${default_remote}"; then
       target_branch="${target_branch}-$(date +%Y%m%d%H%M%S)"
       printf '同名ブランチがあるため、`%s` を使用します。\n' "${target_branch}"
     fi
@@ -488,7 +584,7 @@ main() {
   fi
 
   if [[ "${push_mode}" == "with-upstream" ]]; then
-    git push -u origin "${target_branch}"
+    git push -u "${default_remote}" "${target_branch}"
   else
     git push
   fi
@@ -499,7 +595,7 @@ main() {
       IFS=$'\t' read -r existing_pr_number _ <<< "${existing_pr_info}"
     fi
   fi
-  base_ref="$(resolve_base_ref "${base_branch}")"
+  base_ref="$(resolve_base_ref "${base_branch}" "${default_remote}")"
   auto_section="$(build_auto_section "${target_branch}" "${base_branch}" "${base_ref}")"
 
   if [[ -n "${existing_pr_number}" ]]; then
