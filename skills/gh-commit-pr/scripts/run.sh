@@ -111,17 +111,36 @@ remote_exists() {
   git remote get-url "${remote}" >/dev/null 2>&1
 }
 
-resolve_default_remote() {
-  local default_branch="${1:-}"
+resolve_push_remote() {
+  local current_branch="${1:-}"
+  local default_branch="${2:-}"
   local remote
-  local current_branch
   local remote_list=()
   local head_ref
   local head_remote
 
+  remote="$(git config --get "branch.${current_branch}.pushRemote" 2>/dev/null || true)"
+  if remote_exists "${remote}"; then
+    printf '%s' "${remote}"
+    return
+  fi
+
   remote="$(git config --get remote.pushDefault 2>/dev/null || true)"
   if remote_exists "${remote}"; then
     printf '%s' "${remote}"
+    return
+  fi
+
+  if [[ -n "${current_branch}" ]] && [[ "${current_branch}" != "${default_branch}" ]]; then
+    remote="$(git config --get "branch.${current_branch}.remote" 2>/dev/null || true)"
+    if remote_exists "${remote}"; then
+      printf '%s' "${remote}"
+      return
+    fi
+  fi
+
+  if remote_exists "origin"; then
+    printf 'origin'
     return
   fi
 
@@ -133,23 +152,9 @@ resolve_default_remote() {
     fi
   fi
 
-  current_branch="$(git branch --show-current 2>/dev/null || true)"
-  if [[ -n "${current_branch}" ]]; then
-    remote="$(git config --get "branch.${current_branch}.remote" 2>/dev/null || true)"
-    if remote_exists "${remote}"; then
-      printf '%s' "${remote}"
-      return
-    fi
-  fi
-
   mapfile -t remote_list < <(git remote)
   if (( ${#remote_list[@]} == 1 )); then
     printf '%s' "${remote_list[0]}"
-    return
-  fi
-
-  if remote_exists "origin"; then
-    printf 'origin'
     return
   fi
 
@@ -434,7 +439,7 @@ merge_body_with_auto() {
 
 main() {
   local current_branch
-  local default_remote
+  local push_remote
   local default_branch
   local base_branch
   local kind
@@ -488,16 +493,15 @@ main() {
     exit 1
   fi
 
-  default_remote="$(resolve_default_remote)"
-  default_branch="$(get_default_branch "${default_remote}")"
+  default_branch="$(get_default_branch)"
   if [[ -z "${default_branch}" ]]; then
     print_error "デフォルトブランチを判定できません。'gh repo view' の実行可否、または 'git remote set-head <remote> -a' を確認してください。"
     exit 1
   fi
 
-  default_remote="$(resolve_default_remote "${default_branch}")"
-  if [[ -z "${default_remote}" ]]; then
-    print_error "push 先リモートを判定できません。'git config remote.pushDefault <remote>' などで既定リモートを設定してください。"
+  push_remote="$(resolve_push_remote "${current_branch}" "${default_branch}")"
+  if [[ -z "${push_remote}" ]]; then
+    print_error "push 先リモートを判定できません。'git config remote.pushDefault <remote>' または 'git branch --set-upstream-to <remote>/<branch>' を確認してください。"
     exit 1
   fi
 
@@ -545,7 +549,7 @@ main() {
     done
 
     target_branch="$(build_branch_name "${kind}" "${scope}" "${slug}")"
-    if branch_exists_locally "${target_branch}" "${default_remote}"; then
+    if branch_exists_locally "${target_branch}" "${push_remote}"; then
       target_branch="${target_branch}-$(date +%Y%m%d%H%M%S)"
       printf '同名ブランチがあるため、`%s` を使用します。\n' "${target_branch}"
     fi
@@ -614,7 +618,7 @@ main() {
   fi
 
   if [[ "${push_mode}" == "with-upstream" ]]; then
-    git push -u "${default_remote}" "${target_branch}"
+    git push -u "${push_remote}" "${target_branch}"
   else
     git push
   fi
@@ -625,7 +629,7 @@ main() {
       IFS=$'\t' read -r existing_pr_number _ <<< "${existing_pr_info}"
     fi
   fi
-  base_ref="$(resolve_base_ref "${base_branch}" "${default_remote}")"
+  base_ref="$(resolve_base_ref "${base_branch}" "${push_remote}")"
   auto_section="$(build_auto_section "${target_branch}" "${base_branch}" "${base_ref}")"
 
   if [[ -n "${existing_pr_number}" ]]; then

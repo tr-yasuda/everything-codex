@@ -35,6 +35,7 @@ description: ユーザーが gh を使って git commit・git push・GitHub PR �
 5. `git add -A` と commit を実行する。
 6. push を実行する。
    - upstream 未設定なら、設定済みの既定リモートを解決して `git push -u <remote> <branch>` を使う。
+   - 解決優先順は `branch.<current>.pushRemote` -> `remote.pushDefault` -> `branch.<current>.remote`（現在ブランチがデフォルトブランチでない場合）-> `origin` -> `branch.<default>.remote` とする。
    - upstream 設定済みなら `git push` を使う。
 7. PR を作成または更新する。
    - 現在チェックアウト中のブランチに紐づく open PR があれば `gh pr edit` を使う。
