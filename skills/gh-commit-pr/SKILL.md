@@ -39,6 +39,7 @@ description: ユーザーが gh を使って git commit・git push・GitHub PR �
 7. PR を作成または更新する。
    - 現在ブランチの open PR があれば `gh pr edit` を使う。
    - なければ `gh pr create` を使う。
+   - `PR title` のデフォルトは `commit message` と同じ形式にする。
 8. PR description を同期する。
    - テンプレートがある場合はテンプレート本文を保持する。
    - `<!-- AUTO-GENERATED:BEGIN -->` と `<!-- AUTO-GENERATED:END -->` の区間だけ更新する。
@@ -50,7 +51,8 @@ description: ユーザーが gh を使って git commit・git push・GitHub PR �
 - `scope` は英語（英数字）を使う。
 - `branch slug` は英語（英数字と `-`）を使う。
 - `PR title` は英語をデフォルトにする。
-- `PR description` はテンプレートの言語に合わせる。
+- `PR description` の自動生成セクションは英語を使う。
+- テンプレート本文は元の言語を保持する。
 
 ## テンプレート探索順
 

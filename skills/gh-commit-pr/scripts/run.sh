@@ -200,29 +200,29 @@ build_auto_section() {
   fi
 
   if [[ -z "${diff_summary}" ]]; then
-    diff_summary="差分サマリーを取得できませんでした。"
+    diff_summary="Unable to collect a diff summary."
   fi
   if [[ -z "${commit_lines}" ]]; then
-    commit_lines="- コミット情報を取得できませんでした。"
+    commit_lines="- Unable to collect commit information."
   fi
   if [[ -z "${file_lines}" ]]; then
-    file_lines="- 変更ファイル情報を取得できませんでした。"
+    file_lines="- Unable to collect changed file information."
   fi
 
   cat <<EOF
 ${AUTO_BEGIN}
-## 背景
-- ブランチ \`${branch_name}\` の変更を \`${base_branch}\` に取り込みます。
+## Background
+- Merge changes from \`${branch_name}\` into \`${base_branch}\`.
 
-## 変更内容
+## Changes
 - ${diff_summary}
 ${commit_lines}
 
-## 確認観点
+## Verification
 ${file_lines}
 
-## 影響範囲
-- 上記ファイルに関連する機能に影響します。
+## Impact
+- Changes may affect features related to the files above.
 ${AUTO_END}
 EOF
 }
@@ -301,7 +301,6 @@ main() {
   local target_branch
   local branch_created=0
   local existing_pr_number
-  local existing_pr_title
   local existing_pr_base
   local pr_title
   local has_changes
@@ -403,16 +402,14 @@ main() {
     print_error "同一 owner/head の open PR が複数見つかりました。対象PRを手動で整理してから再実行してください。"
     exit 1
   fi
-  existing_pr_title=""
   existing_pr_base=""
   if [[ -n "${existing_pr_number}" ]]; then
-    existing_pr_title="$(gh pr view "${existing_pr_number}" --json title --jq '.title')"
     existing_pr_base="$(gh pr view "${existing_pr_number}" --json baseRefName --jq '.baseRefName')"
   fi
 
   base_branch="${existing_pr_base:-${default_branch}}"
   base_branch="$(prompt_required "base branch" "${base_branch}")"
-  pr_title="$(prompt_required "PR title" "${existing_pr_title:-${subject}}")"
+  pr_title="$(prompt_required "PR title" "${commit_message}")"
 
   if has_non_ascii "${subject}"; then
     english_policy_issues+=("commit subject")
