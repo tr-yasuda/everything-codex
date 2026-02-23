@@ -295,6 +295,7 @@ build_auto_section() {
   local base_branch="$2"
   local base_ref="$3"
   local diff_summary
+  local diff_summary_line
   local commit_lines
   local file_lines
   local fallback_warning=""
@@ -311,13 +312,19 @@ build_auto_section() {
   fi
 
   if [[ -z "${diff_summary}" ]]; then
-    diff_summary="Unable to collect a diff summary."
+    if [[ -z "${fallback_warning}" ]]; then
+      diff_summary="Unable to collect a diff summary."
+    fi
   fi
   if [[ -z "${commit_lines}" ]]; then
     commit_lines="- Unable to collect commit information."
   fi
   if [[ -z "${file_lines}" ]]; then
     file_lines="- Unable to collect changed file information."
+  fi
+  diff_summary_line=""
+  if [[ -n "${diff_summary}" ]]; then
+    diff_summary_line="- ${diff_summary}"
   fi
 
   cat <<EOF
@@ -327,7 +334,7 @@ ${AUTO_BEGIN}
 
 ## Changes
 ${fallback_warning}
-- ${diff_summary}
+${diff_summary_line}
 ${commit_lines}
 
 ## Verification
