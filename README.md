@@ -1,9 +1,10 @@
-# skills
-for codex
+# everything-codex
 
-## AGENTS.md install
+Codex の設定ファイル（`AGENTS.md`）を管理するリポジトリです。
 
-このリポジトリの `AGENTS.md` を正本として、`~/.codex/AGENTS.md` をリンクします。
+## セットアップ
+
+このリポジトリの `AGENTS.md` を正本として、`~/.codex/AGENTS.md` にシンボリックリンクを作成します。
 
 ```bash
 bash install.sh
