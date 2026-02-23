@@ -4,6 +4,23 @@ set -euo pipefail
 ALLOWED_KINDS=(feat fix docs style refactor perf test build ci chore revert)
 AUTO_BEGIN="<!-- AUTO-GENERATED:BEGIN -->"
 AUTO_END="<!-- AUTO-GENERATED:END -->"
+TEMP_FILES=()
+
+new_temp_file() {
+  local file
+  file="$(mktemp)"
+  TEMP_FILES+=("${file}")
+  printf '%s' "${file}"
+}
+
+cleanup_temp_files() {
+  local file
+  for file in "${TEMP_FILES[@]}"; do
+    if [[ -n "${file}" ]] && [[ -e "${file}" || -L "${file}" ]]; then
+      rm -f "${file}"
+    fi
+  done
+}
 
 print_error() {
   printf 'Error: %s\n' "$1" >&2
@@ -126,15 +143,24 @@ build_branch_name() {
   printf '%s/%s' "${kind}" "${slug}"
 }
 
-find_open_pr_number_by_head() {
+get_open_pr_for_current_branch() {
   local branch="$1"
-  local repo_owner="$2"
+  local row
   local number
-  number="$(gh pr list --state open --json number,headRefName,headRepositoryOwner --jq "[.[] | select(.headRefName==\"${branch}\" and .headRepositoryOwner != null and .headRepositoryOwner.login==\"${repo_owner}\")] | if length == 1 then .[0].number elif length == 0 then \"\" else \"AMBIGUOUS\" end" 2>/dev/null || true)"
-  if [[ "${number}" == "null" ]]; then
-    number=""
+  local state
+  local head
+  local base
+
+  row="$(gh pr view --json number,state,headRefName,baseRefName --jq '[.number,.state,.headRefName,.baseRefName]|@tsv' 2>/dev/null || true)"
+  if [[ -z "${row}" ]]; then
+    printf ''
+    return
   fi
-  printf '%s' "${number}"
+
+  IFS=$'\t' read -r number state head base <<< "${row}"
+  if [[ "${state}" == "OPEN" ]] && [[ "${head}" == "${branch}" ]]; then
+    printf '%s\t%s' "${number}" "${base}"
+  fi
 }
 
 find_pr_template() {
@@ -230,13 +256,12 @@ EOF
 merge_body_with_auto() {
   local current_body="$1"
   local auto_section="$2"
+  local output_file="$3"
   local body_file
   local auto_file
-  local output_file
 
-  body_file="$(mktemp)"
-  auto_file="$(mktemp)"
-  output_file="$(mktemp)"
+  body_file="$(new_temp_file)"
+  auto_file="$(new_temp_file)"
 
   printf '%s' "${current_body}" > "${body_file}"
   printf '%s' "${auto_section}" > "${auto_file}"
@@ -281,9 +306,6 @@ merge_body_with_auto() {
     fi
     cat "${auto_file}" >> "${output_file}"
   fi
-
-  cat "${output_file}"
-  rm -f "${body_file}" "${auto_file}" "${output_file}"
 }
 
 main() {
@@ -307,13 +329,12 @@ main() {
   local push_mode
   local body_source
   local auto_section
-  local merged_body
   local base_ref
   local body_file
   local pr_url
   local template_path
   local english_policy_issues=()
-  local repo_owner
+  local existing_pr_info
 
   require_command git
   require_command gh
@@ -323,11 +344,7 @@ main() {
     exit 1
   fi
 
-  repo_owner="$(gh repo view --json owner --jq '.owner.login' 2>/dev/null || true)"
-  if [[ -z "${repo_owner}" || "${repo_owner}" == "null" ]]; then
-    print_error "リポジトリ owner を取得できません。gh のアクセス権を確認してください。"
-    exit 1
-  fi
+  trap cleanup_temp_files EXIT INT TERM
 
   if ! git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
     print_error "Git リポジトリで実行してください。"
@@ -397,14 +414,13 @@ main() {
     fi
   fi
 
-  existing_pr_number="$(find_open_pr_number_by_head "${target_branch}" "${repo_owner}")"
-  if [[ "${existing_pr_number}" == "AMBIGUOUS" ]]; then
-    print_error "同一 owner/head の open PR が複数見つかりました。対象PRを手動で整理してから再実行してください。"
-    exit 1
-  fi
+  existing_pr_number=""
   existing_pr_base=""
-  if [[ -n "${existing_pr_number}" ]]; then
-    existing_pr_base="$(gh pr view "${existing_pr_number}" --json baseRefName --jq '.baseRefName')"
+  if [[ "${current_branch}" != "${default_branch}" ]]; then
+    existing_pr_info="$(get_open_pr_for_current_branch "${target_branch}")"
+    if [[ -n "${existing_pr_info}" ]]; then
+      IFS=$'\t' read -r existing_pr_number existing_pr_base <<< "${existing_pr_info}"
+    fi
   fi
 
   base_branch="${existing_pr_base:-${default_branch}}"
@@ -442,15 +458,15 @@ main() {
 
   confirm_or_exit "この内容で実行しますか?"
 
-  if [[ "${current_branch}" == "${default_branch}" ]]; then
-    git checkout -b "${target_branch}"
-    branch_created=1
-  fi
-
   git add -A
   if git diff --cached --quiet; then
     printf 'ステージされた変更がありません。処理を終了します。\n'
     exit 0
+  fi
+
+  if [[ "${current_branch}" == "${default_branch}" ]]; then
+    git checkout -b "${target_branch}"
+    branch_created=1
   fi
 
   git commit -m "${commit_message}"
@@ -466,10 +482,10 @@ main() {
     git push
   fi
 
-  existing_pr_number="$(find_open_pr_number_by_head "${target_branch}" "${repo_owner}")"
-  if [[ "${existing_pr_number}" == "AMBIGUOUS" ]]; then
-    print_error "同一 owner/head の open PR が複数見つかりました。PR更新を中断します。"
-    exit 1
+  existing_pr_number=""
+  existing_pr_info="$(get_open_pr_for_current_branch "${target_branch}")"
+  if [[ -n "${existing_pr_info}" ]]; then
+    IFS=$'\t' read -r existing_pr_number _ <<< "${existing_pr_info}"
   fi
   base_ref="$(resolve_base_ref "${base_branch}")"
   auto_section="$(build_auto_section "${target_branch}" "${base_branch}" "${base_ref}")"
@@ -485,9 +501,8 @@ main() {
     fi
   fi
 
-  merged_body="$(merge_body_with_auto "${body_source}" "${auto_section}")"
-  body_file="$(mktemp)"
-  printf '%s\n' "${merged_body}" > "${body_file}"
+  body_file="$(new_temp_file)"
+  merge_body_with_auto "${body_source}" "${auto_section}" "${body_file}"
 
   if [[ -n "${existing_pr_number}" ]]; then
     gh pr edit "${existing_pr_number}" --base "${base_branch}" --title "${pr_title}" --body-file "${body_file}"
@@ -495,8 +510,6 @@ main() {
   else
     pr_url="$(gh pr create --base "${base_branch}" --head "${target_branch}" --title "${pr_title}" --body-file "${body_file}")"
   fi
-
-  rm -f "${body_file}"
 
   printf '\n完了しました。\n'
   printf 'PR: %s\n' "${pr_url}"

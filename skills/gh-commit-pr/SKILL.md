@@ -37,7 +37,7 @@ description: ユーザーが gh を使って git commit・git push・GitHub PR �
    - upstream 未設定なら `git push -u origin <branch>` を使う。
    - upstream 設定済みなら `git push` を使う。
 7. PR を作成または更新する。
-   - 現在ブランチの open PR があれば `gh pr edit` を使う。
+   - 現在チェックアウト中のブランチに紐づく open PR があれば `gh pr edit` を使う。
    - なければ `gh pr create` を使う。
    - `PR title` のデフォルトは `commit message` と同じ形式にする。
 8. PR description を同期する。
