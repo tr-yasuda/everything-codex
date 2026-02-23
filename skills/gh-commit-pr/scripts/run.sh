@@ -214,6 +214,8 @@ branch_exists_locally() {
   git show-ref --verify --quiet "refs/heads/${branch}" && return 0
   if [[ -n "${remote}" ]]; then
     git show-ref --verify --quiet "refs/remotes/${remote}/${branch}" && return 0
+    # Remote-tracking refs can be stale; query remote heads directly.
+    git ls-remote --exit-code --heads "${remote}" "refs/heads/${branch}" >/dev/null 2>&1 && return 0
   fi
   return 1
 }
