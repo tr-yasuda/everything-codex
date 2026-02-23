@@ -4,9 +4,11 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_AGENTS="${SCRIPT_DIR}/AGENTS.md"
 REPO_CONFIG="${SCRIPT_DIR}/config.toml"
+REPO_SKILLS="${SCRIPT_DIR}/skills"
 CODEX_DIR="${HOME}/.codex"
 TARGET_AGENTS="${CODEX_DIR}/AGENTS.md"
 TARGET_CONFIG="${CODEX_DIR}/config.toml"
+TARGET_SKILLS="${CODEX_DIR}/skills"
 
 canonicalize_path() {
   local path="$1"
@@ -53,7 +55,10 @@ ensure_link() {
 
   if [[ -e "${target}" || -L "${target}" ]]; then
     local backup
-    backup="$(mktemp "${target}.bak.XXXXXX")"
+    backup="${target}.bak.$(date +%Y%m%d%H%M%S).$RANDOM"
+    while [[ -e "${backup}" || -L "${backup}" ]]; do
+      backup="${target}.bak.$(date +%Y%m%d%H%M%S).$RANDOM"
+    done
     mv "${target}" "${backup}"
     echo "Backup: ${target} -> ${backup}"
   fi
@@ -66,3 +71,32 @@ mkdir -p "${CODEX_DIR}"
 
 ensure_link "${REPO_AGENTS}" "${TARGET_AGENTS}"
 ensure_link "${REPO_CONFIG}" "${TARGET_CONFIG}"
+
+ensure_skill_links() {
+  local source_root="$1"
+  local target_root="$2"
+  local skill_dir
+
+  if [[ ! -d "${source_root}" ]]; then
+    return
+  fi
+
+  mkdir -p "${target_root}"
+
+  shopt -s nullglob
+  for skill_dir in "${source_root}"/*; do
+    if [[ ! -d "${skill_dir}" ]]; then
+      continue
+    fi
+    if [[ ! -f "${skill_dir}/SKILL.md" ]]; then
+      continue
+    fi
+
+    local skill_name
+    skill_name="$(basename "${skill_dir}")"
+    ensure_link "${skill_dir}" "${target_root}/${skill_name}"
+  done
+  shopt -u nullglob
+}
+
+ensure_skill_links "${REPO_SKILLS}" "${TARGET_SKILLS}"

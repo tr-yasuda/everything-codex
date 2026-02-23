@@ -1,0 +1,4 @@
+interface:
+  display_name: "Commit・Push・PR"
+  short_description: "commit・push・PR作成/更新を gh で実行"
+  default_prompt: "$gh-commit-pr を使って、現在の変更を commit・push し、PRの作成または更新を行ってください。"
