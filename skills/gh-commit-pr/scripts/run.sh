@@ -119,18 +119,18 @@ resolve_default_remote() {
   local head_ref
   local head_remote
 
+  remote="$(git config --get remote.pushDefault 2>/dev/null || true)"
+  if remote_exists "${remote}"; then
+    printf '%s' "${remote}"
+    return
+  fi
+
   if [[ -n "${default_branch}" ]]; then
     remote="$(git config --get "branch.${default_branch}.remote" 2>/dev/null || true)"
     if remote_exists "${remote}"; then
       printf '%s' "${remote}"
       return
     fi
-  fi
-
-  remote="$(git config --get remote.pushDefault 2>/dev/null || true)"
-  if remote_exists "${remote}"; then
-    printf '%s' "${remote}"
-    return
   fi
 
   current_branch="$(git branch --show-current 2>/dev/null || true)"
@@ -361,10 +361,30 @@ merge_body_with_auto() {
   printf '%s' "${current_body}" > "${body_file}"
   printf '%s' "${auto_section}" > "${auto_file}"
 
-  begin_line="$(grep -nF "${AUTO_BEGIN}" "${body_file}" | head -n 1 | cut -d: -f1 || true)"
+  begin_line="$(awk -v begin="${AUTO_BEGIN}" '
+    {
+      line=$0
+      sub(/^[[:space:]]+/, "", line)
+      sub(/[[:space:]]+$/, "", line)
+      if (line == begin) {
+        print NR
+        exit
+      }
+    }
+  ' "${body_file}")"
   end_line=""
   if [[ -n "${begin_line}" ]]; then
-    end_line="$(grep -nF "${AUTO_END}" "${body_file}" | awk -F: -v b="${begin_line}" '$1 > b {print $1; exit}' || true)"
+    end_line="$(awk -v end="${AUTO_END}" -v b="${begin_line}" '
+      NR > b {
+        line=$0
+        sub(/^[[:space:]]+/, "", line)
+        sub(/[[:space:]]+$/, "", line)
+        if (line == end) {
+          print NR
+          exit
+        }
+      }
+    ' "${body_file}")"
   fi
 
   if [[ -n "${begin_line}" ]] && [[ -n "${end_line}" ]]; then
@@ -377,14 +397,17 @@ merge_body_with_auto() {
       }
       BEGIN { skip=0; replaced=0 }
       {
-        if ($0 == begin && replaced == 0) {
+        line=$0
+        sub(/^[[:space:]]+/, "", line)
+        sub(/[[:space:]]+$/, "", line)
+        if (line == begin && replaced == 0) {
           print_auto()
           skip=1
           replaced=1
           next
         }
         if (skip == 1) {
-          if ($0 == end) {
+          if (line == end) {
             skip=0
           }
           next
