@@ -14,9 +14,10 @@ fi
 mkdir -p "${CODEX_DIR}"
 
 if [[ -L "${TARGET}" ]]; then
-  CURRENT_TARGET="$(readlink "${TARGET}")"
-  if [[ "${CURRENT_TARGET}" == "${REPO_AGENTS}" ]]; then
-    echo "OK: 既に正しいリンクです: ${TARGET} -> ${CURRENT_TARGET}"
+  CURRENT_TARGET_REALPATH="$(realpath "${TARGET}" 2>/dev/null || true)"
+  REPO_AGENTS_REALPATH="$(realpath "${REPO_AGENTS}" 2>/dev/null || true)"
+  if [[ -n "${CURRENT_TARGET_REALPATH}" ]] && [[ "${CURRENT_TARGET_REALPATH}" == "${REPO_AGENTS_REALPATH}" ]]; then
+    echo "OK: 既に正しいリンクです: ${TARGET} -> ${CURRENT_TARGET_REALPATH}"
     exit 0
   fi
 fi
