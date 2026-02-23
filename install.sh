@@ -40,7 +40,7 @@ if [[ -L "${TARGET}" ]]; then
 fi
 
 if [[ -e "${TARGET}" || -L "${TARGET}" ]]; then
-  BACKUP="${TARGET}.bak.$(date +%Y%m%d%H%M%S)"
+  BACKUP="$(mktemp "${TARGET}.bak.XXXXXX")"
   mv "${TARGET}" "${BACKUP}"
   echo "Backup: ${TARGET} -> ${BACKUP}"
 fi
