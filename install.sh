@@ -2,8 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_ROOT="$(cd "${SCRIPT_DIR}/.." && pwd)"
-REPO_AGENTS="${REPO_ROOT}/AGENTS.md"
+REPO_AGENTS="${SCRIPT_DIR}/AGENTS.md"
 CODEX_DIR="${HOME}/.codex"
 TARGET="${CODEX_DIR}/AGENTS.md"
 
@@ -30,4 +29,3 @@ fi
 
 ln -s "${REPO_AGENTS}" "${TARGET}"
 echo "Linked: ${TARGET} -> ${REPO_AGENTS}"
-

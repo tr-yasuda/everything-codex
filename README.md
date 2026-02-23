@@ -6,7 +6,7 @@ for codex
 このリポジトリの `AGENTS.md` を正本として、`~/.codex/AGENTS.md` をリンクします。
 
 ```bash
-bash scripts/install-agents.sh
+bash install.sh
 ```
 
 リンク状態を確認:
