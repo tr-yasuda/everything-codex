@@ -32,8 +32,8 @@ mkdir -p "${CODEX_DIR}"
 REPO_AGENTS_REALPATH="$(canonicalize_path "${REPO_AGENTS}")"
 
 if [[ -L "${TARGET}" ]]; then
-  CURRENT_TARGET_REALPATH="$(canonicalize_path "${TARGET}")"
-  if [[ "${CURRENT_TARGET_REALPATH}" == "${REPO_AGENTS_REALPATH}" ]]; then
+  CURRENT_TARGET_REALPATH="$(canonicalize_path "${TARGET}" 2>/dev/null || true)"
+  if [[ -n "${CURRENT_TARGET_REALPATH}" ]] && [[ "${CURRENT_TARGET_REALPATH}" == "${REPO_AGENTS_REALPATH}" ]]; then
     echo "OK: 既に正しいリンクです: ${TARGET} -> ${CURRENT_TARGET_REALPATH}"
     exit 0
   fi
@@ -45,5 +45,5 @@ if [[ -e "${TARGET}" || -L "${TARGET}" ]]; then
   echo "Backup: ${TARGET} -> ${BACKUP}"
 fi
 
-ln -s "${REPO_AGENTS}" "${TARGET}"
-echo "Linked: ${TARGET} -> ${REPO_AGENTS}"
+ln -s "${REPO_AGENTS_REALPATH}" "${TARGET}"
+echo "Linked: ${TARGET} -> ${REPO_AGENTS_REALPATH}"
