@@ -143,7 +143,7 @@ build_branch_name() {
   printf '%s/%s' "${kind}" "${slug}"
 }
 
-get_open_pr_for_current_branch() {
+get_open_pr_if_checked_out_branch_matches() {
   local branch="$1"
   local row
   local number
@@ -214,12 +214,14 @@ build_auto_section() {
   local diff_summary
   local commit_lines
   local file_lines
+  local fallback_warning=""
 
   if [[ -n "${base_ref}" ]]; then
     diff_summary="$(git diff --shortstat "${base_ref}...HEAD" 2>/dev/null || true)"
     commit_lines="$(git log --no-merges --pretty='- %h %s' "${base_ref}..HEAD" 2>/dev/null || true)"
     file_lines="$(git diff --name-only "${base_ref}...HEAD" 2>/dev/null | sed 's/^/- /' || true)"
   else
+    fallback_warning="- Warning: Unable to resolve base branch \`${base_branch}\`. Showing fallback information from recent commits and HEAD changes."
     diff_summary=""
     commit_lines="$(git log --no-merges --pretty='- %h %s' -n 20 HEAD 2>/dev/null || true)"
     file_lines="$(git show --pretty='' --name-only HEAD 2>/dev/null | sed 's/^/- /' || true)"
@@ -241,6 +243,7 @@ ${AUTO_BEGIN}
 - Merge changes from \`${branch_name}\` into \`${base_branch}\`.
 
 ## Changes
+${fallback_warning}
 - ${diff_summary}
 ${commit_lines}
 
@@ -259,6 +262,8 @@ merge_body_with_auto() {
   local output_file="$3"
   local body_file
   local auto_file
+  local begin_line
+  local end_line
 
   body_file="$(new_temp_file)"
   auto_file="$(new_temp_file)"
@@ -266,7 +271,13 @@ merge_body_with_auto() {
   printf '%s' "${current_body}" > "${body_file}"
   printf '%s' "${auto_section}" > "${auto_file}"
 
-  if grep -Fq "${AUTO_BEGIN}" "${body_file}" && grep -Fq "${AUTO_END}" "${body_file}"; then
+  begin_line="$(grep -nF "${AUTO_BEGIN}" "${body_file}" | head -n 1 | cut -d: -f1 || true)"
+  end_line=""
+  if [[ -n "${begin_line}" ]]; then
+    end_line="$(grep -nF "${AUTO_END}" "${body_file}" | awk -F: -v b="${begin_line}" '$1 > b {print $1; exit}' || true)"
+  fi
+
+  if [[ -n "${begin_line}" ]] && [[ -n "${end_line}" ]]; then
     awk -v begin="${AUTO_BEGIN}" -v end="${AUTO_END}" -v auto_file="${auto_file}" '
       function print_auto(    line) {
         while ((getline line < auto_file) > 0) {
@@ -417,7 +428,7 @@ main() {
   existing_pr_number=""
   existing_pr_base=""
   if [[ "${current_branch}" != "${default_branch}" ]]; then
-    existing_pr_info="$(get_open_pr_for_current_branch "${target_branch}")"
+    existing_pr_info="$(get_open_pr_if_checked_out_branch_matches "${target_branch}")"
     if [[ -n "${existing_pr_info}" ]]; then
       IFS=$'\t' read -r existing_pr_number existing_pr_base <<< "${existing_pr_info}"
     fi
@@ -482,10 +493,11 @@ main() {
     git push
   fi
 
-  existing_pr_number=""
-  existing_pr_info="$(get_open_pr_for_current_branch "${target_branch}")"
-  if [[ -n "${existing_pr_info}" ]]; then
-    IFS=$'\t' read -r existing_pr_number _ <<< "${existing_pr_info}"
+  if [[ -z "${existing_pr_number}" ]]; then
+    existing_pr_info="$(get_open_pr_if_checked_out_branch_matches "${target_branch}")"
+    if [[ -n "${existing_pr_info}" ]]; then
+      IFS=$'\t' read -r existing_pr_number _ <<< "${existing_pr_info}"
+    fi
   fi
   base_ref="$(resolve_base_ref "${base_branch}")"
   auto_section="$(build_auto_section "${target_branch}" "${base_branch}" "${base_ref}")"

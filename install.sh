@@ -55,10 +55,17 @@ ensure_link() {
 
   if [[ -e "${target}" || -L "${target}" ]]; then
     local backup
+    local attempt=0
+    local max_attempts=10
     backup="${target}.bak.$(date +%Y%m%d%H%M%S).$RANDOM"
-    while [[ -e "${backup}" || -L "${backup}" ]]; do
+    while [[ ( -e "${backup}" || -L "${backup}" ) && "${attempt}" -lt "${max_attempts}" ]]; do
+      attempt=$((attempt + 1))
       backup="${target}.bak.$(date +%Y%m%d%H%M%S).$RANDOM"
     done
+    if [[ -e "${backup}" || -L "${backup}" ]]; then
+      echo "Error: バックアップファイル名を一意にできませんでした: ${backup}" >&2
+      exit 1
+    fi
     mv "${target}" "${backup}"
     echo "Backup: ${target} -> ${backup}"
   fi
