@@ -2,7 +2,7 @@
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-REPO_AGENTS="${SCRIPT_DIR}/AGENTS.md"
+REPO_AGENTS="${SCRIPT_DIR}/.codex/AGENTS.md"
 REPO_CONFIG="${SCRIPT_DIR}/config.toml"
 REPO_SKILLS="${SCRIPT_DIR}/skills"
 REPO_RULES="${SCRIPT_DIR}/rules"
