@@ -39,10 +39,12 @@ Execution Handoff
 3. <完了判定前に実行する手順>
 
 Recovery Matrix
-- Trigger: <停止条件>
+- Class: <recoverable|needs-confirmation>
+  Trigger: <停止条件>
   Signal: <検知方法>
   Recovery: <再開手順>
-- Trigger: <停止条件>
+- Class: <recoverable|needs-confirmation>
+  Trigger: <停止条件>
   Signal: <検知方法>
   Recovery: <再開手順>
 
