@@ -1,15 +1,18 @@
 model = "gpt-5.3-codex"
 model_reasoning_effort = "xhigh"
 approval_policy = "never"
-sandbox = "workspace-write"
+sandbox_mode = "workspace-write"
 personality = "friendly"
 web_search = "live"
 
 [features]
-use_linux_sandbox_bwrap = true
 multi_agent = true
 apps = true
+use_linux_sandbox_bwrap = true
 
 [history]
 persistence = "save-all"
 max_bytes = 20971520
+
+[tui]
+status_line = ["model-with-reasoning", "current-dir", "git-branch", "context-used", "five-hour-limit"]
