@@ -300,7 +300,8 @@ if [[ -n "${commit_plan_file}" ]]; then
   while IFS='|' read -r unit_subject unit_scope unit_intent; do
     [[ -z "${unit_subject}" ]] && continue
     [[ -z "${unit_scope}" ]] && { echo "empty staging_scope for ${unit_subject}"; exit 1; }
-    git add ${unit_scope}
+    IFS=' ' read -r -a unit_scope_parts <<< "${unit_scope}"
+    git add -- "${unit_scope_parts[@]}"
     git diff --cached --quiet && { echo "No staged changes for ${unit_subject}"; exit 1; }
     git commit -m "${unit_subject}"
     short_sha="$(git rev-parse --short HEAD)"
@@ -329,14 +330,16 @@ if [[ -n "${existing_pr_number}" ]]; then
     cat >> "${pr_comment_file}" <<EOF
 
 コミット意図
-${commit_intent_map}分割例外
+${commit_intent_map}
+分割例外
 - ${split_exception_note}
 EOF
   else
     cat >> "${pr_comment_file}" <<EOF
 
 Commit Intent Map
-${commit_intent_map}Split Exception
+${commit_intent_map}
+Split Exception
 - ${split_exception_note}
 EOF
   fi
@@ -345,14 +348,16 @@ else
     cat >> "${pr_body_file}" <<EOF
 
 コミット意図
-${commit_intent_map}分割例外
+${commit_intent_map}
+分割例外
 - ${split_exception_note}
 EOF
   else
     cat >> "${pr_body_file}" <<EOF
 
 Commit Intent Map
-${commit_intent_map}Split Exception
+${commit_intent_map}
+Split Exception
 - ${split_exception_note}
 EOF
   fi
