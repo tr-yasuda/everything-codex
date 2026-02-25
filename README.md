@@ -1,6 +1,6 @@
 # everything-codex
 
-このリポジトリは、`~/.codex` で使う `AGENTS.md`、`config.toml`、`skills/*`、`rules/` を管理するためのものです。
+このリポジトリは、`~/.codex` で使う `.codex/AGENTS.md`、`config.toml`、`skills/*`、`rules/` を管理するためのものです。
 
 ## 実行コマンド
 
@@ -10,7 +10,7 @@ bash install.sh
 
 ## 実行すると起きること
 
-- `~/.codex/AGENTS.md` -> `<repo>/AGENTS.md` のリンクを作成します
+- `~/.codex/AGENTS.md` -> `<repo>/.codex/AGENTS.md` のリンクを作成します
 - `~/.codex/config.toml` -> `<repo>/config.toml` のリンクを作成します
 - `<repo>/skills/<name>` がある場合は `~/.codex/skills/<name>` のリンクを作成します
 - `<repo>/rules` がある場合は `~/.codex/rules` のリンクを作成します
