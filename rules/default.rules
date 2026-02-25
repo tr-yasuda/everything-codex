@@ -1,0 +1,31 @@
+prefix_rule(
+    pattern = ["gh", "auth", "status"],
+)
+
+prefix_rule(
+    pattern = ["gh", "api", ["rate_limit", "user", "graphql"]],
+)
+
+prefix_rule(
+    pattern = ["gh", "api", "-X", "POST"],
+)
+
+prefix_rule(
+    pattern = ["gh", "pr", ["list", "view", "create", "comment"]],
+)
+
+prefix_rule(
+    pattern = ["gh", "repo", "view"],
+)
+
+prefix_rule(
+    pattern = ["git", "switch", "-c"],
+)
+
+prefix_rule(
+    pattern = ["git", ["add", "commit", "push"]],
+)
+
+prefix_rule(
+    pattern = ["codex", "exec", "review"],
+)
