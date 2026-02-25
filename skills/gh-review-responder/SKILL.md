@@ -18,8 +18,10 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 - `action_required` の修正コミットは「1コミット = 1意図」を原則にし、意図単位で分割する。
 - 意図分割が不可能な場合だけ例外として単一コミットを許可し、`split_exception_reason` を PR コメントに残す。
 - 書き込み操作（ファイル編集、コミット、push、PR 返信、thread resolve）の前に必ず `Preflight` を完了する。
-- `gh` 疎通確認（`gh api rate_limit` など）が失敗した場合は、環境変数 `GH_RETRY_GH_ONCE=1` を指定して承認付きで 1 回だけ再実行する。
-- `gh` 疎通確認の再実行が失敗した場合は停止し、失敗時テンプレートで報告する。
+- `gh` コマンド（`gh auth status`、`gh api rate_limit`、`gh pr list`、`gh repo view`、`gh api user`、`gh api graphql`、`gh api -X POST`、`gh pr view`）が失敗した場合は、環境変数 `GH_RETRY_GH_ONCE=1` を指定して承認付きで 1 回だけ再実行する。
+- `gh` コマンドの再実行が失敗した場合は停止し、失敗時テンプレートで報告する。
+- PR コメント本文とレビュー返信本文は、インライン展開ではなく必ずファイル経由（`--body-file` または `-F body=@<file>`）で送る。
+- レビュー返信の `comment_id` は top-level review comment（`replyTo == null`）だけを使用する。
 - 変更差分がない場合はコミットを行わず、返信と必要な `resolve` のみ行う。
 - `resolve` は `needs_clarification` 以外で「返信済み」のスレッドに実行する。
 - 失敗した時点で処理を止める。
@@ -43,7 +45,7 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 2. `git` と `gh` の利用可否を確認する。
 3. `gh auth status` が成功することを確認する。
 4. `gh api rate_limit --jq '.rate.remaining'` を実行して API 疎通を確認する。
-5. 手順 3 または 4 が失敗した場合は、環境変数 `GH_RETRY_GH_ONCE=1` を指定して承認付きで同じコマンドを 1 回だけ再実行する。
+5. 手順 3 以降で実行する `gh` コマンドが失敗した場合は、環境変数 `GH_RETRY_GH_ONCE=1` を指定して承認付きで同じコマンドを 1 回だけ再実行する。
 6. 再実行でも失敗した場合は、失敗時テンプレートで報告して停止する。
 7. 現在ブランチを取得する。
 8. `gh pr list --head "<current_branch>" --state open --json number,title,url --limit 1` で対象 PR を 1 件取得する。
@@ -52,7 +54,7 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 11. `gh repo view --json nameWithOwner --jq .nameWithOwner` で `owner/repo` を取得する。
 12. `gh api user --jq .login` で実行ユーザーを取得する。
 13. `references/github-graphql-cheatsheet.md` のクエリで未解決レビュー thread を取得する。
-14. 各 thread から「実行ユーザー以外による最新コメント」を 1 件ずつ対象コメントとして選び、対象コメント一覧を作る。
+14. 各 thread から「実行ユーザー以外」かつ「top-level（`replyTo == null`）」の最新コメントを 1 件ずつ対象コメントとして選び、対象コメント一覧を作る。
 15. 対象コメント一覧の各コメントごとに `references/decision-rules.md` で 3 値判定する。
 16. `dry-run` の場合は、判定結果、返信案、resolve 対象案を出力して停止する。
 17. `action_required` のコメントだけ修正する。修正後に `git status --short` で修正差分有無を確認する。修正差分が 1 つもない場合は、手順 18〜21 をスキップして手順 22 へ進む。`codex exec review --base HEAD` 実行前のステージングは任意とする。
@@ -61,7 +63,7 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 20. `codex exec review --base HEAD` は完了まで待機して結果を受け取り、`Medium` 以上が 0 件になるまで修正と再実行を繰り返す。
 21. `codex exec review --base HEAD` が通過したら、`commit_units`（または `split_exception_reason`）を渡して `$gh-commit-pr` を実行し、コミットと PR 更新を行う。
 22. 判定結果ごとに `references/reply-templates.md` のテンプレートで返信本文を作る。
-23. 各 thread の対象コメント（手順 14 で選んだ同一コメント）へ返信を投稿する。
+23. 各 thread の対象コメント（手順 14 で選んだ同一コメント）へ、`reply_file` を作成して `gh api -X POST ... -F body=@<reply_file>` で返信を投稿する。
 24. `action_required` と `no_action` で返信済みの thread に `resolveReviewThread` を実行する。
 25. `needs_clarification` は `resolve` しない。
 26. 最後に結果を集計して報告する。内訳は `resolved`（最終判定が `action_required` または `no_action` で、返信と thread の resolve まで完了したもの）と `pending`（`needs_clarification` 判定で追加回答待ちのもの、または返信/resolve に失敗したもの）の 2 区分とし、例外がある場合は `split_exception_reason` も併記する。
@@ -75,6 +77,7 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 - コミットは「1コミット = 1意図」を原則とし、例外時は理由を PR コメントで明示する。
 - `dry-run` ではコード編集と API 投稿を行わず、対応計画だけ提示する。
 - `action_required` 判定でも、調査の結果「追加修正が不要」と判断した場合は `no_action` に再分類し、根拠付きで返信して `resolve` する。
+- 通信不安定時は `GH_RETRY_GH_ONCE=1` で 1 回だけ再試行し、再失敗時は停止する。
 
 ## 返信時の必須要素
 
