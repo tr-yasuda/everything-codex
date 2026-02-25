@@ -1,6 +1,6 @@
 model = "gpt-5.3-codex"
 model_reasoning_effort = "xhigh"
-approval_policy = "never"
+approval_policy = "on-request"
 sandbox_mode = "workspace-write"
 personality = "friendly"
 web_search = "live"
