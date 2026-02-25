@@ -11,6 +11,10 @@ description: Git の作業ブランチ作成、Conventional Commits 形式のコ
 - 新規ブランチ名は `kind/scope/slug` または `kind/slug` に固定する。
 - コミットメッセージは英語で作成する。
 - コミット形式は `kind(scope): message` または `kind: message` に固定する。
+- コミット粒度は「1コミット = 1意図」に固定する。
+- 独立した意図が複数ある差分は、意図単位で複数コミットに分割する。
+- 意図分割が不可能な場合だけ例外として 1 コミットにまとめ、理由を `split_exception_reason` として残す。
+- PR 本文または PR コメントには `Commit Intent Map`（各コミットの意図一覧）を必ず含める。
 - 現在ブランチに紐づく `open` PR がある場合は、ブランチ名を変更しない。
 - 現在ブランチに紐づく `open` PR がある場合は、`gh pr create` を実行しない。
 - 現在ブランチに紐づく `open` PR がある場合は、`gh pr comment` で修正内容を 1 件追記する。
@@ -29,7 +33,7 @@ description: Git の作業ブランチ作成、Conventional Commits 形式のコ
 
 - `normal`: 通常実行。コミット、push、PR 作成または PR コメント更新まで行う。
 - `preflight-only`: 前提確認だけ行い、書き込み操作を行わない。
-- `dry-run`: 前提確認後に「予定ブランチ名、予定コミット件名、予定 PR タイトル/本文または予定 PR コメント本文」を提示して停止する。
+- `dry-run`: 前提確認後に「予定ブランチ名、予定コミット一覧、予定 PR タイトル/本文または予定 PR コメント本文」を提示して停止する。
 
 ## 手順
 
@@ -51,18 +55,20 @@ description: Git の作業ブランチ作成、Conventional Commits 形式のコ
 16. `existing_pr_number` が空の場合だけ、変更要約から英語の `slug` を作る。
 17. `slug` は `a-z0-9-` の 2〜5 語にする。
 18. `existing_pr_number` が空の場合だけ、同名ブランチ衝突回避を行って `kind/scope/slug` または `kind/slug` の候補名を決定する。
-19. 差分要約から英語の Conventional Commit 件名を 1 行で作る。72 文字以内を目安にする。
-20. PR テンプレートを次の順で探索する: `.github/pull_request_template.md`、`.github/PULL_REQUEST_TEMPLATE.md`、`.github/PULL_REQUEST_TEMPLATE/*.md`。
-21. `.github/PULL_REQUEST_TEMPLATE/*.md` はファイル名昇順の先頭 1 件を使う。
-22. テンプレート本文の日本語文字比率を判定し、日本語優勢なら日本語文面、そうでなければ英語文面を作る。
-23. `dry-run` の場合は、予定ブランチ名、予定コミット件名、予定 PR タイトルと本文案（既存 PR がある場合は予定 PR コメント本文）を出力して停止する。
-24. `existing_pr_number` が空の場合だけ `git switch -c "<new_branch>"` を実行する。
-25. `git add -A` で全変更をステージする。
-26. ステージ済み差分が空なら停止する。
-27. `git commit -m "<subject>"` を実行する。
-28. 現在ブランチに upstream がある場合は `git push` を実行する。ない場合は `git push -u origin <current_branch>` を実行する。
-29. `existing_pr_number` が空の場合は `gh pr create --base <base> --head <branch> --title "<title>" --body-file <file>` を実行する。
-30. `existing_pr_number` がある場合は `gh pr comment <number> --body-file <file>` を実行する。
+19. 差分を意図単位で分類し、`commit_units`（`subject`、`staging_scope`、`intent`）を作る。
+20. 独立した意図が複数ある場合は、`commit_units` の各要素を 1 コミットずつ作成する。
+21. 意図分割が不可能な場合だけ、`split_exception_reason` を記録して 1 コミットにまとめる。
+22. PR テンプレートを次の順で探索する: `.github/pull_request_template.md`、`.github/PULL_REQUEST_TEMPLATE.md`、`.github/PULL_REQUEST_TEMPLATE/*.md`。
+23. `.github/PULL_REQUEST_TEMPLATE/*.md` はファイル名昇順の先頭 1 件を使う。
+24. テンプレート本文の日本語文字比率を判定し、日本語優勢なら日本語文面、そうでなければ英語文面を作る。
+25. `dry-run` の場合は、予定ブランチ名、予定コミット一覧、予定 PR タイトルと本文案（既存 PR がある場合は予定 PR コメント本文）を出力して停止する。
+26. `existing_pr_number` が空の場合だけ `git switch -c "<new_branch>"` を実行する。
+27. `commit_units` に従って、意図単位で `git add` と `git commit` を繰り返す。例外時のみ 1 コミットで実行する。
+28. 各コミット後に `Commit Intent Map` を更新する。
+29. 現在ブランチに upstream がある場合は `git push` を実行する。ない場合は `git push -u origin <current_branch>` を実行する。
+30. `existing_pr_number` が空の場合は `gh pr create --base <base> --head <branch> --title "<title>" --body-file <file>` を実行する。
+31. `existing_pr_number` がある場合は `gh pr comment <number> --body-file <file>` を実行する。
+32. `split_exception_reason` がある場合は、PR 本文または PR コメントに理由を必ず記載する。
 
 ## `kind` 選択ガイド
 
@@ -118,9 +124,15 @@ fi
 # scope: optional
 # slug: kebab-case summary
 # commit_subject: conventional commit subject
+# commit_plan_file: optional, one line per commit as "<subject>|<staging_scope>|<intent>"
+# split_exception_reason: optional, required only when mixed-intent single commit is unavoidable
 if [[ -z "${commit_subject:-}" ]]; then
   commit_subject="chore: update"
 fi
+commit_plan_file="${commit_plan_file:-}"
+split_exception_reason="${split_exception_reason:-}"
+commit_intent_map=""
+split_exception_note="none"
 
 # 1) 現在ブランチと既存 PR 検出
 existing_pr_number="$(gh pr list --head "${current_branch}" --state open --json number --jq '.[0].number // empty' --limit 1)"
@@ -256,7 +268,15 @@ fi
 # dry-run はここで停止
 if [[ "${mode}" == "dry-run" ]]; then
   echo "branch=${current_branch}"
-  echo "commit=${commit_subject}"
+  if [[ -n "${commit_plan_file}" ]]; then
+    echo "planned_commits:"
+    cat "${commit_plan_file}"
+  else
+    echo "planned_commit=${commit_subject}"
+  fi
+  if [[ -n "${split_exception_reason}" ]]; then
+    echo "split_exception_reason=${split_exception_reason}"
+  fi
   if [[ -n "${existing_pr_number}" ]]; then
     echo "existing_pr_number=${existing_pr_number}"
     echo "planned_pr_comment_body:"
@@ -275,10 +295,68 @@ if [[ -z "${existing_pr_number}" ]]; then
   git switch -c "${current_branch}"
 fi
 
-# 3) ステージとコミット
-git add -A
-git diff --cached --quiet && { echo "No staged changes"; exit 1; }
-git commit -m "${commit_subject}"
+# 3) コミット（1コミット = 1意図）
+if [[ -n "${commit_plan_file}" ]]; then
+  while IFS='|' read -r unit_subject unit_scope unit_intent; do
+    [[ -z "${unit_subject}" ]] && continue
+    [[ -z "${unit_scope}" ]] && { echo "empty staging_scope for ${unit_subject}"; exit 1; }
+    git add ${unit_scope}
+    git diff --cached --quiet && { echo "No staged changes for ${unit_subject}"; exit 1; }
+    git commit -m "${unit_subject}"
+    short_sha="$(git rev-parse --short HEAD)"
+    commit_intent_map="${commit_intent_map}- ${short_sha}: ${unit_intent}"$'\n'
+  done < "${commit_plan_file}"
+else
+  if [[ -n "${split_exception_reason}" ]]; then
+    split_exception_note="${split_exception_reason}"
+  fi
+  git add -A
+  git diff --cached --quiet && { echo "No staged changes"; exit 1; }
+  git commit -m "${commit_subject}"
+  short_sha="$(git rev-parse --short HEAD)"
+  if [[ -n "${split_exception_reason}" ]]; then
+    commit_intent_map="${commit_intent_map}- ${short_sha}: mixed-intent commit (${split_exception_reason})"$'\n'
+  else
+    commit_intent_map="${commit_intent_map}- ${short_sha}: ${commit_subject}"$'\n'
+  fi
+fi
+
+[[ -n "${commit_intent_map}" ]] || { echo "commit_intent_map is empty"; exit 1; }
+
+# 3.1) PR 本文/コメントに Commit Intent Map と例外理由を追記
+if [[ -n "${existing_pr_number}" ]]; then
+  if [[ "${lang}" == "ja" ]]; then
+    cat >> "${pr_comment_file}" <<EOF
+
+コミット意図
+${commit_intent_map}分割例外
+- ${split_exception_note}
+EOF
+  else
+    cat >> "${pr_comment_file}" <<EOF
+
+Commit Intent Map
+${commit_intent_map}Split Exception
+- ${split_exception_note}
+EOF
+  fi
+else
+  if [[ "${lang}" == "ja" ]]; then
+    cat >> "${pr_body_file}" <<EOF
+
+コミット意図
+${commit_intent_map}分割例外
+- ${split_exception_note}
+EOF
+  else
+    cat >> "${pr_body_file}" <<EOF
+
+Commit Intent Map
+${commit_intent_map}Split Exception
+- ${split_exception_note}
+EOF
+  fi
+fi
 
 # 4) push（upstream があれば通常 push）
 if git rev-parse --abbrev-ref --symbolic-full-name '@{u}' >/dev/null 2>&1; then

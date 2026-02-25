@@ -15,6 +15,8 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 - `codex exec review --base HEAD` の重大度はその出力仕様に従う。`Medium` 以上（`Medium` と、それより高い重大度）の指摘が 1 件でもある場合はコミットを停止し、修正して再度 `codex exec review --base HEAD` を実行する。
 - `codex exec review --base HEAD` は完了まで待機し、明示的な中断指示がない限り途中で停止しない。
 - コミットと PR 更新は `$gh-commit-pr` を使用する。
+- `action_required` の修正コミットは「1コミット = 1意図」を原則にし、意図単位で分割する。
+- 意図分割が不可能な場合だけ例外として単一コミットを許可し、`split_exception_reason` を PR コメントに残す。
 - 書き込み操作（ファイル編集、コミット、push、PR 返信、thread resolve）の前に必ず `Preflight` を完了する。
 - `gh` 疎通確認（`gh api rate_limit` など）が失敗した場合は、承認付きで 1 回だけ再実行する。
 - `gh` 疎通確認の再実行が失敗した場合は停止し、失敗時テンプレートで報告する。
@@ -54,14 +56,15 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 15. 対象コメント一覧の各コメントごとに `references/decision-rules.md` で 3 値判定する。
 16. `dry-run` の場合は、判定結果、返信案、resolve 対象案を出力して停止する。
 17. `action_required` のコメントだけ修正する。修正後に `git status --short` か `git diff --cached` で差分有無を確認する。`codex exec review --base HEAD` 実行前のステージングは任意とする。
-18. 修正差分を確認できる場合だけ `codex exec review --base HEAD` を実行する。実行できない場合は停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
-19. `codex exec review --base HEAD` は完了まで待機して結果を受け取り、`Medium` 以上が 0 件になるまで修正と再実行を繰り返す。
-20. `codex exec review --base HEAD` が通過したら `$gh-commit-pr` を使ってコミットと PR 更新を行う。
-21. 判定結果ごとに `references/reply-templates.md` のテンプレートで返信本文を作る。
-22. 各 thread の対象コメント（手順 14 で選んだ同一コメント）へ返信を投稿する。
-23. `action_required` で修正済みかつ返信済みの thread だけ `resolveReviewThread` を実行する。
-24. `needs_clarification` と `no_action` は `resolve` しない。
-25. 最後に結果を集計して報告する。内訳は `resolved`（`action_required` 判定で修正・返信まで完了し、thread を resolve したもの）、`replied-only`（最終判定が `no_action` で返信のみ行ったもの。`action_required` からの再分類を含む）、`pending`（`needs_clarification` 判定で追加回答待ちのもの）の 3 区分とする。
+18. 修正差分を意図単位で分類し、`commit_units`（`subject`、`staging_scope`、`intent`）を作る。分割不能な場合のみ `split_exception_reason` を作る。
+19. 修正差分を確認できる場合だけ `codex exec review --base HEAD` を実行する。実行できない場合は停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
+20. `codex exec review --base HEAD` は完了まで待機して結果を受け取り、`Medium` 以上が 0 件になるまで修正と再実行を繰り返す。
+21. `codex exec review --base HEAD` が通過したら、`commit_units`（または `split_exception_reason`）を渡して `$gh-commit-pr` を実行し、コミットと PR 更新を行う。
+22. 判定結果ごとに `references/reply-templates.md` のテンプレートで返信本文を作る。
+23. 各 thread の対象コメント（手順 14 で選んだ同一コメント）へ返信を投稿する。
+24. `action_required` で修正済みかつ返信済みの thread だけ `resolveReviewThread` を実行する。
+25. `needs_clarification` と `no_action` は `resolve` しない。
+26. 最後に結果を集計して報告する。内訳は `resolved`（`action_required` 判定で修正・返信まで完了し、thread を resolve したもの）、`replied-only`（最終判定が `no_action` で返信のみ行ったもの。`action_required` からの再分類を含む）、`pending`（`needs_clarification` 判定で追加回答待ちのもの）の 3 区分とし、例外がある場合は `split_exception_reason` も併記する。
 
 ## 判定と実行の要点
 
@@ -69,6 +72,7 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 - 複数コメントが同一 thread にある場合は、最新コメントの要求を優先する。
 - 他レビュアー間で要求が競合する場合は `needs_clarification` で論点を明示する。
 - `codex exec review --base HEAD` が実行できない環境では停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
+- コミットは「1コミット = 1意図」を原則とし、例外時は理由を PR コメントで明示する。
 - `dry-run` ではコード編集と API 投稿を行わず、対応計画だけ提示する。
 - `action_required` 判定でも、調査の結果「追加修正が不要」と判断した場合は `no_action` に再分類し、根拠付きで返信して `resolve` しない。
 
