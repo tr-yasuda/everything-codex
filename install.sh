@@ -5,10 +5,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_AGENTS="${SCRIPT_DIR}/AGENTS.md"
 REPO_CONFIG="${SCRIPT_DIR}/config.toml"
 REPO_SKILLS="${SCRIPT_DIR}/skills"
+REPO_RULES="${SCRIPT_DIR}/rules"
 CODEX_DIR="${HOME}/.codex"
 TARGET_AGENTS="${CODEX_DIR}/AGENTS.md"
 TARGET_CONFIG="${CODEX_DIR}/config.toml"
 TARGET_SKILLS="${CODEX_DIR}/skills"
+TARGET_RULES="${CODEX_DIR}/rules"
 
 canonicalize_path() {
   local path="$1"
@@ -101,4 +103,10 @@ if [[ -d "${REPO_SKILLS}" ]]; then
   done
 else
   echo "Info: ${REPO_SKILLS} がないため skills のリンクは作成しません。"
+fi
+
+if [[ -d "${REPO_RULES}" ]]; then
+  ensure_link "${REPO_RULES}" "${TARGET_RULES}"
+else
+  echo "Info: ${REPO_RULES} がないため rules のリンクは作成しません。"
 fi
