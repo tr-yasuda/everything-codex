@@ -21,7 +21,7 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 - `gh` 疎通確認（`gh api rate_limit` など）が失敗した場合は、承認付きで 1 回だけ再実行する。
 - `gh` 疎通確認の再実行が失敗した場合は停止し、失敗時テンプレートで報告する。
 - 変更差分がない場合はコミットを行わず、返信と必要な `resolve` のみ行う。
-- `resolve` は「修正済みかつ返信済み」のスレッドのみ実行する。
+- `resolve` は `needs_clarification` 以外で「返信済み」のスレッドに実行する。
 - 失敗した時点で処理を止める。
 - 明示依頼がない限り、`git reset --hard`、`git push --force`、`rm` を実行しない。
 
@@ -62,9 +62,9 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 21. `codex exec review --base HEAD` が通過したら、`commit_units`（または `split_exception_reason`）を渡して `$gh-commit-pr` を実行し、コミットと PR 更新を行う。
 22. 判定結果ごとに `references/reply-templates.md` のテンプレートで返信本文を作る。
 23. 各 thread の対象コメント（手順 14 で選んだ同一コメント）へ返信を投稿する。
-24. `action_required` で修正済みかつ返信済みの thread だけ `resolveReviewThread` を実行する。
-25. `needs_clarification` と `no_action` は `resolve` しない。
-26. 最後に結果を集計して報告する。内訳は `resolved`（`action_required` 判定で修正・返信まで完了し、thread を resolve したもの）、`replied-only`（最終判定が `no_action` で返信のみ行ったもの。`action_required` からの再分類を含む）、`pending`（`needs_clarification` 判定で追加回答待ちのもの）の 3 区分とし、例外がある場合は `split_exception_reason` も併記する。
+24. `action_required` と `no_action` で返信済みの thread に `resolveReviewThread` を実行する。
+25. `needs_clarification` は `resolve` しない。
+26. 最後に結果を集計して報告する。内訳は `resolved`（最終判定が `action_required` または `no_action` で、返信と thread の resolve まで完了したもの）と `pending`（`needs_clarification` 判定で追加回答待ちのもの、または返信/resolve に失敗したもの）の 2 区分とし、例外がある場合は `split_exception_reason` も併記する。
 
 ## 判定と実行の要点
 
@@ -74,7 +74,7 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 - `codex exec review --base HEAD` が実行できない環境では停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
 - コミットは「1コミット = 1意図」を原則とし、例外時は理由を PR コメントで明示する。
 - `dry-run` ではコード編集と API 投稿を行わず、対応計画だけ提示する。
-- `action_required` 判定でも、調査の結果「追加修正が不要」と判断した場合は `no_action` に再分類し、根拠付きで返信して `resolve` しない。
+- `action_required` 判定でも、調査の結果「追加修正が不要」と判断した場合は `no_action` に再分類し、根拠付きで返信して `resolve` する。
 
 ## 返信時の必須要素
 

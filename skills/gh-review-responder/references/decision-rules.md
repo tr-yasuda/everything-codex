@@ -35,11 +35,11 @@
 
 - `decision`: `action_required|no_action|needs_clarification`
 - `reason`: 1 文
-- `next_action`: `fix|reply-only|ask-question`
+- `next_action`: `fix|reply-and-resolve|ask-question`
 
 ## `next_action` とワークフローの対応
 
 - `decision: action_required` のときは `next_action: fix` とする。`SKILL.md` の修正ステップに進み、`reply-templates.md` の `action_required` を使う。
-- `decision: no_action` のときは `next_action: reply-only` とする。コード修正は行わず、`reply-templates.md` の `no_action` を使う。
+- `decision: no_action` のときは `next_action: reply-and-resolve` とする。コード修正は行わず、`reply-templates.md` の `no_action` で返信し、thread を resolve する。
 - `decision: needs_clarification` のときは `next_action: ask-question` とする。追加確認を返信し、`reply-templates.md` の `needs_clarification` を使う。
 - `next_action` は `decision` から機械的に決まる補助ラベルとする。独立に別判断しない。
