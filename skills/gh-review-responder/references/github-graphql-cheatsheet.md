@@ -23,13 +23,17 @@ query($owner: String!, $repo: String!, $number: Int!) {
   repository(owner: $owner, name: $repo) {
     pullRequest(number: $number) {
       reviewThreads(first: 100) {
+        pageInfo {
+          hasNextPage
+          endCursor
+        }
         nodes {
           id
           isResolved
           isOutdated
           path
           line
-          comments(first: 30) {
+          comments(last: 30) {
             nodes {
               id
               databaseId
@@ -44,8 +48,10 @@ query($owner: String!, $repo: String!, $number: Int!) {
     }
   }
 }
-' --jq '.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved == false)'
+' --jq '.data.repository.pullRequest.reviewThreads.nodes[] | select(.isResolved != true)'
 ```
+
+`hasNextPage` が `true` の場合は、`endCursor` を使って `after:` 付きで再取得し、全 thread を回収する。
 
 ## 最新コメントへの返信（REST）
 
