@@ -8,7 +8,6 @@ web_search = "live"
 [features]
 multi_agent = true
 apps = true
-use_linux_sandbox_bwrap = true
 
 [history]
 persistence = "save-all"
