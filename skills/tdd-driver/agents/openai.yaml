@@ -1,0 +1,4 @@
+interface:
+  display_name: "TDD Driver"
+  short_description: "厳格TDDの計画・実行をRed-Green-Refactorで一貫支援"
+  default_prompt: "$tdd-driver を使って、対象機能の Test List を作成し、まず plan-only で Red-Green-Refactor の実行計画を提示してください。"
