@@ -58,6 +58,7 @@
 
 - `Trigger`: 停止条件。
 - `Class`: `recoverable|needs-confirmation`。
+- `Signal`: 停止を検知した事実。
 - `Recovery`: 再開に必要な手順。
 - `Next One Step`: 直近で実行する 1 手。
 
