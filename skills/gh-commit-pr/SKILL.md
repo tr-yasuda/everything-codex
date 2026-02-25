@@ -92,17 +92,27 @@ mode="${mode:-normal}"
 allow_retry_once="${GH_RETRY_GH_ONCE:-0}"
 
 run_gh() {
+  local gh_status=0
+
   if gh "$@"; then
     return 0
+  else
+    gh_status=$?
   fi
 
   if [[ "${allow_retry_once}" == "1" || "${allow_retry_once}" == "true" ]]; then
-    gh "$@"
-    return $?
+    if gh "$@"; then
+      return 0
+    else
+      gh_status=$?
+    fi
   fi
 
-  echo "gh $* failed. set GH_RETRY_GH_ONCE=1 after approval to retry once." >&2
-  return 1
+  local quoted_args
+  printf -v quoted_args '%q ' "$@"
+  echo "gh command failed: gh ${quoted_args}" >&2
+  echo "retry hint: set GH_RETRY_GH_ONCE=1 after approval to retry once." >&2
+  return "${gh_status}"
 }
 
 # 0) Preflight
