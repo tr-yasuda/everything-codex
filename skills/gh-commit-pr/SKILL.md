@@ -196,11 +196,11 @@ if [[ -n "${existing_pr_number}" ]]; then
   if [[ "${lang}" == "ja" ]]; then
     cat > "${pr_comment_file}" <<'EOF'
 概要
-- Describe the fix.
+- 修正内容を記述してください。
 変更内容
-- List key file-level changes.
+- 主なファイル単位の変更点を列挙してください。
 テスト
-- Describe executed tests and outcomes.
+- 実施したテストと結果を記述してください。
 EOF
   else
     cat > "${pr_comment_file}" <<'EOF'
@@ -223,11 +223,11 @@ else
 ---
 
 概要
-- Describe the change.
+- 変更内容を記述してください。
 変更内容
-- List key file-level changes.
+- 主なファイル単位の変更点を列挙してください。
 テスト
-- Describe executed tests and outcomes.
+- 実施したテストと結果を記述してください。
 EOF
     else
       cat >> "${pr_body_file}" <<'EOF'
@@ -246,11 +246,11 @@ EOF
     if [[ "${lang}" == "ja" ]]; then
       cat > "${pr_body_file}" <<'EOF'
 概要
-- Describe the change.
+- 変更内容の概要を記述してください。
 変更内容
-- List key file-level changes.
+- 主なファイル単位の変更点を列挙してください。
 テスト
-- Describe executed tests and outcomes.
+- 実施したテストと結果を記述してください。
 EOF
     else
       cat > "${pr_body_file}" <<'EOF'
