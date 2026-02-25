@@ -22,9 +22,10 @@ description: Git の作業ブランチ作成、Conventional Commits 形式のコ
 - PR コメント本文は原則英語で作成する。
 - PR テンプレートが日本語優勢の場合のみ、PR タイトル・本文・コメント本文を日本語で作成する。
 - 書き込み操作（`git switch -c`、`git commit`、`git push`、`gh pr create`、`gh pr comment`）の前に必ず `Preflight` を完了する。
-- `gh` 疎通確認（`gh api rate_limit` など）が失敗した場合は、承認付きで 1 回だけ再実行する。
+- `gh` コマンド（`gh auth status`、`gh api rate_limit`、`gh pr list`、`gh pr create`、`gh pr comment`）が失敗した場合は、承認付きで 1 回だけ再実行する。
 - 承認付き再実行では `GH_RETRY_GH_ONCE=1` を使って 1 回だけ再試行する。
-- `gh` 疎通確認の再実行が失敗した場合は停止し、失敗時テンプレートで報告する。
+- `gh` コマンドの再実行が失敗した場合は停止し、失敗時テンプレートで報告する。
+- PR 本文と PR コメント本文は、インライン展開ではなく必ず `--body-file` で送る。
 - デフォルトブランチへ直接コミットしない。
 - 失敗した時点で処理を止める。
 - 明示依頼がない限り、`git reset --hard`、`git push --force`、`rm` を実行しない。
@@ -42,9 +43,9 @@ description: Git の作業ブランチ作成、Conventional Commits 形式のコ
 3. `origin` リモートが存在することを確認する。
 4. `gh auth status` が成功することを確認する。
 5. `gh api rate_limit --jq '.rate.remaining'` を実行して API 疎通を確認する。
-6. 手順 4 または 5 が失敗した場合は、承認付きで `GH_RETRY_GH_ONCE=1` を付けて同じコマンドを 1 回だけ再実行する。
+6. 手順 4 以降で実行する `gh` コマンドが失敗した場合は、承認付きで `GH_RETRY_GH_ONCE=1` を付けて同じコマンドを 1 回だけ再実行する。
 7. 再実行でも失敗した場合は、失敗時テンプレートで報告して停止する。
-8. 現在ブランチ名を取得する。
+8. 現在ブランチ名を取得する（必要なら事前に `git fetch --prune origin` で同期する）。
 9. `gh pr list --head "<current_branch>" --state open --json number,title,url --limit 1` で既存 open PR を検出する。
 10. 既存 open PR がある場合は PR 番号を `existing_pr_number` に格納する。ない場合は空にする。
 11. `preflight-only` の場合は、確認結果を出力して停止する。
@@ -90,6 +91,30 @@ description: Git の作業ブランチ作成、Conventional Commits 形式のコ
 mode="${mode:-normal}"
 allow_retry_once="${GH_RETRY_GH_ONCE:-0}"
 
+run_gh() {
+  local gh_status=0
+
+  if gh "$@"; then
+    return 0
+  else
+    gh_status=$?
+  fi
+
+  if [[ "${allow_retry_once}" == "1" || "${allow_retry_once}" == "true" ]]; then
+    if gh "$@"; then
+      return 0
+    else
+      gh_status=$?
+    fi
+  fi
+
+  local quoted_args
+  printf -v quoted_args '%q ' "$@"
+  echo "gh command failed: gh ${quoted_args}" >&2
+  echo "retry hint: set GH_RETRY_GH_ONCE=1 after approval to retry once." >&2
+  return "${gh_status}"
+}
+
 # 0) Preflight
 command -v git >/dev/null || { echo "git not found"; exit 1; }
 command -v gh >/dev/null || { echo "gh not found"; exit 1; }
@@ -101,23 +126,8 @@ current_branch="$(git rev-parse --abbrev-ref HEAD 2>/dev/null || echo "")"
 default_branch="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's|^origin/||')"
 [[ -z "${default_branch}" ]] && default_branch="main"
 
-if ! gh auth status; then
-  if [[ "${allow_retry_once}" == "1" || "${allow_retry_once}" == "true" ]]; then
-    gh auth status || exit 1
-  else
-    echo "gh auth status failed. set GH_RETRY_GH_ONCE=1 after approval to retry once."
-    exit 1
-  fi
-fi
-
-if ! gh api rate_limit --jq '.rate.remaining' >/dev/null; then
-  if [[ "${allow_retry_once}" == "1" || "${allow_retry_once}" == "true" ]]; then
-    gh api rate_limit --jq '.rate.remaining' >/dev/null || exit 1
-  else
-    echo "gh api rate_limit failed. set GH_RETRY_GH_ONCE=1 after approval to retry once."
-    exit 1
-  fi
-fi
+run_gh auth status || exit 1
+run_gh api rate_limit --jq '.rate.remaining' >/dev/null || exit 1
 
 # 0) 手順で作った入力値を準備
 # kind: feat|fix|docs|style|refactor|perf|test|build|ci|chore
@@ -135,7 +145,7 @@ commit_intent_map=""
 split_exception_note="none"
 
 # 1) 現在ブランチと既存 PR 検出
-existing_pr_number="$(gh pr list --head "${current_branch}" --state open --json number --jq '.[0].number // empty' --limit 1)"
+existing_pr_number="$(run_gh pr list --head "${current_branch}" --state open --json number --jq '.[0].number // empty' --limit 1)" || exit 1
 
 # 1.0) preflight-only（既存 PR 検出まで実行してから終了）
 if [[ "${mode}" == "preflight-only" ]]; then
@@ -372,9 +382,9 @@ fi
 
 # 5) 既存 PR があればコメント、なければ新規 PR 作成
 if [[ -n "${existing_pr_number}" ]]; then
-  gh pr comment "${existing_pr_number}" --body-file "${pr_comment_file}"
+  run_gh pr comment "${existing_pr_number}" --body-file "${pr_comment_file}"
 else
-  gh pr create --base "${base_branch}" --head "${current_branch}" --title "${pr_title}" --body-file "${pr_body_file}"
+  run_gh pr create --base "${base_branch}" --head "${current_branch}" --title "${pr_title}" --body-file "${pr_body_file}"
 fi
 ```
 
