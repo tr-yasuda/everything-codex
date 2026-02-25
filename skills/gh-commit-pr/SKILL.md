@@ -83,12 +83,29 @@ description: Git の作業ブランチ作成、Conventional Commits 形式のコ
 ## 実行時テンプレート
 
 ```bash
+# 0) 手順で作った入力値を準備
+# kind: feat|fix|docs|style|refactor|perf|test|build|ci|chore
+# scope: optional
+# slug: kebab-case summary
+# commit_subject: conventional commit subject
+if [[ -z "${commit_subject:-}" ]]; then
+  commit_subject="chore: update"
+fi
+
 # 1) 現在ブランチと既存 PR 検出
 current_branch="$(git branch --show-current)"
 existing_pr_number="$(gh pr list --head "${current_branch}" --state open --json number --jq '.[0].number // empty' --limit 1)"
 
 # 2) 既存 PR がない場合だけ新規ブランチを作成
 if [[ -z "${existing_pr_number}" ]]; then
+  : "${kind:?kind is required}"
+  : "${slug:?slug is required}"
+
+  new_branch="${kind}/${slug}"
+  if [[ -n "${scope:-}" ]]; then
+    new_branch="${kind}/${scope}/${slug}"
+  fi
+
   base_branch="$(git symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null | sed 's|^origin/||')"
   if [[ -z "${base_branch}" ]]; then
     base_branch="main"
@@ -112,8 +129,31 @@ fi
 
 # 5) 既存 PR があればコメント、なければ新規 PR 作成
 if [[ -n "${existing_pr_number}" ]]; then
+  pr_comment_file="$(mktemp)"
+  cat > "${pr_comment_file}" <<'EOF'
+Summary
+- Describe the fix.
+Changes
+- List key file-level changes.
+Testing
+- Describe executed tests and outcomes.
+EOF
+
+  # 日本語テンプレートを使う場合は見出しを `概要/変更内容/テスト` に置き換える。
   gh pr comment "${existing_pr_number}" --body-file "${pr_comment_file}"
 else
+  pr_title="${commit_subject}"
+  pr_body_file="$(mktemp)"
+  cat > "${pr_body_file}" <<'EOF'
+Summary
+- Describe the change.
+Changes
+- List key file-level changes.
+Testing
+- Describe executed tests and outcomes.
+EOF
+
+  # 日本語テンプレートを使う場合は見出しを `概要/変更内容/テスト` に置き換える。
   gh pr create --base "${base_branch}" --head "${current_branch}" --title "${pr_title}" --body-file "${pr_body_file}"
 fi
 ```
