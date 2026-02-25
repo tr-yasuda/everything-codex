@@ -10,3 +10,6 @@
 
 ## Commit Intent Map
 - `commit_subject`: intent
+
+## Split Exception
+- If commits cannot be split cleanly by intent, explain why here. Otherwise, state `N/A`.
