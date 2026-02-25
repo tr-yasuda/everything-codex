@@ -1,4 +1,4 @@
 interface:
   display_name: "GH Review Responder"
   short_description: "PRレビューの判定・返信・条件付きresolveを一連処理"
-  default_prompt: "$gh-review-responder を使って、現在ブランチのPRレビューコメントを判定し、必要な修正は PRレビュー用の /review コマンドを通してからコミットし、返信とresolveまで進めてください。"
+  default_prompt: "$gh-review-responder を使って、現在ブランチのPRレビューコメントを判定し、必要な修正は `codex exec review --uncommitted` を通してからコミットし、返信とresolveまで進めてください。"

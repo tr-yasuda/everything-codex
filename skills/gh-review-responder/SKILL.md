@@ -1,6 +1,6 @@
 ---
 name: gh-review-responder
-description: GitHub PR の未解決レビューコメントをコメント単位で対応要否判定し、必要なら修正後に /review で品質確認してからコミット・PR更新し、各スレッドへ返信して条件付きで resolve まで進める skill。レビュー対応の要否判断から返信と解決までを一連で処理したいときに使う。
+description: GitHub PR の未解決レビューコメントをコメント単位で対応要否判定し、必要なら修正後に `codex exec review --uncommitted` で品質確認してからコミット・PR更新し、各スレッドへ返信して条件付きで resolve まで進める skill。レビュー対応の要否判断から返信と解決までを一連で処理したいときに使う。
 ---
 
 # gh-review-responder
@@ -11,8 +11,8 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 - 判定単位はコメント単位に固定し、判定値は `action_required|no_action|needs_clarification` の 3 値に固定する。
 - `no_action` 判定でも返信は必須とし、1〜2 文で根拠を示す。
 - `needs_clarification` 判定は確認質問を返信し、`resolve` しない。
-- `action_required` 判定でコード変更した場合は、コミット前に必ず `/review` を実行する。
-- `/review` の重大度は `/review` の仕様に従う。`Medium` 以上（`Medium` と、それより高い重大度）の指摘が 1 件でもある場合はコミットを停止し、修正して再度 `/review` を実行する。
+- `action_required` 判定でコード変更した場合は、コミット前に必ず `codex exec review --uncommitted` を実行する。
+- `codex exec review --uncommitted` の重大度はその出力仕様に従う。`Medium` 以上（`Medium` と、それより高い重大度）の指摘が 1 件でもある場合はコミットを停止し、修正して再度 `codex exec review --uncommitted` を実行する。
 - コミットと PR 更新は `$gh-commit-pr` を使用する。
 - 書き込み操作（ファイル編集、コミット、push、PR 返信、thread resolve）の前に必ず `Preflight` を完了する。
 - `gh` 疎通確認（`gh api rate_limit` など）が失敗した場合は、承認付きで 1 回だけ再実行する。
@@ -53,9 +53,9 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 15. 対象コメント一覧の各コメントごとに `references/decision-rules.md` で 3 値判定する。
 16. `dry-run` の場合は、判定結果、返信案、resolve 対象案を出力して停止する。
 17. `action_required` のコメントだけ修正する。修正後に `git status --short` か `git diff --cached` で差分有無を確認する。
-18. 修正差分を確認できる場合だけ `/review` を実行する。`/review` が実行できない場合は停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
-19. `/review` の `Medium` 以上が 0 件になるまで修正と `/review` を繰り返す。
-20. `/review` が通過したら `$gh-commit-pr` を使ってコミットと PR 更新を行う。
+18. 修正差分を確認できる場合だけ `codex exec review --uncommitted` を実行する。実行できない場合は停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
+19. `codex exec review --uncommitted` の `Medium` 以上が 0 件になるまで修正と再実行を繰り返す。
+20. `codex exec review --uncommitted` が通過したら `$gh-commit-pr` を使ってコミットと PR 更新を行う。
 21. 判定結果ごとに `references/reply-templates.md` のテンプレートで返信本文を作る。
 22. 各 thread の対象コメント（手順 14 で選んだ同一コメント）へ返信を投稿する。
 23. `action_required` で修正済みかつ返信済みの thread だけ `resolveReviewThread` を実行する。
@@ -67,7 +67,7 @@ description: GitHub PR の未解決レビューコメントをコメント単位
 - 判定で迷う場合は `needs_clarification` を選び、確認質問を優先する。
 - 複数コメントが同一 thread にある場合は、最新コメントの要求を優先する。
 - 他レビュアー間で要求が競合する場合は `needs_clarification` で論点を明示する。
-- `/review` が実行できない環境では停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
+- `codex exec review --uncommitted` が実行できない環境では停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
 - `dry-run` ではコード編集と API 投稿を行わず、対応計画だけ提示する。
 - `action_required` 判定でも、調査の結果「追加修正が不要」と判断した場合は `no_action` に再分類し、根拠付きで返信して `resolve` しない。
 
