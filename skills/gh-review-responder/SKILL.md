@@ -1,0 +1,96 @@
+---
+name: gh-review-responder
+description: GitHub PR の未解決レビューコメントをコメント単位で対応要否判定し、必要なら修正後に `codex exec review --base HEAD` で品質確認してからコミット・PR更新し、各スレッドへ返信して条件付きで resolve まで進める skill。レビュー対応の要否判断から返信と解決までを一連で処理したいときに使う。
+---
+
+# gh-review-responder
+
+## 固定ルール
+
+- 対象は現在ブランチに紐づく `open` PR のレビューコメントだけに限定する。
+- 判定単位はコメント単位に固定し、判定値は `action_required|no_action|needs_clarification` の 3 値に固定する。
+- `no_action` 判定でも返信は必須とし、2〜4 文で根拠を示す。
+- `needs_clarification` 判定は確認質問を返信し、`resolve` しない。
+- `action_required` 判定でコード変更した場合は、コミット前に必ず `codex exec review --base HEAD` を実行する。
+- `codex exec review --base HEAD` の重大度はその出力仕様に従う。`Medium` 以上（`Medium` と、それより高い重大度）の指摘が 1 件でもある場合はコミットを停止し、修正して再度 `codex exec review --base HEAD` を実行する。
+- `codex exec review --base HEAD` は完了まで待機し、明示的な中断指示がない限り途中で停止しない。
+- コミットと PR 更新は `$gh-commit-pr` を使用する。
+- `action_required` の修正コミットは「1コミット = 1意図」を原則にし、意図単位で分割する。
+- 意図分割が不可能な場合だけ例外として単一コミットを許可し、`split_exception_reason` を PR コメントに残す。
+- 書き込み操作（ファイル編集、コミット、push、PR 返信、thread resolve）の前に必ず `Preflight` を完了する。
+- `gh` 疎通確認（`gh api rate_limit` など）が失敗した場合は、環境変数 `GH_RETRY_GH_ONCE=1` を指定して承認付きで 1 回だけ再実行する。
+- `gh` 疎通確認の再実行が失敗した場合は停止し、失敗時テンプレートで報告する。
+- 変更差分がない場合はコミットを行わず、返信と必要な `resolve` のみ行う。
+- `resolve` は `needs_clarification` 以外で「返信済み」のスレッドに実行する。
+- 失敗した時点で処理を止める。
+- 明示依頼がない限り、`git reset --hard`、`git push --force`、`rm` を実行しない。
+
+## 実行モード
+
+- `normal`: 通常実行。判定、必要な修正、返信、条件付き resolve まで行う。
+- `preflight-only`: 前提確認だけ行い、判定や書き込み操作を行わない。
+- `dry-run`: 判定と返信案、resolve 対象案だけ提示し、コード編集や返信投稿を行わない。
+
+## 参照ファイル
+
+- 判定基準: `references/decision-rules.md`
+- 返信テンプレート: `references/reply-templates.md`
+- API 呼び出し例: `references/github-graphql-cheatsheet.md`
+
+## 実行手順
+
+1. 実行モードを決定する。指定がなければ `normal` にする。
+2. `git` と `gh` の利用可否を確認する。
+3. `gh auth status` が成功することを確認する。
+4. `gh api rate_limit --jq '.rate.remaining'` を実行して API 疎通を確認する。
+5. 手順 3 または 4 が失敗した場合は、環境変数 `GH_RETRY_GH_ONCE=1` を指定して承認付きで同じコマンドを 1 回だけ再実行する。
+6. 再実行でも失敗した場合は、失敗時テンプレートで報告して停止する。
+7. 現在ブランチを取得する。
+8. `gh pr list --head "<current_branch>" --state open --json number,title,url --limit 1` で対象 PR を 1 件取得する。
+9. 対象 PR がない場合は停止する。
+10. `preflight-only` の場合は、確認結果を出力して停止する。
+11. `gh repo view --json nameWithOwner --jq .nameWithOwner` で `owner/repo` を取得する。
+12. `gh api user --jq .login` で実行ユーザーを取得する。
+13. `references/github-graphql-cheatsheet.md` のクエリで未解決レビュー thread を取得する。
+14. 各 thread から「実行ユーザー以外による最新コメント」を 1 件ずつ対象コメントとして選び、対象コメント一覧を作る。
+15. 対象コメント一覧の各コメントごとに `references/decision-rules.md` で 3 値判定する。
+16. `dry-run` の場合は、判定結果、返信案、resolve 対象案を出力して停止する。
+17. `action_required` のコメントだけ修正する。修正後に `git status --short` で修正差分有無を確認する。修正差分が 1 つもない場合は、手順 18〜21 をスキップして手順 22 へ進む。`codex exec review --base HEAD` 実行前のステージングは任意とする。
+18. 手順 17 で検出された修正差分を意図単位で分類し、`commit_units`（`subject`、`staging_scope`、`intent`）を作る。分割不能な場合のみ `split_exception_reason` を作る。
+19. 手順 17 で修正差分が検出された場合に限り `codex exec review --base HEAD` を実行する。実行できない場合は停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
+20. `codex exec review --base HEAD` は完了まで待機して結果を受け取り、`Medium` 以上が 0 件になるまで修正と再実行を繰り返す。
+21. `codex exec review --base HEAD` が通過したら、`commit_units`（または `split_exception_reason`）を渡して `$gh-commit-pr` を実行し、コミットと PR 更新を行う。
+22. 判定結果ごとに `references/reply-templates.md` のテンプレートで返信本文を作る。
+23. 各 thread の対象コメント（手順 14 で選んだ同一コメント）へ返信を投稿する。
+24. `action_required` と `no_action` で返信済みの thread に `resolveReviewThread` を実行する。
+25. `needs_clarification` は `resolve` しない。
+26. 最後に結果を集計して報告する。内訳は `resolved`（最終判定が `action_required` または `no_action` で、返信と thread の resolve まで完了したもの）と `pending`（`needs_clarification` 判定で追加回答待ちのもの、または返信/resolve に失敗したもの）の 2 区分とし、例外がある場合は `split_exception_reason` も併記する。
+
+## 判定と実行の要点
+
+- 判定で迷う場合は `needs_clarification` を選び、確認質問を優先する。
+- 複数コメントが同一 thread にある場合は、最新コメントの要求を優先する。
+- 他レビュアー間で要求が競合する場合は `needs_clarification` で論点を明示する。
+- `codex exec review --base HEAD` が実行できない環境では停止し、「実行不可の理由」と「ユーザーが行う最小手順」を提示する。
+- コミットは「1コミット = 1意図」を原則とし、例外時は理由を PR コメントで明示する。
+- `dry-run` ではコード編集と API 投稿を行わず、対応計画だけ提示する。
+- `action_required` 判定でも、調査の結果「追加修正が不要」と判断した場合は `no_action` に再分類し、根拠付きで返信して `resolve` する。
+
+## 返信時の必須要素
+
+- 返信は対象コメントの意図に直接答える。
+- `action_required` では「何を修正したか」と「確認手段（テストや根拠）」を短く書く。
+- `no_action` では「対応しない理由」を具体的に書く。
+- `needs_clarification` では「不足情報」と「確認したい一点」を明示する。
+
+## 失敗時テンプレート
+
+```text
+失敗した工程: <step>
+原因: <reason>
+再実行可否: <yes/no>
+ユーザーが行う最小手順:
+1. <command>
+2. <command>
+3. <command>
+```
