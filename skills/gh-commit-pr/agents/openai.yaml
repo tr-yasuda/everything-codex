@@ -1,0 +1,4 @@
+interface:
+  display_name: "GH Commit & PR"
+  short_description: "commit・push・PR作成と既存PRコメント更新を自動化"
+  default_prompt: "$gh-commit-pr を使って、現在の差分をコミットして push し、既存PRがあればコメント更新、なければPRを作成してください。"
