@@ -1,0 +1,4 @@
+interface:
+  display_name: "Repo Discovery"
+  short_description: "repo の構成と主要コマンドを素早く掴む"
+  default_prompt: "Use $repo-discovery to map this repository, identify entry points and verification commands, and summarize the likely change targets and unresolved unknowns."

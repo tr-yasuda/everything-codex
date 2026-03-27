@@ -2,3 +2,6 @@ oneline
 yeet
 pinact
 textlint
+pyproject
+pytest
+mypy
