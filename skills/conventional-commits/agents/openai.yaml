@@ -1,0 +1,4 @@
+interface:
+  display_name: "Conventional Commits"
+  short_description: "現在の変更を Conventional Commit で commit"
+  default_prompt: "Use $conventional-commits to inspect the current changes, prepare one Conventional Commit, and commit it when the diff forms a single coherent unit."

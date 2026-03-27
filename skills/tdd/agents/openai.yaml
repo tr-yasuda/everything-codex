@@ -1,0 +1,4 @@
+interface:
+  display_name: "Test-Driven Development"
+  short_description: "失敗するテストから実装を進める"
+  default_prompt: "Use $tdd to implement this change with a Red-Green-Refactor cycle, starting from one failing test and stopping if the work cannot be tested safely."
