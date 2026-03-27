@@ -1,0 +1,4 @@
+interface:
+  display_name: "Task Intake"
+  short_description: "着手前に目的と前提を整理する"
+  default_prompt: "Use $task-intake to clarify the goal, completion conditions, constraints, unknowns, and the recommended approach before starting work."

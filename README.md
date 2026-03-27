@@ -51,6 +51,13 @@ PR を作成する前に、上記 3 つを通す前提です。
 
 ## 利用できる Skills
 
+- `task-intake`: 着手前に目的、完了条件、制約、前提、
+  推奨アプローチを整理する。
+- `repo-discovery`: リポジトリ構成、主要コマンド、規約、
+  変更候補を素早く把握する。
+- `code-review`: findings-first で差分や Pull Request をレビューし、
+  問題点を重大度順に指摘する。
+- `refactoring`: 安全網を前提に、振る舞いを変えずに構造改善を進める。
 - `coding-standards`: TypeScript、JavaScript、React、Node.js の
   実装・修正・レビュー規約を揃える。
 - `conventional-branching`: 作業内容や Issue 番号から規約に沿った

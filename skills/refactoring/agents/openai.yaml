@@ -1,0 +1,4 @@
+interface:
+  display_name: "Refactoring"
+  short_description: "安全網を前提に構造を改善する"
+  default_prompt: "Use $refactoring to improve this code's structure without changing behavior, starting from the smallest safe unit protected by tests or type checks."
