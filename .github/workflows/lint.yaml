@@ -1,0 +1,35 @@
+on:
+  pull_request:
+  push:
+
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    name: lint
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v6
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+
+      - name: Setup node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: 22
+          cache: 'pnpm'
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: lint markdown
+        run: pnpm lint:md
+
+      - name: lint spell
+        run: pnpm lint:spell
+
+      - name: lint text
+        run: pnpm lint:text

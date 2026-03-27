@@ -1,0 +1,55 @@
+name: Pinact
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - ".github/workflows/**"
+      - ".pinact.yaml"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/**"
+      - ".pinact.yaml"
+
+jobs:
+  pinact:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout PR merge ref
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: refs/pull/${{ github.event.pull_request.number }}/merge
+          persist-credentials: false
+
+      - name: Checkout trusted base config
+        if: github.event_name == 'pull_request_target'
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: trusted-base
+          persist-credentials: false
+
+      - name: Checkout push ref
+        if: github.event_name == 'push'
+        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        with:
+          persist-credentials: false
+
+      - name: Validate pinned actions
+        env:
+          PINACT_CONFIG: ${{ github.event_name == 'pull_request_target' && 'trusted-base/.pinact.yaml' || '.pinact.yaml' }}
+        uses: suzuki-shunsuke/pinact-action@cf51507d80d4d6522a07348e3d58790290eaf0b6 # v2.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          skip_push: "true"
+          verify: "true"
