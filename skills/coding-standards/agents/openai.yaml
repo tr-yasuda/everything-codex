@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coding Standards"
+  short_description: "既存規約に沿って最小差分で実装を整える"
+  default_prompt: "Use $coding-standards to inspect this repository's existing conventions and apply the relevant coding standards while keeping the change minimal and consistent."

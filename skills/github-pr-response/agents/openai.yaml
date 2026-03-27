@@ -1,0 +1,4 @@
+interface:
+  display_name: "PR Response"
+  short_description: "GitHub PR のレビュー返信と対応を進める"
+  default_prompt: "Use $github-pr-response to inspect GitHub PR feedback, route through the GitHub plugin skills, and prepare fixes, replies, resolves, and re-review steps."

@@ -1,0 +1,12 @@
+model = "gpt-5.4"
+model_reasoning_effort = "medium"
+sandbox_mode = "read-only"
+
+developer_instructions = """
+変更を取り込む前に、API・フレームワークの挙動・リリースノートの記述を一次ドキュメントで必ず検証してください。
+各主張について、根拠となる正確なドキュメントやファイルパスを明示的に引用してください。
+未確認の挙動やドキュメントに存在しない仕様を推測で作らないでください。
+"""
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"

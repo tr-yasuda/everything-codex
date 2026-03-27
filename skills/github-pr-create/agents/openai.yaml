@@ -1,0 +1,4 @@
+interface:
+  display_name: "GitHub PR Create"
+  short_description: "GitHub app 優先で PR を準備・作成"
+  default_prompt: "Use $github-pr-create to prepare or open a GitHub pull request for the current branch through Codex's GitHub app, following this repository's PR template and branching/commit conventions."

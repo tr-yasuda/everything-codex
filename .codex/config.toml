@@ -1,0 +1,38 @@
+sandbox_mode = "workspace-write"
+approval_policy = "on-request"
+personality = "friendly"
+model = "gpt-5.4"
+model_reasoning_effort = "high"
+plan_mode_reasoning_effort = "xhigh"
+
+[sandbox_workspace_write]
+network_access = true
+
+[plugins."github@openai-curated"]
+enabled = true
+
+[mcp_servers.sequential-thinking]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+
+[windows]
+sandbox = "elevated"
+
+[features]
+multi_agent = true
+
+[agents]
+max_threads = 6
+max_depth = 1
+
+[agents.explorer]
+description = "変更提案の前にエビデンスを収集するための、読み取り専用のコードベース探索担当"
+config_file = "agents/explorer.toml"
+
+[agents.reviewer]
+description = "正しさ・セキュリティ・テスト不足に重点を置いたPRレビュー担当"
+config_file = "agents/reviewer.toml"
+
+[agents.docs_researcher]
+description = "API・フレームワークの挙動・リリースノートを検証するドキュメント担当"
+config_file = "agents/docs-researcher.toml"

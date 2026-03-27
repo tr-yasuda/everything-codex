@@ -3,16 +3,19 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "lint:md": "markdownlint-cli2 .",
-    "lint:md:fix": "markdownlint-cli2 --fix .",
-    "lint:spell": "cspell **/*.md",
-    "lint:text": "textlint **/*.md"
+    "lint:md": "markdownlint-cli2 \"**/*.md\"",
+    "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\"",
+    "lint:spell": "cspell .",
+    "lint:text": "textlint ."
   },
   "author": "@tr-yasuda",
   "license": "MIT",
   "packageManager": "pnpm@10.5.0",
   "engines": {
     "node": "24"
+  },
+  "volta": {
+    "node": "24.14.1"
   },
   "devDependencies": {
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.6.1",
