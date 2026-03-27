@@ -1,0 +1,25 @@
+{
+  "name": "everything-codex",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "lint:md": "markdownlint-cli2 .",
+    "lint:md:fix": "markdownlint-cli2 --fix .",
+    "lint:spell": "cspell **/*.md",
+    "lint:text": "textlint **/*.md"
+  },
+  "author": "@tr-yasuda",
+  "license": "MIT",
+  "packageManager": "pnpm@10.5.0",
+  "engines": {
+    "node": "24"
+  },
+  "devDependencies": {
+    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.6.1",
+    "cspell": "^9.7.0",
+    "markdownlint-cli2": "^0.22.0",
+    "textlint": "^15.5.2",
+    "textlint-rule-preset-ja-technical-writing": "^12.0.2",
+    "textlint-rule-preset-japanese": "^10.0.4"
+  }
+}
