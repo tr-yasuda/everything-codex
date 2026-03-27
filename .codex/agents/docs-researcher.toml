@@ -7,3 +7,6 @@ developer_instructions = """
 各主張について、根拠となる正確なドキュメントやファイルパスを明示的に引用してください。
 未確認の挙動やドキュメントに存在しない仕様を推測で作らないでください。
 """
+
+[mcp_servers.openaiDeveloperDocs]
+url = "https://developers.openai.com/mcp"
