@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "lint:md": "markdownlint-cli2",
+    "lint:md": "markdownlint-cli2 .",
     "lint:md:fix": "markdownlint-cli2 --fix .",
     "lint:spell": "cspell **/*.md",
     "lint:text": "textlint **/*.md"
