@@ -66,8 +66,10 @@ PR を作成する前に、上記 3 つを通す前提です。
   Terraform にまたがる実装・修正・レビュー規約を揃える。
 - `tdd`: Red-Green-Refactor の流れでテスト駆動開発を進める。
 - `refactoring`: 安全網を前提に、振る舞いを変えずに構造改善を進める。
-- `code-review`: findings-first で差分や Pull Request をレビューし、
-  問題点を重大度順に指摘する。
+- `code-review`: findings-first で差分や Pull Request をレビューする。
+  9 観点（正確性、セキュリティ、パフォーマンス、後方互換性、
+  可観測性、運用性、テスト容易性、可読性、一貫性）を
+  重大度順に指摘する。
 
 ### 言語別 Practice
 

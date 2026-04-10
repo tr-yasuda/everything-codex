@@ -1,4 +1,9 @@
 interface:
   display_name: "Code Review"
   short_description: "findings-first で差分をレビューする"
-  default_prompt: "Use $code-review to review this diff with findings first, ordered by severity, and cite concrete file and line evidence."
+  default_prompt: >-
+    Use $code-review to review this diff with findings first, ordered by
+    severity. Explicitly check correctness, security, performance,
+    backward compatibility, observability, operability, testability,
+    readability, and consistency, and cite concrete file and line
+    evidence.
