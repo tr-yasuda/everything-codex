@@ -18,10 +18,10 @@
     "node": "24.14.1"
   },
   "devDependencies": {
-    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.6.1",
-    "cspell": "^9.7.0",
+    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.6.3",
+    "cspell": "^10.0.0",
     "markdownlint-cli2": "^0.22.0",
-    "textlint": "^15.5.2",
+    "textlint": "^15.5.4",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
     "textlint-rule-preset-japanese": "^10.0.4"
   }
