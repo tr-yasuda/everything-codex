@@ -51,15 +51,35 @@ PR を作成する前に、上記 3 つを通す前提です。
 
 ## 利用できる Skills
 
+### 進行管理・導線整理
+
+- `full-cycle-delivery`: 依頼全体を整理し、必要な skill を束ねて
+  最小変更と必要な検証で完了まで導く。
 - `task-intake`: 着手前に目的、完了条件、制約、前提、
   推奨アプローチを整理する。
 - `repo-discovery`: リポジトリ構成、主要コマンド、規約、
   変更候補を素早く把握する。
+
+### 実装品質・変更手順
+
+- `coding-standards`: TypeScript、JavaScript、React、Node.js、Rust、
+  Terraform にまたがる実装・修正・レビュー規約を揃える。
+- `tdd`: Red-Green-Refactor の流れでテスト駆動開発を進める。
+- `refactoring`: 安全網を前提に、振る舞いを変えずに構造改善を進める。
 - `code-review`: findings-first で差分や Pull Request をレビューし、
   問題点を重大度順に指摘する。
-- `refactoring`: 安全網を前提に、振る舞いを変えずに構造改善を進める。
-- `coding-standards`: TypeScript、JavaScript、React、Node.js の
-  実装・修正・レビュー規約を揃える。
+
+### 言語別 Practice
+
+- `typescript-practice`: TypeScript の実装、型エラー修正、`tsconfig`
+  整備を標準手順で進める。
+- `rust-practice`: Rust の実装、リファクタ、Edition 移行、
+  ビルド失敗修正を標準手順で進める。
+- `terraform-practice`: Terraform の構成変更、レビュー、`plan` までの
+  安全な運用手順を揃える。
+
+### Git / PR 運用
+
 - `conventional-branching`: 作業内容や Issue 番号から規約に沿った
   ブランチ名を提案する。
 - `conventional-commits`: 変更内容を確認し、Conventional Commits 形式で
@@ -68,7 +88,6 @@ PR を作成する前に、上記 3 つを通す前提です。
   進める。
 - `github-pr-response`: Pull Request で受けたレビューコメントへの対応を
   進める。
-- `tdd`: Red-Green-Refactor の流れでテスト駆動開発を進める。
 
 詳細は各 `skills/<name>/SKILL.md` を参照してください。
 

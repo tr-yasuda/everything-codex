@@ -1,0 +1,3 @@
+interface:
+  display_name: "Rust Practice"
+  short_description: "Rust 実装・レビュー・Edition 移行の標準手順"

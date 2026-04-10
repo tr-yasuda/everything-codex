@@ -52,6 +52,7 @@ repo 固有の PR ルールを追加する役割に留める。
 - branch 名が規約に沿っていない、または妥当性が判断できない
 - base branch が決められない
 - PR のタイトルや概要を決める情報が足りない
+- PR description を日本語で書くか英語で書くか指定がない
 - branch がまだ remote に存在せず、publish workflow へ切り替える必要がある
 - GitHub app でも `gh` fallback でも repo や head を安全に特定できない
 
@@ -82,6 +83,10 @@ fork や cross-repo などで head の表現が難しい場合は、
 `gh` fallback を優先してよい。
 
 ## Write The PR Body From The Repository Template
+
+PR description の言語は必ずユーザーに確認する。
+日本語で書くか英語で書くか明示されていない場合は、
+本文を確定せず確認を取る。
 
 PR 本文は `.github/PULL_REQUEST_TEMPLATE.md` に沿って埋める。
 次のセクションを必須にする。
