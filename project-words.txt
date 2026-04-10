@@ -5,3 +5,12 @@ textlint
 pyproject
 pytest
 mypy
+MSRV
+clippy
+tfvars
+tfsec
+tflint
+infracost
+exitcode
+tfstate
+chdir

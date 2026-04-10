@@ -1,0 +1,4 @@
+interface:
+  display_name: "Full-Cycle Delivery"
+  short_description: "依頼を整理し、最小変更と検証で完了まで導く"
+  default_prompt: "Use $full-cycle-delivery to turn the request into a clear outcome, pick the right supporting skills, execute the smallest valuable slice, and verify the result before reporting back."
