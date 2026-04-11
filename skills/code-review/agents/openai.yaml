@@ -1,9 +1,8 @@
 interface:
   display_name: "Code Review"
-  short_description: "findings-first で差分をレビューする"
+  short_description: "経路と契約を追って findings-first でレビューする"
   default_prompt: >-
-    Use $code-review to review this diff with findings first, ordered by
-    severity. Explicitly check correctness, security, performance,
-    backward compatibility, observability, operability, testability,
-    readability, and consistency, and cite concrete file and line
-    evidence.
+    Use $code-review to trace the real execution path and broken contracts in
+    this diff, return findings first in severity order with concrete file and
+    line evidence, and if no issues are found, call out any residual risks or
+    unverified areas instead of over-claiming confidence.
