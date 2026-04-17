@@ -25,15 +25,17 @@ description: Rust の実装/リファクタ/レビュー/ビルド失敗修正/E
 2. `Cargo.toml` / `Cargo.lock` / `rust-toolchain.toml`（または `rust-toolchain`）を確認する。
 3. workspace の場合は対象 crate を確定する（`default-members` / `members` / `-p` の使い分け）。
 4. 基本規約を確認する: `$coding-standards`。
-5. 詳細規約を確認する: `references/coding-guidelines.md`。
-6. 差分最小で実装する。公開 API 変更と `unsafe` の有無を明示する。
-7. 可能なら次の順で検証する。
+5. 関心の分離、状態とロジックの分離、
+   コントラクト層の明示を `$coding-standards` で確認する。
+6. 詳細規約を確認する: `references/coding-guidelines.md`。
+7. 差分最小で実装する。公開 API 変更と `unsafe` の有無を明示する。
+8. 可能なら次の順で検証する。
    - `cargo check --workspace --all-targets`
    - `cargo test --workspace --all-targets`
    - `cargo fmt --all -- --check`
    - `cargo clippy --workspace --all-targets --all-features -- -D warnings`
    - `cargo doc --workspace --no-deps`
-8. 省略した検証がある場合は、理由と残リスクを報告する。
+9. 省略した検証がある場合は、理由と残リスクを報告する。
 
 ## Cargo.toml / Cargo.lock 確認ルール
 
@@ -61,6 +63,8 @@ description: Rust の実装/リファクタ/レビュー/ビルド失敗修正/E
 ## 完了条件（DoD）
 
 - `references/coding-guidelines.md` の必須ルールに違反しない。
+- 関心の分離、状態とロジックの分離、
+  コントラクト層の明示を満たしている。
 - 可能な範囲で `check` / `test` / `fmt` / `clippy` / `doc` を通す。
 - `unsafe` を追加・変更した場合は安全性の前提を説明できる。
 - 公開 API を変更した場合は破壊的変更の有無を説明できる。

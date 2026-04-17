@@ -64,6 +64,7 @@ PR を作成する前に、上記 3 つを通す前提です。
 
 - `coding-standards`: TypeScript、JavaScript、React、Node.js、Rust、
   Terraform にまたがる実装・修正・レビュー規約を揃える。
+  実装系 skill に共通する設計原則の正本でもある。
 - `tdd`: Red-Green-Refactor の流れでテスト駆動開発を進める。
 - `refactoring`: 安全網を前提に、振る舞いを変えずに構造改善を進める。
 - `code-review`: findings-first で差分や Pull Request をレビューする。
