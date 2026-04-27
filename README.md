@@ -84,9 +84,9 @@ PR を作成する前に、上記 3 つを通す前提です。
 ### Git / PR 運用
 
 - `conventional-branching`: 作業内容や Issue 番号から規約に沿った
-  ブランチ名を提案する。
+  ブランチ名を提案し、通常はそのまま作成して checkout する。
 - `conventional-commits`: 変更内容を確認し、Conventional Commits 形式で
-  commit をまとめる。
+  1 件の commit を作成する。
 - `github-pr-create`: 現在のブランチから Pull Request の準備と作成を
   進める。
 - `github-pr-response`: Pull Request で受けたレビューコメントへの対応を
