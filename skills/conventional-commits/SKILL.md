@@ -3,7 +3,8 @@ name: conventional-commits
 description: 現在の変更内容を確認し、Conventional Commits 形式で 1 件の
   `git commit` を作成する skill。`git status` や `git diff` を見て type、
   scope、subject を決めたいとき、現在の変更をそのまま conventional commit
-  したいとき、差分が 1 つの論点か判断して commit か分割提案へ進みたいときに使う。
+  したいとき、差分が 1 つの論点ならそのまま commit まで進めたいとき、
+  分割提案へ切り替えるべきか判断したいときに使う。
 ---
 
 # Conventional Commits
@@ -27,7 +28,7 @@ description: 現在の変更内容を確認し、Conventional Commits 形式で 
 - scope が推測頼みになる
 - 同じファイルに stage 済みと未 stage の変更が混在する
 - どのファイルを 1 件の commit に含めるべきか迷う
-- commit message を日本語で書くか英語で書くか指定がない
+- commit message の言語を会話文脈から安全に決められない
 
 曖昧な場合は、対象ファイル一覧と commit message 候補を示し、
 確認を取ってから stage や commit に進む。
@@ -52,11 +53,18 @@ scope は任意にする。
 リポジトリ内で明確なサブシステム名がある場合だけ付ける。
 曖昧な場合は scope を省略する。
 
-## Write The Commit Message
+## Choose The Commit Message Language
 
-commit message の言語は必ずユーザーに確認する。
-日本語で書くか英語で書くか明示されていない場合は、
-commit message を確定せず確認を取る。
+commit message の言語は次の順で決める。
+
+1. ユーザーの明示指定
+2. 現在の会話言語
+3. 上の 2 つで決められない場合だけ確認する
+
+日本語指定がある場合は、日本語の subject をそのまま使う。
+英語指定がある場合は、命令形の英語 subject を使う。
+
+## Write The Commit Message
 
 以下の形式で書く。
 
@@ -81,6 +89,9 @@ footer は `Fixes #123` や `BREAKING CHANGE:` に使う。
 
 ## Commit Non-Interactively
 
+`$conventional-commits` の明示呼び出し、または同等の direct request は、
+差分が 1 つの論点で曖昧さがない限り commit 実行依頼として扱う。
+
 commit する場合は、対象に選んだファイルだけを stage する。
 `git add -A` で無関係な変更までまとめない。
 
@@ -101,6 +112,7 @@ commit 前に次を確認する。
 - type が変更の主目的と一致している
 - scope を推測で付けていない
 - subject が命令形、小文字開始、句点なしになっている
+- 日本語指定時は、日本語 subject が会話文脈に沿っている
 - body と footer が必要最小限になっている
 
 混在差分なら commit を中止し、分割案だけを返す。

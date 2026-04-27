@@ -1,4 +1,4 @@
 interface:
   display_name: "Conventional Branching"
   short_description: "規約に沿ったブランチ名を提案・作成"
-  default_prompt: "Use $conventional-branching to propose a conventional branch name for this task, and create it only after confirming the final candidate."
+  default_prompt: "Use $conventional-branching to inspect the task, propose one conventional branch name, and create and switch to it by default when the name is unambiguous. Stop only when the user explicitly wants the name only or when naming or branch conflicts remain unresolved."

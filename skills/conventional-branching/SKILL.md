@@ -1,9 +1,10 @@
 ---
 name: conventional-branching
 description: 現在の作業内容や Issue 番号から、規約に沿ったブランチ名を
-  提案し、必要なら Git ブランチを作成する skill。作業開始前に branch
-  type と description を決めたいとき、命名規則を確認したいとき、
-  明示依頼のうえで重複確認後にブランチ作成まで進めたいときに使う。
+  提案し、通常はそのまま Git ブランチを作成して checkout する skill。
+  作業開始前に branch type と description を決めたいとき、
+  命名規則を確認したいとき、明示的にブランチ名だけ欲しい場合を除き
+  作成まで進めたいときに使う。
 ---
 
 # Conventional Branching
@@ -14,7 +15,7 @@ description: 現在の作業内容や Issue 番号から、規約に沿ったブ
 
 - 作業内容の要約
 - Issue 番号の有無
-- ブランチ名の提案だけか、作成まで求められているか
+- ブランチ名だけ欲しい明示依頼か
 - 既存ブランチとの衝突確認が必要か
 
 依頼に十分な情報がない場合は、推測で確定しない。
@@ -28,7 +29,6 @@ description: 現在の作業内容や Issue 番号から、規約に沿ったブ
 - 英語の slug を安全に決められない
 - Issue 番号を付けるべきか不明
 - 既存のローカルまたはリモート branch と衝突する
-- 提案だけでよいか、作成まで進めるべきか不明
 
 曖昧な場合は、候補 branch name と確認事項を返し、
 確定や作成に進まない。
@@ -81,10 +81,12 @@ Issue 番号が不要なら `<type>/<description>` を使う。
 chore/update-markdown-lint-config
 ```
 
-## Create The Branch Only When Asked
+## Create The Branch By Default
 
-branch を作成するのは、ユーザーが明示的に求めた場合だけにする。
-提案だけの依頼なら Git 操作はしない。
+`$conventional-branching` の明示呼び出し、または同等の direct request は、
+branch 作成と checkout の依頼として扱う。
+
+ユーザーがブランチ名だけ欲しいと明示した場合だけ、Git 操作をしない。
 
 作成前に、同名 branch が存在しないことを確認する。
 ローカルとリモートのどちらかで衝突したら、作成せずに代替候補を返す。
@@ -97,6 +99,9 @@ git switch -c chore/update-markdown-lint-config
 git checkout -b chore/update-markdown-lint-config
 ```
 
+ref の lock や権限で `git switch -c` が失敗した場合は、
+命名衝突と断定せず、必要なら権限起因も切り分ける。
+
 ## Review Before Finishing
 
 終了前に次を確認する。
@@ -105,7 +110,8 @@ git checkout -b chore/update-markdown-lint-config
 - description が英語、kebab-case、小文字になっている
 - Issue 番号を付ける条件と形式が合っている
 - 既存 branch と衝突していない
-- 明示依頼がないのに branch を作成していない
+- ブランチ名だけ欲しい依頼では Git 操作をしていない
+- 明示的な skill 呼び出しなら checkout まで完了している
 
 曖昧さが残る場合は確定せず、確認事項だけを返す。
 
