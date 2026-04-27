@@ -1,4 +1,4 @@
 interface:
   display_name: "Conventional Commits"
   short_description: "現在の変更を Conventional Commit で commit"
-  default_prompt: "Use $conventional-commits to inspect the current changes, prepare one Conventional Commit, and commit it when the diff forms a single coherent unit."
+  default_prompt: "Use $conventional-commits to inspect the current changes, choose one Conventional Commit theme, infer the commit-message language from the user's explicit instruction or the current conversation language, and commit by default when the diff forms a single coherent unit. Stop only when the diff should be split or the message language cannot be determined safely."
