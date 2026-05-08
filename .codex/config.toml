@@ -23,7 +23,7 @@ multi_agent = true
 js_repl = true
 guardian_approval = true
 prevent_idle_sleep = true
-memories = true
+memories = false
 
 [agents]
 max_threads = 6
