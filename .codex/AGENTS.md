@@ -37,41 +37,6 @@
 - `skills/tdd/` — Red-Green-Refactor サイクルでテスト駆動開発を
   進める
 
-## 迷ったときの使い分け
-
-- 依頼全体の進め方を先に固定したいときは `$full-cycle-delivery` を使う
-- 目的・完了条件・制約だけを整理したいときは `$task-intake` を使う
-- 横断的な実装規約は `$coding-standards`、技術別の具体手順は
-  `$typescript-practice`、`$rust-practice`、`$terraform-practice` を使う
-- 振る舞い変更を test-first で進めるときは `$tdd` を使う
-- 振る舞いを変えない構造改善を進めるときは `$refactoring` を使う
-
-## 標準ワークフロー
-
-依頼を進めるときは、原則として次の順序で扱う。
-
-1. 依頼全体の進め方に迷う場合は、まず `$full-cycle-delivery` で
-   完了条件・タスク分類・必要 skill を固定する
-2. 目的や制約が曖昧なら `$task-intake` を使う
-3. リポジトリ構成や主要コマンドが不明なら `$repo-discovery` を使う
-4. implementation / documentation を進める
-   - 振る舞い変更を伴う実装では原則 `$tdd` を併用する
-   - 振る舞いを変えない構造改善では `$refactoring` を併用する
-   - TypeScript / Rust / Terraform を扱う作業では、対象技術に対応する
-     practice skill を併用する
-   - 実装規約の統一が必要なら `$coding-standards` を併用する
-5. 仕上げに `$code-review` で差分の抜け漏れを点検する
-6. 公開が必要な場合のみ、`$conventional-branching`、
-   `$conventional-commits`、`$github-pr-create` をつなぐ
-
-順序を変える場合や step を省略する場合は、理由を返答で明示する。
-
-次のケースでは、標準ワークフローを条件付きで扱う。
-
-- レビューのみの依頼では implementation を飛ばしてよい
-- docs / 文言 / 設定変更や skill 更新では、通常 `$tdd` を使わない
-- commit / PR はユーザーの明示依頼がある場合だけ行う
-
 ## マルチエージェント
 
 - `.codex/agents/explorer.toml` — 読み取り専用の証拠収集
