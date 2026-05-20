@@ -7,18 +7,6 @@
 
 ## Skills
 
-- `skills/task-intake/` — 着手前に目的・完了条件・制約・前提を整理し、
-  推奨アプローチを固める
-- `skills/full-cycle-delivery/` — 曖昧な依頼を整理し、必要な skill を束ねて
-  最小変更・十分な検証・明確な報告まで主導する
-- `skills/repo-discovery/` — リポジトリ構成・主要コマンド・規約・変更候補を
-  素早く把握する
-- `skills/code-review/` — findings-first で差分や Pull Request をレビューし、
-  問題点を重大度順に指摘する
-- `skills/refactoring/` — 安全網を前提に振る舞いを変えず、
-  構造改善を小さく進める
-- `skills/coding-standards/` — TypeScript・JavaScript・React・Node.js・
-  Rust・Terraform の基本的な実装規約を揃える
 - `skills/typescript-practice/` — TypeScript の実装・型エラー修正・
   `tsconfig` 整備時に、`package.json` / lockfile / scripts を確認して
   最小差分で進める
