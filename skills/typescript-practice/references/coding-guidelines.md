@@ -149,7 +149,7 @@ const handleClick = (): void => {
 
 ### Props ルール
 
-- **Props の型は Readonly にする**
+- Props の型は `Readonly` にする
 
   - `type Props = Readonly<{ ... }>`（浅い Readonly）を推奨
   - もしくは各フィールドに `readonly` を付与
@@ -348,14 +348,16 @@ while (retryCount > 0) {
 
 ### Nullish ハンドリングのルール
 
-- **欠損値は原則 `undefined` で表現する**
-- **新規コードでは `null` の導入を避ける（返り値・引数・プロパティ）**
-- **外部境界（API/DB/SDK）由来の `null` は、境界で `undefined` に正規化してから内部へ渡す**
-- **`exactOptionalPropertyTypes` を考慮し、Optional プロパティに `prop: undefined` を明示代入しない（欠損はプロパティ省略で表現する）**
-- **デフォルト値には `??` を使用する**
-- **`||` をデフォルト値として使用することは禁止**
-- **安全なプロパティアクセスには `?.` を使用する**
-- **デフォルト適用は可能な限りローカルに行う**
+- 欠損値は原則 `undefined` で表現する
+- 新規コードでは `null` の導入を避ける（返り値・引数・プロパティ）
+- 外部境界（API/DB/SDK）由来の `null` は、境界で `undefined` に
+  正規化してから内部へ渡す
+- `exactOptionalPropertyTypes` を考慮し、Optional プロパティに
+  `prop: undefined` を明示代入しない（欠損はプロパティ省略で表現する）
+- デフォルト値には `??` を使用する
+- `||` をデフォルト値として使用することは禁止
+- 安全なプロパティアクセスには `?.` を使用する
+- デフォルト適用は可能な限りローカルに行う
 
   - 必要以上に早い段階で値を正規化しない
 
