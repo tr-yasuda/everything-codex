@@ -15,27 +15,23 @@ description: Rust の実装/リファクタ/レビュー/ビルド失敗修正/E
 
 1. ユーザーの明示指示
 2. リポジトリ内の既存規約と設定ファイル
-3. 基本的なコーディング規約: `$coding-standards`
-4. 本スキルの詳細規約: `references/coding-guidelines.md`
-5. Edition 2024 への移行: `references/migration-2024.md`
+3. 本スキルの詳細規約: `references/coding-guidelines.md`
+4. Edition 2024 への移行: `references/migration-2024.md`
 
 ## クイックスタート（毎回）
 
 1. `README` / `CONTRIBUTING` / `Makefile` / CI を確認し、リポジトリの正を決める。
 2. `Cargo.toml` / `Cargo.lock` / `rust-toolchain.toml`（または `rust-toolchain`）を確認する。
 3. workspace の場合は対象 crate を確定する（`default-members` / `members` / `-p` の使い分け）。
-4. 基本規約を確認する: `$coding-standards`。
-5. 関心の分離、状態とロジックの分離、
-   コントラクト層の明示を `$coding-standards` で確認する。
-6. 詳細規約を確認する: `references/coding-guidelines.md`。
-7. 差分最小で実装する。公開 API 変更と `unsafe` の有無を明示する。
-8. 可能なら次の順で検証する。
+4. 詳細規約を確認する: `references/coding-guidelines.md`。
+5. 差分最小で実装する。公開 API 変更と `unsafe` の有無を明示する。
+6. 可能なら次の順で検証する。
    - `cargo check --workspace --all-targets`
    - `cargo test --workspace --all-targets`
    - `cargo fmt --all -- --check`
    - `cargo clippy --workspace --all-targets --all-features -- -D warnings`
    - `cargo doc --workspace --no-deps`
-9. 省略した検証がある場合は、理由と残リスクを報告する。
+7. 省略した検証がある場合は、理由と残リスクを報告する。
 
 ## Cargo.toml / Cargo.lock 確認ルール
 

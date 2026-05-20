@@ -14,8 +14,7 @@ description: TypeScript の実装/リファクタ/レビュー/型エラー修�
 
 1. ユーザーの明示指示
 2. リポジトリ内の既存規約と設定ファイル
-3. 基本的なコーディング規約: `$coding-standards`
-4. 本スキルの詳細規約: `references/coding-guidelines.md`
+3. 本スキルの詳細規約: `references/coding-guidelines.md`
 
 ## クイックスタート（毎回）
 
@@ -26,11 +25,8 @@ description: TypeScript の実装/リファクタ/レビュー/型エラー修�
    - lockfile の種類
 4. `package.json#scripts` を見て、既存のスクリプト（`typecheck`/`lint`/`format`/`test`/`build`）を優先して使う。
 5. 主要設定（存在するものだけ）を読む: `tsconfig*.json`、`eslint*`、`biome.json`、`prettier*`。
-6. 基本規約を確認する: `$coding-standards`。
-7. 関心の分離、状態とロジックの分離、コントラクト層の明示を
-   `$coding-standards` で確認する。
-8. 詳細規約を確認する: `references/coding-guidelines.md`。
-9. 変更を入れる（差分最小）。可能なら `typecheck`、`lint`、
+6. 詳細規約を確認する: `references/coding-guidelines.md`。
+7. 変更を入れる（差分最小）。可能なら `typecheck`、`lint`、
    `format`、`test` の順に確認する。
 
 ## package.json / lockfile の確認ルール

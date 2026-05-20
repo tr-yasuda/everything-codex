@@ -16,21 +16,17 @@ description: Terraform の実装/運用の「やり方」を標準化するた�
 
 1. ユーザーの明示指示
 2. リポジトリ内の既存規約と設定ファイル
-3. 基本的なコーディング規約: `$coding-standards`
-4. 本スキルの詳細規約: `references/code-guidelines.md`
+3. 本スキルの詳細規約: `references/code-guidelines.md`
 
 ## クイックスタート（毎回）
 
 1. 変更の目的を言語化する（何を/なぜ/どの環境で）。
 2. 前提を確認する（Terraform / provider のバージョン、backend/state、実行権限、`terraform.lock.hcl`）。
-3. 基本規約を確認する: `$coding-standards`。
-4. 関心の分離、状態とロジックの分離、
-   コントラクト層の明示を `$coding-standards` で確認する。
-5. 詳細規約を確認する: `references/code-guidelines.md`。
-6. ツール類（`tflint`, `tfsec` 等）が必要なら `references/tooling.md` を確認する。
-7. ローカルで `fmt` → `validate` → `plan` まで通す。
-8. 差分を `references/review-checklist.md` で点検する。
-9. `apply` は明示合意のうえで実行する（可能なら `plan`
+3. 詳細規約を確認する: `references/code-guidelines.md`。
+4. ツール類（`tflint`, `tfsec` 等）が必要なら `references/tooling.md` を確認する。
+5. ローカルで `fmt` → `validate` → `plan` まで通す。
+6. 差分を `references/review-checklist.md` で点検する。
+7. `apply` は明示合意のうえで実行する（可能なら `plan`
    生成物を使って再現性を担保する）。
 
 ## 安全ガード（常に守る）
