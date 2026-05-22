@@ -1,129 +1,171 @@
 ---
 name: github-pr-create
-description: 現在のブランチやローカル checkout から GitHub Pull Request を
-  準備・作成する skill。Codex の GitHub app を優先して PR を開きたいとき、
-  push 済みブランチから PR だけを作りたいとき、または GitHub publish flow に
-  このリポジトリ固有の PR テンプレートと branch/commit 規約を適用したいときに使う。
+description: GitHub で PR (Pull Request) を作成または更新するための
+  skill です。
 ---
 
 # GitHub PR Create
 
-## Overview
+## 目的
 
-この skill は GitHub plugin の publish workflow を補う、
-repo 固有の薄い拡張として使う。
+現在のブランチの変更内容を確認し、レビューできる状態に整えてから
+GitHub Pull Request を作成または更新する。
+PR 本文は変更ログではなく、レビューする人への案内文として書く。
 
-- ローカルの `git` で現在のブランチと作業ツリーを確認する
-- PR 作成は Codex の GitHub app を第一選択にする
-- `gh` は fallback としてだけ使う
-- branch 名と commit 状態の整備は既存 skill に委ねる
+初見の人が、変更の目的、主な内容、確認済みのこと、見てほしい点を
+理解できる状態にする。
+文脈がないと意味がわからない補足や、内輪向けの説明は入れない。
 
-commit、push、PR 作成までを一気に進める依頼では、
-GitHub plugin の `yeet` skill を主経路として使う。
-この skill では PR 本文と安全条件を補う。
+## 作成・更新前の確認
 
-## Inspect The Current State First
+### ブランチと変更
 
-最初に次を確認する。
+PR に出したい変更だけが含まれているかを確認する。
+作業途中のメモ、不要な設定変更、別件の修正が混ざっている場合は整理する。
+default ブランチはリポジトリごとに違うため、思い込みで決めない。
 
-- `git status --short` で未コミット変更や混在差分の有無を確認する
-- `git branch --show-current` で現在の branch を把握する
-- 必要なら `git diff --stat` と `git log --oneline` で差分の論点を確認する
-- 必要なら `git remote get-url origin` で対象リポジトリを確認する
+```bash
+git status --short
+git symbolic-ref --short HEAD
+git symbolic-ref --short refs/remotes/origin/HEAD
+```
 
-PR の対象が曖昧なまま本文作成や PR 作成に進まない。
+`origin/HEAD` が未設定で失敗する場合は、remote の default ブランチを
+確認してから設定する。
 
-## Route To Supporting Skills Early
+```bash
+git remote show origin
+git remote set-head origin -a
+```
 
-次のケースでは、この skill だけで抱え込まずに委譲する。
+### 既存 PR
 
-- 未コミット変更や論点混在がある: `conventional-commits` skill を使う
-- branch 名が規約に沿っているか曖昧: `conventional-branching` skill を使う
-- commit、push、PR 作成まで含む公開フロー: GitHub plugin の `yeet` skill を使う
+同じブランチからすでに PR が作られていないか確認する。
+既存 PR がある場合は、新しい PR を作らず、その PR を更新する。
 
-この skill は publish workflow 全体を再実装しない。
-repo 固有の PR ルールを追加する役割に留める。
+```bash
+gh pr list --head "$(git symbolic-ref --short HEAD)"
+```
 
-## Treat Ambiguity As A Stop Signal
+### default ブランチの取り込み
 
-次のケースは曖昧扱いにする。
+必要であれば、default ブランチの最新状態を取り込む。
+競合が起きた場合は、次のステップへ進む前に手元で解決する。
 
-- 未コミット変更が残っている
-- branch 名が規約に沿っていない、または妥当性が判断できない
-- base branch が決められない
-- PR のタイトルや概要を決める情報が足りない
-- PR description を日本語で書くか英語で書くか指定がない
-- branch がまだ remote に存在せず、publish workflow へ切り替える必要がある
-- GitHub app でも `gh` fallback でも repo や head を安全に特定できない
+```bash
+git fetch origin
+git merge "$(git symbolic-ref --short refs/remotes/origin/HEAD)"
+```
 
-曖昧な場合は、不足情報と確認事項を返して止まる。
-推測で PR を作成しない。
+### 差分と commit
 
-## Determine Repository And Branch Context
+PR 本文を書く前に、変更内容を自分で読み直す。
+目的はコマンド結果を貼ることではなく、伝えるべきことを整理することです。
 
-PR の対象は次の順で決める。
+```bash
+git --no-pager log \
+  "$(git symbolic-ref --short refs/remotes/origin/HEAD)..HEAD" --oneline
+git --no-pager diff \
+  "$(git symbolic-ref --short refs/remotes/origin/HEAD)...HEAD" --stat
+git --no-pager diff \
+  "$(git symbolic-ref --short refs/remotes/origin/HEAD)...HEAD"
+```
 
-1. ユーザーが repo、base、head を明示した場合はそれを使う
-2. 現在の local checkout から `origin` と現在 branch を解決する
-3. base branch は remote の default branch を使う
-4. 上記で安全に確定できない場合は候補を示して確認を取る
+- 意図しない変更が含まれていないか
+- レビューしづらい巨大変更になっていないか
+- テスト追加が必要な変更か
+- 既存の使い方に影響する変更が含まれていないか
+- ドキュメント更新が必要な変更か
 
-push 済み branch から PR を作る依頼なら、この skill で進めてよい。
-まだ push されていない場合は、勝手に push せず `yeet` に委ねる。
+### 必要な確認
 
-## Prefer The GitHub App For PR Creation
+コードを変更した場合は、レビュー依頼前に必要な確認を済ませる。
+実行する内容はリポジトリのルールに従う。
+確認できなかった項目がある場合は、理由を PR 本文に書く。
 
-PR 作成は Codex の GitHub app を第一選択にする。
+- フォーマットが崩れていないか
+- 実行時に明らかなエラーが出ないか
+- テストが通るか
+- 変更に合わせてドキュメントも更新されているか
 
-- `repository_full_name`、`head_branch`、`base_branch` を明示できるなら app を使う
-- app で repo や branch を安全に表現できない場合だけ `gh pr create` を fallback に使う
-- `gh` が無いこと自体は即停止条件にしない
+ドキュメントのみの変更では、PR 作成のためだけに重い確認をしない。
 
-fork や cross-repo などで head の表現が難しい場合は、
-`gh` fallback を優先してよい。
+## PR 本文の書き方
 
-## Write The PR Body From The Repository Template
+PR 本文は、レビューする人に向けた案内文として書く。
+変更したファイルの一覧や commit の羅列だけでは不十分です。
 
-PR description の言語は必ずユーザーに確認する。
-日本語で書くか英語で書くか明示されていない場合は、
-本文を確定せず確認を取る。
+`.github/pull_request_template.md` または
+`.github/PULL_REQUEST_TEMPLATE.md` が存在する場合は、必ずその内容を使う。
+不要に見える項目があっても削除せず、該当しない理由を書く。
 
-PR 本文は `.github/PULL_REQUEST_TEMPLATE.md` に沿って埋める。
-次のセクションを必須にする。
+PR 本文を `gh pr create` などの CLI 引数へ直接埋め込んではならない。
+必ず `/tmp` ディレクトリ配下に Markdown ファイルを作り、
+そのファイルを PR 本文として渡す。
 
-- `概要`
-- `変更内容`
-- `影響範囲`
-- `確認事項`
-- `備考`
+```bash
+PR_BODY_FILE="$(mktemp -t pr-body.XXXXXX.md)"
+```
 
-`確認事項` には次のチェックリストを維持する。
+本文には、少なくとも次の内容を含める。
 
-- `pnpm lint:md`
-- `pnpm lint:spell`
-- `pnpm lint:text`
-- 変更内容に関連するドキュメントやコメントの更新
+- PR の目的
+- 変更内容の概要
+- なぜこの変更が必要か
+- どう対応したか
+- テストの実行結果
+- レビュワーに見てほしい点
+- 未対応事項や注意点
 
-本文は差分から読み取れる事実だけで組み立てる。
-情報が不足している場合は、推測で埋めず確認を取る。
+`Summary`、`Changes`、`Verification`、`Notes` の順に書くと読みやすい。
+目的と背景、主な変更と対応方針、実行した確認と結果、
+レビュワーに見てほしい点や未対応事項を分けて書く。
+注意点がない場合は「特になし」と明記する。
 
-## Default To Draft Pull Requests
+## PR 本文で避けること
 
-PR の既定値は draft にする。
+PR 本文は、レビューする人が判断するための文章です。
+そのため、次の書き方は禁止する。
 
-- ユーザーが ready for review を明示した場合だけ通常 PR を作る
-- 指定がない場合は draft を使う
-- draft から通常 PR へ切り替える操作も明示依頼がある場合だけ行う
+- diff をそのまま貼り付ける
+- commit message を並べただけにする
+- 実行していないテストを「実行済み」と書く
+- 確認していないことを断定する
+- 「いくつか」「様々な」など、曖昧な表現で済ませる
 
-## Review Before Finishing
+数や範囲がわかる場合は、具体的に書く。
+まだ確認できていない場合は、確認できていないと書く。
 
-終了前に次を確認する。
+## PR タイトルと作成方法
 
-- PR 対象の branch、repo、base が一致している
-- branch 名と commit 状態の問題を見逃していない
-- PR 本文がテンプレートの全セクションを含んでいる
-- draft / 通常 PR のモードが依頼内容と一致している
-- 明示依頼なしに push、通常 PR 化、force push をしていない
+PR は、基本的に draft として作成する。
 
-作成後は PR の URL とともに、base、head、draft かどうか、
-GitHub app と fallback のどちらを使ったかを返す。
+PR タイトルは、次の形式にする。
+
+```text
+type(scope): description
+```
+
+`scope` は任意です。
+`description` には、変更内容がレビュワーに一目で伝わる説明を書く。
+
+`type` は `feat`、`fix`、`docs`、`style`、`refactor`、`perf`、
+`test`、`chore`、`ci`、`revert` のいずれかにする。
+
+作成時は、本文ファイルを指定して draft PR を作る。
+
+```bash
+gh pr create --draft \
+  --title "docs(skills): improve PR creation guidance" \
+  --body-file "$PR_BODY_FILE"
+```
+
+既存 PR を更新する場合も、本文は Markdown ファイルで用意してから反映する。
+
+```bash
+gh pr edit --body-file "$PR_BODY_FILE"
+```
+
+既存 PR を更新するときは、本文も今の差分に合わせて直す。
+確認結果、注意点、レビューしてほしい観点が古いままになっていないか見る。
+更新内容が大きい場合は、コメントで何を更新したかを短く補足する。
