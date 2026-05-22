@@ -5,6 +5,7 @@ textlint
 pyproject
 pytest
 mypy
+mktemp
 MSRV
 clippy
 tfvars

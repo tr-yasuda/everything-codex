@@ -1,7 +1,7 @@
 ---
 name: github-pr-create
-description:
-  GitHub で PR (Pull Request) を作成または更新するための skill です。
+description: GitHub で PR (Pull Request) を作成または更新するための
+  skill です。
 ---
 
 # GitHub PR Create
@@ -30,13 +30,21 @@ git symbolic-ref --short HEAD
 git symbolic-ref --short refs/remotes/origin/HEAD
 ```
 
+`origin/HEAD` が未設定で失敗する場合は、remote の default ブランチを
+確認してから設定する。
+
+```bash
+git remote show origin
+git remote set-head origin -a
+```
+
 ### 既存 PR
 
 同じブランチからすでに PR が作られていないか確認する。
 既存 PR がある場合は、新しい PR を作らず、その PR を更新する。
 
 ```bash
-gh pr list --head $(git symbolic-ref --short HEAD)
+gh pr list --head "$(git symbolic-ref --short HEAD)"
 ```
 
 ### default ブランチの取り込み
@@ -46,7 +54,7 @@ gh pr list --head $(git symbolic-ref --short HEAD)
 
 ```bash
 git fetch origin
-git merge $(git symbolic-ref --short refs/remotes/origin/HEAD)
+git merge "$(git symbolic-ref --short refs/remotes/origin/HEAD)"
 ```
 
 ### 差分と commit
@@ -56,11 +64,11 @@ PR 本文を書く前に、変更内容を自分で読み直す。
 
 ```bash
 git --no-pager log \
-  $(git symbolic-ref --short refs/remotes/origin/HEAD)..HEAD --oneline
+  "$(git symbolic-ref --short refs/remotes/origin/HEAD)..HEAD" --oneline
 git --no-pager diff \
-  $(git symbolic-ref --short refs/remotes/origin/HEAD)...HEAD --stat
+  "$(git symbolic-ref --short refs/remotes/origin/HEAD)...HEAD" --stat
 git --no-pager diff \
-  $(git symbolic-ref --short refs/remotes/origin/HEAD)...HEAD
+  "$(git symbolic-ref --short refs/remotes/origin/HEAD)...HEAD"
 ```
 
 - 意図しない変更が含まれていないか
@@ -96,7 +104,7 @@ PR 本文を `gh pr create` などの CLI 引数へ直接埋め込んではな�
 そのファイルを PR 本文として渡す。
 
 ```bash
-PR_BODY_FILE="/tmp/$(git symbolic-ref --short HEAD)-pr-body.md"
+PR_BODY_FILE="$(mktemp -t pr-body.XXXXXX.md)"
 ```
 
 本文には、少なくとも次の内容を含める。
