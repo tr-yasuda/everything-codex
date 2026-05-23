@@ -1,0 +1,4 @@
+interface:
+  display_name: "Using Git Worktrees"
+  short_description: ".worktrees 配下で安全に作業場所を準備"
+  default_prompt: "Use $using-git-worktrees to start new tasks in .worktrees/<branch-name> without switching the current checkout, reuse existing worktrees when possible, keep .worktrees out of commits, and then continue with repo-specific setup and verification."

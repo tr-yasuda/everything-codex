@@ -1,4 +1,7 @@
 oneline
+worktree
+worktrees
+toplevel
 yeet
 pinact
 textlint

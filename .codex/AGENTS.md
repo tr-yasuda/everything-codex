@@ -14,6 +14,8 @@
   `Cargo.toml` / toolchain / MSRV を確認して `cargo` 系の検証を揃える
 - `skills/terraform-practice/` — Terraform の構成変更やレビュー時に、
   `fmt` / `validate` / `plan` と安全ガードを前提に進める
+- `skills/using-git-worktrees/` — 実装前に `.worktrees/` 配下へ
+  作業場所を用意し、現在の checkout を汚さずに作業を始める
 - `skills/conventional-branching/` — 作業内容や Issue 番号から
   規約に沿ったブランチ名を提案・作成
 - `skills/conventional-commits/` — 変更内容を確認し
