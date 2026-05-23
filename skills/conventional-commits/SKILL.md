@@ -1,42 +1,30 @@
 ---
 name: conventional-commits
 description: 現在の変更内容を確認し、Conventional Commits 形式で 1 件の
-  `git commit` を作成する skill。`git status` や `git diff` を見て type、
-  scope、subject を決めたいとき、現在の変更をそのまま conventional commit
-  したいとき、差分が 1 つの論点ならそのまま commit まで進めたいとき、
-  分割提案へ切り替えるべきか判断したいときに使う。
+  `git commit` を作成する skill。`git status` や `git diff` で差分を見て、
+  必要な確認を挟み、1 つの論点だけを stage して commit したいときに使う。
 ---
 
 # Conventional Commits
 
-## Inspect Current Changes First
+## Workflow
+
+### 1. Inspect
 
 最初に現在の変更を確認する。
 
-- `git status --short` で対象ファイルを把握する
-- `git diff --stat` と `git diff` で変更のまとまりを見る
-- すでに stage 済みの差分がある場合は `git diff --cached` も確認する
+```bash
+git status --short
+git diff --stat
+git diff
+git diff --cached
+```
 
-変更が複数の論点にまたがる場合は、そのまま commit しない。
-分けるべきファイル群と commit 候補を提示して止まる。
+`git diff --cached` は staged changes がある場合に必ず確認する。
 
-## Treat Ambiguity As A Stop Signal
+### 2. Decide
 
-次のケースは曖昧扱いにする。
-
-- 複数の type が同じ程度に妥当
-- scope が推測頼みになる
-- 同じファイルに stage 済みと未 stage の変更が混在する
-- どのファイルを 1 件の commit に含めるべきか迷う
-- commit message の言語を会話文脈から安全に決められない
-
-曖昧な場合は、対象ファイル一覧と commit message 候補を示し、
-確認を取ってから stage や commit に進む。
-
-## Choose One Commit Theme
-
-1 件の commit に対して主題を 1 つ選ぶ。
-type は以下から最も近いものを使う。
+差分から 1 件の commit にまとめる主題を 1 つ選ぶ。
 
 - `feat`: 新機能の追加
 - `fix`: バグ修正
@@ -47,26 +35,53 @@ type は以下から最も近いものを使う。
 - `test`: テストの追加や修正
 - `chore`: 補助ツールや依存関係の更新
 - `ci`: CI 設定や自動化の変更
-- `revert`: 既存コミットの取り消し
+- `revert`: 既存 commit の取り消し
 
 scope は任意にする。
-リポジトリ内で明確なサブシステム名がある場合だけ付ける。
-曖昧な場合は scope を省略する。
+明確なサブシステム名がある場合だけ付ける。
+推測が必要なら省略する。
 
-## Choose The Commit Message Language
+### 3. Ask
 
-commit message の言語は次の順で決める。
+次のどれかに当てはまる場合は、stage や commit の前で止まる。
+
+- 変更が複数の論点に分かれている
+- type が 1 つに決まらない
+- scope を付けるか迷う
+- 同じファイルに staged changes と unstaged changes が混在している
+- commit message の言語を設定や会話履歴から決められない
+
+staged changes と unstaged changes が別ファイルに分かれている場合は、
+`git diff --cached` と `git diff` を見て判断する。
+明らかに同じ論点なら続行してよい。
+同じ論点か迷う場合だけ、対象ファイル一覧と commit 候補を示して止まる。
+
+commit message の言語は、次の順で決める。
 
 1. ユーザーの明示指定
-2. 現在の会話言語
-3. 上の 2 つで決められない場合だけ確認する
+2. visible context にあるユーザー設定または repo 設定
+3. 現在の会話やタスク内で一度確認済みの言語
 
-日本語指定がある場合は、日本語の subject をそのまま使う。
-英語指定がある場合は、命令形の英語 subject を使う。
+上のどれでも決められない場合だけ、初回に確認する。
+一度選ばれた言語は、同じ会話やタスク内では再確認しない。
+会話言語だけでは初回の言語を確定しない。
 
-## Write The Commit Message
+選択肢付き確認ツールが使える場合は、それを使う。
+使えない場合は、短く直接聞く。
 
-以下の形式で書く。
+```text
+commit message の言語はどれにしますか？
+- 日本語
+- English
+- その他
+```
+
+言語以外の曖昧さがある場合は、対象ファイル一覧と commit 候補を示し、
+確定してから続ける。
+
+### 4. Write
+
+commit message は次の形式にする。
 
 ```text
 <type>(<scope>?): <subject>
@@ -78,8 +93,8 @@ commit message の言語は次の順で決める。
 
 subject は次の規則で書く。
 
-- ユーザーが指定した言語で書く
-- 英語を選んだ場合は命令形を使い、小文字で始める
+- ユーザーが指定または選択した言語で書く
+- English を選んだ場合は命令形を使い、小文字で始める
 - 文末に `.` を付けない
 - 50 文字前後を目安にし、長くても 72 文字以内に収める
 - 変更結果ではなく、行う操作を表す
@@ -87,13 +102,32 @@ subject は次の規則で書く。
 body は理由や背景が必要なときだけ追加する。
 footer は `Fixes #123` や `BREAKING CHANGE:` に使う。
 
-## Commit Non-Interactively
+### 5. Stage And Commit
 
-`$conventional-commits` の明示呼び出し、または同等の direct request は、
-差分が 1 つの論点で曖昧さがない限り commit 実行依頼として扱う。
+次のような依頼は、commit 実行依頼として扱う。
+
+- `commitして`
+- `この変更をコミットして`
+- `$conventional-commits`
+
+ただし、次を満たすまで `git add` や `git commit` を実行しない。
+
+- 差分が 1 つの論点にまとまっている
+- commit message の言語が確定している
+- type と scope の扱いが確定している
+- staged changes と unstaged changes の扱いが確定している
 
 commit する場合は、対象に選んだファイルだけを stage する。
 `git add -A` で無関係な変更までまとめない。
+
+ファイル全体が 1 つの論点なら `git add -- <file>` を使う。
+同じファイル内に複数論点が混ざる場合は `git add -p` を優先する。
+patch の選択に迷う場合は stage せず、分割案を返す。
+
+commit message は、type、scope、subject が明らかな場合は提示せずに
+そのまま使ってよい。
+曖昧さがある場合、またはユーザーが確認を求めている場合だけ、
+候補を提示して確認する。
 
 `git commit` は対話エディタを開かず、`-m` を使って実行する。
 body や footer が必要なら追加の `-m` を使う。
@@ -104,6 +138,13 @@ git commit -m "feat(api)!: remove legacy token endpoint" \
   -m "BREAKING CHANGE: remove v1 token endpoint."
 ```
 
+### 6. Report
+
+終了時は、commit したか、確認待ちで止めたかを短く報告する。
+
+commit した場合は commit hash と commit message を示す。
+止めた場合は、必要な確認事項だけを示す。
+
 ## Review Before Finishing
 
 commit 前に次を確認する。
@@ -111,8 +152,8 @@ commit 前に次を確認する。
 - 対象ファイルが 1 つの論点にまとまっている
 - type が変更の主目的と一致している
 - scope を推測で付けていない
-- subject が命令形、小文字開始、句点なしになっている
-- 日本語指定時は、日本語 subject が会話文脈に沿っている
+- commit message の言語を設定または確認履歴から決めている
+- English subject が命令形、小文字開始、句点なしになっている
 - body と footer が必要最小限になっている
 
-混在差分なら commit を中止し、分割案だけを返す。
+混在差分や未確定事項があれば commit を中止し、確認事項だけを返す。
