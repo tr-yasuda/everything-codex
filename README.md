@@ -83,6 +83,8 @@ PR を作成する前に、上記 3 つを通す前提です。
 
 ### Git / PR 運用
 
+- `using-git-worktrees`: 実装前に `.worktrees/` 配下へ作業場所を用意し、
+  現在の checkout を汚さずに作業を始める。
 - `conventional-branching`: 作業内容や Issue 番号から規約に沿った
   ブランチ名を提案し、通常はそのまま作成して checkout する。
 - `conventional-commits`: 変更内容を確認し、Conventional Commits 形式で
