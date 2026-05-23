@@ -87,7 +87,8 @@ commit message の言語はどれにしますか？
 commit message は次の形式にする。
 
 ```text
-<type>(<scope>?): <subject>
+<type>: <subject>
+<type>(<scope>): <subject>
 
 [<body>]
 
@@ -124,6 +125,7 @@ commit する場合は、対象に選んだファイルだけを stage する。
 `git add -A` で無関係な変更までまとめない。
 
 ファイル全体が 1 つの論点なら `git add -- <file>` を使う。
+削除を含む場合は `git add -A -- <path>` で対象 path だけを stage する。
 同じファイル内に複数論点が混ざる場合は `git add -p` を優先する。
 patch の選択に迷う場合は stage せず、分割案を返す。
 
