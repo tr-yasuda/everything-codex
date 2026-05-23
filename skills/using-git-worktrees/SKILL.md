@@ -33,7 +33,7 @@ Bad:
 
 - 現在の checkout で `git switch -c` する
 - タスク名が曖昧なまま branch 名を確定する
-- `.worktrees/` が track 対象のまま作業場所を作る
+- `.worktrees/` が追跡対象のまま作業場所を作る
 
 ### 既存 worktree で作業を再開する
 
@@ -123,7 +123,7 @@ worktree 作成や実装に進まず、ユーザーに状況を伝えて止ま�
 なければ `.worktrees/<branch-name>/` に作る。
 
 ```bash
-git worktree add ".worktrees/<branch-name>" -b "<branch-name>"
+git worktree add -b "<branch-name>" ".worktrees/<branch-name>"
 ```
 
 既存 branch から作業場所だけ作る場合は、`-b` を付けない。
