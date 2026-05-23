@@ -17,10 +17,13 @@ description: 現在の変更内容を確認し、Conventional Commits 形式で 
 git status --short
 git diff --stat
 git diff
-git diff --cached
 ```
 
-`git diff --cached` は staged changes がある場合に必ず確認する。
+staged changes がある場合は、次も必ず確認する。
+
+```bash
+git diff --cached
+```
 
 ### 2. Decide
 
@@ -59,7 +62,7 @@ staged changes と unstaged changes が別ファイルに分かれている場�
 commit message の言語は、次の順で決める。
 
 1. ユーザーの明示指定
-2. visible context にあるユーザー設定または repo 設定
+2. `AGENTS.md` や repo 内の運用ドキュメントにある言語設定
 3. 現在の会話やタスク内で一度確認済みの言語
 
 上のどれでも決められない場合だけ、初回に確認する。
