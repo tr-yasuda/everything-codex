@@ -30,6 +30,8 @@ gh api repos/{owner}/{repo}/pulls/<pr>/comments --paginate
 ```
 
 PR、repo、コメント、reviewer を特定できなければ止まる。
+最初に取得した `reviews` と `latestReviews` は保持し、
+再レビュー依頼先の特定にも使う。
 
 ## 2. 対応表を作る
 
@@ -73,6 +75,10 @@ git push
 ## 5. 返信案を作る
 
 投稿前に、コメントごとの返信案を提示して確認を取る。
+返信案は、そのまま GitHub に投稿できる完成文として書く。
+レビュワーに最大限の敬意を払い、指摘内容、対応内容、
+確認結果を簡潔に伝える。
+内部メモ、判断ラベル、対応表の分類語は返信文に含めない。
 
 - 修正した: 変更内容と確認結果。
 - 修正しない: 採用しない理由。
@@ -91,7 +97,7 @@ gh pr comment <pr> --body-file <file>
 inline review comment へ返信する場合は、次を使う。
 
 ```bash
-gh api repos/{owner}/{repo}/pulls/comments/<comment_id>/replies -F body=@<file>
+gh api repos/{owner}/{repo}/pulls/<pr>/comments/<comment_id>/replies -F body=@<file>
 ```
 
 inline 返信は親 comment ID に送る。
@@ -99,7 +105,10 @@ inline 返信は親 comment ID に送る。
 
 ## 7. 再レビュー依頼する
 
-`reviews` または `latestReviews` から、一度レビューした人を特定する。
+最初に取得して保持した `reviews` または `latestReviews` から、
+一度レビューした人を特定する。
+後段で `gh pr view --json latestReviews` が空に見える場合も、
+最初に保持した reviewer を再レビュー依頼先として使う。
 投稿後、同じ reviewer へ再レビューを依頼する。
 
 ```bash
