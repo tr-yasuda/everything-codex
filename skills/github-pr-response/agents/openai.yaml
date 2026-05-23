@@ -1,4 +1,4 @@
 interface:
   display_name: "PR Response"
   short_description: "GitHub PR のレビュー返信と対応を進める"
-  default_prompt: "Use $github-pr-response to triage PR review comments into an action table, make fixes, push, reply, and request re-review."
+  default_prompt: "Use $github-pr-response to triage PR review comments into an action table, stop when required PR/comment/reviewer details are unclear, make fixes, push only committed changes, prepare replies for user approval, post replies only after approval, and request re-review."

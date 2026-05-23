@@ -61,8 +61,10 @@ git status --short
 git diff
 ```
 
+修正内容が commit に含まれていることを確認する。
 commit が必要なら `$conventional-commits` を使う。
-commit 後に push する。
+新規 commit、amend、rebase など方法は問わないが、push 前に
+修正済み commit ができている状態にする。
 
 ```bash
 git push
@@ -80,8 +82,15 @@ git push
 
 承認後に返信する。
 
+PR conversation へ返信する場合は、次を使う。
+
 ```bash
 gh pr comment <pr> --body-file <file>
+```
+
+inline review comment へ返信する場合は、次を使う。
+
+```bash
 gh api repos/{owner}/{repo}/pulls/comments/<comment_id>/replies -F body=@<file>
 ```
 
