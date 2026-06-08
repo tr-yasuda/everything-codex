@@ -10,6 +10,7 @@ pytest
 mypy
 mktemp
 MSRV
+Supabase
 clippy
 tfvars
 tfsec

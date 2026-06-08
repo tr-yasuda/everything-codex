@@ -1,0 +1,4 @@
+interface:
+  display_name: "Coding Standards"
+  short_description: "実装時に必ず守る共通コーディング規約"
+  default_prompt: "Use $coding-standards to keep this implementation aligned with the mandatory coding rules."

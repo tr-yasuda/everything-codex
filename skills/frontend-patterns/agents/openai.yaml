@@ -1,0 +1,4 @@
+interface:
+  display_name: "Frontend Patterns"
+  short_description: "frontend 実装で守る UI と state の必須規約"
+  default_prompt: "Use $frontend-patterns to implement frontend UI, state, hooks, and rendering with the required patterns."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Backend Patterns"
+  short_description: "backend 実装で守る API と DB 境界の必須規約"
+  default_prompt: "Use $backend-patterns to implement API, validation, service, and database boundaries with the required patterns."
