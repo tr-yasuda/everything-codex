@@ -9,6 +9,12 @@
 
 ## Skills
 
+- `skills/coding-standards/` — 実装・修正・リファクタ時に必ず使い、
+  責務分離、具体的な命名、最小実装、境界検証を強制する
+- `skills/frontend-patterns/` — UI、React、frontend state、hooks、
+  rendering、accessibility の変更時に必ず使う
+- `skills/backend-patterns/` — API、DB、validation、service、
+  server-side 処理の変更時に必ず使う
 - `skills/typescript-practice/` — TypeScript の実装・型エラー修正・
   `tsconfig` 整備時に、`package.json` / lockfile / scripts を確認して
   最小差分で進める
@@ -28,6 +34,14 @@
   対応を進める
 - `skills/tdd/` — Red-Green-Refactor サイクルでテスト駆動開発を
   進める
+
+## Skill 起動規則
+
+- コードを変更する実装タスクでは `coding-standards` を必ず読む。
+- frontend 変更では `coding-standards` と `frontend-patterns` を必ず読む。
+- backend 変更では `coding-standards` と `backend-patterns` を必ず読む。
+- TDD を明示されたときだけ `tdd` を使う。
+- `tdd` は `coding-standards` を読むための導線にしない。
 
 ## マルチエージェント
 
