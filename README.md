@@ -57,18 +57,32 @@ $tdd このバグを修正してください。
 $reviewing-changes この差分をレビューしてください。
 ```
 
-別のリポジトリで使う場合は、その .agents/skills/ に
-この skills/ 配下の各ディレクトリをまとめて配置してください。
+全リポジトリで使う場合は、~/.agents/skills/ に
+この skills/ 配下の各ディレクトリをリンクまたはコピーしてください。
+特定のリポジトリだけで使う場合は、その .agents/skills/ に配置します。
 skills 間の相対リンクを保つため、同じ階層に配置します。
 Windows などでリンクを使えない場合も、ディレクトリのコピーで配置できます。
 このリポジトリの開発用 AGENTS.md を、利用先へコピーする必要はありません。
 
 ## Codex 設定
 
-- ルートの AGENTS.md: このリポジトリの作業規約と skill の起動規則。
-- .codex/config.toml: プロジェクトの実行設定。
-- .codex/AGENTS.md: Codex 設定を編集する際の指針。
-- .codex/agents/: 読み取り専用の explorer、reviewer、docs_researcher。
+このリポジトリの .codex/ は、ホーム側へリンクして使う設定の管理元です。
+Codex が自動でリンクを作成するわけではありません。
+
+| 管理元 | ホーム側の配置先 | 役割 |
+| --- | --- | --- |
+| .codex/AGENTS.md | ~/.codex/AGENTS.md | 全リポジトリで使う作業方針と skill の起動規則 |
+| .codex/config.toml | ~/.codex/config.toml | ユーザー共通の実行設定 |
+| .codex/agents/ 内の各 TOML | ~/.codex/agents/ 内の同名ファイル | explorer、reviewer、docs_researcher の定義 |
+
+ルートの AGENTS.md は、このリポジトリを開発するための規約です。
+ホーム側へ配置する .codex/AGENTS.md からは参照しません。
+共通指示は skill を名前で参照し、管理元の相対パスに依存しません。
+指示の適用範囲は [公式の AGENTS.md ガイド][instructions-docs] を参照してください。
+
+リンク先には、削除予定の worktree ではなく継続して管理する checkout を使います。
+既存のホーム側の設定がある場合は、内容を確認して統合してからリンクします。
+この PR では管理元だけを更新し、ホーム側のファイルやリンクは変更しません。
 
 エージェント定義は name、description、developer_instructions を持つ
 独立した TOML ファイルに更新しました。
@@ -76,7 +90,8 @@ Windows などでリンクを使えない場合も、ディレクトリのコピ
 エージェントは、ユーザーまたは適用される指示で委任が求められた場合に使います。
 詳細は [公式の subagents ガイド][agents-docs] を参照してください。
 
-プロジェクト設定は、信頼されたプロジェクトで読み込まれます。
+同じ config.toml をプロジェクト内に置く場合は、
+信頼されたプロジェクトの設定として読み込まれます。
 旧 js_repl フラグと max_depth 設定を除去し、
 同時実行数は max_concurrent_threads_per_session に更新しました。
 設定キーは [公式の設定リファレンス][config-docs] を参照してください。
@@ -117,3 +132,5 @@ MIT License です。詳細は [LICENSE](LICENSE) を参照してください。
 [skills-docs]: https://learn.chatgpt.com/docs/build-skills
 [agents-docs]: https://learn.chatgpt.com/docs/agent-configuration/subagents
 [config-docs]: https://learn.chatgpt.com/docs/config-file/config-reference
+
+[instructions-docs]: https://learn.chatgpt.com/docs/agent-configuration/agents-md

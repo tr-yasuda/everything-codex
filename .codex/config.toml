@@ -1,4 +1,4 @@
-# Model and reasoning settings inherit the user configuration.
+# Model and reasoning settings are left to session choices or defaults.
 sandbox_mode = "workspace-write"
 approval_policy = "on-request"
 personality = "friendly"
