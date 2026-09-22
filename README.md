@@ -51,52 +51,28 @@ PR を作成する前に、上記 3 つを通す前提です。
 
 ## 利用できる Skills
 
-### 進行管理・導線整理
+### 開発ワークフロー
 
-- `full-cycle-delivery`: 依頼全体を整理し、必要な skill を束ねて
-  最小変更と必要な検証で完了まで導く。
-- `task-intake`: 着手前に目的、完了条件、制約、前提、
-  推奨アプローチを整理する。
-- `repo-discovery`: リポジトリ構成、主要コマンド、規約、
-  変更候補を素早く把握する。
-
-### 実装品質・変更手順
-
-- `coding-standards`: TypeScript、JavaScript、React、Node.js、Rust、
-  Terraform にまたがる実装時の必須コーディング規約を揃える。
-  責務分離、具体的な命名、最小実装、境界検証を強制する。
-- `frontend-patterns`: UI、React、frontend state、hooks、rendering、
-  accessibility の必須規約を揃える。
-- `backend-patterns`: API、DB、validation、service、server-side 処理の
-  必須規約を揃える。
-- `tdd`: Red-Green-Refactor の流れでテスト駆動開発を進める。
-- `refactoring`: 安全網を前提に、振る舞いを変えずに構造改善を進める。
-- `code-review`: findings-first で差分や Pull Request をレビューする。
-  9 観点（正確性、セキュリティ、パフォーマンス、後方互換性、
-  可観測性、運用性、テスト容易性、可読性、一貫性）を
-  重大度順に指摘する。
-
-### 言語別 Practice
-
-- `typescript-practice`: TypeScript の実装、型エラー修正、`tsconfig`
-  整備を標準手順で進める。
-- `rust-practice`: Rust の実装、リファクタ、Edition 移行、
-  ビルド失敗修正を標準手順で進める。
-- `terraform-practice`: Terraform の構成変更、レビュー、`plan` までの
-  安全な運用手順を揃える。
+- `development-workflow`: 設計、計画、TDD、レビュー、検証を接続し、
+  機能追加や修正を完了まで進める。
+- `designing-changes`: 曖昧な要求から期待する振る舞い、制約、
+  設計上の選択を整理する。
+- `planning-changes`: 複数工程の変更を、検証可能な振る舞い単位の
+  実装計画に分ける。
+- `systematic-debugging`: 再現と仮説検証によって不具合の原因を特定する。
+- `tdd`: 公開インターフェースの振る舞いを検証しながら、
+  Red-Green-Refactor を進める。
+- `reviewing-changes`: 要求との一致、回帰、テストの有効性を点検する。
+- `verifying-changes`: 完了報告前に最終差分と検証結果を照合する。
 
 ### Git / PR 運用
 
-- `using-git-worktrees`: 実装前に `.worktrees/` 配下へ作業場所を用意し、
-  現在の checkout を汚さずに作業を始める。
-- `conventional-branching`: 作業内容や Issue 番号から規約に沿った
-  ブランチ名を提案し、通常はそのまま作成して checkout する。
-- `conventional-commits`: 変更内容を確認し、Conventional Commits 形式で
-  1 件の commit を作成する。
-- `github-pr-create`: 現在のブランチから Pull Request の準備と作成を
-  進める。
-- `github-pr-response`: Pull Request で受けたレビューコメントへの対応を
-  進める。
+- `using-git-worktrees`: 現在の checkout を汚さず、独立した作業場所を
+  安全に用意する。
+- `finishing-changes`: 変更を確認して commit、push、PR 作成、統合までを
+  依頼された到達点に合わせて仕上げる。
+- `responding-to-review`: レビュー指摘の妥当性を確認し、修正、再検証、
+  対応内容の整理を進める。
 
 詳細は各 `skills/<name>/SKILL.md` を参照してください。
 

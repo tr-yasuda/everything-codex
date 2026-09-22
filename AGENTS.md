@@ -36,7 +36,7 @@ Run all three lint commands before opening a pull request.
 - Keep lines near the 80-character target.
 - Use short headings and direct sentences in Markdown.
 - Name skill directories in lowercase kebab-case, such as
-  `skills/full-cycle-delivery/`.
+  `skills/development-workflow/`.
 - Update nearby docs when commands, workflow, or behavior change.
 
 ## Testing Guidelines
@@ -62,3 +62,18 @@ checks passed. Add screenshots only when rendered output changes.
 
 Read `README.md` and the target `skills/*/SKILL.md` before editing. Keep
 changes small, repository-specific, and aligned with the existing workflow.
+
+## Development Workflow
+
+- Respond to the user in Japanese.
+- For implementation requests, read the `development-workflow` skill.
+  Select only the other skills needed for the task.
+- Use `skills/tdd/SKILL.md` for behavior changes. A cycle is not complete
+  until its REFACTOR inspection and verification are recorded.
+- For documentation or configuration changes, use relevant validation.
+  Do not manufacture a failing application test.
+- Before reporting completion, use `skills/verifying-changes/SKILL.md`.
+- Follow repository configuration and existing conventions for language
+  details. Do not restore the removed practice skills as blanket rules.
+- Delegate only when the user or applicable instructions request it.
+  Agent definitions make roles available; they do not require delegation.
