@@ -19,9 +19,9 @@
   },
   "devDependencies": {
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
-    "cspell": "^10.0.1",
-    "markdownlint-cli2": "^0.22.1",
-    "textlint": "^15.7.1",
+    "cspell": "^10.1.1",
+    "markdownlint-cli2": "^0.23.2",
+    "textlint": "^15.8.0",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",
     "textlint-rule-preset-japanese": "^10.0.4"
   }
