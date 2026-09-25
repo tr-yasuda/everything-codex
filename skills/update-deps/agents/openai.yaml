@@ -1,0 +1,7 @@
+interface:
+  display_name: "update-deps"
+  short_description: "指定した依存関係を更新して検証する"
+  default_prompt: "$update-deps を使って repository の管理方法を確認し、指定した依存関係を更新して検証してください。"
+
+policy:
+  allow_implicit_invocation: false
