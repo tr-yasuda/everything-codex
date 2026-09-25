@@ -31,13 +31,14 @@ Codex の skill、エージェント設定、GitHub Actions を管理するリ�
 
 ## セットアップと検証
 
-Node.js 24 と `pnpm@10.5.0` を使用します。
+Node.js 24 と、`package.json` で指定した pnpm を mise で使用します。
 
 ```bash
-pnpm install --frozen-lockfile
-pnpm lint:md
-pnpm lint:spell
-pnpm lint:text
+mise install
+mise exec -- pnpm install --frozen-lockfile
+mise exec -- pnpm lint:md
+mise exec -- pnpm lint:spell
+mise exec -- pnpm lint:text
 ```
 
 - `pnpm lint:md`: Markdown の記法を検証する。
