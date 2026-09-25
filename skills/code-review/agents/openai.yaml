@@ -1,0 +1,7 @@
+interface:
+  display_name: "Code Review"
+  short_description: "PRやローカル変更をコードレビューする"
+  default_prompt: "$code-review を使い、指定された PR・diff・ローカル変更をレビューしてください。"
+
+policy:
+  allow_implicit_invocation: false

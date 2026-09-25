@@ -1,0 +1,7 @@
+interface:
+  display_name: "fix-pr"
+  short_description: "PR のレビュー指摘を修正して返信案を作成する"
+  default_prompt: "$fix-pr を使って対象 PR の未解決レビュー指摘を確認し、妥当なものを修正して commit・push し、返信案を作成してください。"
+
+policy:
+  allow_implicit_invocation: false

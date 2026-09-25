@@ -23,8 +23,8 @@
   },
 
   "MD013": {
-    "line_length": 80,
-    "heading_line_length": 80,
+    "line_length": 120,
+    "heading_line_length": 120,
     "code_block_line_length": false,
     "tables": false,
     "stern": false,

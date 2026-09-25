@@ -1,0 +1,7 @@
+interface:
+  display_name: "fix-conflicts"
+  short_description: "PR の merge conflict を解消して commit・push する"
+  default_prompt: "$fix-conflicts を使って対象 PR の merge conflict を解消し、必要な検証を行って commit・push してください。"
+
+policy:
+  allow_implicit_invocation: false
