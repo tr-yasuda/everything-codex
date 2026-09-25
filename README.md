@@ -23,7 +23,7 @@ Codex の skill、エージェント設定、GitHub Actions を管理するリ�
 | `fix-conflicts` | PR の merge conflict を解消し、検証して commit・push する。 |
 | `fix-pr` | PR のレビュー指摘を検証・修正し、返信案を作る。 |
 | `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 |
-| `update-deps` | 指定した依存関係を repository の管理方法で更新し、検証する。 |
+| `update-deps` | 指定した依存関係を最新の安定版へ更新し、検証する。 |
 
 `code-review`、`create-pr`、`define` は `$skill-name` で明示的に呼び出します。
 `fix-ci`、`fix-conflicts`、`fix-pr`、`update-deps` も同様です。
