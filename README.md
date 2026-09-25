@@ -1,112 +1,47 @@
 # everything-codex
 
-Codex で再利用する skill、リポジトリ運用ルール、GitHub CI 設定を
-まとめたワークスペースです。
+Codex の skill、エージェント設定、GitHub Actions を管理するリポジトリです。
 
-初見の利用者が「何が入っているか」「どう使い始めるか」
-「どう更新するか」を把握しやすいように、実際の構成と運用コマンドを
-README に集約しています。
+## 構成
 
-## できること
+- `skills/<name>/SKILL.md`: 各 skill の手順を定義する。
+- `skills/<name>/agents/openai.yaml`: skill の表示情報と呼び出し設定を定義する。
+- `skills/<name>/references/`: skill の補足資料を配置する。
+- `.codex/config.toml`、`.codex/agents/`: Codex とエージェントの設定を管理する。
+- `AGENTS.md`、`.codex/AGENTS.md`: 作業時の指示を記載する。
+- `.github/workflows/`: lint と GitHub Actions の参照先固定を検証・更新する。
+- `.github/PULL_REQUEST_TEMPLATE.md`: PR の記載項目と確認事項を定義する。
 
-- Codex で使う skill を `skills/` 配下で管理できる。
-- Markdown、スペル、日本語の技術文書の lint を統一できる。
-- GitHub Actions と PR テンプレートを含む基本運用を共有できる。
+## Skills
 
-## セットアップ
+| skill | 用途 |
+| --- | --- |
+| `code-review` | PR やローカル変更を複数の観点でレビューする。 |
+| `create-pr` | 変更を commit・push し、Draft PR を作成または更新する。 |
+| `define` | 実装前に要件と設計上の判断を仕様として整理する。 |
+| `fix-ci` | PR で失敗した CI を調査し、修正して commit・push する。 |
+| `fix-conflicts` | PR の merge conflict を解消し、検証して commit・push する。 |
+| `fix-pr` | PR のレビュー指摘を検証・修正し、返信案を作る。 |
+| `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 |
 
-前提環境は Node.js 24 と `pnpm@10.5.0` です。
+`code-review`、`create-pr`、`define`、`fix-ci`、`fix-conflicts`、`fix-pr` は
+`$skill-name` で明示的に呼び出します。`tdd` はコードの実装・修正時に
+使用する設定です。引数や実行条件は各 `SKILL.md` を参照してください。
+
+## セットアップと検証
+
+Node.js 24 と `pnpm@10.5.0` を使用します。
 
 ```bash
 pnpm install --frozen-lockfile
-```
-
-`pnpm install --frozen-lockfile` で lockfile に固定された依存関係を
-そのままインストールします。
-
-## 主要コマンド
-
-```bash
 pnpm lint:md
 pnpm lint:spell
 pnpm lint:text
 ```
 
-- `pnpm lint:md`: Markdown の見出しや記法を検証する。
-- `pnpm lint:spell`: 固有名詞や用語のスペルを検証する。
-- `pnpm lint:text`: 日本語の技術文書としての文章品質を検証する。
-
-PR を作成する前に、上記 3 つを通す前提です。
-
-## ディレクトリ構成
-
-- `skills/`: Codex で再利用する skill 定義を配置する。
-- `.github/workflows/`: lint などの GitHub Actions を管理する。
-- `.github/PULL_REQUEST_TEMPLATE.md`: PR 作成時のテンプレートである。
-- `rules/`: リポジトリ全体で共有するルール類の配置先である。
-- `templates/`: 共有テンプレートの配置先である。
-- ルート設定ファイル群:
-  `package.json`、`cspell.json`、`.markdownlint.json`、
-  Textlint 設定ファイルなどを配置している。
-
-## 利用できる Skills
-
-### 進行管理・導線整理
-
-- `full-cycle-delivery`: 依頼全体を整理し、必要な skill を束ねて
-  最小変更と必要な検証で完了まで導く。
-- `task-intake`: 着手前に目的、完了条件、制約、前提、
-  推奨アプローチを整理する。
-- `repo-discovery`: リポジトリ構成、主要コマンド、規約、
-  変更候補を素早く把握する。
-
-### 実装品質・変更手順
-
-- `coding-standards`: TypeScript、JavaScript、React、Node.js、Rust、
-  Terraform にまたがる実装時の必須コーディング規約を揃える。
-  責務分離、具体的な命名、最小実装、境界検証を強制する。
-- `frontend-patterns`: UI、React、frontend state、hooks、rendering、
-  accessibility の必須規約を揃える。
-- `backend-patterns`: API、DB、validation、service、server-side 処理の
-  必須規約を揃える。
-- `tdd`: Red-Green-Refactor の流れでテスト駆動開発を進める。
-- `refactoring`: 安全網を前提に、振る舞いを変えずに構造改善を進める。
-- `code-review`: findings-first で差分や Pull Request をレビューする。
-  9 観点（正確性、セキュリティ、パフォーマンス、後方互換性、
-  可観測性、運用性、テスト容易性、可読性、一貫性）を
-  重大度順に指摘する。
-
-### 言語別 Practice
-
-- `typescript-practice`: TypeScript の実装、型エラー修正、`tsconfig`
-  整備を標準手順で進める。
-- `rust-practice`: Rust の実装、リファクタ、Edition 移行、
-  ビルド失敗修正を標準手順で進める。
-- `terraform-practice`: Terraform の構成変更、レビュー、`plan` までの
-  安全な運用手順を揃える。
-
-### Git / PR 運用
-
-- `using-git-worktrees`: 実装前に `.worktrees/` 配下へ作業場所を用意し、
-  現在の checkout を汚さずに作業を始める。
-- `conventional-branching`: 作業内容や Issue 番号から規約に沿った
-  ブランチ名を提案し、通常はそのまま作成して checkout する。
-- `conventional-commits`: 変更内容を確認し、Conventional Commits 形式で
-  1 件の commit を作成する。
-- `github-pr-create`: 現在のブランチから Pull Request の準備と作成を
-  進める。
-- `github-pr-response`: Pull Request で受けたレビューコメントへの対応を
-  進める。
-
-詳細は各 `skills/<name>/SKILL.md` を参照してください。
-
-## 開発フロー
-
-- skill やドキュメントを変更したら、関連する説明も同時に更新する。
-- 変更後は `pnpm lint:md`、`pnpm lint:spell`、`pnpm lint:text` を実行する。
-- commit メッセージは `feat:`、`fix:`、`docs:`、`chore:` などの
-  Conventional Commit ベースを前提とする。
-- Pull Request は `.github/PULL_REQUEST_TEMPLATE.md` に沿って作成する。
+- `pnpm lint:md`: Markdown の記法を検証する。
+- `pnpm lint:spell`: スペルと登録語を検証する。
+- `pnpm lint:text`: 日本語の文章を検証する。
 
 ## ライセンス
 

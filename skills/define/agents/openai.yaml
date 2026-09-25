@@ -1,0 +1,7 @@
+interface:
+  display_name: "define"
+  short_description: "実装前に仕様と設計上の判断を整理する"
+  default_prompt: "$define を使って、実装前に目的・要件・振る舞い・制約・設計上の判断を整理し、確認できる仕様としてまとめてください。"
+
+policy:
+  allow_implicit_invocation: false

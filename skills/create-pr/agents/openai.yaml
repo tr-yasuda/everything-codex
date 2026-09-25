@@ -1,0 +1,7 @@
+interface:
+  display_name: "create-pr"
+  short_description: "変更を commit・push して Draft PR を作成する"
+  default_prompt: "$create-pr を使って現在の変更を commit・push し、Draft PR を作成してください。"
+
+policy:
+  allow_implicit_invocation: false

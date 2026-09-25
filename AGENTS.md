@@ -1,64 +1,56 @@
-# Repository Guidelines
+# リポジトリガイド
 
-## Project Structure & Module Organization
+## 構成
 
-- `skills/<name>/SKILL.md` stores each reusable Codex skill.
-- `skills/<name>/references/` holds optional supporting material.
-- `.github/workflows/` contains CI, including `lint.yaml`.
-- `.github/PULL_REQUEST_TEMPLATE.md` defines the PR checklist.
-- Root config files include `package.json`, `cspell.json`,
-  `.markdownlint.json`, and Textlint settings.
+このリポジトリでは、Codex の skill と関連設定を管理します。
+アプリケーションコードやアプリケーションのテストはありません。
 
-This repository is documentation-first. Most changes touch Markdown, skill
-instructions, or repository workflow files.
+- `skills/<name>/SKILL.md`: skill の手順を定義する。
+- `skills/<name>/agents/openai.yaml`: skill の表示情報と呼び出し設定を定義する。
+- `skills/<name>/references/`: skill の補足資料を配置する。
+- `.codex/config.toml`、`.codex/agents/`: Codex とエージェントを設定する。
+- `.codex/AGENTS.md`: `.codex/` 内の変更に適用する指示を記載する。
+- `.github/workflows/`: lint と Pinact のワークフローを配置する。
+- `.github/PULL_REQUEST_TEMPLATE.md`: PR の確認項目を定義する。
+- ルートの `package.json`、`cspell.json`、`.markdownlint.json`、Textlint 設定ファイル: 文書の検証方法を設定する。
 
-## Build, Test, and Development Commands
+## セットアップと検証
 
-Use Node.js 24 and `pnpm@10.5.0`.
+Node.js 24 と `pnpm@10.5.0` を使用します。
+依存関係を次のコマンドでインストールします。
 
 ```bash
 pnpm install --frozen-lockfile
+```
+
+PR を作成する前に、次の 3 つのコマンドで検証します。
+
+```bash
 pnpm lint:md
 pnpm lint:spell
 pnpm lint:text
 ```
 
-- `pnpm install --frozen-lockfile` installs pinned dependencies.
-- `pnpm lint:md` checks Markdown structure and style.
-- `pnpm lint:spell` checks spelling and project terms.
-- `pnpm lint:text` checks Japanese technical writing quality.
+順に Markdown の記法、スペル、日本語の文章を検証します。
+無関係なファイルで失敗した場合は、対象ファイルと失敗内容を報告します。
 
-Run all three lint commands before opening a pull request.
+## 編集規約
 
-## Coding Style & Naming Conventions
+- skill を変更する前に、`README.md` と対象の `SKILL.md` を読む。
+  対象パスに `AGENTS.md` があれば、その指示にも従う。
+- `.editorconfig` に従い、UTF-8、LF、末尾改行、2 スペースのインデントを使用する。
+  Markdown の各行は 120 文字以内に収める。
+- skill のディレクトリ名には小文字の kebab-case を使用する。
+  `SKILL.md`、`agents/openai.yaml`、README の名称と説明を揃える。
+- skill、コマンド、ワークフローを変更したら、関連文書も更新する。
+  新しい固有名詞がスペルチェックでエラーになったら、`project-words.txt` か `cspell.json` に登録する。
+- 作業ツリーにある無関係な変更は、stage 済みのものも含めて保持する。
 
-- Follow `.editorconfig`: UTF-8, LF, final newline, 2-space indentation.
-- Keep lines near the 80-character target.
-- Use short headings and direct sentences in Markdown.
-- Name skill directories in lowercase kebab-case, such as
-  `skills/full-cycle-delivery/`.
-- Update nearby docs when commands, workflow, or behavior change.
+## コミットと PR
 
-## Testing Guidelines
-
-There is no application test suite in this repository. The main quality gates
-are `pnpm lint:md`, `pnpm lint:spell`, and `pnpm lint:text`. When adding new
-terms, update `project-words.txt` or `cspell.json` in the same change.
-
-## Commit & Pull Request Guidelines
-
-Git history uses Conventional Commits. Examples include `feat: add workflow
-skills` and `feat(skills): practice skill 群と運用ガイドを追加`.
-
-- Prefer `feat`, `fix`, `docs`, and `chore`.
-- Add a scope when it helps, such as `feat(skills): ...`.
-- Keep each commit focused on one logical change.
-
-PRs should follow the template in `.github/PULL_REQUEST_TEMPLATE.md`.
-Include a short summary, changed items, impact, and confirmation that all lint
-checks passed. Add screenshots only when rendered output changes.
-
-## Agent-Specific Notes
-
-Read `README.md` and the target `skills/*/SKILL.md` before editing. Keep
-changes small, repository-specific, and aligned with the existing workflow.
+コミットメッセージは日本語で書きます。
+`docs: リポジトリガイドを更新` や `feat(skills): skill を追加` のように、
+Conventional Commits 形式の type と scope は英語で記述します。
+1 つのコミットには、関連する変更だけを含めます。
+PR は `.github/PULL_REQUEST_TEMPLATE.md` に従い、目的、変更内容、
+影響範囲、3 つの lint の結果を記載します。

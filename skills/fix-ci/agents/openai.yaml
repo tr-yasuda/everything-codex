@@ -1,0 +1,7 @@
+interface:
+  display_name: "fix-ci"
+  short_description: "PR の失敗している CI を調査・修正する"
+  default_prompt: "$fix-ci を使って対象 PR の失敗している CI を調査し、コードで解決できる問題を修正して commit・push してください。"
+
+policy:
+  allow_implicit_invocation: false
