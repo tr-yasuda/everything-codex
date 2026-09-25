@@ -24,9 +24,10 @@ Codex の skill、エージェント設定、GitHub Actions を管理するリ�
 | `fix-pr` | PR のレビュー指摘を検証・修正し、返信案を作る。 |
 | `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 |
 
-`code-review`、`create-pr`、`define`、`fix-ci`、`fix-conflicts`、`fix-pr` は
-`$skill-name` で明示的に呼び出します。`tdd` はコードの実装・修正時に
-使用する設定です。引数や実行条件は各 `SKILL.md` を参照してください。
+`code-review`、`create-pr`、`define` は `$skill-name` で明示的に呼び出します。
+`fix-ci`、`fix-conflicts`、`fix-pr` も同様です。
+`tdd` はコードの実装・修正時に使用する設定です。
+引数や実行条件は各 `SKILL.md` を参照してください。
 
 ## セットアップと検証
 

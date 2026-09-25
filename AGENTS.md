@@ -49,7 +49,7 @@ pnpm lint:text
 ## コミットと PR
 
 コミットメッセージは日本語で書きます。
-`docs: リポジトリガイドを更新` や `feat(skills): skill を追加` のように、
+`docs: リポジトリガイドを更新` や `feat(skills): skill を追加` のように書きます。
 Conventional Commits 形式の type と scope は英語で記述します。
 1 つのコミットには、関連する変更だけを含めます。
 PR は `.github/PULL_REQUEST_TEMPLATE.md` に従い、目的、変更内容、

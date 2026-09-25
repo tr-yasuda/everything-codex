@@ -2,7 +2,9 @@
   "rules": {
     "@textlint-ja/preset-ai-writing": true,
     "preset-ja-technical-writing": {
-      "max": 80
+      "sentence-length": {
+        "max": 80
+      }
     },
     "preset-japanese": true
   }
