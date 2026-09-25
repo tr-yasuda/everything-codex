@@ -23,21 +23,23 @@ Codex の skill、エージェント設定、GitHub Actions を管理するリ�
 | `fix-conflicts` | PR の merge conflict を解消し、検証して commit・push する。 |
 | `fix-pr` | PR のレビュー指摘を検証・修正し、返信案を作る。 |
 | `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 |
+| `update-deps` | 指定した依存関係を repository の管理方法で更新し、検証する。 |
 
 `code-review`、`create-pr`、`define` は `$skill-name` で明示的に呼び出します。
-`fix-ci`、`fix-conflicts`、`fix-pr` も同様です。
+`fix-ci`、`fix-conflicts`、`fix-pr`、`update-deps` も同様です。
 `tdd` はコードの実装・修正時に使用する設定です。
 引数や実行条件は各 `SKILL.md` を参照してください。
 
 ## セットアップと検証
 
-Node.js 24 と `pnpm@10.5.0` を使用します。
+Node.js 24 と、`package.json` で指定した pnpm を mise で使用します。
 
 ```bash
-pnpm install --frozen-lockfile
-pnpm lint:md
-pnpm lint:spell
-pnpm lint:text
+mise install
+mise exec -- pnpm install --frozen-lockfile
+mise exec -- pnpm lint:md
+mise exec -- pnpm lint:spell
+mise exec -- pnpm lint:text
 ```
 
 - `pnpm lint:md`: Markdown の記法を検証する。

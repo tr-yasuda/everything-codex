@@ -16,19 +16,20 @@
 
 ## セットアップと検証
 
-Node.js 24 と `pnpm@10.5.0` を使用します。
+Node.js 24 と、`package.json` で指定した pnpm を mise で使用します。
 依存関係を次のコマンドでインストールします。
 
 ```bash
-pnpm install --frozen-lockfile
+mise install
+mise exec -- pnpm install --frozen-lockfile
 ```
 
 PR を作成する前に、次の 3 つのコマンドで検証します。
 
 ```bash
-pnpm lint:md
-pnpm lint:spell
-pnpm lint:text
+mise exec -- pnpm lint:md
+mise exec -- pnpm lint:spell
+mise exec -- pnpm lint:text
 ```
 
 順に Markdown の記法、スペル、日本語の文章を検証します。
