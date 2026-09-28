@@ -41,6 +41,7 @@ mise exec -- pnpm lint:text
   対象パスに `AGENTS.md` があれば、その指示にも従う。
 - `.editorconfig` に従い、UTF-8、LF、末尾改行、2 スペースのインデントを使用する。
   Markdown の各行は 120 文字以内に収める。
+- `.codex/config.toml` の既存キーを変更するときは値を書き換え、同じキーを重複して追加しない。
 - skill のディレクトリ名には小文字の kebab-case を使用する。
   `SKILL.md`、`agents/openai.yaml`、README の名称と説明を揃える。
 - skill、コマンド、ワークフローを変更したら、関連文書も更新する。

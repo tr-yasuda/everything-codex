@@ -21,7 +21,7 @@ sandbox = "elevated"
 
 [features]
 prevent_idle_sleep = true
-memories = false
+memories = true
 
 [agents]
 enabled = true
