@@ -1,0 +1,7 @@
+interface:
+  display_name: "clarify-code"
+  short_description: "対象差分の処理を最後まで追いやすいコードにする"
+  default_prompt: "$clarify-code を使い、対象差分の処理を、人間が最後まで追いやすいコードに変更してください。振る舞いと public API は維持してください。"
+
+policy:
+  allow_implicit_invocation: false
