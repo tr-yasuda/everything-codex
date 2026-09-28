@@ -16,7 +16,7 @@ Codex の skill、エージェント設定、GitHub Actions を管理するリ�
 
 | skill | 用途 |
 | --- | --- |
-| `clarify-code` | 対象差分の処理を、振る舞いを保って最後まで追いやすいコードに変更する。 |
+| `clarify-code` | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 |
 | `code-review` | PR やローカル変更を複数の観点でレビューする。 |
 | `create-pr` | 変更を commit・push し、Draft PR を作成または更新する。 |
 | `define` | 実装前に要件と設計上の判断を仕様として整理する。 |
