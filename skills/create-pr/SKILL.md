@@ -1,6 +1,7 @@
 ---
 name: create-pr
 description: 現在の変更を Conventional Commits 形式で commit・push し、GitHub Pull Request を作成または更新する skill。
+disable-model-invocation: true
 ---
 
 # Create PR

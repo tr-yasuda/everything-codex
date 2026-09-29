@@ -1,6 +1,7 @@
 ---
 name: fix-conflicts
 description: GitHub Pull Request の merge conflict を base branch の最新変更を取り込みながら解消し、検証して commit・push する skill。
+disable-model-invocation: true
 ---
 
 # Fix Conflicts

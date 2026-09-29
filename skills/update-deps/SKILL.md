@@ -1,6 +1,7 @@
 ---
 name: update-deps
 description: Repository の管理方法に従い、指定された依存関係を最新の安定版へ更新・検証する skill。
+disable-model-invocation: true
 ---
 
 # Update Deps

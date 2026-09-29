@@ -1,6 +1,7 @@
 ---
 name: fix-ci
 description: GitHub Pull Request の失敗している CI を調査し、コードで解決できる問題を修正して commit・push する skill。
+disable-model-invocation: true
 ---
 
 # Fix CI

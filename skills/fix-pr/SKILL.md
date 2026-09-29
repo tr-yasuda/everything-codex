@@ -1,6 +1,7 @@
 ---
 name: fix-pr
 description: GitHub Pull Request の未解決レビュー指摘を確認し、妥当な指摘を修正して commit・push し、返信案を作成する skill。
+disable-model-invocation: true
 ---
 
 # Fix PR
