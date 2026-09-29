@@ -1,6 +1,6 @@
 # everything-codex
 
-Codex の skill、エージェント設定、GitHub Actions を管理するリポジトリです。
+Codex と Claude Code で使う skill、Codex のエージェント設定、GitHub Actions を管理するリポジトリです。
 
 ## 構成
 
@@ -26,9 +26,10 @@ Codex の skill、エージェント設定、GitHub Actions を管理するリ�
 | `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 |
 | `update-deps` | 指定した依存関係を最新の安定版へ更新し、検証する。 |
 
-`clarify-code`、`code-review`、`create-pr`、`define` は `$skill-name` で明示的に呼び出します。
+`clarify-code`、`code-review`、`create-pr`、`define` は手動で呼び出します。
 `fix-ci`、`fix-conflicts`、`fix-pr`、`update-deps` も同様です。
-`tdd` はコードの実装・修正時に使用する設定です。
+Codex では `$skill-name`、Claude Code では `/skill-name` を使います。
+`tdd` はコードの実装・修正時に自動で使用する設定です。
 引数や実行条件は各 `SKILL.md` を参照してください。
 
 ## セットアップと検証

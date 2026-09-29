@@ -1,6 +1,7 @@
 ---
 name: define
 description: 実装前に目的・要件・振る舞い・制約・設計上の判断を整理し、ユーザーが確認できる仕様としてまとめる skill。
+disable-model-invocation: true
 ---
 
 # Define

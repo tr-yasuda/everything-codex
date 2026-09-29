@@ -1,6 +1,7 @@
 ---
 name: code-review
 description: GitHub PR、diff、ローカルコード変更を並列レビューし、重複排除・検証・見落とし探索を経て、根拠付きのコードレビューを生成する skill。
+disable-model-invocation: true
 ---
 
 # Code Review

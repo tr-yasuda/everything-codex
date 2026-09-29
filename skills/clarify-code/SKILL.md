@@ -1,6 +1,7 @@
 ---
 name: clarify-code
 description: 対象差分の処理と関連コメントを精査し、振る舞いと public API を保ちながら、最後まで追いやすいコードに変更する skill。
+disable-model-invocation: true
 ---
 
 # Clarify Code
