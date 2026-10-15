@@ -12,6 +12,11 @@ Codex と Claude Code で使う skill、Codex のエージェント設定、GitH
 - `.github/workflows/`: lint と GitHub Actions の参照先固定を検証・更新する。
 - `.github/PULL_REQUEST_TEMPLATE.md`: PR の記載項目と確認事項を定義する。
 
+## Codex のモデル設定
+
+- 通常の作業と調査・実装・レビュー用のエージェントには `gpt-6.1-sol` を使用する。
+- 文書調査用のエージェントには `gpt-6-luna` を使用する。
+
 ## Skills
 
 | skill | 用途 |
