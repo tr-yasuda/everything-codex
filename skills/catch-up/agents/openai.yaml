@@ -1,0 +1,7 @@
+interface:
+  display_name: "catch-up"
+  short_description: "何が変わり、何を判断すべきかを、判断材料つきで腹落ちする形で伝える"
+  default_prompt: "$catch-up を使い、前回の私の指示以降に何が変わり、私が何を判断すべきかを、判断材料つきで伝えてください。"
+
+policy:
+  allow_implicit_invocation: true

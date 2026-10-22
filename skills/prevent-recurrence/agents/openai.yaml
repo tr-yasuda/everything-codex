@@ -1,0 +1,7 @@
+interface:
+  display_name: "prevent-recurrence"
+  short_description: "繰り返す指摘を、構造・型・lint・テストで起こせなくする"
+  default_prompt: "$prevent-recurrence を使い、私が繰り返している指摘を集めて、同じ間違いを起こせない仕組みで防いでください。"
+
+policy:
+  allow_implicit_invocation: false
