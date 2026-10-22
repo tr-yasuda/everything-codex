@@ -1,0 +1,7 @@
+interface:
+  display_name: "write-spec"
+  short_description: "全体像から 1 section ずつ合意し、理解して説明できる仕様書を作成・更新する"
+  default_prompt: "$write-spec を使い、骨組みから 1 section ずつ合意しながら、私が理解して他のメンバーに説明できる仕様書を作成または更新してください。"
+
+policy:
+  allow_implicit_invocation: false
