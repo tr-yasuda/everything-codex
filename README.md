@@ -1,73 +1,100 @@
 # everything-codex
 
-Codex と Claude Code で使う skill、Codex のエージェント設定、GitHub Actions を管理するリポジトリです。
+> **人間の理解を置き去りにせず、楽に正確な情報で開発を進める。**
 
-## 構成
+この思想に基づいて、Codex と Claude Code の skill 群と、Codex の設定を管理しています。
+エージェントに作業を任せても、人が状況を理解し、事実に基づいて判断できる状態を保ちます。
 
-- `skills/<name>/SKILL.md`: 各 skill の手順を定義する。
-- `skills/<name>/agents/openai.yaml`: skill の表示情報と呼び出し設定を定義する。
-- `skills/<name>/references/`: skill の補足資料を配置する。
-- `.codex/config.toml`、`.codex/agents/`: Codex とエージェントの設定を管理する。
-- `AGENTS.md`、`.codex/AGENTS.md`: 作業時の指示を記載する。
-- `.github/workflows/`: lint と GitHub Actions の参照先固定を検証・更新する。
-- `.github/PULL_REQUEST_TEMPLATE.md`: PR の記載項目と確認事項を定義する。
+```mermaid
+flowchart LR
+  P["人間の理解を置き去りにせず、<br/>楽に正確な情報で開発を進める"]
 
-## Codex のモデル設定
+  P --> E["楽をする"]
+  P --> U["理解を置き去りにしない"]
+  P --> A["正確な情報で進める"]
 
-- 通常の作業と調査・実装・レビュー用のエージェントには `gpt-6.1-sol` を使用する。
-- 文書調査用のエージェントには `gpt-6-luna` を使用する。
+  E --> E1["create-pr<br/>fix-pr<br/>fix-ci<br/>fix-conflicts<br/>update-deps"]
+  U --> U1["define<br/>design-interface<br/>write-spec<br/>catch-up<br/>explain-code<br/>clarify-code"]
+  A --> A1["critical-thinking<br/>debug-failure<br/>verify-change<br/>tdd<br/>code-review<br/>prevent-recurrence"]
+```
 
-## Skills
+## 3 つの柱
 
-| skill | 用途 |
+### 楽をする
+
+好きなタイミングで呼ぶと、定型作業をエージェントが考えて実施します。
+
+| skill | 用途 | 呼び出し |
+| --- | --- | --- |
+| `create-pr` | 変更を commit・push し、Draft PR を作成または更新する。 | 手動 |
+| `fix-pr` | PR のレビュー指摘を検証・修正し、返信案を作る。 | 手動 |
+| `fix-ci` | PR で失敗した CI を調査し、修正して commit・push する。 | 手動 |
+| `fix-conflicts` | PR の merge conflict を解消し、検証して commit・push する。 | 手動 |
+| `update-deps` | 指定した依存関係を最新の安定版へ更新し、検証する。 | 手動 |
+
+### 理解を置き去りにしない
+
+人が理解し、自分の言葉で説明できる状態を保ちます。
+
+| skill | 用途 | 呼び出し |
+| --- | --- | --- |
+| `define` | 実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめる。 | 手動 |
+| `design-interface` | 使い方・型・名前・モジュールの分け方を合意してから実装する。 | 手動 |
+| `write-spec` | 全体像から 1 section ずつ合意し、理解して説明できる仕様書を作成・更新する。 | 手動 |
+| `catch-up` | 何が変わり、何を判断すべきかを、判断材料つきで腹落ちする形で伝える。 | 自動 |
+| `explain-code` | コードがどう動き、なぜその形なのかを結論から順に説明する。 | 手動 |
+| `clarify-code` | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 | 手動 |
+
+### 正確な情報で進める
+
+推測で進めず、確かめた事実で判断します。
+
+| skill | 用途 | 呼び出し |
+| --- | --- | --- |
+| `critical-thinking` | 前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す。 | 自動 |
+| `debug-failure` | 問題を見つけたら、原因を特定してから根本原因を直す。 | 自動 |
+| `verify-change` | 完了を報告する前に、変更を実際に動かして確かめる。 | 自動 |
+| `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 | 自動 |
+| `code-review` | PR やローカル変更を複数の観点でレビューする。 | 手動 |
+| `prevent-recurrence` | 繰り返す指摘を、構造・型・lint・テストで起こせなくする。 | 手動 |
+
+## 使い方
+
+- 手動の skill は、Codex では `$skill-name`、Claude Code では `/skill-name` で呼び出す。
+- 自動の skill は、該当する場面でエージェントが使う。手動でも呼び出せる。
+- 各 skill は単体で動き、他の skill を呼び出さない。
+- 自動で使われる条件や引数は、各 `SKILL.md` に記載している。
+
+## 開発者向け情報
+
+### 構成
+
+| パス | 内容 |
 | --- | --- |
-| `catch-up` | 何が変わり、何を判断すべきかを、判断材料つきで腹落ちする形で伝える。 |
-| `clarify-code` | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 |
-| `code-review` | PR やローカル変更を複数の観点でレビューする。 |
-| `create-pr` | 変更を commit・push し、Draft PR を作成または更新する。 |
-| `critical-thinking` | 前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す。 |
-| `debug-failure` | 問題を見つけたら、原因を特定してから根本原因を直す。 |
-| `define` | 実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめる。 |
-| `design-interface` | 使い方・型・名前・モジュールの分け方を合意してから実装する。 |
-| `explain-code` | コードがどう動き、なぜその形なのかを結論から順に説明する。 |
-| `fix-ci` | PR で失敗した CI を調査し、修正して commit・push する。 |
-| `fix-conflicts` | PR の merge conflict を解消し、検証して commit・push する。 |
-| `fix-pr` | PR のレビュー指摘を検証・修正し、返信案を作る。 |
-| `prevent-recurrence` | 繰り返す指摘を、構造・型・lint・テストで起こせなくする。 |
-| `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 |
-| `update-deps` | 指定した依存関係を最新の安定版へ更新し、検証する。 |
-| `verify-change` | 完了を報告する前に、変更を実際に動かして確かめる。 |
-| `write-spec` | 全体像から 1 section ずつ合意し、理解して説明できる仕様書を作成・更新する。 |
+| `skills/<name>/SKILL.md` | skill の手順 |
+| `skills/<name>/agents/openai.yaml` | skill の表示情報と呼び出し設定 |
+| `skills/<name>/references/` | skill の補足資料 |
+| `.codex/config.toml`、`.codex/agents/` | Codex とエージェントの設定 |
+| `AGENTS.md`、`.codex/AGENTS.md` | 作業時の指示 |
+| `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
+| `.github/PULL_REQUEST_TEMPLATE.md` | PR の記載項目と確認事項 |
 
-`clarify-code`、`code-review`、`create-pr`、`define` は手動で呼び出します。
-`design-interface`、`explain-code`、`fix-ci`、`fix-conflicts`、`fix-pr` も同様です。
-`prevent-recurrence`、`update-deps`、`write-spec` も手動で呼び出します。
-Codex では `$skill-name`、Claude Code では `/skill-name` を使います。
-`tdd`、`verify-change`、`debug-failure`、`catch-up`、`critical-thinking` は、該当する場面で自動的に使われます。
-`tdd` はコードの実装・修正時、`verify-change` は完了を報告する前に使われます。
-`debug-failure` は、テストの失敗や想定外の動きを見つけたときに使われます。
-`catch-up` は、合意を変える必要のある問題を実装中に見つけたときと、状況の説明を求められたときに使われます。
-`critical-thinking` は、場面を限定せずに使える skill です。
-自動では、PR のレビューコメントへの返信や指摘への対応を考えるときと、方針を決めるときに使われます。
-自動で使われる skill も、手動で呼び出せます。
-各 skill は単体で動き、他の skill を呼び出しません。
-引数や実行条件は各 `SKILL.md` を参照してください。
+### Codex のモデル設定
 
-## セットアップと検証
+- 通常の作業と、調査・実装・レビュー用のエージェント: `gpt-6.1-sol`
+- 文書調査用のエージェント: `gpt-6-luna`
+
+### セットアップと検証
 
 Node.js 24 と、`package.json` で指定した pnpm を mise で使用します。
 
 ```bash
 mise install
 mise exec -- pnpm install --frozen-lockfile
-mise exec -- pnpm lint:md
-mise exec -- pnpm lint:spell
-mise exec -- pnpm lint:text
+mise exec -- pnpm lint:md     # Markdown の記法
+mise exec -- pnpm lint:spell  # スペルと登録語
+mise exec -- pnpm lint:text   # 日本語の文章
 ```
-
-- `pnpm lint:md`: Markdown の記法を検証する。
-- `pnpm lint:spell`: スペルと登録語を検証する。
-- `pnpm lint:text`: 日本語の文章を検証する。
 
 ## ライセンス
 
