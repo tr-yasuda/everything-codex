@@ -25,6 +25,7 @@ Codex と Claude Code で使う skill、Codex のエージェント設定、GitH
 | `clarify-code` | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 |
 | `code-review` | PR やローカル変更を複数の観点でレビューする。 |
 | `create-pr` | 変更を commit・push し、Draft PR を作成または更新する。 |
+| `critical-thinking` | 前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す。 |
 | `debug-failure` | 問題を見つけたら、原因を特定してから根本原因を直す。 |
 | `define` | 実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめる。 |
 | `design-interface` | 使い方・型・名前・モジュールの分け方を合意してから実装する。 |
@@ -41,10 +42,12 @@ Codex と Claude Code で使う skill、Codex のエージェント設定、GitH
 `design-interface`、`explain-code`、`fix-ci`、`fix-conflicts`、`fix-pr` も同様です。
 `prevent-recurrence`、`update-deps` も手動で呼び出します。
 Codex では `$skill-name`、Claude Code では `/skill-name` を使います。
-`tdd`、`verify-change`、`debug-failure`、`catch-up` は、該当する場面で自動的に使われる設定です。
+`tdd`、`verify-change`、`debug-failure`、`catch-up`、`critical-thinking` は、該当する場面で自動的に使われます。
 `tdd` はコードの実装・修正時、`verify-change` は完了を報告する前に使われます。
 `debug-failure` は、テストの失敗や想定外の動きを見つけたときに使われます。
 `catch-up` は、合意を変える必要のある問題を実装中に見つけたときと、状況の説明を求められたときに使われます。
+`critical-thinking` は、場面を限定せずに使える skill です。
+自動では、PR のレビューコメントへの返信や指摘への対応を考えるときと、方針を決めるときに使われます。
 自動で使われる skill も、手動で呼び出せます。
 各 skill は単体で動き、他の skill を呼び出しません。
 引数や実行条件は各 `SKILL.md` を参照してください。
