@@ -1,0 +1,7 @@
+interface:
+  display_name: "verify-change"
+  short_description: "完了を報告する前に、実際に動かして確かめる"
+  default_prompt: "$verify-change を使い、完了を報告する前に変更を実際に動かして、想定どおりに動くことを確かめてください。"
+
+policy:
+  allow_implicit_invocation: true
