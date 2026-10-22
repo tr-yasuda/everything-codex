@@ -1,0 +1,7 @@
+interface:
+  display_name: "debug-failure"
+  short_description: "問題の原因を特定してから直す"
+  default_prompt: "$debug-failure を使い、見つかった問題の原因を特定してから、根本原因を直してください。"
+
+policy:
+  allow_implicit_invocation: true

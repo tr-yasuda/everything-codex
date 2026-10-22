@@ -24,17 +24,21 @@ Codex と Claude Code で使う skill、Codex のエージェント設定、GitH
 | `clarify-code` | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 |
 | `code-review` | PR やローカル変更を複数の観点でレビューする。 |
 | `create-pr` | 変更を commit・push し、Draft PR を作成または更新する。 |
+| `debug-failure` | 問題を見つけたら、原因を特定してから根本原因を直す。 |
 | `define` | 実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめる。 |
 | `fix-ci` | PR で失敗した CI を調査し、修正して commit・push する。 |
 | `fix-conflicts` | PR の merge conflict を解消し、検証して commit・push する。 |
 | `fix-pr` | PR のレビュー指摘を検証・修正し、返信案を作る。 |
 | `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 |
 | `update-deps` | 指定した依存関係を最新の安定版へ更新し、検証する。 |
+| `verify-change` | 完了を報告する前に、変更を実際に動かして確かめる。 |
 
 `clarify-code`、`code-review`、`create-pr`、`define` は手動で呼び出します。
 `fix-ci`、`fix-conflicts`、`fix-pr`、`update-deps` も同様です。
 Codex では `$skill-name`、Claude Code では `/skill-name` を使います。
-`tdd` はコードの実装・修正時に自動で使用する設定です。
+`tdd`、`verify-change`、`debug-failure` は、該当する場面で自動的に使われる設定です。
+`tdd` はコードの実装・修正時、`verify-change` は完了を報告する前に使われます。
+`debug-failure` は、テストの失敗や想定外の動きを見つけたときに使われます。
 引数や実行条件は各 `SKILL.md` を参照してください。
 
 ## セットアップと検証
