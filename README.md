@@ -37,10 +37,11 @@ Codex と Claude Code で使う skill、Codex のエージェント設定、GitH
 | `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 |
 | `update-deps` | 指定した依存関係を最新の安定版へ更新し、検証する。 |
 | `verify-change` | 完了を報告する前に、変更を実際に動かして確かめる。 |
+| `write-spec` | 全体像から 1 section ずつ合意し、理解して説明できる仕様書を作成・更新する。 |
 
 `clarify-code`、`code-review`、`create-pr`、`define` は手動で呼び出します。
 `design-interface`、`explain-code`、`fix-ci`、`fix-conflicts`、`fix-pr` も同様です。
-`prevent-recurrence`、`update-deps` も手動で呼び出します。
+`prevent-recurrence`、`update-deps`、`write-spec` も手動で呼び出します。
 Codex では `$skill-name`、Claude Code では `/skill-name` を使います。
 `tdd`、`verify-change`、`debug-failure`、`catch-up`、`critical-thinking` は、該当する場面で自動的に使われます。
 `tdd` はコードの実装・修正時、`verify-change` は完了を報告する前に使われます。
