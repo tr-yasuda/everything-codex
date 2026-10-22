@@ -1,0 +1,7 @@
+interface:
+  display_name: "explain-code"
+  short_description: "コードがどう動き、なぜその形なのかを結論から順に説明する"
+  default_prompt: "$explain-code を使い、対象のコードがどう動き、なぜその形なのかを調べて、私が自分の言葉で説明できるように結論から順に説明してください。"
+
+policy:
+  allow_implicit_invocation: false
