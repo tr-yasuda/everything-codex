@@ -1,0 +1,7 @@
+interface:
+  display_name: "record-decision"
+  short_description: "判断の理由を本人用に保存し、現在の状況と照合して読み返す"
+  default_prompt: "$record-decision を使って、この判断と理由を本人用のローカル領域に保存してください。"
+
+policy:
+  allow_implicit_invocation: true
