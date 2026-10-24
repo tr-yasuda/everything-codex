@@ -15,7 +15,8 @@ flowchart LR
 
   E --> E1["create-pr<br/>fix-pr<br/>fix-ci<br/>fix-conflicts<br/>update-deps"]
   U --> U1["define<br/>design-interface<br/>write-spec<br/>catch-up<br/>explain-code<br/>clarify-code"]
-  A --> A1["critical-thinking<br/>debug-failure<br/>verify-change<br/>tdd<br/>code-review<br/>prevent-recurrence"]
+  A --> A1["critical-thinking<br/>research<br/>debug-failure<br/>verify-change<br/>
+    tdd<br/>code-review<br/>prevent-recurrence"]
 ```
 
 ## 3 つの柱
@@ -52,6 +53,7 @@ flowchart LR
 | skill | 用途 | 呼び出し |
 | --- | --- | --- |
 | `critical-thinking` | 前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す。 | 自動 |
+| `research` | 外部情報の調査と事実確認を行い、結論を支える根拠と適用条件を確かめる。 | 自動 |
 | `debug-failure` | 問題を見つけたら、原因を特定してから根本原因を直す。 | 自動 |
 | `verify-change` | 完了を報告する前に、変更を実際に動かして確かめる。 | 自動 |
 | `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 | 自動 |
