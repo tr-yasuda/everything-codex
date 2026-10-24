@@ -1,0 +1,7 @@
+interface:
+  display_name: "research"
+  short_description: "外部情報の調査と事実確認を行い、結論を支える根拠と適用条件を確かめる"
+  default_prompt: "$research を使い、外部情報の根拠と適用条件を確かめ、結論と未確認事項を示してください。"
+
+policy:
+  allow_implicit_invocation: true
