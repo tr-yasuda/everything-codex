@@ -1,0 +1,7 @@
+interface:
+  display_name: "critical-thinking"
+  short_description: "前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す"
+  default_prompt: "$critical-thinking を使い、返信や方針を出す前に結論が頼っている前提を確かめ、相手の言うことを正しく理解してください。"
+
+policy:
+  allow_implicit_invocation: true

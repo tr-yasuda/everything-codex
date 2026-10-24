@@ -1,0 +1,7 @@
+interface:
+  display_name: "design-interface"
+  short_description: "使い方・型・名前・モジュールの分け方を合意してから実装する"
+  default_prompt: "$design-interface を使い、実装の前に呼び出し側の使い方、型、関数名、モジュールの分け方を決めて合意してから実装してください。"
+
+policy:
+  allow_implicit_invocation: false
