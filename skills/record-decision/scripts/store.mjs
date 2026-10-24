@@ -105,7 +105,8 @@ function assertOutsideGit(directory) {
 function assertPrivate(metadata, directory) {
   const correctType = directory ? metadata.isDirectory() : metadata.isFile();
   if (!correctType || metadata.uid !== process.getuid()
-    || (metadata.mode & 0o077) !== 0) {
+    || (metadata.mode & 0o077) !== 0
+    || (!directory && metadata.nlink !== 1)) {
     throw new Error('UNSAFE_STORAGE');
   }
 }
@@ -113,7 +114,12 @@ function assertPrivate(metadata, directory) {
 function prepareDirectory(directory, readOnly) {
   assertOutsideGit(directory);
   const base = dirname(directory);
-  const directories = [dirname(dirname(base)), dirname(base), base, directory];
+  const stateDirectory = dirname(base);
+  const localDirectory = dirname(stateDirectory);
+  const userDirectory = dirname(localDirectory);
+  const directories = [
+    userDirectory, localDirectory, stateDirectory, base, directory,
+  ];
   for (const path of directories) {
     if (!metadataAt(path)) {
       if (readOnly) return;
@@ -125,7 +131,12 @@ function prepareDirectory(directory, readOnly) {
     }
     const metadata = lstatSync(path);
     if (!metadata.isDirectory()) throw new Error('UNSAFE_STORAGE');
-    if (path === base || path === directory) assertPrivate(metadata, true);
+    if (path === base || path === directory) {
+      assertPrivate(metadata, true);
+    } else if ((metadata.uid !== 0 && metadata.uid !== process.getuid())
+      || (metadata.mode & 0o022) !== 0) {
+      throw new Error('UNSAFE_STORAGE');
+    }
   }
 }
 

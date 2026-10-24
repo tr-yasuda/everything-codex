@@ -1,8 +1,9 @@
 import assert from 'node:assert/strict';
 import { spawn, spawnSync } from 'node:child_process';
 import {
-  chmodSync, closeSync, mkdirSync, mkdtempSync, openSync, readFileSync,
-  readdirSync, rmSync, statSync, symlinkSync, unlinkSync, writeFileSync,
+  chmodSync, closeSync, linkSync, mkdirSync, mkdtempSync, openSync,
+  readFileSync, readdirSync, rmSync, statSync, symlinkSync, unlinkSync,
+  writeFileSync,
 } from 'node:fs';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
@@ -238,6 +239,36 @@ test('記録は本人だけがアクセスでき、権限が緩まったら利�
   }
 });
 
+test('親の 0755 は許容し、他者が書き込める親からは読み書きしない', (t) => {
+  const { home, run } = fixture(t);
+  const local = join(home, '.local');
+  const state = join(local, 'state');
+  chmodSync(home, 0o755);
+  mkdirSync(local, { mode: 0o755 });
+  mkdirSync(state, { mode: 0o755 });
+  const saved = run(['save'], {
+    expectedVersion: null, record: decision(),
+  });
+  assert.equal(saved.status, 0);
+  const base = join(state, 'record-decision');
+  const file = join(base, readdirSync(base)[0], 'records.json');
+  const before = readFileSync(file, 'utf8');
+  const error = { status: 1, output: { error: 'UNSAFE_STORAGE' } };
+  for (const parent of [home, local, state]) {
+    for (const mode of [0o775, 0o757]) {
+      chmodSync(parent, mode);
+      assert.deepEqual(run(['list']), error);
+      assert.deepEqual(run(['save'], {
+        expectedVersion: saved.output.version,
+        record: decision('別の判断'),
+      }), error);
+      assert.equal(readFileSync(file, 'utf8'), before);
+      chmodSync(parent, 0o755);
+    }
+  }
+  assert.equal(run(['list']).output.version, saved.output.version);
+});
+
 for (const name of ['records.json', '.lock']) {
   test(`${name} のリンクを欠損扱いせず拒否する`, (t) => {
     const { home, run } = fixture(t);
@@ -250,6 +281,28 @@ for (const name of ['records.json', '.lock']) {
     assert.deepEqual(run(['list']), {
       status: 1, output: { error: 'UNSAFE_STORAGE' },
     });
+  });
+}
+
+for (const name of ['records.json', '.lock']) {
+  test(`${name} が本人用領域外とハードリンクで共有されていたら拒否する`, (t) => {
+    const { home, repo, run } = fixture(t);
+    const saved = run(['save'], {
+      expectedVersion: null, record: decision(),
+    }).output;
+    const base = join(home, '.local', 'state', 'record-decision');
+    const file = join(base, readdirSync(base)[0], name);
+    const before = readFileSync(file, 'utf8');
+    const linked = join(repo, `linked-${name}`);
+    linkSync(file, linked);
+    assert.equal(statSync(file).nlink, 2);
+    const error = { status: 1, output: { error: 'UNSAFE_STORAGE' } };
+    assert.deepEqual(run(['list']), error);
+    assert.deepEqual(run(['save'], {
+      expectedVersion: saved.version, record: decision('別の判断'),
+    }), error);
+    assert.equal(readFileSync(file, 'utf8'), before);
+    assert.equal(readFileSync(linked, 'utf8'), before);
   });
 }
 
