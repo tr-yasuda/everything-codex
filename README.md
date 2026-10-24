@@ -5,6 +5,8 @@
 この思想に基づいて、Codex と Claude Code の skill 群と、Codex の設定を管理しています。
 エージェントに作業を任せても、人が状況を理解し、事実に基づいて判断できる状態を保ちます。
 
+よくある「やりたいこと」から、使う流れと最初の依頼文を選べる [cookbook](cookbooks/README.md) があります。
+
 ```mermaid
 flowchart LR
   P["人間の理解を置き去りにせず、<br/>楽に正確な情報で開発を進める"]
@@ -83,6 +85,7 @@ flowchart LR
 | `skills/<name>/agents/openai.yaml` | skill の表示情報と呼び出し設定 |
 | `skills/<name>/references/` | skill の補足資料 |
 | `skills/<name>/scripts/` | skill が使う実行用スクリプトと、そのテスト |
+| `cookbooks/` | 目的別の依頼例と、確認から完了までの進め方 |
 | `.codex/config.toml`、`.codex/agents/` | Codex とエージェントの設定 |
 | `AGENTS.md`、`.codex/AGENTS.md` | 作業時の指示 |
 | `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
