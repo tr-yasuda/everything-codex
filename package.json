@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "test:record-decision":
+      "node --test skills/record-decision/scripts/store.test.mjs",
     "lint:md": "markdownlint-cli2 \"**/*.md\"",
     "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\"",
     "lint:spell": "cspell .",

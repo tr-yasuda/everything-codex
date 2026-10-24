@@ -14,7 +14,8 @@ flowchart LR
   P --> A["正確な情報で進める"]
 
   E --> E1["create-pr<br/>fix-pr<br/>fix-ci<br/>fix-conflicts<br/>update-deps"]
-  U --> U1["define<br/>design-interface<br/>write-spec<br/>catch-up<br/>explain-code<br/>clarify-code"]
+  U --> U1
+  U1["define<br/>design-interface<br/>write-spec<br/>record-decision<br/>catch-up<br/>explain-code<br/>clarify-code"]
   A --> A1["critical-thinking<br/>research<br/>debug-failure<br/>verify-change<br/>
     tdd<br/>code-review<br/>prevent-recurrence"]
 ```
@@ -42,9 +43,14 @@ flowchart LR
 | `define` | 実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめる。 | 手動 |
 | `design-interface` | 使い方・型・名前・モジュールの分け方を合意してから実装する。 | 手動 |
 | `write-spec` | 全体像から 1 section ずつ合意し、理解して説明できる仕様書を作成・更新する。 | 手動 |
+| `record-decision` | 依頼された判断を本人用に保存し、過去の判断を現在の状況と照合して参照する。 | 自動 |
 | `catch-up` | 何が変わり、何を判断すべきかを、判断材料つきで腹落ちする形で伝える。 | 自動 |
 | `explain-code` | コードがどう動き、なぜその形なのかを結論から順に説明する。 | 手動 |
 | `clarify-code` | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 | 手動 |
+
+`record-decision` は、保存・訂正・撤回を頼まれた判断だけを、リポジトリ外の本人用領域に記録します。
+記録は同じ PC 内で参照し、リポジトリへの追加や外部への送信は行いません。
+保存処理には Node.js 24 と `flock` を使い、並列更新の競合を検出します。
 
 ### 正確な情報で進める
 
@@ -76,6 +82,7 @@ flowchart LR
 | `skills/<name>/SKILL.md` | skill の手順 |
 | `skills/<name>/agents/openai.yaml` | skill の表示情報と呼び出し設定 |
 | `skills/<name>/references/` | skill の補足資料 |
+| `skills/<name>/scripts/` | skill が使う実行用スクリプトと、そのテスト |
 | `.codex/config.toml`、`.codex/agents/` | Codex とエージェントの設定 |
 | `AGENTS.md`、`.codex/AGENTS.md` | 作業時の指示 |
 | `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
@@ -96,6 +103,7 @@ mise exec -- pnpm install --frozen-lockfile
 mise exec -- pnpm lint:md     # Markdown の記法
 mise exec -- pnpm lint:spell  # スペルと登録語
 mise exec -- pnpm lint:text   # 日本語の文章
+mise exec -- pnpm test:record-decision # 判断の保存処理
 ```
 
 ## ライセンス
