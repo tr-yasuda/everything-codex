@@ -1,114 +1,84 @@
 # everything-codex
 
-> **人間の理解を置き去りにせず、楽に正確な情報で開発を進める。**
+> **開発は任せる。判断は、手放さない。**
 
-この思想に基づいて、Codex と Claude Code の skill 群と、Codex の設定を管理しています。
-エージェントに作業を任せても、人が状況を理解し、事実に基づいて判断できる状態を保ちます。
+何を作るか、なぜこの設計か、レビュー指摘を受け入れるべきか。
+Codex・Claude Code に作業を任せながら、自分で理解し、判断するための skill 集です。
+skill は、必要な場面でエージェントが読む、作業の進め方をまとめたものです。
 
-よくある「やりたいこと」から、使う流れと最初の依頼文を選べる [cookbook](cookbooks/README.md) があります。
+## 例えば、こんなとき
 
-```mermaid
-flowchart LR
-  P["人間の理解を置き去りにせず、<br/>楽に正確な情報で開発を進める"]
+以下は、それぞれの skill を導入したあとの依頼例です。
+Claude Code では、`$fix-pr` を `/fix-pr` のように読み替えてください。
 
-  P --> E["楽をする"]
-  P --> U["理解を置き去りにしない"]
-  P --> A["正確な情報で進める"]
+### 作り始める前に、欲しいものを整理したい
 
-  E --> E1["create-pr<br/>fix-pr<br/>fix-ci<br/>fix-conflicts<br/>update-deps"]
-  U --> U1
-  U1["define<br/>design-interface<br/>write-spec<br/>record-decision<br/>catch-up<br/>explain-code<br/>clarify-code"]
-  A --> A1["critical-thinking<br/>research<br/>debug-failure<br/>verify-change<br/>
-    tdd<br/>code-review<br/>prevent-recurrence"]
+```text
+$define タスク一覧が見づらい。未完了を見つけやすくしたい。
 ```
 
-## 3 つの柱
+「完了したタスクを削除するか、表示だけ切り替えるか」のように、解決案の違いを相談します。
+欲しい状態と作るものを短い仕様にまとめ、合意するところまで。実装はまだ始めません。
+[相談から実装までの例](cookbooks/new-feature.md)
 
-### 楽をする
+### 任せた作業の状況が分からなくなった
 
-好きなタイミングで呼ぶと、定型作業をエージェントが考えて実施します。
-
-| skill | 用途 | 呼び出し |
-| --- | --- | --- |
-| `create-pr` | 変更を commit・push し、Draft PR を作成または更新する。 | 手動 |
-| `fix-pr` | PR のレビュー指摘を検証・修正し、返信案を作る。 | 手動 |
-| `fix-ci` | PR で失敗した CI を調査し、修正して commit・push する。 | 手動 |
-| `fix-conflicts` | PR の merge conflict を解消し、検証して commit・push する。 | 手動 |
-| `update-deps` | 指定した依存関係を最新の安定版へ更新し、検証する。 | 手動 |
-
-### 理解を置き去りにしない
-
-人が理解し、自分の言葉で説明できる状態を保ちます。
-
-| skill | 用途 | 呼び出し |
-| --- | --- | --- |
-| `define` | 実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめる。 | 手動 |
-| `design-interface` | 使い方・型・名前・モジュールの分け方を合意してから実装する。 | 手動 |
-| `write-spec` | 全体像から 1 section ずつ合意し、理解して説明できる仕様書を作成・更新する。 | 手動 |
-| `record-decision` | 依頼された判断を本人用に保存し、過去の判断を現在の状況と照合して参照する。 | 自動 |
-| `catch-up` | 何が変わり、何を判断すべきかを、判断材料つきで腹落ちする形で伝える。 | 自動 |
-| `explain-code` | コードがどう動き、なぜその形なのかを結論から順に説明する。 | 手動 |
-| `clarify-code` | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 | 手動 |
-
-`record-decision` は、保存・訂正・撤回を頼まれた判断だけを、リポジトリ外の本人用領域に記録します。
-記録は同じ PC 内で参照し、リポジトリへの追加や外部への送信は行いません。
-保存処理には Node.js 24 と `flock` を使い、並列更新の競合を検出します。
-
-### 正確な情報で進める
-
-推測で進めず、確かめた事実で判断します。
-
-| skill | 用途 | 呼び出し |
-| --- | --- | --- |
-| `critical-thinking` | 前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す。 | 自動 |
-| `research` | 外部情報の調査と事実確認を行い、結論を支える根拠と適用条件を確かめる。 | 自動 |
-| `debug-failure` | 問題を見つけたら、原因を特定してから根本原因を直す。 | 自動 |
-| `verify-change` | 完了を報告する前に、変更を実際に動かして確かめる。 | 自動 |
-| `tdd` | 振る舞いごとに RED → GREEN → REFACTOR を進める。 | 自動 |
-| `code-review` | PR やローカル変更を複数の観点でレビューする。 | 手動 |
-| `prevent-recurrence` | 繰り返す指摘を、構造・型・lint・テストで起こせなくする。 | 手動 |
-
-## 使い方
-
-- 手動の skill は、Codex では `$skill-name`、Claude Code では `/skill-name` で呼び出す。
-- 自動の skill は、該当する場面でエージェントが使う。手動でも呼び出せる。
-- 各 skill は単体で動き、他の skill を呼び出さない。
-- 自動で使われる条件や引数は、各 `SKILL.md` に記載している。
-
-## 開発者向け情報
-
-### 構成
-
-| パス | 内容 |
-| --- | --- |
-| `skills/<name>/SKILL.md` | skill の手順 |
-| `skills/<name>/agents/openai.yaml` | skill の表示情報と呼び出し設定 |
-| `skills/<name>/references/` | skill の補足資料 |
-| `skills/<name>/scripts/` | skill が使う実行用スクリプトと、そのテスト |
-| `cookbooks/` | 目的別の依頼例と、確認から完了までの進め方 |
-| `.codex/config.toml`、`.codex/agents/` | Codex とエージェントの設定 |
-| `AGENTS.md`、`.codex/AGENTS.md` | 作業時の指示 |
-| `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
-| `.github/PULL_REQUEST_TEMPLATE.md` | PR の記載項目と確認事項 |
-
-### Codex のモデル設定
-
-- 通常の作業と、調査・実装・レビュー用のエージェント: `gpt-6.1-sol`
-- 文書調査用のエージェント: `gpt-6-luna`
-
-### セットアップと検証
-
-Node.js 24 と、`package.json` で指定した pnpm を mise で使用します。
-
-```bash
-mise install
-mise exec -- pnpm install --frozen-lockfile
-mise exec -- pnpm lint:md     # Markdown の記法
-mise exec -- pnpm lint:spell  # スペルと登録語
-mise exec -- pnpm lint:text   # 日本語の文章
-mise exec -- pnpm test:record-decision # 判断の保存処理
+```text
+今どこまで終わっていて、私が判断することは何？
 ```
+
+`catch-up` が、完了したこと・未解決のこと・判断が必要な点を整理します。
+選択肢ごとの影響を読んで、次の方針を決められます。
+[判断材料を読んで返答する例](cookbooks/catch-up.md)
+
+### レビュー指摘を、そのまま全部直してよいか迷う
+
+```text
+$fix-pr pr#123
+```
+
+指摘をコードやテストで確かめ、妥当なものだけを修正。検証・commit・push まで進めます。
+修正しなかった理由も報告し、返信案は自分が承認するまで送信されません。
+[レビュー対応の例](cookbooks/maintain-pr.md#レビュー指摘に対応したい)
+
+## 使い始める
+
+まずは `define` だけで試せます。Codex または Claude Code を使っているプロジェクトを用意してください。
+
+1. このリポジトリを取得する。
+
+   ```bash
+   git clone https://github.com/tr-yasuda/everything-codex.git
+   ```
+
+2. 取得した `skills/define/` を、使いたいプロジェクトの次の場所へ、ディレクトリごとコピーする。
+
+   | エージェント | プロジェクト内の配置先 | 呼び出し |
+   | --- | --- | --- |
+   | [Codex][codex-skills] | `.agents/skills/define/` | `$define` |
+   | [Claude Code][claude-skills] | `.claude/skills/define/` | `/define` |
+
+3. 対象のプロジェクトをエージェントで開き、新しい会話で依頼する。
+
+   ```text
+   $define
+   このプロジェクトで改善したいことを、実装前に相談したい。
+   ```
+
+   自分の困りごとを続けて書く。Claude Code では、先頭を `/define` に置き換える。
+
+ほかの skill も、使いたいディレクトリを同じように追加できます。
+自動で使われる skill は、導入すると該当する場面でエージェントが使います。
+
+## ほかの使い道を探す
+
+- [目的別の cookbook](cookbooks/README.md): 機能追加、CI 修正、PR 作成などの依頼と、完了までの進め方。
+- [skill 一覧](docs/skills.md): 全 skill の用途、手動・自動の区別、詳しい手順へのリンク。
+- [開発者向けガイド](CONTRIBUTING.md): このリポジトリの構成、Codex の設定、変更時の検証方法。
 
 ## ライセンス
 
-MIT License です。詳細は `LICENSE` を参照してください。
+[MIT License](LICENSE)
+
+[codex-skills]: https://learn.chatgpt.com/docs/build-skills
+[claude-skills]: https://code.claude.com/docs/en/skills
