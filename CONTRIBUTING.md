@@ -12,6 +12,7 @@ skill の導入と最初の使い方は、[README](README.md#使い始める) �
 | `skills/<name>/references/` | skill の補足資料 |
 | `skills/<name>/scripts/` | skill が使う実行用スクリプトと、そのテスト |
 | `cookbooks/` | 目的別の依頼例と、確認から完了までの進め方 |
+| `docs/installation.md` | Codex と Claude Code への導入・更新・読み込み確認 |
 | `docs/skills.md` | 全 skill の用途と呼び出し方 |
 | `.codex/config.toml`、`.codex/agents/` | Codex とエージェントの設定 |
 | `AGENTS.md`、`.codex/AGENTS.md` | 作業時の指示 |
