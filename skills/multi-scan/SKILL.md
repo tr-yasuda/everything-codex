@@ -1,19 +1,19 @@
 ---
-name: code-review
+name: multi-scan
 description: GitHub PR、diff、ローカルコード変更を並列レビューし、重複排除・検証・見落とし探索を経て、根拠付きのコードレビューを生成する skill。
 disable-model-invocation: true
 ---
 
-# Code Review
+# Multi Scan
 
 ## Invocation
 
 この skill は明示的に呼び出された場合のみ使用する。
 
 ```text
-$code-review
-$code-review pr#123
-$code-review owner/repo#123
+$multi-scan
+$multi-scan pr#123
+$multi-scan owner/repo#123
 ```
 
 - 引数なし: 現在の repository のローカル変更をレビューする。

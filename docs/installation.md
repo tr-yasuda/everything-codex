@@ -134,6 +134,7 @@ npx skills add tr-yasuda/everything-codex -g -a claude-code --copy
 | `verify-change` | `prove-it` |
 | `prevent-recurrence` | `never-again` |
 | `explain-code` | `how-and-why` |
+| `code-review` | `multi-scan` |
 
 1. 導入コマンドを再実行し、新しい名前の skill を選んで導入する。
 2. 旧名の skill に独自の編集があれば、必要な変更を新しい名前の skill へ移す。

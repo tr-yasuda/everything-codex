@@ -45,7 +45,7 @@
 | [what-breaks] | 既存コードを書き換える前に、変更箇所以外で壊れ得る場所と根拠を調べる。 | 自動 |
 | [prove-it] | 完了を報告する前に、変更を実際に動かして確かめる。 | 自動 |
 | [tdd] | 振る舞いごとに RED → GREEN → REFACTOR を進める。 | 自動 |
-| [code-review] | PR やローカル変更を複数の観点でレビューする。 | 手動 |
+| [multi-scan] | PR やローカル変更を複数の観点でレビューする。 | 手動 |
 | [never-again] | 繰り返す指摘を、構造・型・lint・テストで起こせなくする。 | 手動 |
 
 ## 使い方
@@ -73,5 +73,5 @@
 [what-breaks]: ../skills/what-breaks/SKILL.md
 [prove-it]: ../skills/prove-it/SKILL.md
 [tdd]: ../skills/tdd/SKILL.md
-[code-review]: ../skills/code-review/SKILL.md
+[multi-scan]: ../skills/multi-scan/SKILL.md
 [never-again]: ../skills/never-again/SKILL.md
