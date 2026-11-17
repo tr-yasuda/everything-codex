@@ -20,7 +20,9 @@ $recheck-pr owner/repo#123
 
 この skill の呼び出し自体を、対象 PR でのスレッドの resolve と approve の許可として扱う。
 
-レビュースレッドへの返信は、ユーザーの明示的な確認を得るまで送信してはいけない。
+<!-- shared-text:recheck-pr-approval:start -->
+返信は、ユーザーが文面を承認してから送信します。
+<!-- shared-text:recheck-pr-approval:end -->
 
 コードの修正、commit、push は行わない。
 

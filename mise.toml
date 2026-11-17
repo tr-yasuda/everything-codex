@@ -21,3 +21,6 @@ run = "pnpm test:save-why"
 
 [tasks."test:shared-text"]
 run = "pnpm test:shared-text"
+
+[tasks."sync:shared-text"]
+run = "pnpm sync:shared-text"
