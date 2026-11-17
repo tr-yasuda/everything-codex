@@ -2,7 +2,7 @@
 
 自分が送る依頼: `$define → $design-interface` → 設計に合意して実装を依頼。
 
-自動で使われる skill: `tdd`、`verify-change`。
+自動で使われる skill: `analyze-impact`、`tdd`、`verify-change`。
 
 完了したタスクが増えて一覧が見づらくなりました。
 解決方法はまだ決めていません。欲しい状態を相談し、納得した形で実装まで進める例です。
@@ -45,8 +45,9 @@ $design-interface
 commit・push は不要です。
 ```
 
-この合意を受けて実装へ進みます。コード変更には `tdd`、検証には `verify-change` が自動で使われます。
-この 2 つを呼ぶために、依頼を追加する必要はありません。
+この合意を受けて実装へ進みます。
+書き換える前の影響調査には `analyze-impact`、コード変更には `tdd`、検証には `verify-change` が自動で使われます。
+この 3 つを呼ぶために、依頼を追加する必要はありません。
 
 ## 完了の目安と次の依頼
 
@@ -58,6 +59,7 @@ commit・push は不要です。
 機能が大きく、他の人にも仕様を伝える必要があれば、[仕様書も作る例](large-feature.md) を使います。
 
 関連する skill: [define](../skills/define/SKILL.md)、[design-interface](../skills/design-interface/SKILL.md)、
-[tdd](../skills/tdd/SKILL.md)、[verify-change](../skills/verify-change/SKILL.md)。
+[analyze-impact](../skills/analyze-impact/SKILL.md)、[tdd](../skills/tdd/SKILL.md)、
+[verify-change](../skills/verify-change/SKILL.md)。
 
 [レシピ一覧に戻る](README.md)

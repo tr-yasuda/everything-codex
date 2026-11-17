@@ -42,6 +42,7 @@
 | [critical-thinking] | 前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す。 | 自動 |
 | [research] | 外部情報の調査と事実確認を行い、結論を支える根拠と適用条件を確かめる。 | 自動 |
 | [debug-failure] | 問題を見つけたら、原因を特定してから根本原因を直す。 | 自動 |
+| [analyze-impact] | 既存コードを書き換える前に、変更箇所以外で壊れ得る場所と根拠を調べる。 | 自動 |
 | [verify-change] | 完了を報告する前に、変更を実際に動かして確かめる。 | 自動 |
 | [tdd] | 振る舞いごとに RED → GREEN → REFACTOR を進める。 | 自動 |
 | [code-review] | PR やローカル変更を複数の観点でレビューする。 | 手動 |
@@ -69,6 +70,7 @@
 [critical-thinking]: ../skills/critical-thinking/SKILL.md
 [research]: ../skills/research/SKILL.md
 [debug-failure]: ../skills/debug-failure/SKILL.md
+[analyze-impact]: ../skills/analyze-impact/SKILL.md
 [verify-change]: ../skills/verify-change/SKILL.md
 [tdd]: ../skills/tdd/SKILL.md
 [code-review]: ../skills/code-review/SKILL.md

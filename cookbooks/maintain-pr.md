@@ -8,7 +8,7 @@ CI は、GitHub 上で自動実行されるテストや lint などの検証で�
 下の `pr#123` は、自分の PR 番号に置き換えてください。
 どの呼び出しも、対象 PR の修正と commit・push まで進みます。
 
-自動で使われる skill: コード修正には `tdd`、変更後の確認には `verify-change`。
+自動で使われる skill: コード修正には `analyze-impact` と `tdd`、変更後の確認には `verify-change`。
 原因不明の失敗を調べる場合は `debug-failure` も使われます。これらを別に呼ぶ必要はありません。
 
 ## レビュー指摘に対応したい
