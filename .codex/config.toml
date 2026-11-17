@@ -1,8 +1,20 @@
 model = "gpt-6.1-sol"
 
-model_reasoning_effort = "high"
-plan_mode_reasoning_effort = "high"
+model_reasoning_effort = "medium"
+plan_mode_reasoning_effort = "medium"
 model_reasoning_summary = "auto"
+
+developer_instructions = """
+推論量には low・medium・high だけを使ってください。
+subagent を起動するときは、役割を目安に依頼の難しさで推論量を選び、
+reasoning_effort に明示してください。
+- low: 範囲が明確な検索・抜粋・一覧化。
+- medium: 通常の調査・実装。判断に迷う場合も medium。
+- high: 複雑な原因分析・実装・レビュー。
+subagent への依頼文にも、この選択基準と3段階の制約を記載してください。
+再委譲する場合も、同じ規約を依頼文に引き継ぐよう指示してください。
+推論量を変えるために、各エージェントのモデルを切り替えないでください。
+"""
 
 approval_policy = "on-request"
 approvals_reviewer = "auto_review"
