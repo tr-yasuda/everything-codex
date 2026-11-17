@@ -2,7 +2,7 @@
 
 自分が送る依頼: 調査を依頼 → 採用するか判断 → 残したい場合は記録を依頼。
 
-自動で使われる skill: `research`、`critical-thinking`。記録を頼んだ場合は `record-decision` も使われます。
+自動で使われる skill: `research`、`check-twice`。記録を頼んだ場合は `save-why` も使われます。
 
 設定ファイルの検証にライブラリ X を使うか迷っています。
 公式情報と今のプロジェクトの条件を比べ、採用を決めた理由も後から参照できるようにする例です。
@@ -16,7 +16,7 @@
 ```
 
 X は、実際の候補名に置き換えます。守りたい条件があれば添えてください。
-外部情報の確認には `research`、採用方針の前提確認には `critical-thinking` が使われます。
+外部情報の確認には `research`、採用方針の前提確認には `check-twice` が使われます。
 
 返答では、採用できる条件、根拠のリンク、推測や未確認事項を確認します。
 例えば、既存の実行環境への対応が未確認なら、そのまま採用を決めずに確認を頼みます。
@@ -45,7 +45,7 @@ X は、実際の候補名に置き換えます。守りたい条件があれば
 この採用判断と理由、見送った案、公開形式を変えない制約を本人用に記録してください。
 ```
 
-`record-decision` が使われ、確認できた判断だけが本人用のローカル領域に保存されます。
+`save-why` が使われ、確認できた判断だけが本人用のローカル領域に保存されます。
 記録はリポジトリ外に置かれ、PR や共有文書には加わりません。
 保存を頼まなければ、記録は作られません。
 
@@ -63,6 +63,6 @@ X は、実際の候補名に置き換えます。守りたい条件があれば
 導入する場合は「この判断に沿って X を導入し、検証してください」と別に依頼します。
 
 関連する skill: [research](../skills/research/SKILL.md)、
-[critical-thinking](../skills/critical-thinking/SKILL.md)、[record-decision](../skills/record-decision/SKILL.md)。
+[check-twice](../skills/check-twice/SKILL.md)、[save-why](../skills/save-why/SKILL.md)。
 
 [レシピ一覧に戻る](README.md)

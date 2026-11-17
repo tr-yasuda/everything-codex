@@ -2,7 +2,7 @@
 
 自分が送る依頼: `$define → $write-spec → $design-interface` → 設計に合意して実装を依頼。
 
-自動で使われる skill: `analyze-impact`、`tdd`、`verify-change`。
+自動で使われる skill: `what-breaks`、`tdd`、`prove-it`。
 
 個人用のタスク管理に、チームで共有する機能を追加したい例です。
 誰が見たり編集したりできるかなど、実装前に決めて文書に残すことがあります。
@@ -55,7 +55,7 @@ $design-interface
 commit・push は不要です。
 ```
 
-書き換える前の影響調査には `analyze-impact`、実装には `tdd`、完了前の検証には `verify-change` が自動で使われます。
+書き換える前の影響調査には `what-breaks`、実装には `tdd`、完了前の検証には `prove-it` が自動で使われます。
 どれも、追加で呼ぶ必要はありません。
 
 ## 完了の目安と次の依頼

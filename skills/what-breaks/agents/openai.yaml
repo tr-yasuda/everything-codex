@@ -1,0 +1,7 @@
+interface:
+  display_name: "what-breaks"
+  short_description: "書き換える前に、変更箇所以外で壊れ得る場所を調べる"
+  default_prompt: "$what-breaks を使い、既存のコードを書き換える前に、変更箇所以外で壊れ得る場所と、壊れない根拠を確かめてください。"
+
+policy:
+  allow_implicit_invocation: true

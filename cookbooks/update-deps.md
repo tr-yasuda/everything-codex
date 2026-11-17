@@ -2,7 +2,7 @@
 
 自分が送る依頼: `$update-deps`。
 
-自動で使われる skill: コードを修正する場合は `analyze-impact` と `tdd`、変更後の確認には `verify-change`。
+自動で使われる skill: コードを修正する場合は `what-breaks` と `tdd`、変更後の確認には `prove-it`。
 
 TypeScript を更新したいものの、型エラーや設定の変更が必要になるか分かりません。
 依存関係だけでなく、必要な追従修正と検証まで任せる例です。

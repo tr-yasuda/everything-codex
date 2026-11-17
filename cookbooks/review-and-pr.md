@@ -1,8 +1,8 @@
 # 手元の変更に問題がないか確認して、レビューに出したい
 
-自分が送る依頼: `$code-review` → 必要な修正を依頼 → `$create-pr`。
+自分が送る依頼: `$multi-scan` → 必要な修正を依頼 → `$create-pr`。
 
-自動で使われる skill: コードを修正する場合は `analyze-impact` と `tdd`、変更後の確認には `verify-change`。
+自動で使われる skill: コードを修正する場合は `what-breaks` と `tdd`、変更後の確認には `prove-it`。
 
 検索欄が空なら検索しない、という変更を手元で実装しました。
 想定していない問題を確認し、チームにレビューしてもらう Draft PR を作ります。
@@ -11,7 +11,7 @@ PR の作成には、GitHub への認証と対象リポジトリへの書き込�
 ## 1. 手元の変更をレビューする
 
 ```text
-$code-review
+$multi-scan
 検索欄が空なら検索しないように変更しました。
 現在のローカル変更をレビューしてください。
 ```
@@ -35,7 +35,7 @@ $code-review
 ```
 
 修正内容と検証結果を読み、問題が解消されたことを確認します。
-修正と検証を頼めば、`analyze-impact`、`tdd`、`verify-change` を別に呼ぶ必要はありません。
+修正と検証を頼めば、`what-breaks`、`tdd`、`prove-it` を別に呼ぶ必要はありません。
 新たな懸念があれば、その点を説明して、追加の確認やレビューを頼みます。
 
 ## 3. Draft PR を作成する
@@ -59,6 +59,6 @@ Draft PR は、レビューの準備ができるまで下書きとして扱う P
 レビューだけが目的なら、指摘と対応方針を確認した段階で終えられます。
 PR に指摘や CI の失敗が出たら、[PR の問題に対応する](maintain-pr.md) を参照してください。
 
-関連する skill: [code-review](../skills/code-review/SKILL.md)、[create-pr](../skills/create-pr/SKILL.md)。
+関連する skill: [multi-scan](../skills/multi-scan/SKILL.md)、[create-pr](../skills/create-pr/SKILL.md)。
 
 [レシピ一覧に戻る](README.md)

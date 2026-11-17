@@ -24,12 +24,12 @@
 | [define] | 実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめる。 | 手動 |
 | [design-interface] | 使い方・型・名前・モジュールの分け方を合意してから実装する。 | 手動 |
 | [write-spec] | 全体像から 1 section ずつ合意し、理解して説明できる仕様書を作成・更新する。 | 手動 |
-| [record-decision] | 依頼された判断を本人用に保存し、過去の判断を現在の状況と照合して参照する。 | 自動 |
+| [save-why] | 依頼された判断を本人用に保存し、過去の判断を現在の状況と照合して参照する。 | 自動 |
 | [catch-up] | 何が変わり、何を判断すべきかを、判断材料つきで腹落ちする形で伝える。 | 自動 |
-| [explain-code] | コードがどう動き、なぜその形なのかを結論から順に説明する。 | 手動 |
-| [clarify-code] | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 | 手動 |
+| [how-and-why] | コードがどう動き、なぜその形なのかを結論から順に説明する。 | 手動 |
+| [unslop] | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 | 手動 |
 
-`record-decision` は、保存・訂正・撤回を頼まれた判断だけを、リポジトリ外の本人用領域に記録します。
+`save-why` は、保存・訂正・撤回を頼まれた判断だけを、リポジトリ外の本人用領域に記録します。
 記録は同じ PC 内で参照し、リポジトリへの追加や外部への送信は行いません。
 保存処理には Node.js 24 と `flock` を使い、並列更新の競合を検出します。
 
@@ -39,14 +39,14 @@
 
 | skill | 用途 | 呼び出し |
 | --- | --- | --- |
-| [critical-thinking] | 前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す。 | 自動 |
+| [check-twice] | 前提を批判的に検討し、相手の言うことを正しく理解してから返信や方針を出す。 | 自動 |
 | [research] | 外部情報の調査と事実確認を行い、結論を支える根拠と適用条件を確かめる。 | 自動 |
-| [debug-failure] | 問題を見つけたら、原因を特定してから根本原因を直す。 | 自動 |
-| [analyze-impact] | 既存コードを書き換える前に、変更箇所以外で壊れ得る場所と根拠を調べる。 | 自動 |
-| [verify-change] | 完了を報告する前に、変更を実際に動かして確かめる。 | 自動 |
+| [root-cause] | 問題を見つけたら、原因を特定してから根本原因を直す。 | 自動 |
+| [what-breaks] | 既存コードを書き換える前に、変更箇所以外で壊れ得る場所と根拠を調べる。 | 自動 |
+| [prove-it] | 完了を報告する前に、変更を実際に動かして確かめる。 | 自動 |
 | [tdd] | 振る舞いごとに RED → GREEN → REFACTOR を進める。 | 自動 |
-| [code-review] | PR やローカル変更を複数の観点でレビューする。 | 手動 |
-| [prevent-recurrence] | 繰り返す指摘を、構造・型・lint・テストで起こせなくする。 | 手動 |
+| [multi-scan] | PR やローカル変更を複数の観点でレビューする。 | 手動 |
+| [never-again] | 繰り返す指摘を、構造・型・lint・テストで起こせなくする。 | 手動 |
 
 ## 使い方
 
@@ -63,15 +63,15 @@
 [define]: ../skills/define/SKILL.md
 [design-interface]: ../skills/design-interface/SKILL.md
 [write-spec]: ../skills/write-spec/SKILL.md
-[record-decision]: ../skills/record-decision/SKILL.md
+[save-why]: ../skills/save-why/SKILL.md
 [catch-up]: ../skills/catch-up/SKILL.md
-[explain-code]: ../skills/explain-code/SKILL.md
-[clarify-code]: ../skills/clarify-code/SKILL.md
-[critical-thinking]: ../skills/critical-thinking/SKILL.md
+[how-and-why]: ../skills/how-and-why/SKILL.md
+[unslop]: ../skills/unslop/SKILL.md
+[check-twice]: ../skills/check-twice/SKILL.md
 [research]: ../skills/research/SKILL.md
-[debug-failure]: ../skills/debug-failure/SKILL.md
-[analyze-impact]: ../skills/analyze-impact/SKILL.md
-[verify-change]: ../skills/verify-change/SKILL.md
+[root-cause]: ../skills/root-cause/SKILL.md
+[what-breaks]: ../skills/what-breaks/SKILL.md
+[prove-it]: ../skills/prove-it/SKILL.md
 [tdd]: ../skills/tdd/SKILL.md
-[code-review]: ../skills/code-review/SKILL.md
-[prevent-recurrence]: ../skills/prevent-recurrence/SKILL.md
+[multi-scan]: ../skills/multi-scan/SKILL.md
+[never-again]: ../skills/never-again/SKILL.md

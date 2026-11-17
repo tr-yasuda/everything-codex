@@ -13,12 +13,12 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [新機能の追加][feature] | `$define → $design-interface` → 合意して実装を依頼 | `$define` この機能の欲しい状態を整理して |
 | [大きめの仕様追加][large] | `$define → $write-spec → $design-interface` → 合意 | `$define` まず仕様を固めたい |
 | [技術の採用判断][research] | 調査を依頼 → 採用判断 → 必要なら記録を依頼 | X を採用すべきか公式情報を調べて判断材料を出して |
-| [変更を PR にする][pr] | `$code-review` → 必要な修正を依頼 → `$create-pr` | `$code-review` この変更をレビューして |
+| [変更を PR にする][pr] | `$multi-scan` → 必要な修正を依頼 → `$create-pr` | `$multi-scan` この変更をレビューして |
 | [PR のレビュー対応][maintain] | `$fix-pr` → 返信案を確認・承認 | `$fix-pr pr#123` |
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
 | [競合を解消する][maintain] | `$fix-conflicts` | `$fix-conflicts pr#123` |
-| [コードを理解・整理][code] | `$explain-code` → 必要なら `$clarify-code` | `$explain-code` この差分の流れと理由を説明して |
-| [同じ指摘の再発を防ぐ][prevention] | `$prevent-recurrence` → 防ぎ方に合意 | `$prevent-recurrence` このミスを仕組みで防いで |
+| [コードを理解・整理][code] | `$how-and-why` → 必要なら `$unslop` | `$how-and-why` この差分の流れと理由を説明して |
+| [同じ指摘の再発を防ぐ][prevention] | `$never-again` → 防ぎ方に合意 | `$never-again` このミスを仕組みで防いで |
 | [実装と文書を揃える][docs] | 文書の更新を依頼 | 今回の変更で古くなった説明や使用例を揃えて |
 | [状況と判断事項を知る][status] | 状況の説明を依頼 | 今の状況と、私が判断する必要のあることを説明して |
 | [依存関係を更新][deps] | `$update-deps` | `$update-deps` typescript を最新の安定版へ更新して |
@@ -51,21 +51,21 @@ Codex の表記で載せているため、Claude Code では `/define` のよう
 
 次の skill は、依頼に応じてエージェントが使います。毎回、自分で呼ぶ必要はありません。
 例えば「実装と検証をお願い」と頼めば、次の 3 つが使われます。
-書き換える前の影響調査には `analyze-impact`、コード変更には `tdd`、完了前の確認には `verify-change` です。
+書き換える前の影響調査には `what-breaks`、コード変更には `tdd`、完了前の確認には `prove-it` です。
 
 | 場面 | 自動で使われる skill |
 | --- | --- |
-| 既存コードを書き換える前の影響調査 | `analyze-impact` |
+| 既存コードを書き換える前の影響調査 | `what-breaks` |
 | コードの実装・修正 | `tdd` |
-| 不具合や想定外の失敗の原因調査 | `debug-failure` |
-| 変更後の完了報告前の検証 | `verify-change` |
+| 不具合や想定外の失敗の原因調査 | `root-cause` |
+| 変更後の完了報告前の検証 | `prove-it` |
 | 外部情報の調査や事実確認 | `research` |
-| 採用方針など、判断の前提を確かめる | `critical-thinking` |
+| 採用方針など、判断の前提を確かめる | `check-twice` |
 | 状況や判断事項の説明を頼んだとき | `catch-up` |
-| 判断の保存・訂正・撤回や、過去の判断の参照を頼んだとき | `record-decision` |
+| 判断の保存・訂正・撤回や、過去の判断の参照を頼んだとき | `save-why` |
 
 自動の skill も、名前を指定して呼べます。
-`record-decision` による保存には、判断を記録するよう明示的に頼む必要があります。
+`save-why` による保存には、判断を記録するよう明示的に頼む必要があります。
 
 ## 依頼の流れの読み方
 
@@ -77,9 +77,9 @@ Codex の表記で載せているため、Claude Code では `/define` のよう
 `design-interface` は、使い方・名前・型などの合意後、その形での実装まで進みます。
 `write-spec` は、相談して合意した内容を、一部分ずつ仕様書へ書きます。
 例えば新機能の追加では、`define` の相談後に `design-interface` を呼び、提示された設計へ合意して実装を頼みます。
-その後の `analyze-impact`、`tdd`、`verify-change` は自動で使われるので、追加の呼び出しは不要です。
+その後の `what-breaks`、`tdd`、`prove-it` は自動で使われるので、追加の呼び出しは不要です。
 
-指摘がなければ修正を、説明で理解できれば `clarify-code` を省けます。
+指摘がなければ修正を、説明で理解できれば `unslop` を省けます。
 `fix-pr` などは検証まで含むため、検証用の skill を別に呼ぶ必要はありません。
 検証済みの項目を、手順をなぞるためだけに繰り返す必要もありません。
 
@@ -91,7 +91,7 @@ Codex の表記で載せているため、Claude Code では `/define` のよう
 GitHub を使う例は、対象リポジトリへの認証と必要な権限がある前提です。
 
 それ以外の実装・修正の依頼例は、commit・push を含めていません。
-`record-decision` で判断を保存するのは、保存を明示的に頼んだときだけです。
+`save-why` で判断を保存するのは、保存を明示的に頼んだときだけです。
 本人用の記録はリポジトリ外に置かれ、PR や共有文書には追加されません。
 
 skill ごとの詳しい仕様は、[skill 一覧](../docs/skills.md) から確認できます。
