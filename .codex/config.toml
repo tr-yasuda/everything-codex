@@ -13,6 +13,12 @@ web_search = "live"
 
 [sandbox_workspace_write]
 network_access = true
+writable_roots = [
+  "~/.cache/mise",
+  "~/.local/share/mise",
+  "~/.local/state/mise",
+  "~/.local/share/pnpm/store",
+]
 
 [windows]
 sandbox = "elevated"
