@@ -58,6 +58,24 @@ skill の追加・削除・改名では、skill 一覧と関連する使用例�
 - 通常の作業と、調査・実装・レビュー用のエージェント: `gpt-6.1-sol`
 - 文書調査用のエージェント: `gpt-6-luna`
 
+通常の作業、Plan、subagent の既定の推論量は `medium` です。
+subagent を起動するときは、役割を目安に依頼の難しさで推論量を次の 3 段階から選び、
+`reasoning_effort` に明示します。
+
+| 推論量 | 任せる作業 |
+| --- | --- |
+| `low` | 範囲が明確な検索・抜粋・一覧化 |
+| `medium` | 通常の調査・実装。判断に迷う場合もこの値 |
+| `high` | 複雑な原因分析・実装・レビュー |
+
+起動時の指定を省略した場合は、既定値の `medium` を使います。
+専用エージェントに `model_reasoning_effort` を固定すると起動時の指定より優先されるため、固定しません。
+優先順位の詳細は、[Codex の subagent 設定](https://learn.chatgpt.com/docs/agent-configuration/subagents#custom-agents) を参照してください。
+
+選択基準は [`.codex/config.toml`](.codex/config.toml) の `developer_instructions` に定義します。
+専用エージェントの指示は共通指示を置き換えるため、依頼文にも選択基準と 3 段階の制約を記載し、
+再委譲する場合も同じ規約を引き継ぐよう指示します。
+
 ## セットアップと検証
 
 Node.js のバージョンは `mise.toml`、pnpm のバージョンは `package.json` の `packageManager` で指定します。
