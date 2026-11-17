@@ -52,6 +52,6 @@ commit・push はまだ不要です。
 目標のバージョンへ更新され、必要な追従修正と検証が済んでいることです。
 未達の場合は、更新できた範囲と残る制約を把握し、続けるか判断します。
 
-関連する skill: [update-deps](../skills/update-deps/SKILL.md)。
+関連する skill: [update-deps](../docs/skills.md#update-deps)。
 
 [レシピ一覧に戻る](README.md)
