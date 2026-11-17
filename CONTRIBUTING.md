@@ -14,6 +14,7 @@ skill の導入と最初の使い方は、[README](README.md#使い始める) �
 | `cookbooks/` | 目的別の依頼例と、確認から完了までの進め方 |
 | `docs/installation.md` | Codex と Claude Code への導入・更新・読み込み確認 |
 | `docs/skills.md` | 各 skill の用途・呼び出し方・変更や投稿の範囲 |
+| `docs/harness-compatibility.md` | Codex と Claude Code の対応状況・根拠・未確認範囲 |
 | `.codex/config.toml`、`.codex/agents/` | Codex とエージェントの設定 |
 | `AGENTS.md`、`.codex/AGENTS.md` | 作業時の指示 |
 | `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
