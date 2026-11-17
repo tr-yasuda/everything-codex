@@ -40,6 +40,6 @@
 判断待ちがあれば、選んだ案と再開する範囲を伝えます。
 判断待ちがなく、未完了の作業を任せたい場合は、そのまま続行を頼めます。
 
-関連する skill: [catch-up](../skills/catch-up/SKILL.md)。
+関連する skill: [catch-up](../docs/skills.md#catch-up)。
 
 [レシピ一覧に戻る](README.md)

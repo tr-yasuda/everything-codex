@@ -51,7 +51,7 @@ approve は、確認した commit に付きます。確認のあとに相手が 
 
 Draft の PR や、auto-merge が有効な PR なども approve されません。
 approve されなかった場合は、理由が報告されます。
-approve しない条件の一覧は、[recheck-pr の Approve](../skills/recheck-pr/SKILL.md#approve) にあります。
+approve しない条件は、[skill 一覧の recheck-pr](../docs/skills.md#recheck-pr) で確認できます。
 
 ## 完了の目安
 
@@ -63,6 +63,6 @@ approve されたか、残っているスレッドと approve されなかった
 現在のブランチに対応する PR が対象なら、`pr#123` を省略できます。
 別のリポジトリなら、`owner/repo#123` の形で指定します。
 
-関連する skill: [recheck-pr](../skills/recheck-pr/SKILL.md)。
+関連する skill: [recheck-pr](../docs/skills.md#recheck-pr)。
 
 [レシピ一覧に戻る](README.md)

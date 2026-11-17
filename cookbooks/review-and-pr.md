@@ -68,6 +68,6 @@ Draft PR は、レビューの準備ができるまで下書きとして扱う P
 レビューだけが目的なら、指摘と対応方針を確認した段階で終えられます。
 PR に指摘や CI の失敗が出たら、[PR の問題に対応する](maintain-pr.md) を参照してください。
 
-関連する skill: [multi-scan](../skills/multi-scan/SKILL.md)、[create-pr](../skills/create-pr/SKILL.md)。
+関連する skill: [multi-scan](../docs/skills.md#multi-scan)、[create-pr](../docs/skills.md#create-pr)。
 
 [レシピ一覧に戻る](README.md)

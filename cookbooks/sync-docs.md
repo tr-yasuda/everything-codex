@@ -38,6 +38,6 @@ README の実行例も、新しいオプションを含むものにしてくだ�
 未決の食い違いがあれば、何を正しい仕様とするかを決めてから対応します。
 共有するなら、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [prove-it](../skills/prove-it/SKILL.md)。
+関連する skill: [prove-it](../docs/skills.md#prove-it)。
 
 [レシピ一覧に戻る](README.md)
