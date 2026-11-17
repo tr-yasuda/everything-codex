@@ -3,3 +3,21 @@ node = "24"
 
 [settings]
 idiomatic_version_file_enable_tools = ["pnpm"]
+
+[tasks.setup]
+run = "pnpm install --frozen-lockfile"
+
+[tasks."lint:md"]
+run = "pnpm lint:md"
+
+[tasks."lint:spell"]
+run = "pnpm lint:spell"
+
+[tasks."lint:text"]
+run = "pnpm lint:text"
+
+[tasks."test:save-why"]
+run = "pnpm test:save-why"
+
+[tasks."test:shared-text"]
+run = "pnpm test:shared-text"

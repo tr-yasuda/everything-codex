@@ -52,7 +52,7 @@ $unslop
 主要な判断と副作用を自分で説明でき、整理した場合は既存の動きが検証されていることです。
 共有するなら、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [how-and-why](../skills/how-and-why/SKILL.md)、
-[unslop](../skills/unslop/SKILL.md)、[prove-it](../skills/prove-it/SKILL.md)。
+関連する skill: [how-and-why](../docs/skills.md#how-and-why)、
+[unslop](../docs/skills.md#unslop)、[prove-it](../docs/skills.md#prove-it)。
 
 [レシピ一覧に戻る](README.md)

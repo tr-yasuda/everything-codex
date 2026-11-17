@@ -47,6 +47,6 @@ PR description や投稿済みのコメントは、この skill では更新さ�
 読み手が判断・実行に使う内容だけが残り、必要な根拠や条件が欠けていないことです。
 書き直した文章を PR に含めるなら、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [make-it-clear](../skills/make-it-clear/SKILL.md)。
+関連する skill: [make-it-clear](../docs/skills.md#make-it-clear)。
 
 [レシピ一覧に戻る](README.md)

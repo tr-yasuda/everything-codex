@@ -68,7 +68,7 @@ API の契約が確定したあと、互いの結果を待たずに進められ�
 仕様を文書化するだけが目的なら、仕様書を仕上げたところで終えられます。
 共有する場合は、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [define](../skills/define/SKILL.md)、[write-spec](../skills/write-spec/SKILL.md)、
-[design-interface](../skills/design-interface/SKILL.md)、[coordinator](../skills/coordinator/SKILL.md)。
+関連する skill: [define](../docs/skills.md#define)、[write-spec](../docs/skills.md#write-spec)、
+[design-interface](../docs/skills.md#design-interface)、[coordinator](../docs/skills.md#coordinator)。
 
 [レシピ一覧に戻る](README.md)

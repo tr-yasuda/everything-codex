@@ -61,8 +61,8 @@
 原因だけ知りたいなら、最初の依頼を「原因と修正案を教えて。変更はまだ不要」に変えます。
 修正を共有するなら、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [root-cause](../skills/root-cause/SKILL.md)、
-[what-breaks](../skills/what-breaks/SKILL.md)、[tdd](../skills/tdd/SKILL.md)、
-[prove-it](../skills/prove-it/SKILL.md)。
+関連する skill: [root-cause](../docs/skills.md#root-cause)、
+[what-breaks](../docs/skills.md#what-breaks)、[tdd](../docs/skills.md#tdd)、
+[prove-it](../docs/skills.md#prove-it)。
 
 [レシピ一覧に戻る](README.md)

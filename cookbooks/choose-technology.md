@@ -62,7 +62,7 @@ X は、実際の候補名に置き換えます。守りたい条件があれば
 記録も頼んだ場合は、何を保存したかを確認します。
 導入する場合は「この判断に沿って X を導入し、検証してください」と別に依頼します。
 
-関連する skill: [research](../skills/research/SKILL.md)、
-[check-twice](../skills/check-twice/SKILL.md)、[save-why](../skills/save-why/SKILL.md)。
+関連する skill: [research](../docs/skills.md#research)、
+[check-twice](../docs/skills.md#check-twice)、[save-why](../docs/skills.md#save-why)。
 
 [レシピ一覧に戻る](README.md)

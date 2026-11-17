@@ -44,6 +44,6 @@ commit・push は不要です。
 防げなかった種類があれば、残った理由と対応を確認します。
 共有するなら、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [never-again](../skills/never-again/SKILL.md)。
+関連する skill: [never-again](../docs/skills.md#never-again)。
 
 [レシピ一覧に戻る](README.md)

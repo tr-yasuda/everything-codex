@@ -52,8 +52,8 @@ commit・push は不要です。
 実装の前に `$design-interface` を使います。[仕様書も作る例](large-feature.md) に流れがあります。
 機能が大きく、他の人にも仕様を伝える必要がある場合も、同じ例を使います。
 
-関連する skill: [define](../skills/define/SKILL.md)、
-[what-breaks](../skills/what-breaks/SKILL.md)、[tdd](../skills/tdd/SKILL.md)、
-[prove-it](../skills/prove-it/SKILL.md)。
+関連する skill: [define](../docs/skills.md#define)、
+[what-breaks](../docs/skills.md#what-breaks)、[tdd](../docs/skills.md#tdd)、
+[prove-it](../docs/skills.md#prove-it)。
 
 [レシピ一覧に戻る](README.md)

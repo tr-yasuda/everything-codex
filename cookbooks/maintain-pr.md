@@ -145,7 +145,7 @@ push のたびに CI の完了を待ち、最新の commit の状態で確認し
 別のリポジトリなら、`owner/repo#123` の形で指定します。
 たとえば `$fix-ci owner/repo#123` です。`owner` と `repo` も対象に置き換えてください。
 
-関連する skill: [fix-pr](../skills/fix-pr/SKILL.md)、[fix-ci](../skills/fix-ci/SKILL.md)、
-[fix-conflicts](../skills/fix-conflicts/SKILL.md)、[babysit](../skills/babysit/SKILL.md)。
+関連する skill: [fix-pr](../docs/skills.md#fix-pr)、[fix-ci](../docs/skills.md#fix-ci)、
+[fix-conflicts](../docs/skills.md#fix-conflicts)、[babysit](../docs/skills.md#babysit)。
 
 [レシピ一覧に戻る](README.md)
