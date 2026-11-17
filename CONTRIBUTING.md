@@ -37,5 +37,5 @@ mise exec -- pnpm install --frozen-lockfile
 mise exec -- pnpm lint:md     # Markdown の記法
 mise exec -- pnpm lint:spell  # スペルと登録語
 mise exec -- pnpm lint:text   # 日本語の文章
-mise exec -- pnpm test:record-decision # 判断の保存処理
+mise exec -- pnpm test:save-why # 判断の保存処理
 ```

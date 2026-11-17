@@ -12,7 +12,7 @@ skill は `skills` CLI のコピー方式で導入します。
 Node.js 24、Git と、利用する Codex または Claude Code を用意します。
 `npx` で CLI を取得するため、インターネット接続が必要です。
 GitHub を操作する skill には、GitHub CLI の認証も必要です。
-`record-decision` を使う場合は、`flock` も用意します。
+`save-why` を使う場合は、`flock` も用意します。
 
 導入できる skill を確認します。
 
@@ -119,6 +119,30 @@ npx skills add tr-yasuda/everything-codex -g -a claude-code --copy
 選んだ同名の skill は上書きされるため、確定前に上書き対象を確認してください。
 両方を使う場合は、それぞれで更新します。
 更新後は、利用する製品の「読み込みを確認する」手順を実行します。
+
+### 名前が変わった skill を入れ替える
+
+次の skill は名前が変わりました。旧名の skill は、更新しても新しい名前に置き換わりません。
+
+| 旧名 | 新しい名前 |
+| --- | --- |
+| `clarify-code` | `unslop` |
+| `critical-thinking` | `check-twice` |
+| `record-decision` | `save-why` |
+| `analyze-impact` | `what-breaks` |
+| `debug-failure` | `root-cause` |
+| `verify-change` | `prove-it` |
+| `prevent-recurrence` | `never-again` |
+| `explain-code` | `how-and-why` |
+
+1. 導入コマンドを再実行し、新しい名前の skill を選んで導入する。
+2. 旧名の skill に独自の編集があれば、必要な変更を新しい名前の skill へ移す。
+3. 導入先から、旧名の skill のディレクトリを取り除く。
+
+旧名の skill を残すと、同じ内容の skill が 2 つ読み込まれます。
+
+`record-decision` で保存した判断は、`save-why` を初めて使うときに新しい保存先へ移ります。
+移したあとに旧名の `record-decision` で判断を保存すると、新旧の保存先に判断が分かれ、`save-why` は読み書きせずに止まります。
 
 ## 共通ルールを取り込む
 

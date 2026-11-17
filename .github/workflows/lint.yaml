@@ -36,5 +36,5 @@ jobs:
       - name: lint text
         run: pnpm lint:text
 
-      - name: test record-decision
-        run: pnpm test:record-decision
+      - name: test save-why
+        run: pnpm test:save-why

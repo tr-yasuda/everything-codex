@@ -1,8 +1,8 @@
 # コードが分からなくなったので、理解して整理したい
 
-自分が送る依頼: `$explain-code` → 整理したい場合は `$clarify-code`。
+自分が送る依頼: `$how-and-why` → 整理したい場合は `$unslop`。
 
-自動で使われる skill: コード変更では `analyze-impact` と `tdd`、変更後の確認では `verify-change`。説明だけなら検証は不要です。
+自動で使われる skill: コード変更では `what-breaks` と `tdd`、変更後の確認では `prove-it`。説明だけなら検証は不要です。
 
 AI に保存処理を書いてもらいましたが、関数を何度も行き来しないと、いつ何が保存されるか追えません。
 まず今の差分を理解し、必要なら振る舞いを保ったまま読みやすくする例です。
@@ -10,12 +10,12 @@ AI に保存処理を書いてもらいましたが、関数を何度も行き�
 ## 1. 差分の動きと理由を説明してもらう
 
 ```text
-$explain-code
+$how-and-why
 今回の保存処理の差分について、入口から結果まで説明してください。
 いつ状態を変え、失敗したらどうなるかと、名前や処理の分け方の理由を知りたいです。
 ```
 
-`explain-code` はコードを変更せずに説明します。
+`how-and-why` はコードを変更せずに説明します。
 理由は、記録で確認できたこと、推測、不明なことに分けて示されます。
 
 例えば、保存に失敗したときの後処理が分からなければ、そこを具体的に尋ねます。
@@ -32,14 +32,14 @@ $explain-code
 理解できても関数の往復が多いなら、同じ会話で変更を頼みます。
 
 ```text
-$clarify-code
+$unslop
 今回の保存処理の差分を対象に、判断と副作用の順序を呼び出し元から追いやすくしてください。
 振る舞いと公開 API は維持し、検証までお願いします。commit・push は不要です。
 ```
 
 対象差分と必要な周辺コードを確認し、処理と関連コメントが整理されます。
 行数を減らすことや、すべてを 1 関数にすることが目的ではありません。
-`clarify-code` は差分を対象にするため、既存コード全体の整理を無条件に頼む例ではありません。
+`unslop` は差分を対象にするため、既存コード全体の整理を無条件に頼む例ではありません。
 
 ## 3. 整理した結果を確認する
 
@@ -52,7 +52,7 @@ $clarify-code
 主要な判断と副作用を自分で説明でき、整理した場合は既存の動きが検証されていることです。
 共有するなら、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [explain-code](../skills/explain-code/SKILL.md)、
-[clarify-code](../skills/clarify-code/SKILL.md)、[verify-change](../skills/verify-change/SKILL.md)。
+関連する skill: [how-and-why](../skills/how-and-why/SKILL.md)、
+[unslop](../skills/unslop/SKILL.md)、[prove-it](../skills/prove-it/SKILL.md)。
 
 [レシピ一覧に戻る](README.md)

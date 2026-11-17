@@ -7,7 +7,7 @@
 
 自分が送る依頼: 不具合の修正を依頼。
 
-自動で使われる skill: `analyze-impact`、`tdd`、`verify-change`。
+自動で使われる skill: `what-breaks`、`tdd`、`prove-it`。
 
 空の入力はエラーにする仕様なのに、タスク名が空でも保存できてしまう例です。
 
@@ -17,9 +17,9 @@
 再発を防ぐテストと動作確認までお願いします。commit・push は不要です。
 ```
 
-書き換える前の影響調査には `analyze-impact`、コードの修正には `tdd` が使われます。
-`verify-change` が完了前の検証を担当します。
-原因が不明な失敗を調べるときは、`debug-failure` も使われます。
+書き換える前の影響調査には `what-breaks`、コードの修正には `tdd` が使われます。
+`prove-it` が完了前の検証を担当します。
+原因が不明な失敗を調べるときは、`root-cause` も使われます。
 
 返答では、空の入力が保存されないことと、通常の入力は保存できることを確認します。
 片方しか確かめられていなければ、足りない確認を伝えます。
@@ -32,7 +32,7 @@
 
 自分が送る依頼: 原因の調査と修正を依頼。
 
-自動で使われる skill: `debug-failure`、`analyze-impact`、`tdd`、`verify-change`。
+自動で使われる skill: `root-cause`、`what-breaks`、`tdd`、`prove-it`。
 
 タスクがあるときは使えるのに、最後の 1 件を消すと画面が真っ白になる例です。
 
@@ -61,8 +61,8 @@
 原因だけ知りたいなら、最初の依頼を「原因と修正案を教えて。変更はまだ不要」に変えます。
 修正を共有するなら、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [debug-failure](../skills/debug-failure/SKILL.md)、
-[analyze-impact](../skills/analyze-impact/SKILL.md)、[tdd](../skills/tdd/SKILL.md)、
-[verify-change](../skills/verify-change/SKILL.md)。
+関連する skill: [root-cause](../skills/root-cause/SKILL.md)、
+[what-breaks](../skills/what-breaks/SKILL.md)、[tdd](../skills/tdd/SKILL.md)、
+[prove-it](../skills/prove-it/SKILL.md)。
 
 [レシピ一覧に戻る](README.md)

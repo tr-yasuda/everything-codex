@@ -1,8 +1,8 @@
 # 同じレビュー指摘を繰り返さずに済むようにしたい
 
-自分が送る依頼: `$prevent-recurrence` → 提示された防ぎ方に合意。
+自分が送る依頼: `$never-again` → 提示された防ぎ方に合意。
 
-自動で使われる skill: コードを変更する場合は `analyze-impact` と `tdd`、変更後の確認には `verify-change`。
+自動で使われる skill: コードを変更する場合は `what-breaks` と `tdd`、変更後の確認には `prove-it`。
 
 日付の変換で、タイムゾーンを取り違える指摘を何度もしています。
 今回の 1 か所を直すだけでなく、同じ間違いが新しい変更に入らない仕組みを作る例です。
@@ -10,7 +10,7 @@
 ## 1. 繰り返している間違いを伝える
 
 ```text
-$prevent-recurrence
+$never-again
 日付の文字列を各所で直接変換し、タイムゾーンを取り違えるミスを何度も指摘しています。
 同じミスを仕組みで防いでください。
 ```
@@ -44,6 +44,6 @@ commit・push は不要です。
 防げなかった種類があれば、残った理由と対応を確認します。
 共有するなら、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [prevent-recurrence](../skills/prevent-recurrence/SKILL.md)。
+関連する skill: [never-again](../skills/never-again/SKILL.md)。
 
 [レシピ一覧に戻る](README.md)

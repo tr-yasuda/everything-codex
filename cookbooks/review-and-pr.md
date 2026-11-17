@@ -2,7 +2,7 @@
 
 自分が送る依頼: `$code-review` → 必要な修正を依頼 → `$create-pr`。
 
-自動で使われる skill: コードを修正する場合は `analyze-impact` と `tdd`、変更後の確認には `verify-change`。
+自動で使われる skill: コードを修正する場合は `what-breaks` と `tdd`、変更後の確認には `prove-it`。
 
 検索欄が空なら検索しない、という変更を手元で実装しました。
 想定していない問題を確認し、チームにレビューしてもらう Draft PR を作ります。
@@ -35,7 +35,7 @@ $code-review
 ```
 
 修正内容と検証結果を読み、問題が解消されたことを確認します。
-修正と検証を頼めば、`analyze-impact`、`tdd`、`verify-change` を別に呼ぶ必要はありません。
+修正と検証を頼めば、`what-breaks`、`tdd`、`prove-it` を別に呼ぶ必要はありません。
 新たな懸念があれば、その点を説明して、追加の確認やレビューを頼みます。
 
 ## 3. Draft PR を作成する

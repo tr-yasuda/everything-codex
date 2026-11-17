@@ -1,0 +1,7 @@
+interface:
+  display_name: "never-again"
+  short_description: "繰り返す指摘を、構造・型・lint・テストで起こせなくする"
+  default_prompt: "$never-again を使い、私が繰り返している指摘を集めて、同じ間違いを起こせない仕組みで防いでください。"
+
+policy:
+  allow_implicit_invocation: false
