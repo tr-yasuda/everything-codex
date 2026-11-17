@@ -7,6 +7,11 @@ skill は `skills` CLI のコピー方式で導入します。
 共通ルールは別途、既存の個人ルールと内容を確認して取り込みます。
 モデル・権限・専用エージェントの設定は、利用者が選びます。
 
+`.codex/config.toml` と `.codex/agents/` は Codex 用で、skill のコピーだけでは導入されません。
+Claude Code では、その製品の設定と利用可能なツール・subagent を使います。
+同名の agent や同じ権限があることを前提にせず、必要な手順を実行できるか確認してください。
+前提と未確認の範囲は、[Codex と Claude Code の対応状況](harness-compatibility.md) を参照してください。
+
 ## 共通の準備
 
 Node.js 24、Git と、利用する Codex または Claude Code を用意します。
