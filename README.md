@@ -20,6 +20,15 @@ $define タスク一覧が見づらい。未完了を見つけやすくしたい
 欲しい状態を相談し、実装前に短い仕様へまとめます。
 [相談から実装までの例](cookbooks/new-feature.md)
 
+### 独立した作業を並行して進めたい
+
+```text
+$coordinator この機能追加を、独立して進められる作業に分けて進めて。
+```
+
+独立した作業を Subagent に任せ、Root Agent が依存関係を調整して成果をまとめます。
+[coordinator の用途と実行範囲](docs/skills.md#coordinator)
+
 ### 任せた作業の状況が分からなくなった
 
 ```text
