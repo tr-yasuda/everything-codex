@@ -38,3 +38,6 @@ jobs:
 
       - name: test save-why
         run: pnpm test:save-why
+
+      - name: test shared text
+        run: pnpm test:shared-text

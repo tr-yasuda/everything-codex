@@ -5,6 +5,7 @@
   "scripts": {
     "test:save-why":
       "node --test skills/save-why/scripts/store.test.mjs",
+    "test:shared-text": "node --test scripts/shared-text.test.mjs",
     "lint:md": "markdownlint-cli2 \"**/*.md\"",
     "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\"",
     "lint:spell": "cspell .",
