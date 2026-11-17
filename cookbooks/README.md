@@ -91,6 +91,7 @@ Codex の表記で載せているため、Claude Code では `/define` のよう
 ## 変更・共有・記録の範囲
 
 `create-pr` は commit・push と Draft PR の作成または更新まで進みます。
+open の PR がないブランチでは、ブランチ名を変更内容を表す名前へ、確認なしで変えます。
 `fix-pr`、`fix-ci`、`fix-conflicts` も、対象 PR への修正を commit・push します。
 `fix-pr` の返信は、ユーザーが文面を承認してから送信されます。
 `recheck-pr` は、自分が立てたスレッドの resolve と PR の approve を確認なしで行います。
