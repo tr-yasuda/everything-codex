@@ -18,6 +18,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [指摘した PR の再確認][recheck] | `$recheck-pr` → 返信案を確認・承認 | `$recheck-pr pr#123` |
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
 | [競合を解消する][maintain] | `$fix-conflicts` | `$fix-conflicts pr#123` |
+| [PR の対応をまとめて任せる][babysit] | `$babysit` → 報告を確認、返信案を承認 | `$babysit pr#123` |
 | [コードを理解・整理][code] | `$how-and-why` → 必要なら `$unslop` | `$how-and-why` この差分の流れと理由を説明して |
 | [文章を読み手向けに直す][text] | `$make-it-clear` → 必要なら反映を依頼 | `$make-it-clear pr#123` |
 | [同じ指摘の再発を防ぐ][prevention] | `$never-again` → 防ぎ方に合意 | `$never-again` このミスを仕組みで防いで |
@@ -31,6 +32,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 [research]: choose-technology.md
 [pr]: review-and-pr.md
 [maintain]: maintain-pr.md
+[babysit]: maintain-pr.md#まとめて任せたい
 [recheck]: recheck-pr.md
 [code]: understand-code.md
 [text]: rewrite-for-reader.md
@@ -94,6 +96,7 @@ Codex の表記で載せているため、Claude Code では `/define` のよう
 検証が失敗した場合は、失敗を直さず、commit・push・PR の作成と更新もせずに止まります。
 open の PR がないブランチでは、ブランチ名を変更内容を表す名前へ、確認なしで変えます。
 `fix-pr`、`fix-ci`、`fix-conflicts` も、対象 PR への修正を commit・push します。
+`babysit` も同じ範囲で commit・push し、返信は文面の承認後に送信します。PR のマージ、Draft の解除、approve、resolve はしません。
 `fix-pr` の返信は、ユーザーが文面を承認してから送信されます。
 `recheck-pr` は、自分が立てたスレッドの resolve と PR の approve を確認なしで行います。
 コードは変更せず、返信はユーザーが文面を承認してから送信されます。

@@ -38,5 +38,5 @@ mise exec -- pnpm lint:md     # Markdown の記法
 mise exec -- pnpm lint:spell  # スペルと登録語
 mise exec -- pnpm lint:text   # 日本語の文章
 mise exec -- pnpm test:save-why # 判断の保存処理
-mise exec -- pnpm test:shared-text # 複数の skill が同じ文で持つ定義の一致
+mise exec -- pnpm test:shared-text # 複数の skill が同じ文で持つ定義の一致と、skill 間の参照先の存在
 ```
