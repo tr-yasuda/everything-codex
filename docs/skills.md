@@ -3,6 +3,14 @@
 各 skill の用途と呼び出し方をまとめています。名前のリンクから、詳しい手順を確認できます。
 目的から依頼を選びたいときは、[cookbook](../cookbooks/README.md) を参照してください。
 
+## 作業を分担する
+
+協調が有効な作業で使い、独立性と効果を判断して Subagent に委譲します。
+
+| skill | 用途 | 呼び出し |
+| --- | --- | --- |
+| [coordinator] | 作業を分解・委譲し、独立した作業の並列実行と成果物の統合を進める。 | 自動 |
+
 ## 楽をする
 
 好きなタイミングで呼ぶと、定型作業をエージェントが考えて実施します。
@@ -61,6 +69,7 @@
   参照される 3 つの skill は、`babysit` がなくても単体で動く。文言や構成を変えるときは、`babysit` の読み替えも確かめる。
 - 自動で使われる条件や引数は、各 `SKILL.md` に記載している。
 
+[coordinator]: ../skills/coordinator/SKILL.md
 [create-pr]: ../skills/create-pr/SKILL.md
 [fix-pr]: ../skills/fix-pr/SKILL.md
 [recheck-pr]: ../skills/recheck-pr/SKILL.md
