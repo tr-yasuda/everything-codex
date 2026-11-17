@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { test } from "node:test";
 
 // skill は単体で動くため、合意の対象の定義を各 SKILL.md が同じ文で持つ。
@@ -24,3 +24,25 @@ for (const skill of skills) {
     );
   });
 }
+
+// babysit は fix-ci・fix-pr・fix-conflicts の SKILL.md を相対パスで読み、読めなければ止まる。
+// 参照先の改名や参照の書き換えは lint では検出できないため、参照パスが実在することだけを確かめる。
+// 手順の文言は改善のたびに変わるので、ここでは照合しない。
+test("babysit が参照する手順ファイルが存在する", () => {
+  const babysit = new URL("../skills/babysit/SKILL.md", import.meta.url);
+  const references = [...readFileSync(babysit, "utf8").matchAll(/`(\.\.\/[a-z-]+\/SKILL\.md)`/g)].map(
+    (match) => match[1],
+  );
+
+  assert.deepEqual(
+    [...references].sort(),
+    ["../fix-ci/SKILL.md", "../fix-conflicts/SKILL.md", "../fix-pr/SKILL.md"],
+    "skills/babysit/SKILL.md が参照する手順ファイルが、fix-ci・fix-pr・fix-conflicts の 3 つと一致しない",
+  );
+  for (const reference of references) {
+    assert.ok(
+      existsSync(new URL(reference, babysit)),
+      `skills/babysit/SKILL.md が参照する ${reference} が存在しない`,
+    );
+  }
+});

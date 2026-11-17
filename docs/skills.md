@@ -14,6 +14,7 @@
 | [recheck-pr] | PR に出した指摘を再確認し、resolve・返信案・approve まで進める。 | 手動 |
 | [fix-ci] | PR で失敗した CI を調査し、修正して commit・push する。 | 手動 |
 | [fix-conflicts] | PR の merge conflict を解消し、検証して commit・push する。 | 手動 |
+| [babysit] | PR の CI・競合・レビュー指摘への対応と再確認を繰り返し、merge-ready まで進める。 | 手動 |
 | [update-deps] | 指定した依存関係を最新の安定版へ更新し、検証する。 | 手動 |
 
 ## 理解を置き去りにしない
@@ -55,6 +56,9 @@
 - 手動の skill は、Codex では `$skill-name`、Claude Code では `/skill-name` で呼び出す。
 - 自動の skill は、該当する場面でエージェントが使う。手動でも呼び出せる。
 - 各 skill は単体で動き、他の skill を呼び出さない。
+  例外として、`babysit` は `fix-ci`・`fix-pr`・`fix-conflicts` の `SKILL.md` を手順として読む。
+  これらの skill を起動はしないが、一緒に導入しないと `babysit` は動かない。
+  参照される 3 つの skill は、`babysit` がなくても単体で動く。文言や構成を変えるときは、`babysit` の読み替えも確かめる。
 - 自動で使われる条件や引数は、各 `SKILL.md` に記載している。
 
 [create-pr]: ../skills/create-pr/SKILL.md
@@ -62,6 +66,7 @@
 [recheck-pr]: ../skills/recheck-pr/SKILL.md
 [fix-ci]: ../skills/fix-ci/SKILL.md
 [fix-conflicts]: ../skills/fix-conflicts/SKILL.md
+[babysit]: ../skills/babysit/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
 [define]: ../skills/define/SKILL.md
 [design-interface]: ../skills/design-interface/SKILL.md
