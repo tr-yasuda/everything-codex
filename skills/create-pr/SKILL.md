@@ -17,19 +17,39 @@ $create-pr
 ## Workflow
 
 1. 現在の Git repository と変更内容を確認する
-2. 「検証」に従い、必要なテスト・型チェック・lint・build の結果を揃える
-3. 変更内容に合った Conventional Commits 形式の commit message と PR title を作り、「公開前の点検」で確かめる
-4. 「Branch」に従って branch 名を決める
-5. 変更を stage して commit する
-6. current branch を origin の同じ名前の branch へ push し、upstream をその branch にする
-7. PR body を作り、「公開前の点検」で確かめる
-8. open の PR がなければ Draft PR を作成し、あれば更新する
+2. commit に含める変更を stage する
+3. 「検証」に従い、stage した内容に対して必要なテスト・型チェック・lint・build の結果を揃える
+4. Conventional Commits 形式の commit message と PR title を作り、「公開前の点検」で確かめる。
+   commit message は stage した変更を、PR title は今回の commit を反映した PR 全体の差分を説明する
+5. 「Branch」に従って branch 名を決める
+6. 「commit と push の照合」に従い、stage の内容を照合してから commit し、push の前に commit の内容を照合する
+7. 照合した commit を origin の同じ名前の branch へ push し、upstream をその branch にする
+8. PR body を作り、「公開前の点検」で確かめる。PR body は今回の commit を反映した PR 全体の差分を説明する
+9. open の PR がなければ Draft PR を作成し、あれば更新する
 
 ## 検証
 
-PR body と PR template のチェック欄に書く検証結果は、最後の変更のあと、この会話の中で実行した結果だけを根拠にする。
+PR body と PR template のチェック欄に書く検証結果は、記録した内容に対して、「検証する場所」で実行した結果だけを根拠にする。
+記録する前に実行した結果は、この会話の中で得たものでも根拠にしない。
 
 repository で要求されるテスト・型チェック・lint・build のうち、根拠のない項目は自分で実行する。
+
+検証を始める前に、stage した内容を `git write-tree` で記録する。
+この値を、「commit と push の照合」で検証時の内容として使う。
+
+### 検証する場所
+
+作業ツリーに、stage していない変更や未追跡のファイルがない場合は、作業ツリーで検証する。
+`.gitignore` で無視されるファイルは、ここでは数えず、別の作業場所へ作業ツリーから持ち込んでよい。
+
+ある場合は、記録した内容だけを再現した別の作業場所を作り、そこで検証する。
+同じファイルの一部だけを stage した場合も、これに含める。
+作業ツリーで検証すると、commit に含まれない変更のおかげで通った結果を、commit する内容の結果と区別できないため。
+別の作業場所は、途中で止まる場合も含め、使い終わったら片付ける。片付けられなければ、その場所を報告する。
+作業ツリーの変更には触らない。
+
+別の作業場所で検証できない場合は、「実行できない場合」に従う。
+このとき、作業ツリーで得た結果を、commit する内容の検証結果の代わりにしない。
 
 この skill では、検証の失敗を直さない。
 検証が失敗したら、commit・push・PR の作成をせず、既存の PR も更新せずに止まる。
@@ -50,6 +70,26 @@ Draft PR であっても、検証に失敗した状態のまま公開しない�
 それでも確かめられない部分が残る場合は、その範囲と理由を PR body に書く。
 該当するチェック欄は空のままにして、Draft PR を作成または更新する。
 
+## commit と push の照合
+
+検証のあとで、検証した場所、stage、commit の内容は変わり得る。
+別のエージェント、Git hooks、自分が起動したツールなど、原因は限らない。
+
+検証が終わったら、検証した場所で次の 2 つを実行し、どちらも出力が空であることを確かめる。
+
+- `git diff <記録した値>`
+- `git ls-files --others --exclude-standard`
+
+commit の直前に `git write-tree` を実行し、記録した値と比べる。
+commit したあと、push の前に `git rev-parse HEAD^{tree}` を実行し、同じ値と比べる。
+
+空でないか一致しなければ、その時点で止まり、それ以降の commit・push・PR の作成と、既存の PR の更新をしない。
+変わった内容の出どころを推測して取り込んだり、検証をやり直したりしない。
+作った commit は取り消さない。
+報告には、どの照合で食い違ったかと、変わったファイルと変更の種類を書く。
+commit を作っていれば、その SHA と、push していないことも書く。
+最後に、次に依頼すればよいことを書く。
+
 ## 公開前の点検
 
 commit message、PR title、PR body は、push や PR の作成で公開される。
@@ -58,7 +98,7 @@ commit message、PR title、PR body は、push や PR の作成で公開され�
 
 PR title と PR body では、次を確かめる。
 
-- 事実関係: 変更の説明を、commit・push する変更と照合する。
+- 事実関係: 変更の説明を、今回の commit を反映した PR 全体の差分と照合する。
   作業ツリーに残る無関係な変更は、PR の変更として説明しない。
   検証結果とチェック欄を「検証」の根拠と照合する。変更や根拠と合わない文は直すか削る
 - 必要性と読みやすさ: レビュアーが変更の目的、内容、影響、検証結果を理解し、レビューの判断に使う文だけを残す。
@@ -176,7 +216,7 @@ template がない場合は以下の形式にする。
 ## Rules
 
 - PR は Draft で作成する
-- unrelated changes を commit に含めない。stage 済みのものも含めて、変更・破棄しない
+- unrelated changes を commit に含めない。stage 済みのものも含めて変更・破棄せず、stage 済みのため commit から外せなければ止めて報告する
 - PR に含めなかった unrelated changes があれば、PR body には書かず、ユーザーへの報告で伝える
 - open の PR がある場合は新しい PR を作らない
 - PR title と body は実際の差分を確認してから作る
@@ -185,4 +225,4 @@ template がない場合は以下の形式にする。
 - PR template の必須項目を削除しない
 - push や PR 作成に失敗した場合は原因を確認し、解決可能なものは修正して続行する
 - push が拒否されても force push はしない。
-  この実行で名前を決めた branch では、origin の同じ名前の branch を取り込まず、止めて報告する
+  origin の同じ名前の branch を取り込まず、止めて報告する
