@@ -15,6 +15,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [技術の採用判断][research] | 調査を依頼 → 採用判断 → 必要なら記録を依頼 | X を採用すべきか公式情報を調べて判断材料を出して |
 | [変更を PR にする][pr] | `$multi-scan` → 必要な修正を依頼 → `$create-pr` | `$multi-scan` この変更をレビューして |
 | [PR のレビュー対応][maintain] | `$fix-pr` → 返信案を確認・承認 | `$fix-pr pr#123` |
+| [指摘した PR の再確認][recheck] | `$recheck-pr` → 返信案を確認・承認 | `$recheck-pr pr#123` |
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
 | [競合を解消する][maintain] | `$fix-conflicts` | `$fix-conflicts pr#123` |
 | [コードを理解・整理][code] | `$how-and-why` → 必要なら `$unslop` | `$how-and-why` この差分の流れと理由を説明して |
@@ -29,6 +30,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 [research]: choose-technology.md
 [pr]: review-and-pr.md
 [maintain]: maintain-pr.md
+[recheck]: recheck-pr.md
 [code]: understand-code.md
 [prevention]: prevent-recurrence.md
 [docs]: sync-docs.md
@@ -88,6 +90,8 @@ Codex の表記で載せているため、Claude Code では `/define` のよう
 `create-pr` は commit・push と Draft PR の作成または更新まで進みます。
 `fix-pr`、`fix-ci`、`fix-conflicts` も、対象 PR への修正を commit・push します。
 `fix-pr` の返信は、ユーザーが文面を承認してから送信されます。
+`recheck-pr` は、自分が立てたスレッドの resolve と PR の approve を確認なしで行います。
+コードは変更せず、返信はユーザーが文面を承認してから送信されます。
 GitHub を使う例は、対象リポジトリへの認証と必要な権限がある前提です。
 
 それ以外の実装・修正の依頼例は、commit・push を含めていません。

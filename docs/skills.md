@@ -11,6 +11,7 @@
 | --- | --- | --- |
 | [create-pr] | 変更を commit・push し、Draft PR を作成または更新する。 | 手動 |
 | [fix-pr] | PR のレビュー指摘を検証・修正し、返信案を作る。 | 手動 |
+| [recheck-pr] | PR に出した指摘を再確認し、resolve・返信案・approve まで進める。 | 手動 |
 | [fix-ci] | PR で失敗した CI を調査し、修正して commit・push する。 | 手動 |
 | [fix-conflicts] | PR の merge conflict を解消し、検証して commit・push する。 | 手動 |
 | [update-deps] | 指定した依存関係を最新の安定版へ更新し、検証する。 | 手動 |
@@ -57,6 +58,7 @@
 
 [create-pr]: ../skills/create-pr/SKILL.md
 [fix-pr]: ../skills/fix-pr/SKILL.md
+[recheck-pr]: ../skills/recheck-pr/SKILL.md
 [fix-ci]: ../skills/fix-ci/SKILL.md
 [fix-conflicts]: ../skills/fix-conflicts/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
