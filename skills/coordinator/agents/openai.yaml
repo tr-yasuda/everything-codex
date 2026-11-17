@@ -1,0 +1,7 @@
+interface:
+  display_name: "coordinator"
+  short_description: "複雑な作業を分解・委譲し、独立した作業の並列実行と成果物の統合を進める"
+  default_prompt: "$coordinator を使い、依頼を独立した作業に分け、有効な作業を委譲・並列実行して成果を統合してください。"
+
+policy:
+  allow_implicit_invocation: true
