@@ -29,6 +29,7 @@
 | [catch-up] | 何が変わり、何を判断すべきかを、判断材料つきで腹落ちする形で伝える。 | 自動 |
 | [how-and-why] | コードがどう動き、なぜその形なのかを結論から順に説明する。 | 手動 |
 | [unslop] | 対象差分の処理と関連コメントを精査し、振る舞いを保って追いやすくする。 | 手動 |
+| [make-it-clear] | 指定した文章を、読み手が判断・実行に使う内容だけに書き直す。 | 手動 |
 
 `save-why` は、保存・訂正・撤回を頼まれた判断だけを、リポジトリ外の本人用領域に記録します。
 記録は同じ PC 内で参照し、リポジトリへの追加や外部への送信は行いません。
@@ -69,6 +70,7 @@
 [catch-up]: ../skills/catch-up/SKILL.md
 [how-and-why]: ../skills/how-and-why/SKILL.md
 [unslop]: ../skills/unslop/SKILL.md
+[make-it-clear]: ../skills/make-it-clear/SKILL.md
 [check-twice]: ../skills/check-twice/SKILL.md
 [research]: ../skills/research/SKILL.md
 [root-cause]: ../skills/root-cause/SKILL.md

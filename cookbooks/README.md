@@ -19,6 +19,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
 | [競合を解消する][maintain] | `$fix-conflicts` | `$fix-conflicts pr#123` |
 | [コードを理解・整理][code] | `$how-and-why` → 必要なら `$unslop` | `$how-and-why` この差分の流れと理由を説明して |
+| [文章を読み手向けに直す][text] | `$make-it-clear` → 必要なら反映を依頼 | `$make-it-clear pr#123` |
 | [同じ指摘の再発を防ぐ][prevention] | `$never-again` → 防ぎ方に合意 | `$never-again` このミスを仕組みで防いで |
 | [実装と文書を揃える][docs] | 文書の更新を依頼 | 今回の変更で古くなった説明や使用例を揃えて |
 | [状況と判断事項を知る][status] | 状況の説明を依頼 | 今の状況と、私が判断する必要のあることを説明して |
@@ -32,6 +33,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 [maintain]: maintain-pr.md
 [recheck]: recheck-pr.md
 [code]: understand-code.md
+[text]: rewrite-for-reader.md
 [prevention]: prevent-recurrence.md
 [docs]: sync-docs.md
 [status]: catch-up.md
@@ -93,6 +95,8 @@ Codex の表記で載せているため、Claude Code では `/define` のよう
 `recheck-pr` は、自分が立てたスレッドの resolve と PR の approve を確認なしで行います。
 コードは変更せず、返信はユーザーが文面を承認してから送信されます。
 GitHub を使う例は、対象リポジトリへの認証と必要な権限がある前提です。
+`make-it-clear` が編集するのは、Git で元の内容を戻せるファイルだけです。
+PR description や投稿済みのコメントは、書き直した文章を示すだけで、更新しません。
 
 それ以外の実装・修正の依頼例は、commit・push を含めていません。
 `save-why` で判断を保存するのは、保存を明示的に頼んだときだけです。
