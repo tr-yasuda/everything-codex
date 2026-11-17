@@ -28,7 +28,7 @@ function documentFixture(t) {
   symlinkSync(
     fileURLToPath(new URL("../node_modules", import.meta.url)),
     join(root, "node_modules"),
-    "dir",
+    "junction",
   );
   return root;
 }
@@ -129,6 +129,12 @@ for (const [name, corrupt] of [
     document.replace(start + text + end, "")],
   ["マーカー重複", (document, { start }) =>
     document.replace(start, start + start)],
+  ["行末空白付き開始マーカーの重複", (document, { start }) =>
+    document.replace(start, start.trimEnd() + " \n古い条件。\n" + start)],
+  ["行末タブ付き開始マーカーの重複", (document, { start }) =>
+    document.replace(start, start.trimEnd() + "\t\n古い条件。\n" + start)],
+  ["開始マーカー後の改行欠落", (document, { start }) =>
+    document.replace(start, start.trimEnd() + " ")],
   ["マーカー逆順", (document, { start, end, text }) =>
     document.replace(start + text + end, end + text + start)],
   ["空の範囲", (document, { start, text }) =>

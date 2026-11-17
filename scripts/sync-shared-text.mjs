@@ -31,13 +31,15 @@ const sharedText = [
 ];
 
 function readBlock(document, id, path) {
-  const startMarker = `<!-- shared-text:${id}:start -->\n`;
+  const startMarker = `<!-- shared-text:${id}:start -->`;
   const endMarker = `<!-- shared-text:${id}:end -->`;
-  const start = document.indexOf(startMarker) + startMarker.length;
+  const markerEnd = document.indexOf(startMarker) + startMarker.length;
+  const start = markerEnd + 1;
   const end = document.indexOf(endMarker);
   if (
     document.split(startMarker).length !== 2 ||
     document.split(endMarker).length !== 2 ||
+    document[markerEnd] !== "\n" ||
     end <= start
   ) {
     throw new Error(`${path}: ${id} の開始・終了マーカーを 1 組ずつ指定してください。`);
