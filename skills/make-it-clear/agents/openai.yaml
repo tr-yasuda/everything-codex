@@ -1,0 +1,7 @@
+interface:
+  display_name: "make-it-clear"
+  short_description: "文章を読み手が判断・実行に使う内容だけに書き直す"
+  default_prompt: "$make-it-clear を使い、対象の文章を、読み手が判断・実行に使う内容だけに書き直してください。元の文章にない事実は足さないでください。"
+
+policy:
+  allow_implicit_invocation: false
