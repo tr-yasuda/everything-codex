@@ -72,8 +72,8 @@ Draft PR であっても、検証に失敗した状態のまま公開しない�
 
 ## commit と push の照合
 
-検証のあとで、検証した場所、stage、commit の内容は変わり得る。
-別のエージェント、Git hooks、自分が起動したツールなど、原因は限らない。
+別のエージェント、Git hooks、自分が起動したツールなどにより、
+検証後に検証した場所、stage、commit の内容が変わり得る。
 
 検証が終わったら、検証した場所で次の 2 つを実行し、どちらも出力が空であることを確かめる。
 
@@ -93,8 +93,8 @@ commit を作っていれば、その SHA と、push していないことも書
 ## 公開前の点検
 
 commit message、PR title、PR body は、push や PR の作成で公開される。
-誤りや不要な文が残ると、確かめて整理する負担がレビュアーへ移る。
-公開する前に自分で読み直して直し、文面の承認をユーザーに求めない。
+レビュアーに誤りや不要な文の整理をさせないよう、公開前に自分で読み直して直す。
+文面の承認をユーザーに求めない。
 
 PR title と PR body では、次を確かめる。
 
@@ -119,8 +119,7 @@ commit message では、実際の commit の内容と一致し、不要な説明
 
 ## Branch
 
-branch 名は、PR をレビューする人の目に入る。
-変更内容を表す名前で PR にする。
+branch 名はレビュアーにも見えるため、変更内容を表す名前にする。
 
 current branch に open の PR がある場合は、branch 名を変えない。
 merge 済みや close 済みの PR は、ここでは数えない。
@@ -164,6 +163,7 @@ current branch の名前が、決めた名前と同じならそのままにす�
 ## Commit / PR Title
 
 commit message と PR title は Conventional Commits 形式にする。
+PR title は、PR 全体の変更内容を表す。
 
 ```text
 <type>(<scope>): <subject>
@@ -192,8 +192,6 @@ type は変更内容に最も合うものを選ぶ。
 - `perf`
 - `build`
 - `ci`
-
-PR title は、PR 全体の変更内容を表す Conventional Commits 形式にする。
 
 ## PR Body
 
