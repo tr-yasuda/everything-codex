@@ -22,7 +22,10 @@ typescript を最新の安定版へ更新してください。
 
 更新方法は、そのプロジェクトの設定や依存関係の管理方法から判断されます。
 互換性を保つために必要な関連依存関係や、コード・設定・テストの修正も含みます。
-この skill は commit・push・公開をしません。
+
+<!-- shared-text:update-deps-scope:start -->
+commit・push・公開は行いません。
+<!-- shared-text:update-deps-scope:end -->
 
 ## 2. 更新結果と影響を確認する
 

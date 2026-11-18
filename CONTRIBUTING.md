@@ -33,6 +33,7 @@ skill の導入と最初の使い方は、[README](README.md#使い始める) �
 
 skill の仕様を変えるときは、`SKILL.md` を更新し、skill 一覧や関連する使用例を合わせます。
 説明が食い違う場合は、`SKILL.md` を確認して説明を修正します。
+共通管理する条件説明は、[同期の手順](#共通の条件説明を更新する)で反映します。
 
 README と cookbook には、紹介する使い方に必要な説明を残します。
 例えば、返信の承認が必要な使用例には、承認の操作も書きます。
@@ -52,6 +53,36 @@ README と cookbook には、紹介する使い方に必要な説明を残しま
 機能・呼び出し方・起動条件を変える場合は、`agents/openai.yaml` の表示情報と呼び出し設定も確認します。
 skill の追加・削除・改名では、skill 一覧と関連する使用例・リンクを更新します。
 `fix-ci`・`fix-pr`・`fix-conflicts` の手順を変える場合は、それを読む `babysit` の手順も確認します。
+
+### 共通の条件説明を更新する
+
+重複する条件説明の一部は、`SKILL.md` を更新元として、同じ文面をほかの文書に反映します。
+対象と反映先は [`scripts/sync-shared-text.mjs`](scripts/sync-shared-text.mjs) の冒頭で管理します。
+
+1. 更新元の `SKILL.md` で、`shared-text` の開始・終了マーカーに囲まれた説明を編集する。
+2. `mise run sync:shared-text` で、登録された反映先の同じ範囲だけを更新する。
+3. 差分を読み、前後の文章と自然につながることを確認する。
+4. `mise run test:shared-text` で不一致がないことを確認する。CI でも同じ条件を検査する。
+
+新しい説明を共通管理する場合は、更新元と反映先に同じ ID のマーカーを 1 組ずつ置き、スクリプトに登録します。
+例えば、次の範囲には条件や制約だけを書きます。紹介文や使用例は範囲に含めません。
+
+```markdown
+<!-- shared-text:condition-id:start -->
+共通管理する条件の説明。
+<!-- shared-text:condition-id:end -->
+```
+
+同期処理は、登録された全範囲を確認してから書き込みます。
+マーカーの欠落・重複・入れ子、空の範囲があれば、文書を書き換えずに止まります。
+各 skill は単独で読めるように、同期後も説明の本文を保持します。
+
+`test:shared-text` は、登録した説明の一致に加え、全 skill の手動・自動の起動設定を検査します。
+`SKILL.md`、`agents/openai.yaml`、skill 一覧の記載が一致しなければ失敗します。
+起動設定は YAML として読み取り、真偽値の `true` または `false` を検査します。
+複数行や引用符付きキーでも同じ値として扱い、値が空の場合や文字列の場合は書き込み前に止まります。
+`disable-model-invocation` のキーがない場合だけ、自動起動を許可する既定値を使います。
+同期対象に含まれない条件説明や、紹介文・使用例の意味の整合性は、引き続き差分を読んで確認します。
 
 ## Codex のモデル設定
 
@@ -88,7 +119,7 @@ mise run lint:md     # Markdown の記法
 mise run lint:spell  # スペルと登録語
 mise run lint:text   # 日本語の文章
 mise run test:save-why # 判断の保存処理
-mise run test:shared-text # 複数の skill が同じ文で持つ定義の一致と、skill 間の参照先の存在
+mise run test:shared-text # 共通の条件説明・定義、起動設定、skill 間の参照先
 ```
 
 実行の入口は `mise.toml` のタスクです。lint とテストのコマンド本体は `package.json` の scripts で管理します。

@@ -21,7 +21,9 @@ $babysit owner/repo#123
 この skill の呼び出し自体を、fix-ci・fix-pr・fix-conflicts が呼び出しで得る許可と同じ範囲の許可として扱う。
 対象 PR への base branch の merge、コード変更、commit、push が含まれる。
 
-レビュースレッドへの返信は、ユーザーの明示的な確認を得るまで送信してはいけない。
+<!-- shared-text:babysit-approval:start -->
+返信は、ユーザーが文面を承認してから送信します。
+<!-- shared-text:babysit-approval:end -->
 
 この skill が担当するのは、PR 作成者側の対応の、状態確認・次の作業の選択・繰り返し・停止の判断だけとする。
 個々の問題の修正は、「手順ファイル」の手順で行う。

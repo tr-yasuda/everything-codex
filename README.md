@@ -44,7 +44,10 @@ $coordinator この機能追加を、独立して進められる作業に分け�
 $fix-pr pr#123
 ```
 
-指摘を確かめて必要な修正を commit・push します。返信は、文面を承認してから送信します。
+指摘を確かめて必要な修正を commit・push します。
+<!-- shared-text:fix-pr-approval:start -->
+返信は、ユーザーが文面を承認してから送信します。
+<!-- shared-text:fix-pr-approval:end -->
 [レビュー対応の例](cookbooks/maintain-pr.md#レビュー指摘に対応したい)
 
 ## 使い始める

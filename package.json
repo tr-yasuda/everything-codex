@@ -6,6 +6,7 @@
     "test:save-why":
       "node --test skills/save-why/scripts/store.test.mjs",
     "test:shared-text": "node --test scripts/shared-text.test.mjs",
+    "sync:shared-text": "node scripts/sync-shared-text.mjs --write",
     "lint:md": "markdownlint-cli2 \"**/*.md\"",
     "lint:md:fix": "markdownlint-cli2 --fix \"**/*.md\"",
     "lint:spell": "cspell .",
@@ -23,6 +24,7 @@
   "devDependencies": {
     "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
     "cspell": "^10.4.1",
+    "js-yaml": "^4.3.2",
     "markdownlint-cli2": "^0.24.0",
     "textlint": "^15.8.0",
     "textlint-rule-preset-ja-technical-writing": "^12.0.2",

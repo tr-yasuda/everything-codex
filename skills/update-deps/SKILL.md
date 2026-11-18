@@ -22,4 +22,7 @@ disable-model-invocation: true
    目標の version に到達できなかった場合は、その理由も報告する。
 
 無関係な依存関係や既存の作業ツリーの変更は保持する。
-commit、push、公開は行わない。
+
+<!-- shared-text:update-deps-scope:start -->
+commit・push・公開は行いません。
+<!-- shared-text:update-deps-scope:end -->
