@@ -4,7 +4,7 @@
 個人用の領域に導入し、どのプロジェクトからでも利用できるようにします。
 
 skill は `skills` CLI のコピー方式で導入します。
-共通ルールは別途、既存の個人ルールと内容を確認して取り込みます。
+共通ルールは、既存の個人ルールと照合し、別途取り込みます。
 モデル・権限・専用エージェントの設定は、利用者が選びます。
 
 `.codex/config.toml` と `.codex/agents/` は Codex 用で、skill のコピーだけでは導入されません。
@@ -26,10 +26,10 @@ npx skills add tr-yasuda/everything-codex --list
 ```
 
 `babysit` は、`fix-ci`・`fix-pr`・`fix-conflicts` の手順を読んで動きます。
-`babysit` を選ぶときは、この 3 つも同じ製品に選んでください。更新するときも、4 つを一緒に更新します。
+`babysit` を選ぶときは、この 3 つも同じ製品向けに選んでください。更新するときも、4 つを一緒に更新します。
 
 利用する製品の手順へ進んでください。両方を使う場合は、それぞれに導入します。
-導入コマンドは、選択内容を確認できるよう、利用者の対話可能なターミナルで実行してください。
+導入コマンドは、選択内容を確認しながら操作できる、利用者のターミナルで実行してください。
 
 ## Codex の場合
 
@@ -42,7 +42,7 @@ npx skills ls -g -a codex
 ```
 
 以前に `~/.codex/skills/` へ手動で導入している場合は、その内容も確認してください。
-同名の skill を複数の場所に配置しないよう、既存の導入先と内容を整理してから進めます。
+同名の skill が複数の場所に残らないよう、既存の導入先と内容を整理してから進めます。
 
 ```bash
 npx skills add tr-yasuda/everything-codex -g -a codex --copy
@@ -124,7 +124,7 @@ npx skills add tr-yasuda/everything-codex -g -a codex --copy
 npx skills add tr-yasuda/everything-codex -g -a claude-code --copy
 ```
 
-選んだ同名の skill は上書きされるため、確定前に上書き対象を確認してください。
+選んだ skill と同名の導入済み skill は上書きされるため、確定前に上書き対象を確認してください。
 両方を使う場合は、それぞれで更新します。
 更新後は、利用する製品の「読み込みを確認する」手順を実行します。
 
