@@ -1,4 +1,4 @@
-model = "gpt-6.1-sol"
+model = "gpt-6.2-sol"
 
 model_reasoning_effort = "medium"
 plan_mode_reasoning_effort = "medium"
@@ -23,6 +23,9 @@ sandbox_mode = "workspace-write"
 
 web_search = "live"
 
+[tui]
+collapse_turn_details = true
+
 [sandbox_workspace_write]
 network_access = true
 writable_roots = [
@@ -42,7 +45,7 @@ memories = true
 [agents]
 enabled = true
 max_concurrent_threads_per_session = 8
-default_subagent_model = "gpt-6.1-sol"
+default_subagent_model = "gpt-6.2-sol"
 default_subagent_reasoning_effort = "medium"
 
 [agents.explorer]
