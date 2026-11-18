@@ -1,7 +1,7 @@
 name = "explorer"
 description = "コードを変更せず、変更対象と影響範囲を調査する。"
 
-model = "gpt-6.1-sol"
+model = "gpt-6.2-sol"
 
 sandbox_mode = "read-only"
 
