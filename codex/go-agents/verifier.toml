@@ -2,6 +2,7 @@ name = "verifier"
 description = "実際に動かして、要求した振る舞いが成立するかを確認する。"
 
 model = "deepseek-v4.1-flash"
+model_reasoning_effort = "high"
 
 sandbox_mode = "workspace-write"
 
