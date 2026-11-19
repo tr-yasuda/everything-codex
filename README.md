@@ -27,6 +27,7 @@ $coordinator この機能追加を、独立して進められる作業に分け�
 ```
 
 独立した作業を Subagent に任せ、Root Agent が依存関係を調整して成果をまとめます。
+Claude Code 用の subagent 定義は、[導入ガイド](docs/installation.md#claude-code-の場合) を参照してください。
 [coordinator の用途と実行範囲](docs/skills.md#coordinator)
 
 ### 任せた作業の状況が分からなくなった

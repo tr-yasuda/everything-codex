@@ -39,5 +39,8 @@ jobs:
       - name: test save-why
         run: pnpm test:save-why
 
+      - name: test claude agents
+        run: pnpm test:claude-agents
+
       - name: test shared text
         run: pnpm test:shared-text

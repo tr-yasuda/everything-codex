@@ -16,6 +16,7 @@ skill の導入と最初の使い方は、[README](README.md#使い始める) �
 | `docs/skills.md` | 各 skill の用途・呼び出し方・変更や投稿の範囲 |
 | `docs/harness-compatibility.md` | Codex と Claude Code の対応状況・根拠・未確認範囲 |
 | `codex/config.toml`、`codex/openai-agents/` | Codex とエージェントの設定 |
+| `claude/agents/` | Claude Code 用の subagent 定義 |
 | `AGENTS.md`、`codex/AGENTS.md` | 作業時の指示 |
 | `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
 | `.github/PULL_REQUEST_TEMPLATE.md` | PR の記載項目と確認事項 |
@@ -129,6 +130,7 @@ mise run lint:md     # Markdown の記法
 mise run lint:spell  # スペルと登録語
 mise run lint:text   # 日本語の文章
 mise run test:save-why # 判断の保存処理
+mise run test:claude-agents # Claude 用 subagent と skill の接続
 mise run test:shared-text # 共通の条件説明・定義、起動設定、skill 間の参照先
 ```
 
