@@ -90,7 +90,7 @@ skill の追加・削除・改名では、skill 一覧と関連する使用例�
 - 明示していない subagent の既定モデルと `/review`: `gpt-6.2-sol`
 - `explorer`・`implementer`: `gpt-6.1-terra`
 - `docs-researcher`: `gpt-6-luna`
-- `docs-researcher` の推論量は `low` に固定する
+- `docs-researcher` の推論量は `high` に固定する
 
 CLI の全画面表示では、回答を追いやすくするため、完了した処理の詳細を折り畳みます。
 `tui.collapse_turn_details = true` で設定します。
@@ -106,7 +106,9 @@ subagent を起動するときは、役割を目安に依頼の難しさで推�
 | `high` | 複雑な原因分析・実装・レビュー |
 
 起動時の指定を省略した場合は、既定値の `medium` を使います。
-専用エージェントに `model_reasoning_effort` を固定すると起動時の指定より優先されるため、固定しません。
+専用エージェントでは、起動時指定より `model_reasoning_effort` が優先されます。
+そのため `docs-researcher` 以外では固定しません。
+`docs-researcher` は一次資料の確認と適用条件の整理を重視するため、`high` に固定します。
 優先順位の詳細は、[Codex の subagent 設定](https://learn.chatgpt.com/docs/agent-configuration/subagents#custom-agents) を参照してください。
 
 OpenCode Go 用の `go.config.toml` では、既定の推論量を `high` にします。
