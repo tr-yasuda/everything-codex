@@ -98,6 +98,13 @@ npx skills add tr-yasuda/everything-codex -g -a claude-code --copy
 ### subagent を導入する
 
 Claude Code 用の subagent 定義は、このリポジトリの `claude/agents/` にあります。
+リポジトリをまだ取得していない場合は、次のコマンドで取得して移動します。
+
+```bash
+git clone https://github.com/tr-yasuda/everything-codex.git
+cd everything-codex
+```
+
 全プロジェクトで使う場合は `~/.claude/agents/` へコピーします。
 1 つのプロジェクトだけなら、そのプロジェクトの `.claude/agents/` へコピーします。
 
@@ -116,8 +123,8 @@ subagent と skill は、次の組み合わせで接続します。
 | --- | --- |
 | `research` | `docs-researcher` 上で実行する |
 | `tdd` | `implementer` が事前読み込みする |
-| `multi-scan` | `reviewer` 上で実行する |
 
+`multi-scan` は元の会話で実行し、Phase 4 で独立した再確認が必要な場合は `reviewer` に個別の確認を委譲します。
 `prove-it` は差分を直す役割も持つため、subagent 上ではなく元の会話で実行します。
 
 `explorer` は調査用、`implementer` は実装用、`reviewer` はレビュー用です。

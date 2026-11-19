@@ -2,9 +2,6 @@
 name: multi-scan
 description: GitHub PR、diff、ローカルコード変更を7観点でレビューし、重複排除・検証・必要に応じた独立再確認を経て、根拠付きのコードレビューを生成する skill。
 disable-model-invocation: true
-context: fork
-agent: reviewer
-background: false
 ---
 
 # Multi Scan

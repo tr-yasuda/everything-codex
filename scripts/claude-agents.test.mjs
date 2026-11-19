@@ -79,7 +79,6 @@ test("agent と skill の接続が定義どおりで、参照先が存在する"
   ]);
   const forkedSkills = new Map([
     ["research", "docs-researcher"],
-    ["multi-scan", "reviewer"],
   ]);
 
   for (const [agent, skills] of preloadedSkills) {

@@ -38,8 +38,9 @@ Claude Code は [JSON の設定ファイル][claude-settings] と、[独自の s
 
 Claude Code では、skill の `context: fork` と `agent` で独立した subagent 上で skill を実行できます。
 subagent の `skills` は、agent の起動時に skill 内容を読み込みます。
-このリポジトリでは、`research`・`multi-scan` を skill から agent へ接続します。
+このリポジトリでは、`research` を skill から agent へ接続します。
 `tdd` を `implementer` に事前読み込みします。同じ skill を両方向に接続すると内容が二重になるため避けます。
+`multi-scan` は元の会話で実行し、Phase 4 で独立した再確認が必要な場合は `reviewer` に個別の確認を委譲します。
 
 Codex の [subagent 設定][codex-agents] にも、有効・無効、同時起動数、モデルなどの条件があります。
 モデルや推論量が違うことだけでは問題と判定せず、必要な作業と制約を満たせるかを確かめます。
