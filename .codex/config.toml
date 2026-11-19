@@ -1,4 +1,4 @@
-model = "gpt-6.2-sol"
+model = "gpt-6.1-sol"
 
 model_reasoning_effort = "medium"
 plan_mode_reasoning_effort = "medium"
@@ -45,21 +45,21 @@ memories = true
 [agents]
 enabled = true
 max_concurrent_threads_per_session = 8
-default_subagent_model = "gpt-6.2-sol"
+default_subagent_model = "gpt-6.1-sol"
 default_subagent_reasoning_effort = "medium"
 
 [agents.explorer]
 description = "コードを変更せず、変更対象と影響範囲を調査する。"
-config_file = "agents/explorer.toml"
+config_file = "openai-agents/explorer.toml"
 
 [agents.implementer]
 description = "指定された実装タスクを完了する。"
-config_file = "agents/implementer.toml"
+config_file = "openai-agents/implementer.toml"
 
 [agents.reviewer]
 description = "変更の正しさ、回帰、テスト不足を確認する。"
-config_file = "agents/reviewer.toml"
+config_file = "openai-agents/reviewer.toml"
 
 [agents.docs_researcher]
 description = "公式ドキュメントやリリースノートを調査する。"
-config_file = "agents/docs-researcher.toml"
+config_file = "openai-agents/docs-researcher.toml"
