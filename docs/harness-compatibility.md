@@ -23,13 +23,13 @@
 | 手動起動 | `$skill-name` | `/skill-name` |
 | 自動起動の制御 | `agents/openai.yaml` の `allow_implicit_invocation` | YAML の `disable-model-invocation` |
 | モデル・実行権限 | Codex の設定とセッションに適用される制約 | Claude Code の設定とセッションに適用される制約 |
-| 専用 agent | `.codex/agents/` などの定義 | `.claude/agents/` などの定義 |
+| 専用 agent | `codex/openai-agents/` などの定義 | `.claude/agents/` などの定義 |
 
 全 23 skill で、手動・自動の起動指定は両方の記述が一致しています。
 これは設定の照合結果で、実際の自動選択や読み込みを実行確認した結果ではありません。
 起動制御の根拠は [Codex の skill 設定][codex-skills] と [Claude Code の skill 設定][claude-skills] です。
 
-このリポジトリの `.codex/config.toml` と `.codex/agents/` は、skill の導入だけではコピーされません。
+このリポジトリの `codex/config.toml` と `codex/openai-agents/` は、skill の導入だけではコピーされません。
 Claude Code は [JSON の設定ファイル][claude-settings] と、[独自の subagent 定義][claude-agents] を使います。
 `explorer`・`implementer`・`reviewer`・`docs_researcher` と同名の agent が利用できることを前提にしません。
 

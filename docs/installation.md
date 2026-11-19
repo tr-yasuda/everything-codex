@@ -7,7 +7,7 @@ skill は `skills` CLI のコピー方式で導入します。
 共通ルールは、既存の個人ルールと照合し、別途取り込みます。
 モデル・権限・専用エージェントの設定は、利用者が選びます。
 
-`.codex/config.toml` と `.codex/agents/` は Codex 用で、skill のコピーだけでは導入されません。
+`codex/config.toml` と `codex/openai-agents/` は Codex 用で、skill のコピーだけでは導入されません。
 Claude Code では、その製品の設定と利用可能なツール・subagent を使います。
 同名の agent や同じ権限があることを前提にせず、必要な手順を実行できるか確認してください。
 前提と未確認の範囲は、[Codex と Claude Code の対応状況](harness-compatibility.md) を参照してください。
@@ -155,7 +155,7 @@ npx skills add tr-yasuda/everything-codex -g -a claude-code --copy
 
 ## 共通ルールを取り込む
 
-共通ルールの正本は [`.codex/AGENTS.md`](../.codex/AGENTS.md) です。
+共通ルールの正本は [`codex/AGENTS.md`](../codex/AGENTS.md) です。
 このファイルの内容を、利用する製品の個人用ルールに取り込みます。
 
 | 製品 | 個人用ルールの配置先 |

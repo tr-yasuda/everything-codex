@@ -22,3 +22,9 @@ chdir
 realpath
 nonblock
 unslop
+deepseek
+DeepSeek
+opencode
+OpenCode
+OPENCODE
+mimo

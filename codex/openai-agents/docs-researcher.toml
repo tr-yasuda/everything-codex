@@ -2,6 +2,7 @@ name = "docs-researcher"
 description = "公式ドキュメントやリリースノートを調査し、仕様を確認する。"
 
 model = "gpt-6-luna"
+model_reasoning_effort = "low"
 
 sandbox_mode = "read-only"
 

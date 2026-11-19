@@ -15,8 +15,8 @@ skill の導入と最初の使い方は、[README](README.md#使い始める) �
 | `docs/installation.md` | Codex と Claude Code への導入・更新・読み込み確認 |
 | `docs/skills.md` | 各 skill の用途・呼び出し方・変更や投稿の範囲 |
 | `docs/harness-compatibility.md` | Codex と Claude Code の対応状況・根拠・未確認範囲 |
-| `.codex/config.toml`、`.codex/agents/` | Codex とエージェントの設定 |
-| `AGENTS.md`、`.codex/AGENTS.md` | 作業時の指示 |
+| `codex/config.toml`、`codex/openai-agents/` | Codex とエージェントの設定 |
+| `AGENTS.md`、`codex/AGENTS.md` | 作業時の指示 |
 | `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
 | `.github/PULL_REQUEST_TEMPLATE.md` | PR の記載項目と確認事項 |
 
@@ -86,8 +86,11 @@ skill の追加・削除・改名では、skill 一覧と関連する使用例�
 
 ## Codex のモデル設定
 
-- 通常の作業と、調査・実装・レビュー用のエージェント: `gpt-6.1-sol`
-- 文書調査用のエージェント: `gpt-6-luna`
+- メインモデル: `gpt-6.1-sol`
+- 明示していない subagent の既定モデルと `/review`: `gpt-6.2-sol`
+- `explorer`・`implementer`: `gpt-6.1-terra`
+- `docs-researcher`: `gpt-6-luna`
+- `docs-researcher` の推論量は `low` に固定する
 
 CLI の全画面表示では、回答を追いやすくするため、完了した処理の詳細を折り畳みます。
 `tui.collapse_turn_details = true` で設定します。
@@ -110,7 +113,7 @@ OpenCode Go 用の `go.config.toml` では、既定の推論量を `high` にし
 `glm-5.3` と DeepSeek V4.1 Flash は `medium` を受け付けません。
 これらのモデルへ `medium` を指定すると、リクエストは失敗する可能性があります。
 
-選択基準は [`.codex/config.toml`](.codex/config.toml) の `developer_instructions` に定義します。
+選択基準は [`codex/config.toml`](codex/config.toml) の `developer_instructions` に定義します。
 専用エージェントの指示は共通指示を置き換えるため、依頼文にも選択基準と 3 段階の制約を記載し、
 再委譲する場合も同じ規約を引き継ぐよう指示します。
 
@@ -138,7 +141,7 @@ CI も同じ pnpm scripts を使います。
 ツールのバージョンは実行先の worktree の設定で選ばれるため、cache や shims の分離は不要です。
 `mise run` は必要なツールを選んでタスクを実行するため、シェルの有効化も不要です。
 
-Linux の標準構成で mise と pnpm に必要な書き込み先は、[`.codex/config.toml`](.codex/config.toml) で許可します。
+Linux の標準構成で mise と pnpm に必要な書き込み先は、[`codex/config.toml`](codex/config.toml) で許可します。
 
 | ディレクトリ | 用途 |
 | --- | --- |

@@ -8,8 +8,8 @@
 - `skills/<name>/SKILL.md`: skill の手順を定義する。
 - `skills/<name>/agents/openai.yaml`: skill の表示情報と呼び出し設定を定義する。
 - `skills/<name>/references/`: skill の補足資料を配置する。
-- `.codex/config.toml`、`.codex/agents/`: Codex とエージェントを設定する。
-- `.codex/AGENTS.md`: `.codex/` 内の変更に適用する指示を記載する。
+- `codex/config.toml`、`codex/openai-agents/`: Codex とエージェントを設定する。
+- `codex/AGENTS.md`: `codex/` 内の変更に適用する指示を記載する。
 - `.github/workflows/`: lint と Pinact のワークフローを配置する。
 - `.github/PULL_REQUEST_TEMPLATE.md`: PR の確認項目を定義する。
 - ルートの `package.json`、`cspell.json`、`.markdownlint.json`、Textlint 設定ファイル: 文書の検証方法を設定する。
@@ -26,7 +26,7 @@ PR を作成する前に、同ガイドの 3 つの lint を実行してくだ�
   対象パスに `AGENTS.md` があれば、その指示にも従う。
 - `.editorconfig` に従い、UTF-8、LF、末尾改行、2 スペースのインデントを使用する。
   Markdown の各行は 120 文字以内に収める。
-- `.codex/config.toml` の既存キーを変更するときは値を書き換え、同じキーを重複して追加しない。
+- `codex/config.toml` の既存キーを変更するときは値を書き換え、同じキーを重複して追加しない。
 - skill のディレクトリ名には小文字の kebab-case を使用する。
   `SKILL.md`、`agents/openai.yaml`、README の名称と説明を揃える。
 - skill、コマンド、ワークフローを変更したら、関連文書も更新する。
