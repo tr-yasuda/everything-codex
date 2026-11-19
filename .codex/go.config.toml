@@ -1,10 +1,10 @@
 model = "glm-5.3"
 model_provider = "opencode-go"
-model_catalog_json = "go-models.json"
-model_reasoning_effort = "medium"
+model_reasoning_effort = "high"
 
 [agents]
 default_subagent_model = "glm-5.3"
+default_subagent_reasoning_effort = "high"
 
 [agents.explorer]
 config_file = "go-agents/explorer.toml"

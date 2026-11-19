@@ -106,6 +106,10 @@ subagent を起動するときは、役割を目安に依頼の難しさで推�
 専用エージェントに `model_reasoning_effort` を固定すると起動時の指定より優先されるため、固定しません。
 優先順位の詳細は、[Codex の subagent 設定](https://learn.chatgpt.com/docs/agent-configuration/subagents#custom-agents) を参照してください。
 
+OpenCode Go 用の `go.config.toml` では、既定の推論量を `high` にします。
+`glm-5.3` と DeepSeek V4.1 Flash は `medium` を受け付けません。
+これらのモデルへ `medium` を指定すると、リクエストは失敗する可能性があります。
+
 選択基準は [`.codex/config.toml`](.codex/config.toml) の `developer_instructions` に定義します。
 専用エージェントの指示は共通指示を置き換えるため、依頼文にも選択基準と 3 段階の制約を記載し、
 再委譲する場合も同じ規約を引き継ぐよう指示します。
