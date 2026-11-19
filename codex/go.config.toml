@@ -18,6 +18,9 @@ config_file = "go-agents/implementer.toml"
 [agents.reviewer]
 config_file = "go-agents/reviewer.toml"
 
+[agents.verifier]
+config_file = "go-agents/verifier.toml"
+
 [model_providers.opencode-go]
 name = "OpenCode Go"
 base_url = "https://opencode.ai/inference/go/openai/v1"

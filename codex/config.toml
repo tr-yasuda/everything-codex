@@ -58,6 +58,10 @@ config_file = "openai-agents/implementer.toml"
 description = "変更の正しさ、回帰、テスト不足を確認する。"
 config_file = "openai-agents/reviewer.toml"
 
+[agents.verifier]
+description = "実際に動かして、要求した振る舞いが成立するかを確認する。"
+config_file = "openai-agents/verifier.toml"
+
 [agents.docs_researcher]
 description = "公式ドキュメントやリリースノートを調査する。"
 config_file = "openai-agents/docs-researcher.toml"
