@@ -1,0 +1,25 @@
+model = "glm-5.3"
+model_provider = "opencode-go"
+model_catalog_json = "go-models.json"
+model_reasoning_effort = "medium"
+
+[agents]
+default_subagent_model = "glm-5.3"
+
+[agents.explorer]
+config_file = "go-agents/explorer.toml"
+
+[agents.docs_researcher]
+config_file = "go-agents/docs-researcher.toml"
+
+[agents.implementer]
+config_file = "go-agents/implementer.toml"
+
+[agents.reviewer]
+config_file = "go-agents/reviewer.toml"
+
+[model_providers.opencode-go]
+name = "OpenCode Go"
+base_url = "https://opencode.ai/inference/go/openai/v1"
+env_key = "OPENCODE_API_KEY"
+wire_api = "responses"

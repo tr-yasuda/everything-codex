@@ -1,7 +1,7 @@
 name = "implementer"
-description = "指定された変更を実装し、関連する検証まで完了する。"
+description = "指定された実装タスクを完了する。"
 
-model = "gpt-6.2-sol"
+model = "gpt-6.1-sol"
 
 sandbox_mode = "workspace-write"
 
