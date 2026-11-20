@@ -1,7 +1,7 @@
 interface:
   display_name: "make-it-clear"
-  short_description: "大げさな表現や読みにくい構成を直し、原文との照合で意味を保つ"
-  default_prompt: "$make-it-clear を使い、対象の文章の表現と構成を読みやすく直し、原文との照合で情報の欠落や意味の変更がないか確認してください。"
+  short_description: "判断基準・責任・条件・挙動を再構成し、読み手が必要とする位置へ置く"
+  default_prompt: "$make-it-clear を使い、対象の文章から判断基準・責任・条件・挙動を再構成し、読み手が必要とする位置へ配置してください。原文との照合で情報の欠落や意味の変更がないか確認してください。"
 
 policy:
   allow_implicit_invocation: false
