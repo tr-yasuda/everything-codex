@@ -22,6 +22,9 @@ run = "pnpm test:save-why"
 [tasks."test:claude-agents"]
 run = "pnpm test:claude-agents"
 
+[tasks."test:self-drive"]
+run = "pnpm test:self-drive"
+
 [tasks."test:shared-text"]
 run = "pnpm test:shared-text"
 

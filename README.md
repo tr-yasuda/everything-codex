@@ -33,10 +33,11 @@ Claude Code 用の subagent 定義は、[導入ガイド](docs/installation.md#c
 ### 複数タスクを自走させたい
 
 ```text
-$self-drive Issue #12〜#14 を、ローカル修正と検証まで進めて。
+$self-drive Issue #12〜#14 を、Draft PR まで進めて。
 ```
 
-タスクを選び、独立した作業を分担し、既存 skill の品質・承認条件を守りながら進めます。
+タスクを選び、独立した作業を worktree で分担し、既存 skill の品質・承認条件を守りながら進めます。
+リポジトリ外のラン記録に進捗と判断材料を残し、検証が通ったタスクは Draft PR を作成します。
 人の判断が必要な地点では、判断材料を示して必ず止まります。
 回答後に元の依頼の範囲・権限・承認条件が変わらなければ、続きを再開します。
 [self-drive の用途と実行範囲](docs/skills.md#self-drive)

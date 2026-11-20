@@ -1,7 +1,7 @@
 interface:
   display_name: "self-drive"
-  short_description: "複数タスクを選択し、既存 skill の品質・承認条件を守りながら自走する"
-  default_prompt: "$self-drive を使って、指定した複数タスクを選択・分担し、人間の判断が必要な地点で止まりながら進めてください。"
+  short_description: "複数タスクを worktree で分担し、Draft PR の作成まで自走する"
+  default_prompt: "$self-drive を使って、指定した複数タスクを worktree で分担し、リポジトリ外のラン記録を保存しながら Draft PR を作成してください。"
 
 policy:
   allow_implicit_invocation: false

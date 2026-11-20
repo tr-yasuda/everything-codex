@@ -42,5 +42,8 @@ jobs:
       - name: test claude agents
         run: pnpm test:claude-agents
 
+      - name: test self-drive
+        run: pnpm test:self-drive
+
       - name: test shared text
         run: pnpm test:shared-text

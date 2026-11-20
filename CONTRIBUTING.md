@@ -140,6 +140,7 @@ mise run lint:spell  # スペルと登録語
 mise run lint:text   # 日本語の文章
 mise run test:save-why # 判断の保存処理
 mise run test:claude-agents # Claude 用 subagent と skill の接続
+mise run test:self-drive # self-drive の並列・再開・Draft PR 契約
 mise run test:shared-text # 共通の条件説明・定義、起動設定、skill 間の参照先
 ```
 
