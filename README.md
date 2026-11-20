@@ -30,6 +30,17 @@ $coordinator この機能追加を、独立して進められる作業に分け�
 Claude Code 用の subagent 定義は、[導入ガイド](docs/installation.md#claude-code-の場合) を参照してください。
 [coordinator の用途と実行範囲](docs/skills.md#coordinator)
 
+### 複数タスクを自走させたい
+
+```text
+$self-drive Issue #12〜#14 を、ローカル修正と検証まで進めて。
+```
+
+タスクを選び、独立した作業を分担し、既存 skill の品質・承認条件を守りながら進めます。
+人の判断が必要な地点では、判断材料を示して必ず止まります。
+回答後に元の依頼の範囲・権限・承認条件が変わらなければ、続きを再開します。
+[self-drive の用途と実行範囲](docs/skills.md#self-drive)
+
 ### 任せた作業の状況が分からなくなった
 
 ```text
