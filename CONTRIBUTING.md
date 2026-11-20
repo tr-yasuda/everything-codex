@@ -90,7 +90,7 @@ skill の追加・削除・改名では、skill 一覧と関連する使用例�
 - 明示していない subagent の既定モデルと `/review`: `gpt-6.2-sol`
 - `explorer`・`implementer`: `gpt-6.1-terra`
 - `docs-researcher`: `gpt-6-luna`
-- `docs-researcher` の推論量は `low` に固定する
+- `docs-researcher` の推論量は `high` に固定する
 
 CLI の全画面表示では、回答を追いやすくするため、完了した処理の詳細を折り畳みます。
 `tui.collapse_turn_details = true` で設定します。
@@ -108,12 +108,13 @@ subagent を起動するときは、役割を目安に依頼の難しさで推�
 起動時の指定を省略した場合は、既定値の `medium` を使います。
 `docs-researcher` 以外の専用エージェントには `model_reasoning_effort` を固定しません。
 固定すると起動時の指定より優先されるためです。
+`docs-researcher` は一次資料の確認と適用条件の整理を重視するため、`high` に固定します。
 優先順位の詳細は、[Codex の subagent 設定](https://learn.chatgpt.com/docs/agent-configuration/subagents#custom-agents) を参照してください。
 
 OpenCode Go 用の `go.config.toml` では、モデル別の推論量規約を使います。
 `glm-5.3` と DeepSeek V4.1 Flash は `low` または `high` だけを受け付け、
 通常の難易度には `high` を使います。Go 用の agent にはこの 2 モデルだけを使い、
-subagent の既定の推論量を `high` にします。文書調査用の agent は `low` に固定します。
+subagent の既定の推論量を `high` にします。文書調査用の agent は `high` に固定します。
 
 OpenAI 用の選択基準は [`codex/config.toml`](codex/config.toml) の `developer_instructions` に定義します。
 OpenCode Go 用の選択基準は [`codex/go.config.toml`](codex/go.config.toml) に定義します。
