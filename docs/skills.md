@@ -19,7 +19,7 @@
 - commit・push や外部への投稿は、各項目に記載した範囲で行う。
   それ以外の実装・修正では、別途依頼されない限り commit・push しない。
 - GitHub を使う skill には、対象リポジトリへの認証と操作に必要な権限が要る。
-- Claude Code では、`research`・`multi-scan` は対応する subagent 上で実行する。
+- Claude Code では、`research` は対応する subagent 上で実行する。
   対応する subagent を導入していない場合は、[導入ガイド](installation.md#claude-code-の場合) を確認する。
 
 実行環境ごとの前提、代替手順、未確認の範囲は、[Codex と Claude Code の対応状況](harness-compatibility.md) を参照してください。
