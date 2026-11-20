@@ -8,8 +8,10 @@ skill は `skills` CLI のコピー方式で導入します。
 モデル・権限・専用エージェントの設定は、利用者が選びます。
 
 `codex/config.toml` と `codex/openai-agents/` は Codex 用で、skill のコピーだけでは導入されません。
+`claude/agents/` は Claude Code 用で、skill のコピーだけでは導入されません。
 Claude Code では、その製品の設定と利用可能なツール・subagent を使います。
-同名の agent や同じ権限があることを前提にせず、必要な手順を実行できるか確認してください。
+このリポジトリの agent を導入した場合も、同名の agent や同じ権限があることを前提にせず、
+必要な手順を実行できるか確認してください。
 前提と未確認の範囲は、[Codex と Claude Code の対応状況](harness-compatibility.md) を参照してください。
 
 ## 共通の準備
@@ -93,6 +95,41 @@ npx skills add tr-yasuda/everything-codex -g -a claude-code --copy
 `-g` は全プロジェクトでの利用、`-a claude-code` は Claude Code の指定です。
 `--copy` により、各 skill を `~/.claude/skills/<name>/` へコピーします。
 
+### subagent を導入する
+
+Claude Code 用の subagent 定義は、このリポジトリの `claude/agents/` にあります。
+リポジトリをまだ取得していない場合は、次のコマンドで取得して移動します。
+
+```bash
+git clone https://github.com/tr-yasuda/everything-codex.git
+cd everything-codex
+```
+
+全プロジェクトで使う場合は `~/.claude/agents/` へコピーします。
+1 つのプロジェクトだけなら、そのプロジェクトの `.claude/agents/` へコピーします。
+
+```bash
+mkdir -p ~/.claude/agents
+cp claude/agents/*.md ~/.claude/agents/
+```
+
+既存の同名ファイルがある場合は、上書き前に差分を確認し、必要な変更を手元に残してください。
+`~/.claude/agents/` を新しく作った場合は、Claude Code を再起動します。
+
+subagent と skill は、次の組み合わせで接続します。
+該当する skill を導入せずに呼び出すと、期待した agent で実行されません。
+
+| skill | 接続 |
+| --- | --- |
+| `research` | `docs-researcher` 上で実行する |
+| `tdd` | `implementer` が事前読み込みする |
+
+`multi-scan` は元の会話で実行し、Phase 4 で独立した再確認が必要な場合は `reviewer` に個別の確認を委譲します。
+`prove-it` は差分を直す役割も持つため、subagent 上ではなく元の会話で実行します。
+
+`explorer` は調査用、`implementer` は実装用、`reviewer` はレビュー用です。
+`verifier` は動作確認用として、Claude Code から直接指定できます。
+
 ### 読み込みを確認する
 
 ```bash
@@ -126,6 +163,7 @@ npx skills add tr-yasuda/everything-codex -g -a claude-code --copy
 
 選んだ skill と同名の導入済み skill は上書きされるため、確定前に上書き対象を確認してください。
 両方を使う場合は、それぞれで更新します。
+Claude 用 subagent を更新するときは、`claude/agents/` から導入先へ同じ手順でコピーします。
 更新後は、利用する製品の「読み込みを確認する」手順を実行します。
 
 ### 名前が変わった skill を入れ替える

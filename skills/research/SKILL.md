@@ -1,6 +1,8 @@
 ---
 name: research
 description: 外部情報の調査と事実確認を行い、根拠と適用条件を確かめる skill。外部情報の裏づけが結論に必要なときに使用する。技術分野に限定しない。
+context: fork
+agent: docs-researcher
 ---
 
 # Research

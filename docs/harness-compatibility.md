@@ -30,8 +30,17 @@
 起動制御の根拠は [Codex の skill 設定][codex-skills] と [Claude Code の skill 設定][claude-skills] です。
 
 このリポジトリの `codex/config.toml` と `codex/openai-agents/` は、skill の導入だけではコピーされません。
+`claude/agents/` も、skill の導入だけではコピーされません。
 Claude Code は [JSON の設定ファイル][claude-settings] と、[独自の subagent 定義][claude-agents] を使います。
-`explorer`・`implementer`・`reviewer`・`docs_researcher` と同名の agent が利用できることを前提にしません。
+このリポジトリの定義を導入した場合は、次の agent を利用できます。
+`docs-researcher`・`explorer`・`implementer`・`reviewer`・`verifier`。
+導入していない環境では、これらを前提にしません。
+
+Claude Code では、skill の `context: fork` と `agent` で独立した subagent 上で skill を実行できます。
+subagent の `skills` は、agent の起動時に skill 内容を読み込みます。
+このリポジトリでは、`research` を skill から agent へ接続します。
+`tdd` を `implementer` に事前読み込みします。同じ skill を両方向に接続すると内容が二重になるため避けます。
+`multi-scan` は元の会話で実行し、Phase 4 で独立した再確認が必要な場合は `reviewer` に個別の確認を委譲します。
 
 Codex の [subagent 設定][codex-agents] にも、有効・無効、同時起動数、モデルなどの条件があります。
 モデルや推論量が違うことだけでは問題と判定せず、必要な作業と制約を満たせるかを確かめます。
