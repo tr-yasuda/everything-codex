@@ -51,6 +51,19 @@ Codex CLI と Claude Code の標準機能を使い、Subagent を起動できな
 
 **承認：** 再委譲を含め、元の依頼の作業範囲・権限と、既存 skill のユーザー承認条件を引き継ぎます。
 
+### self-drive
+
+指定した複数タスクを選択し、ローカル修正と検証まで自走します。[SKILL.md][self-drive]
+
+**起動：** 手動で `$self-drive <目標またはタスク参照>` と指定します。
+
+**実行範囲：** 依頼文・Issue・Jira などユーザーが指定した現在のタスク情報を確認し、独立した作業を coordinator で分担します。
+対象 profile が定義する reasoning effort に従い、未定義・未対応・あいまいな場合は確認して止まります。
+既存 skill の品質・検証・承認条件を変更しません。
+ユーザーの判断への回答後に元の依頼の範囲・権限・承認条件が変わらなければ、同じ依頼を再開します。
+
+**承認：** 判断が必要な仕様、外部への投稿、Issue・Jira の状態変更、破壊的・不可逆な操作では止まります。
+
 ## 楽をする
 
 ### create-pr
@@ -379,6 +392,7 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [fix-ci]: ../skills/fix-ci/SKILL.md
 [fix-conflicts]: ../skills/fix-conflicts/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md
+[self-drive]: ../skills/self-drive/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
 [define]: ../skills/define/SKILL.md
 [design-interface]: ../skills/design-interface/SKILL.md
