@@ -15,6 +15,8 @@ disable-model-invocation: true
    Version の指定があれば、その指定を優先する。
    Major update、破壊的変更の兆候、要件変更がある場合は、公式情報を確認する。
    判断材料が不足する場合も、公式の release notes や migration guide などを確認する。
+   複数の依存関係を更新するときは、公式情報の調査だけ読み取り専用の subagent に並列化してよい。
+   manifest・lockfile の更新、追従修正、検証は1人が直列に行う。
 4. Repository の標準的な方法で更新し、manifest と lockfile の整合性を保つ。
 5. Breaking change や runtime 要件の変更があっても、必要なコード、設定、テストを追従修正する。
 6. 関連する test、型チェック、lint、build を実行する。
