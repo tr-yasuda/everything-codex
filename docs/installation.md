@@ -77,15 +77,23 @@ $define 作りたいもの
 ### OpenCode Go の profile を使う
 
 OpenCode Go の profile は skill の導入とは別に設定します。
+この手順はリポジトリのルートで実行します。
+リポジトリをまだ取得していない場合は、次のコマンドで取得して移動します。
+
+```bash
+git clone https://github.com/tr-yasuda/everything-codex.git
+cd everything-codex
+```
+
 `$CODEX_HOME` に profile とモデル metadata、agent 定義を配置します。
 同名ファイルがある場合は上書きせず、差分を確認して必要な変更だけを取り込んでください。
 
 ```bash
 CODEX_HOME="${CODEX_HOME:-$HOME/.codex}"
 mkdir -p "$CODEX_HOME/go-agents"
-cp codex/go.config.toml "$CODEX_HOME/go.config.toml"
-cp codex/go-models.json "$CODEX_HOME/go-models.json"
-cp codex/go-agents/*.toml "$CODEX_HOME/go-agents/"
+cp -n codex/go.config.toml "$CODEX_HOME/go.config.toml"
+cp -n codex/go-models.json "$CODEX_HOME/go-models.json"
+cp -n codex/go-agents/*.toml "$CODEX_HOME/go-agents/"
 ```
 
 `OPENCODE_API_KEY` を環境変数に設定してから、次のコマンドで起動します。
