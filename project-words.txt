@@ -28,3 +28,7 @@ opencode
 OpenCode
 OPENCODE
 mimo
+applypatch
+scanability
+Lline
+Ccolumn
