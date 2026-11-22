@@ -16,9 +16,6 @@ run = "pnpm lint:spell"
 [tasks."lint:text"]
 run = "pnpm lint:text"
 
-[tasks."test:save-why"]
-run = "pnpm test:save-why"
-
 [tasks."test:claude-agents"]
 run = "pnpm test:claude-agents"
 

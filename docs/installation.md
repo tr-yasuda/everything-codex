@@ -19,7 +19,6 @@ Claude Code では、その製品の設定と利用可能なツール・subagent
 Node.js 24、Git と、利用する Codex または Claude Code を用意します。
 `npx` で CLI を取得するため、インターネット接続が必要です。
 GitHub を操作する skill には、GitHub CLI の認証も必要です。
-`save-why` を使う場合は、`flock` も用意します。
 
 導入できる skill を確認します。
 
@@ -204,7 +203,6 @@ Claude 用 subagent を更新するときは、`claude/agents/` から導入先�
 | --- | --- |
 | `clarify-code` | `unslop` |
 | `critical-thinking` | `check-twice` |
-| `record-decision` | `save-why` |
 | `analyze-impact` | `what-breaks` |
 | `debug-failure` | `root-cause` |
 | `verify-change` | `prove-it` |
@@ -217,9 +215,6 @@ Claude 用 subagent を更新するときは、`claude/agents/` から導入先�
 3. 導入先から、旧名の skill のディレクトリを取り除く。
 
 旧名の skill を残すと、同じ内容の skill が 2 つ読み込まれます。
-
-`record-decision` で保存した判断は、`save-why` を初めて使うときに新しい保存先へ移ります。
-移したあとに旧名の `record-decision` で判断を保存すると、新旧の保存先に判断が分かれ、`save-why` は読み書きせずに止まります。
 
 ## 共通ルールを取り込む
 
