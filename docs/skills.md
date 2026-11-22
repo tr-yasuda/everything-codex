@@ -229,20 +229,6 @@ commit・push・公開は行いません。
 
 **承認：** 骨組みと各節の内容は、合意してから保存します。骨組みや合意済みの内容を変える場合も、先に合意を得ます。
 
-### save-why
-
-依頼された判断を本人用に保存し、過去の判断を現在の状況と照合して参照します。[SKILL.md][save-why]
-
-**起動：** 自動。判断の保存・訂正・撤回、過去の判断の参照を頼まれたときに使います。
-
-**実行範囲：** 記録はリポジトリ外の本人用領域に置き、同じ PC・同じリポジトリの worktree 間で参照します。
-別の clone は別の記録として扱います。PC 間の同期、外部送信、共有文書への転載は行いません。
-参照だけの依頼では記録を変更しません。旧名の保存先がある場合は、初回の実行で移行します。
-
-**承認：** 保存・訂正・撤回には、それを求める明示的な依頼が必要です。参照の依頼を保存の許可とは扱いません。
-
-**動作条件：** Node.js 24、Git、`flock` を使います。並列更新の競合を検出した場合は、最新の記録を確認します。
-
 ### catch-up
 
 何が変わり、何を判断すべきかを、判断材料とともに伝えます。[SKILL.md][catch-up]
@@ -412,7 +398,6 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [define]: ../skills/define/SKILL.md
 [design-interface]: ../skills/design-interface/SKILL.md
 [write-spec]: ../skills/write-spec/SKILL.md
-[save-why]: ../skills/save-why/SKILL.md
 [catch-up]: ../skills/catch-up/SKILL.md
 [how-and-why]: ../skills/how-and-why/SKILL.md
 [unslop]: ../skills/unslop/SKILL.md
