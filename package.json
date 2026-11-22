@@ -3,8 +3,6 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test:save-why":
-      "node --test skills/save-why/scripts/store.test.mjs",
     "test:claude-agents":
       "node --test scripts/claude-agents.test.mjs",
     "test:self-drive": "node --test scripts/self-drive.test.mjs",
