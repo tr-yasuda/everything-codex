@@ -71,7 +71,6 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [never-again] | 履歴・レビュー・検査手段が必要。確認した繰り返しだけを対象にして防ぎ方を合意する |
 | [prove-it] | reviewer が使えなければ親が点検する。verifier の代替は独立検証に数えない |
 | [multi-scan] | 8 観点を確認し、リスクから再確認の要否を判断する。必要な独立した再確認ができなければ一部未完了とする |
-| [save-why] | Node.js 24・Git・`flock` と保存先への権限が必要。拒否を迂回して別の場所に保存しない |
 | [create-pr] | GitHub 操作と検証が必要。環境で検証できない範囲を明記し、チェック欄は空にする |
 | [fix-ci] | GitHub のログ取得・修正・検証・push が必要。外部環境が原因なら原因を報告する |
 | [fix-conflicts] | Git の取得・merge・検証・push が必要。検証不可なら代替検証を行う |
@@ -108,7 +107,6 @@ subagent の代替は、元の手順が許す範囲で行います。
 | subagent を使えない・結果が返らない | 親が確認する。必要な独立した再確認ができなければ一部未完了と報告する |
 | 必要なファイルや資料を読めない | 確認できなかった範囲と理由を示し、指摘なしと確認完了を区別する |
 | 検証コマンドやネットワークを使えない | 各 skill の代替・停止条件に従い、未検証の範囲を報告する |
-| 保存先への権限がない | `save-why` が別の場所へ保存せず、承認を得られなければ読み書きを終える |
 
 新しい確認結果を追加するときは、ハーネスとバージョン、利用可能な機能と権限、
 依頼と期待する結果、実際に観察した結果を記載します。
@@ -136,7 +134,6 @@ subagent の代替は、元の手順が許す範囲で行います。
 [never-again]: ../skills/never-again/SKILL.md
 [prove-it]: ../skills/prove-it/SKILL.md
 [multi-scan]: ../skills/multi-scan/SKILL.md
-[save-why]: ../skills/save-why/SKILL.md
 [create-pr]: ../skills/create-pr/SKILL.md
 [fix-ci]: ../skills/fix-ci/SKILL.md
 [fix-conflicts]: ../skills/fix-conflicts/SKILL.md

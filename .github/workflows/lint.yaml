@@ -36,9 +36,6 @@ jobs:
       - name: lint text
         run: pnpm lint:text
 
-      - name: test save-why
-        run: pnpm test:save-why
-
       - name: test claude agents
         run: pnpm test:claude-agents
 
