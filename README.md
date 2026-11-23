@@ -93,6 +93,7 @@ $fix-pr pr#123
 
 ほかの skill も、使いたいディレクトリを同じように追加できます。`babysit` は、`fix-ci`・`fix-pr`・`fix-conflicts` と一緒に追加します。
 自動起動する skill は、導入後、該当する場面でエージェントが使います。
+`define` で合意した仕様を実装まで進める場合は、`what-breaks`・`tdd`・`prove-it` も追加します。
 
 ## 目的に合う文書へ進む
 
