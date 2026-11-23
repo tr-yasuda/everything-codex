@@ -55,7 +55,7 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 
 | skill | 確認した前提と扱い |
 | --- | --- |
-| [define] | 特定の agent・モデルを要求しない。困りごとと仕様の合意まで行う |
+| [define] | 特定の agent・モデルを要求しない。困りごとと仕様の合意まで行う。合意後の実装は what-breaks → tdd → prove-it に引き継ぎ、各 skill の前提に従う |
 | [design-interface] | 特定の agent を要求しない。未合意の契約に関わる実装は始めない |
 | [write-spec] | 特定の agent を要求しない。合意前は仕様を保存しない |
 | [catch-up] | 特定の agent を要求しない。観察できた状態と判断待ちを伝える |
