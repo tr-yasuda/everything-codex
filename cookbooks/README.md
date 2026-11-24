@@ -15,7 +15,6 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [大きめの仕様追加][large] | `$align → $write-spec` → 合意して実装を依頼 | `$align` まず認識を合わせたい |
 | [技術の採用判断][research] | 調査を依頼 → 採用判断 | X を採用すべきか公式情報を調べて判断材料を出して |
 | [変更を PR にして、マージまで任せる][pr] | `$multi-scan` → 必要な修正を依頼 → `$babysit` | `$multi-scan` この変更をレビューして |
-| [指摘した PR の再確認][recheck] | `$recheck-pr` → 返信案を確認・承認 | `$recheck-pr pr#123` |
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
 | [PR の対応をまとめて任せる][babysit] | `$babysit` → 報告を確認、返信案を承認 | `$babysit pr#123` |
 | [文章を読み手向けに直す][text] | `$make-it-clear` → 必要なら反映を依頼 | `$make-it-clear pr#123` |
@@ -30,7 +29,6 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 [pr]: review-and-pr.md
 [maintain]: maintain-pr.md
 [babysit]: maintain-pr.md#まとめて任せたい
-[recheck]: recheck-pr.md
 [text]: rewrite-for-reader.md
 [docs]: sync-docs.md
 [status]: catch-up.md
