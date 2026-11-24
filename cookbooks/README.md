@@ -11,8 +11,8 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | --- | --- | --- |
 | [小さいバグ修正][bugs] | 修正を依頼 | この不具合を直して。既存仕様は変えないで |
 | [原因不明の不具合][bugs] | 原因調査と修正を依頼 | このエラーの原因を特定して直して |
-| [新機能の追加][feature] | `$define` → 合意して実装を依頼 | `$define` この機能の欲しい状態を整理して |
-| [大きめの仕様追加][large] | `$define → $write-spec → $design-interface` → 合意 | `$define` まず仕様を固めたい |
+| [新機能の追加][feature] | `$align` → 認識を合わせて実装を依頼 | `$align` この機能の困りごととゴールを確認して |
+| [大きめの仕様追加][large] | `$align → $write-spec → $design-interface` → 合意 | `$align` まず認識を合わせたい |
 | [技術の採用判断][research] | 調査を依頼 → 採用判断 | X を採用すべきか公式情報を調べて判断材料を出して |
 | [変更を PR にする][pr] | `$multi-scan` → 必要な修正を依頼 → `$create-pr` | `$multi-scan` この変更をレビューして |
 | [PR のレビュー対応][maintain] | `$fix-pr` → 返信案を確認・承認 | `$fix-pr pr#123` |
@@ -20,7 +20,6 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
 | [競合を解消する][maintain] | `$fix-conflicts` | `$fix-conflicts pr#123` |
 | [PR の対応をまとめて任せる][babysit] | `$babysit` → 報告を確認、返信案を承認 | `$babysit pr#123` |
-| [コードを理解・整理][code] | `$how-and-why` → 必要なら `$unslop` | `$how-and-why` この差分の流れと理由を説明して |
 | [文章を読み手向けに直す][text] | `$make-it-clear` → 必要なら反映を依頼 | `$make-it-clear pr#123` |
 | [同じ指摘の再発を防ぐ][prevention] | `$never-again` → 防ぎ方に合意 | `$never-again` このミスを仕組みで防いで |
 | [実装と文書を揃える][docs] | 文書の更新を依頼 | 今回の変更で古くなった説明や使用例を揃えて |
@@ -35,7 +34,6 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 [maintain]: maintain-pr.md
 [babysit]: maintain-pr.md#まとめて任せたい
 [recheck]: recheck-pr.md
-[code]: understand-code.md
 [text]: rewrite-for-reader.md
 [prevention]: prevent-recurrence.md
 [docs]: sync-docs.md
@@ -49,8 +47,8 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 機能、ライブラリ名、ファイルのパス、PR 番号は、自分の対象に置き換えてください。
 各レシピの題材や、途中で返る提案・指摘は、使い方を示す例です。
 
-表の `$define` などは、手動で呼ぶ skill です。続く文章と一緒に送ってください。
-Codex の表記で載せているため、Claude Code では `/define` のように先頭を置き換えます。
+表の `$align` などは、手動で呼ぶ skill です。続く文章と一緒に送ってください。
+Codex の表記で載せているため、Claude Code では `/align` のように先頭を置き換えます。
 
 通常の実装や修正は、自然な言葉で頼めます。
 
