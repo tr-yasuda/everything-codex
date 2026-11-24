@@ -7,7 +7,6 @@
 ## 確認範囲
 
 2026-11-18 に、`6ab7a83` 時点の全 23 skill の手順・参照資料・起動設定と、導入ガイド・Codex 用設定を確認しました。
-その後に追加された `coordinator` は、今回の調査に含みません。
 以下は、手順と公式仕様を照合した結果です。両ハーネスで全 skill の動作が一致することを保証するものではありません。
 
 - 手順上の不足を確認: `multi-scan` の、同時起動数の不足と subagent の起動失敗・結果未取得時の扱い。
@@ -25,7 +24,7 @@
 | モデル・実行権限 | Codex の設定とセッションに適用される制約 | Claude Code の設定とセッションに適用される制約 |
 | 専用 agent | `codex/openai-agents/` などの定義 | `.claude/agents/` などの定義 |
 
-全 23 skill で、手動・自動の起動指定は両方の記述が一致しています。
+2026-11-18 時点の全 23 skill で、手動・自動の起動指定は両方の記述が一致しています。
 これは設定の照合結果で、実際の自動選択や読み込みを実行確認した結果ではありません。
 起動制御の根拠は [Codex の skill 設定][codex-skills] と [Claude Code の skill 設定][claude-skills] です。
 
@@ -71,12 +70,9 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [never-again] | 履歴・レビュー・検査手段が必要。確認した繰り返しだけを対象にして防ぎ方を合意する |
 | [prove-it] | reviewer が使えなければ親が点検する。verifier の代替は独立検証に数えない |
 | [multi-scan] | 8 観点を確認し、リスクから再確認の要否を判断する。必要な独立した再確認ができなければ一部未完了とする |
-| [create-pr] | GitHub 操作と検証が必要。環境で検証できない範囲を明記し、チェック欄は空にする |
 | [fix-ci] | GitHub のログ取得・修正・検証・push が必要。外部環境が原因なら原因を報告する |
-| [fix-conflicts] | Git の取得・merge・検証・push が必要。検証不可なら代替検証を行う |
-| [fix-pr] | GitHub の取得・修正・検証・push が必要。返信は文面の承認後に送信する |
 | [recheck-pr] | GitHub の取得・操作が必要。確認や操作が失敗した場合は resolve・approve しない |
-| [babysit] | 指定の 3 skill を相対パスで読む。読めなければ始めず、取得・操作の失敗でも止まる |
+| [babysit] | GitHub 操作・検証・push と `fix-ci` の手順ファイルが必要。読めなければ始めない |
 
 subagent の代替は、元の手順が許す範囲で行います。
 親による点検・検証は、別の担当による独立した確認には数えません。
@@ -134,9 +130,6 @@ subagent の代替は、元の手順が許す範囲で行います。
 [never-again]: ../skills/never-again/SKILL.md
 [prove-it]: ../skills/prove-it/SKILL.md
 [multi-scan]: ../skills/multi-scan/SKILL.md
-[create-pr]: ../skills/create-pr/SKILL.md
 [fix-ci]: ../skills/fix-ci/SKILL.md
-[fix-conflicts]: ../skills/fix-conflicts/SKILL.md
-[fix-pr]: ../skills/fix-pr/SKILL.md
 [recheck-pr]: ../skills/recheck-pr/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md

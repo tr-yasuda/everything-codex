@@ -9,7 +9,7 @@ skill は、必要な場面でエージェントが読む、作業の進め方�
 ## 例えば、こんなとき
 
 各 skill を導入すると、次のように依頼できます。
-Claude Code では、`$fix-pr` を `/fix-pr` のように読み替えてください。
+Claude Code では、`$babysit` を `/babysit` のように読み替えてください。
 
 ### 作り始める前に、欲しいものを整理したい
 
@@ -20,27 +20,19 @@ $define タスク一覧が見づらい。未完了を見つけやすくしたい
 欲しい状態を相談し、実装前に短い仕様へまとめます。
 [相談から実装までの例](cookbooks/new-feature.md)
 
-### 独立した作業を並行して進めたい
+### PR を出して、マージされるまで任せたい
 
 ```text
-$coordinator この機能追加を、独立して進められる作業に分けて進めて。
+$babysit
 ```
 
-独立した作業を Subagent に任せ、Root Agent が依存関係を調整して成果をまとめます。
-Claude Code 用の subagent 定義は、[導入ガイド](docs/installation.md#claude-code-の場合) を参照してください。
-[coordinator の用途と実行範囲](docs/skills.md#coordinator)
-
-### 複数タスクを自走させたい
-
-```text
-$self-drive Issue #12〜#14 を、Draft PR まで進めて。
-```
-
-タスクを選び、独立した作業を worktree で分担し、既存 skill の品質・承認条件を守りながら進めます。
-リポジトリ外のラン記録に進捗と判断材料を残し、検証が通ったタスクは Draft PR を作成します。
-人の判断が必要な地点では、判断材料を示して必ず止まります。
-回答後に元の依頼の範囲・権限・承認条件が変わらなければ、続きを再開します。
-[self-drive の用途と実行範囲](docs/skills.md#self-drive)
+現在の変更を検証・commit・push し、Draft PR を作成または更新します。
+そのまま CI・競合・レビュー指摘に対応し、PR がマージされるまで監視します。
+PR 作成前にコードレビューをするときは、`$multi-scan` を先に使います。
+<!-- shared-text:babysit-approval:start -->
+返信は、ユーザーが文面を承認してから送信します。
+<!-- shared-text:babysit-approval:end -->
+[PR 対応の例](cookbooks/maintain-pr.md#まとめて任せたい)
 
 ### 任せた作業の状況が分からなくなった
 
@@ -50,18 +42,6 @@ $self-drive Issue #12〜#14 を、Draft PR まで進めて。
 
 `catch-up` が状況と判断材料を整理し、次の方針を決められるようにします。
 [判断材料を読んで返答する例](cookbooks/catch-up.md)
-
-### レビュー指摘を、そのまま全部直してよいか迷う
-
-```text
-$fix-pr pr#123
-```
-
-指摘を確かめて必要な修正を commit・push します。
-<!-- shared-text:fix-pr-approval:start -->
-返信は、ユーザーが文面を承認してから送信します。
-<!-- shared-text:fix-pr-approval:end -->
-[レビュー対応の例](cookbooks/maintain-pr.md#レビュー指摘に対応したい)
 
 ## 使い始める
 
@@ -91,7 +71,7 @@ $fix-pr pr#123
 
    自分の困りごとを続けて書く。Claude Code では、先頭を `/define` に置き換える。
 
-ほかの skill も、使いたいディレクトリを同じように追加できます。`babysit` は、`fix-ci`・`fix-pr`・`fix-conflicts` と一緒に追加します。
+ほかの skill も、使いたいディレクトリを同じように追加できます。`babysit` は、`fix-ci` と一緒に追加します。
 自動起動する skill は、導入後、該当する場面でエージェントが使います。
 `define` で合意した仕様を実装まで進める場合は、`what-breaks`・`tdd`・`prove-it` も追加します。
 

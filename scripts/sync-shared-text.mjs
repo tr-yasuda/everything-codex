@@ -4,11 +4,6 @@ import { load } from "js-yaml";
 const root = new URL("../", import.meta.url);
 const sharedText = [
   {
-    id: "fix-pr-approval",
-    source: "skills/fix-pr/SKILL.md",
-    targets: ["README.md", "docs/skills.md", "cookbooks/maintain-pr.md"],
-  },
-  {
     id: "recheck-pr-approval",
     source: "skills/recheck-pr/SKILL.md",
     targets: ["docs/skills.md", "cookbooks/recheck-pr.md"],
@@ -16,7 +11,7 @@ const sharedText = [
   {
     id: "babysit-approval",
     source: "skills/babysit/SKILL.md",
-    targets: ["docs/skills.md", "cookbooks/maintain-pr.md"],
+    targets: ["README.md", "docs/skills.md", "cookbooks/maintain-pr.md"],
   },
   {
     id: "update-deps-scope",

@@ -65,7 +65,7 @@ test("同期済みの文書に再実行しても変更しない", (t) => {
 test("README の承認条件の更新漏れを検出し、検査では文書を書き換えない", (t) => {
   const root = documentFixture(t);
   const path = join(root, "README.md");
-  const { start, text } = conditionBlock(root, "README.md", "fix-pr-approval");
+  const { start, text } = conditionBlock(root, "README.md", "babysit-approval");
   const changed = readFileSync(path, "utf8").replace(
     start + text,
     start + text + "テスト用の不一致。\n",
@@ -73,19 +73,16 @@ test("README の承認条件の更新漏れを検出し、検査では文書を�
   writeFileSync(path, changed);
   const result = runSync(root);
   assert.equal(result.status, 1, result.stderr);
-  assert.match(result.stderr, /README\.md.*fix-pr-approval/);
+  assert.match(result.stderr, /README\.md.*babysit-approval/);
   assert.equal(readFileSync(path, "utf8"), changed);
 });
 
 for (const [id, skill, targets] of [
-  ["fix-pr-approval", "fix-pr", [
-    "README.md", "docs/skills.md", "cookbooks/maintain-pr.md",
-  ]],
   ["recheck-pr-approval", "recheck-pr", [
     "docs/skills.md", "cookbooks/recheck-pr.md",
   ]],
   ["babysit-approval", "babysit", [
-    "docs/skills.md", "cookbooks/maintain-pr.md",
+    "README.md", "docs/skills.md", "cookbooks/maintain-pr.md",
   ]],
   ["update-deps-scope", "update-deps", [
     "docs/skills.md", "cookbooks/update-deps.md",
@@ -145,9 +142,9 @@ for (const [name, corrupt] of [
 ]) {
   test(`${name}では、ほかの文書も書き換えずに止まる`, (t) => {
     const root = documentFixture(t);
-    const source = join(root, "skills/fix-pr/SKILL.md");
+    const source = join(root, "skills/babysit/SKILL.md");
     const block = conditionBlock(
-      root, "skills/fix-pr/SKILL.md", "fix-pr-approval",
+      root, "skills/babysit/SKILL.md", "babysit-approval",
     );
     writeFileSync(source, readFileSync(source, "utf8").replace(
       block.start + block.text,
@@ -163,23 +160,23 @@ for (const [name, corrupt] of [
     const result = runSync(root, "--write");
 
     assert.equal(result.status, 1, result.stderr);
-    assert.match(result.stderr, /cookbooks\/maintain-pr\.md.*fix-pr-approval/);
+    assert.match(result.stderr, /cookbooks\/maintain-pr\.md.*babysit-approval/);
     assert.deepEqual(paths.map((path) => readFileSync(path, "utf8")), before);
   });
 }
 
 test("Skill の手動・自動と呼び出し設定・一覧の不一致を検出する", (t) => {
   for (const [path, change] of [
-    ["skills/fix-pr/agents/openai.yaml", (text) => text.replace(
+    ["skills/babysit/agents/openai.yaml", (text) => text.replace(
       /(allow_implicit_invocation: )(true|false)/,
       (_, key, value) => key + (value === "true" ? "false" : "true"),
     )],
-    ["skills/fix-pr/SKILL.md", (text) => text.replace(
+    ["skills/babysit/SKILL.md", (text) => text.replace(
       /(disable-model-invocation: )(true|false)/,
       (_, key, value) => key + (value === "true" ? "false" : "true"),
     )],
     ["docs/skills.md", (text) => text.replace(
-      /(### fix-pr\n[\s\S]*?\*\*起動：\*\* )(手動|自動)/,
+      /(### babysit\n[\s\S]*?\*\*起動：\*\* )(手動|自動)/,
       (_, prefix, mode) => prefix + (mode === "手動" ? "自動" : "手動"),
     )],
   ]) {
@@ -193,7 +190,7 @@ test("Skill の手動・自動と呼び出し設定・一覧の不一致を検�
     const result = runSync(root);
 
     assert.equal(result.status, 1, result.stderr);
-    assert.match(result.stderr, /fix-pr.*起動/);
+    assert.match(result.stderr, /babysit.*起動/);
   }
 });
 
@@ -212,9 +209,9 @@ for (const [name, setting] of [
       "\n---\n", `\n${setting}\n---\n`,
     ));
 
-    const pendingSource = join(root, "skills/fix-pr/SKILL.md");
+    const pendingSource = join(root, "skills/babysit/SKILL.md");
     const block = conditionBlock(
-      root, "skills/fix-pr/SKILL.md", "fix-pr-approval",
+      root, "skills/babysit/SKILL.md", "babysit-approval",
     );
     writeFileSync(pendingSource, readFileSync(pendingSource, "utf8").replace(
       block.start + block.text,
@@ -242,7 +239,7 @@ for (const [name, format] of [
   ["引用符付きキー", (value) => `"disable-model-invocation": ${value}`],
 ]) {
   test(`YAML の${name}で書かれた真偽値が他の起動設定と一致すれば成功する`, (t) => {
-    for (const [skill, value] of [["catch-up", false], ["fix-pr", true]]) {
+    for (const [skill, value] of [["catch-up", false], ["babysit", true]]) {
       const root = documentFixture(t);
       const path = join(root, `skills/${skill}/SKILL.md`);
       const changed = readFileSync(path, "utf8")
@@ -286,14 +283,17 @@ for (const skill of skills) {
 // 参照が壊れると作業を開始できないため、文面ではなく参照先を検査する。
 test("babysit が参照する手順ファイルが存在する", () => {
   const babysit = new URL("../skills/babysit/SKILL.md", import.meta.url);
-  const references = [...readFileSync(babysit, "utf8").matchAll(/`(\.\.\/[a-z-]+\/SKILL\.md)`/g)].map(
-    (match) => match[1],
-  );
+  const references = [
+    ...new Set(
+      [...readFileSync(babysit, "utf8").matchAll(/`(\.\.\/[a-z-]+\/SKILL\.md)`/g)]
+        .map((match) => match[1]),
+    ),
+  ];
 
   assert.deepEqual(
     [...references].sort(),
-    ["../fix-ci/SKILL.md", "../fix-conflicts/SKILL.md", "../fix-pr/SKILL.md"],
-    "skills/babysit/SKILL.md が参照する手順ファイルが、fix-ci・fix-pr・fix-conflicts の 3 つと一致しない",
+    ["../fix-ci/SKILL.md"],
+    "skills/babysit/SKILL.md が参照する手順ファイルが fix-ci だけになっていない",
   );
   for (const reference of references) {
     assert.ok(

@@ -6,7 +6,6 @@
 エージェントが従う手順と制約は、各項目の `SKILL.md` に書かれています。
 文書を変更するときは、[役割と更新方法](../CONTRIBUTING.md#文書の役割と更新方法) を確認してください。
 
-- [作業を分担する](#作業を分担する)：分解・委譲・並列実行・統合
 - [楽をする](#楽をする)：PR 対応・依存関係の更新
 - [理解を置き去りにしない](#理解を置き去りにしない)：仕様の相談・記録・説明・整理
 - [正確な情報で進める](#正確な情報で進める)：前提確認・調査・実装・検証・レビュー
@@ -28,79 +27,18 @@
 
 ### PR とレビュー対象の指定
 
-`fix-pr`・`recheck-pr`・`fix-ci`・`fix-conflicts`・`babysit` は、次の指定方法に対応します。
+`recheck-pr`・`fix-ci`・`babysit` は、次の指定方法に対応します。
 
 | 呼び出し例 | 対象 |
 | --- | --- |
-| `$fix-pr` | 現在のブランチに対応する PR |
-| `$fix-pr pr#123` | 現在のリポジトリの指定 PR |
-| `$fix-pr owner/repo#123` | 指定リポジトリの指定 PR |
+| `$babysit` | 現在のブランチに対応する PR。open の PR がなければ、現在の変更から作成 |
+| `$babysit pr#123` | 現在のリポジトリの指定 PR |
+| `$babysit owner/repo#123` | 指定リポジトリの指定 PR |
 
+`recheck-pr` と `fix-ci` も、`pr#123` または `owner/repo#123` を指定できます。
 `multi-scan` も PR 番号の指定方法は同じです。引数を省略すると、現在のリポジトリのローカル変更をレビューします。
 
-## 作業を分担する
-
-### coordinator
-
-作業を分解・委譲し、独立した作業の並列実行と成果物の統合を進めます。[SKILL.md][coordinator]
-
-**起動：** 自動。複数エージェントの協調が有効な作業で使います。手動では `$coordinator <依頼>` と指定します。
-
-**実行範囲：** Root が委譲・依存関係の調整・統合を優先し、独立性と並列化の効果から Subagent の起動を判断します。
-委譲先でも既存 skill やプロジェクトの手順を実行し、成果物と検証結果を確認します。
-Codex CLI と Claude Code の標準機能を使い、Subagent を起動できなければ自分で作業を進めます。
-共通判断はこの skill に置き、専門 skill には対象固有の条件だけを書きます。
-
-**承認：** 再委譲を含め、元の依頼の作業範囲・権限と、既存 skill のユーザー承認条件を引き継ぎます。
-
-### self-drive
-
-指定した複数タスクを選択し、Draft PR まで自走します。[SKILL.md][self-drive]
-
-**起動：** 手動で `$self-drive <目標またはタスク参照>` と指定します。
-
-**実行範囲：** 依頼文・Issue・Jira などユーザーが指定した現在のタスク情報を確認し、独立した作業を coordinator で分担します。
-書き込み担当ごとに worktree と branch を分離し、統合は直列で行います。同時実行数の上限は 20 です。
-リポジトリ外にラン記録を保存し、token 上限やサーバー障害後の再開に使います。
-検証が通ったタスクは `create-pr` で Draft PR を作成または更新します。
-対象 profile が定義する reasoning effort に従い、未定義・未対応・あいまいな場合は確認して止まります。
-既存 skill の品質・検証・承認条件を変更しません。
-ユーザーの判断への回答後に元の依頼の範囲・権限・承認条件が変わらなければ、同じ依頼を再開します。
-
-**承認：** `$self-drive` の呼び出しを、選択したタスクに対する Draft PR 作成・更新の許可として扱います。
-判断が必要な仕様、Draft PR 以外の外部への投稿、Issue・Jira の状態変更、破壊的・不可逆な操作では止まります。
-
 ## 楽をする
-
-### create-pr
-
-変更を commit・push し、Draft PR を作成または更新します。[SKILL.md][create-pr]
-
-**起動：** 手動で `$create-pr`。対象は現在の変更です。
-
-**実行範囲：** 検証後に commit・push し、open の PR があれば更新、なければ Draft PR を作成します。
-open の PR がなく、ブランチ名が変更内容と合わない場合は、変更内容を表す名前の新しいブランチを確認なしで作り、そこで commit します。
-元のブランチは名前を変えず、手元とリモートのどちらでも削除しません。push が拒否されても force push はしません。
-
-**失敗したとき：**
-
-- 検証が失敗した場合：失敗を修正せず、commit・push・PR の作成や更新をせずに止まる。
-- 実行環境の制約で検証できない範囲が残る場合：理由を明記して Draft PR を作成または更新する。
-- 検証後にファイル・stage・commit の内容が食い違った場合：その時点で止まる。作成済みの commit は取り消さない。
-
-### fix-pr
-
-PR のレビュー指摘を確かめ、妥当な指摘だけを修正します。[SKILL.md][fix-pr]
-
-**起動：** 手動で `$fix-pr pr#123`。対象の指定は[共通の方法](#pr-とレビュー対象の指定)を使います。
-
-**実行範囲：** 対象 PR のコード変更・検証・commit・push と、返信案の作成まで進みます。
-修正しなかった指摘は理由を報告します。
-
-**承認：** 呼び出しをコード変更・commit・push の許可として扱います。
-<!-- shared-text:fix-pr-approval:start -->
-返信は、ユーザーが文面を承認してから送信します。
-<!-- shared-text:fix-pr-approval:end -->
 
 ### recheck-pr
 
@@ -146,30 +84,22 @@ PR の失敗している CI を調査し、原因を修正します。[SKILL.md]
 
 **承認：** 呼び出しをコード変更・commit・push の許可として扱います。
 
-### fix-conflicts
-
-PR の merge conflict を解消します。[SKILL.md][fix-conflicts]
-
-**起動：** 手動で `$fix-conflicts pr#123`。対象の指定は[共通の方法](#pr-とレビュー対象の指定)を使います。
-
-**実行範囲：** 取り込み先の最新変更を PR のブランチへ merge し、競合を解消・検証して commit・push します。
-rebase と force push は行いません。
-
-**承認：** 呼び出しを merge・コード変更・commit・push の許可として扱います。
-既存の仕様やテストから決められない仕様判断は、ユーザーに確認します。
-
 ### babysit
 
-PR の CI・競合・レビュー指摘への対応と再確認を繰り返します。[SKILL.md][babysit]
+現在の変更から Draft PR を作成または更新し、CI・競合・レビュー指摘への対応を続けます。[SKILL.md][babysit]
 
-**起動：** 手動で `$babysit pr#123`。対象の指定は[共通の方法](#pr-とレビュー対象の指定)を使います。
+**起動：** 手動で `$babysit`、`$babysit pr#123`、`$babysit owner/repo#123`。
+引数なしでは現在のブランチの変更から PR を作成または更新し、PR 番号を指定するとその PR が対象です。
 
-**導入条件：**`fix-ci`・`fix-pr`・`fix-conflicts` も一緒に導入します。
-これらを起動せず、`SKILL.md` を手順として読みます。手順ファイルを読めなければ開始しません。
+**導入条件：** `fix-ci` も一緒に導入します。
+`fix-ci` は起動せず、`SKILL.md` を CI 修正の手順として読みます。手順ファイルを読めなければ開始しません。
 
-**実行範囲：** 対象 PR への merge・コード変更・検証・commit・push と、最新 commit の CI の待機まで行います。
-merge-ready になるか、人の判断・対応が必要な状態や、進展がない状態などで止まります。
+**実行範囲：** 現在の変更の検証・commit・push、Draft PR の作成・更新をします。
+対象 PR への merge・コード変更・検証・commit・push と、CI・競合・レビュー指摘への対応を続けます。
+merge-ready の後も監視を続け、PR がマージまたは close されるか、判断が必要な状態、進展がない状態などで止まります。
 PR のマージ、Draft の解除、approve、resolve は行いません。
+
+PR 作成前のコードレビューは行いません。レビューをするときは `multi-scan` を先に使います。
 
 **承認：** 呼び出しを merge・コード変更・commit・push の許可として扱います。
 
@@ -387,14 +317,9 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 
 **承認：** 種類ごとの防ぎ方と、検査の例外はユーザーに確認します。
 
-[coordinator]: ../skills/coordinator/SKILL.md
-[create-pr]: ../skills/create-pr/SKILL.md
-[fix-pr]: ../skills/fix-pr/SKILL.md
 [recheck-pr]: ../skills/recheck-pr/SKILL.md
 [fix-ci]: ../skills/fix-ci/SKILL.md
-[fix-conflicts]: ../skills/fix-conflicts/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md
-[self-drive]: ../skills/self-drive/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
 [define]: ../skills/define/SKILL.md
 [design-interface]: ../skills/design-interface/SKILL.md

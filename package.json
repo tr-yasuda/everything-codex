@@ -5,7 +5,6 @@
   "scripts": {
     "test:claude-agents":
       "node --test scripts/claude-agents.test.mjs",
-    "test:self-drive": "node --test scripts/self-drive.test.mjs",
     "test:shared-text": "node --test scripts/shared-text.test.mjs",
     "sync:shared-text": "node scripts/sync-shared-text.mjs --write",
     "lint:md": "markdownlint-cli2 \"**/*.md\"",
