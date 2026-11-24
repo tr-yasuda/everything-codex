@@ -26,8 +26,8 @@ GitHub を操作する skill には、GitHub CLI の認証も必要です。
 npx skills add tr-yasuda/everything-codex --list
 ```
 
-`babysit` は、`fix-ci`・`fix-pr`・`fix-conflicts` の手順を読んで動きます。
-`babysit` を選ぶときは、この 3 つも同じ製品向けに選んでください。更新するときも、4 つを一緒に更新します。
+`babysit` は、`fix-ci` の手順を読んで動きます。
+`babysit` を選ぶときは、`fix-ci` も同じ製品向けに選んでください。更新するときも、2 つを一緒に更新します。
 
 利用する製品の手順へ進んでください。両方を使う場合は、それぞれに導入します。
 導入コマンドは、選択内容を確認しながら操作できる、利用者のターミナルで実行してください。
@@ -181,7 +181,7 @@ Claude Code を起動し、`/` の候補に表示されることも確認して�
 
 更新前に、導入先で独自に編集した内容を確認し、必要な変更を手元に残します。
 選んだ skill はディレクトリごと置き換わるため、独自に追加したファイルも退避してください。
-使っている製品の導入コマンドを再実行し、更新する skill だけを選びます。`babysit` と `fix-ci`・`fix-pr`・`fix-conflicts` は、一緒に選びます。
+使っている製品の導入コマンドを再実行し、更新する skill だけを選びます。`babysit` と `fix-ci` は、一緒に選びます。
 コピー方式と製品の指定を維持するため、更新時も `--copy` と `-a` を指定します。
 
 ```bash
@@ -215,6 +215,20 @@ Claude 用 subagent を更新するときは、`claude/agents/` から導入先�
 3. 導入先から、旧名の skill のディレクトリを取り除く。
 
 旧名の skill を残すと、同じ内容の skill が 2 つ読み込まれます。
+
+### 削除した skill を導入先から取り除く
+
+次の skill は削除されました。更新しても導入先の旧ディレクトリは残るため、内容を確認してから手動で取り除きます。
+
+- `coordinator`
+- `create-pr`
+- `fix-conflicts`
+- `fix-pr`
+- `self-drive`
+
+Codex では `~/.agents/skills/<name>/`、手動で導入した場合は `~/.codex/skills/<name>/` を確認します。
+Claude Code では `~/.claude/skills/<name>/` を確認します。
+独自に編集した内容があれば、必要な変更を残したい skill へ移してから取り除きます。
 
 ## 共通ルールを取り込む
 

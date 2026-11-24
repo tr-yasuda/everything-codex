@@ -2,7 +2,7 @@
 
 自分が送る依頼: `$align → $write-spec` → 仕様を確認して実装を依頼。
 
-自動で使われる skill: `coordinator`、`what-breaks`、`tdd`、`prove-it`。
+自動で使われる skill: `what-breaks`、`tdd`、`prove-it`。
 
 個人用のタスク管理に、チームで共有する機能を追加したい例です。
 誰が見たり編集したりできるかなど、実装前に決めて文書に残すことがあります。
@@ -50,8 +50,6 @@ $write-spec
 commit・push は不要です。
 ```
 
-協調が有効な作業では、`coordinator` が分解・委譲・統合を進めます。
-仕様が確定したあと、互いの結果を待たずに進められる作業を並列に委譲します。
 書き換える前の影響調査には `what-breaks`、実装には `tdd`、完了前の検証には `prove-it` が自動で使われます。
 どれも、追加で呼ぶ必要はありません。
 
@@ -61,7 +59,6 @@ commit・push は不要です。
 仕様を文書化するだけが目的なら、仕様書を仕上げたところで終えられます。
 共有する場合は、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [align](../docs/skills.md#align)、[write-spec](../docs/skills.md#write-spec)、
-[coordinator](../docs/skills.md#coordinator)。
+関連する skill: [align](../docs/skills.md#align)、[write-spec](../docs/skills.md#write-spec)。
 
 [レシピ一覧に戻る](README.md)
