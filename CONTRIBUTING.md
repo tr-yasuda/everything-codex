@@ -10,13 +10,14 @@ skill の導入と最初の使い方は、[README](README.md#使い始める) �
 | `skills/<name>/SKILL.md` | エージェントが従う手順と制約 |
 | `skills/<name>/agents/openai.yaml` | skill の表示情報と呼び出し設定 |
 | `skills/<name>/references/` | skill の補足資料 |
-| `skills/<name>/scripts/` | skill が使う実行用スクリプトと、そのテスト |
 | `cookbooks/` | 目的別の依頼例と、確認から完了までの進め方 |
 | `docs/installation.md` | Codex と Claude Code への導入・更新・読み込み確認 |
 | `docs/skills.md` | 各 skill の用途・呼び出し方・変更や投稿の範囲 |
 | `docs/harness-compatibility.md` | Codex と Claude Code の対応状況・根拠・未確認範囲 |
-| `codex/config.toml`、`codex/openai-agents/` | Codex とエージェントの設定 |
+| `docs/skill-evaluation.md` | skill の起動と検証の重複に関する評価結果 |
+| `codex/config.toml`、`codex/openai-agents/`、`codex/go.config.toml`、`codex/go-agents/` | Codex とエージェントの設定 |
 | `claude/agents/` | Claude Code 用の subagent 定義 |
+| `scripts/` | 共通の条件説明と Claude 用 subagent の検証・同期スクリプト |
 | `AGENTS.md`、`codex/AGENTS.md` | 作業時の指示 |
 | `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
 | `.github/PULL_REQUEST_TEMPLATE.md` | PR の記載項目と確認事項 |
