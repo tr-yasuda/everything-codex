@@ -1,7 +1,0 @@
-interface:
-  display_name: "self-drive"
-  short_description: "複数タスクを worktree で分担し、Draft PR の作成まで自走する"
-  default_prompt: "$self-drive を使って、指定した複数タスクを worktree で分担し、リポジトリ外のラン記録を保存しながら Draft PR を作成してください。"
-
-policy:
-  allow_implicit_invocation: false

@@ -14,14 +14,10 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [新機能の追加][feature] | `$align` → 認識を合わせて実装を依頼 | `$align` この機能の困りごととゴールを確認して |
 | [大きめの仕様追加][large] | `$align → $write-spec` → 合意して実装を依頼 | `$align` まず認識を合わせたい |
 | [技術の採用判断][research] | 調査を依頼 → 採用判断 | X を採用すべきか公式情報を調べて判断材料を出して |
-| [変更を PR にする][pr] | `$multi-scan` → 必要な修正を依頼 → `$create-pr` | `$multi-scan` この変更をレビューして |
-| [PR のレビュー対応][maintain] | `$fix-pr` → 返信案を確認・承認 | `$fix-pr pr#123` |
-| [指摘した PR の再確認][recheck] | `$recheck-pr` → 返信案を確認・承認 | `$recheck-pr pr#123` |
+| [変更を PR にして、マージまで任せる][pr] | `$multi-scan` → 必要な修正を依頼 → `$babysit` | `$multi-scan` この変更をレビューして |
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
-| [競合を解消する][maintain] | `$fix-conflicts` | `$fix-conflicts pr#123` |
 | [PR の対応をまとめて任せる][babysit] | `$babysit` → 報告を確認、返信案を承認 | `$babysit pr#123` |
 | [文章を読み手向けに直す][text] | `$make-it-clear` → 必要なら反映を依頼 | `$make-it-clear pr#123` |
-| [同じ指摘の再発を防ぐ][prevention] | `$never-again` → 防ぎ方に合意 | `$never-again` このミスを仕組みで防いで |
 | [実装と文書を揃える][docs] | 文書の更新を依頼 | 今回の変更で古くなった説明や使用例を揃えて |
 | [状況と判断事項を知る][status] | 状況の説明を依頼 | 今の状況と、私が判断する必要のあることを説明して |
 | [依存関係を更新][deps] | `$update-deps` | `$update-deps` typescript を最新の安定版へ更新して |
@@ -33,9 +29,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 [pr]: review-and-pr.md
 [maintain]: maintain-pr.md
 [babysit]: maintain-pr.md#まとめて任せたい
-[recheck]: recheck-pr.md
 [text]: rewrite-for-reader.md
-[prevention]: prevent-recurrence.md
 [docs]: sync-docs.md
 [status]: catch-up.md
 [deps]: update-deps.md
@@ -61,7 +55,7 @@ Codex の表記で載せているため、Claude Code では `/align` のよう�
 各レシピの「自動で使われる skill」は、追加で呼び出す必要はありません。
 
 指摘がなければ修正を、説明で理解できれば `unslop` を省けます。
-`fix-pr` などは検証まで含むため、検証用の skill を別に呼ぶ必要はありません。
+`babysit` は検証まで含むため、検証用の skill を別に呼ぶ必要はありません。
 検証済みの項目を、手順をなぞるためだけに繰り返す必要もありません。
 
 ## 実行前に確認すること

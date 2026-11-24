@@ -1,7 +1,7 @@
 interface:
   display_name: "babysit"
-  short_description: "PR の CI・競合・レビュー指摘への対応を繰り返し、merge-ready まで進める"
-  default_prompt: "$babysit を使って対象 PR の最新状態を確認し、CI の失敗・merge conflict・レビュー指摘への対応と再確認を繰り返して、merge-ready か人の判断が必要な状態まで進めてください。"
+  short_description: "変更を Draft PR にして、マージされるまで CI・競合・レビュー対応を続ける"
+  default_prompt: "$babysit を使って現在の変更から Draft PR を作成または更新し、CI・merge conflict・レビュー指摘へ対応しながら、PR がマージされるまで監視してください。"
 
 policy:
   allow_implicit_invocation: false
