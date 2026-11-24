@@ -78,9 +78,6 @@ test("README の承認条件の更新漏れを検出し、検査では文書を�
 });
 
 for (const [id, skill, targets] of [
-  ["recheck-pr-approval", "recheck-pr", [
-    "docs/skills.md", "cookbooks/recheck-pr.md",
-  ]],
   ["babysit-approval", "babysit", [
     "README.md", "docs/skills.md", "cookbooks/maintain-pr.md",
   ]],

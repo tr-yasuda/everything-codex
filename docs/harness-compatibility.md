@@ -69,7 +69,6 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [prove-it] | reviewer が使えなければ親が点検する。verifier の代替は独立検証に数えない |
 | [multi-scan] | 8 観点を確認し、リスクから再確認の要否を判断する。必要な独立した再確認ができなければ一部未完了とする |
 | [fix-ci] | GitHub のログ取得・修正・検証・push が必要。外部環境が原因なら原因を報告する |
-| [recheck-pr] | GitHub の取得・操作が必要。確認や操作が失敗した場合は resolve・approve しない |
 | [babysit] | GitHub 操作・検証・push と `fix-ci` の手順ファイルが必要。読めなければ始めない |
 
 subagent の代替は、元の手順が許す範囲で行います。
@@ -127,5 +126,4 @@ subagent の代替は、元の手順が許す範囲で行います。
 [prove-it]: ../skills/prove-it/SKILL.md
 [multi-scan]: ../skills/multi-scan/SKILL.md
 [fix-ci]: ../skills/fix-ci/SKILL.md
-[recheck-pr]: ../skills/recheck-pr/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md

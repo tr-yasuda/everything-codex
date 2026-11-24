@@ -27,7 +27,7 @@
 
 ### PR とレビュー対象の指定
 
-`recheck-pr`・`fix-ci`・`babysit` は、次の指定方法に対応します。
+`fix-ci`・`babysit` は、次の指定方法に対応します。
 
 | 呼び出し例 | 対象 |
 | --- | --- |
@@ -35,42 +35,10 @@
 | `$babysit pr#123` | 現在のリポジトリの指定 PR |
 | `$babysit owner/repo#123` | 指定リポジトリの指定 PR |
 
-`recheck-pr` と `fix-ci` も、`pr#123` または `owner/repo#123` を指定できます。
+`fix-ci` も、`pr#123` または `owner/repo#123` を指定できます。
 `multi-scan` も PR 番号の指定方法は同じです。引数を省略すると、現在のリポジトリのローカル変更をレビューします。
 
 ## 楽をする
-
-### recheck-pr
-
-自分が出したレビュー指摘の解消を確認します。[SKILL.md][recheck-pr]
-
-**起動：** 手動で `$recheck-pr pr#123`。対象の指定は[共通の方法](#pr-とレビュー対象の指定)を使います。
-
-**実行範囲：** 自分が立てたスレッドを再確認し、条件を満たせば resolve と approve を確認なしで行います。
-他の reviewer のスレッドには返信・resolve をせず、approve の条件にも数えません。
-コード変更・commit・push は行わず、新しく見つけた問題は会話で報告します。
-
-**承認：**
-
-<!-- shared-text:recheck-pr-approval:start -->
-返信は、ユーザーが文面を承認してから送信します。
-<!-- shared-text:recheck-pr-approval:end -->
-
-resolve は、指摘が解消または取り下げ済みで、未回答も相手への返答待ちもない場合に限ります。
-
-**approve しない条件：**
-
-| 確認する対象 | approve しない場合 |
-| --- | --- |
-| PR の状態 | open でない、Draft、または auto-merge が有効 |
-| 自分のアカウント | PR 作成者と同じ、または確認した commit に approve 済み |
-| 自分が立てたスレッド | 0 件、未解決、または指摘が未解消で取り下げてもいない |
-| 返信 | 未回答のコメントや未送信の返信案がある |
-| 修正差分 | 新しい問題がある |
-| 確認した commit | PR の最新 commit と異なる |
-| 取得・確認・操作 | 失敗した、または最後まで終えられていない |
-
-確認後に PR の最新 commit が変わった場合は操作を止めます。取得・確認・操作を完了できない場合も報告します。
 
 ### fix-ci
 
@@ -298,7 +266,6 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 
 **承認：** 種類ごとの防ぎ方と、検査の例外はユーザーに確認します。
 
-[recheck-pr]: ../skills/recheck-pr/SKILL.md
 [fix-ci]: ../skills/fix-ci/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
