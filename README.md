@@ -11,14 +11,15 @@ skill は、必要な場面でエージェントが読む、作業の進め方�
 各 skill を導入すると、次のように依頼できます。
 Claude Code では、`$babysit` を `/babysit` のように読み替えてください。
 
-### 作り始める前に、欲しいものを整理したい
+### 作り始める前に、認識を合わせたい
 
 ```text
-$define タスク一覧が見づらい。未完了を見つけやすくしたい。
+$align タスク一覧が見づらい。未完了を見つけやすくしたい。
 ```
 
-欲しい状態を相談し、実装前に短い仕様へまとめます。
-[相談から実装までの例](cookbooks/new-feature.md)
+エージェントとユーザーが同じ困りごと・ゴールを同じ意味で持てるよう、
+実装前に認識を合わせます。
+[認識合わせから実装までの例](cookbooks/new-feature.md)
 
 ### PR を出して、マージされるまで任せたい
 
@@ -47,7 +48,7 @@ PR 作成前にコードレビューをするときは、`$multi-scan` を先に
 
 全プロジェクトで使うための導入・更新・読み込み確認は、[導入ガイド](docs/installation.md) を参照してください。
 
-まずは `define` だけで試せます。Codex または Claude Code を使っているプロジェクトを用意してください。
+まずは `align` だけで試せます。Codex または Claude Code を使っているプロジェクトを用意してください。
 
 1. このリポジトリを取得する。
 
@@ -55,25 +56,25 @@ PR 作成前にコードレビューをするときは、`$multi-scan` を先に
    git clone https://github.com/tr-yasuda/everything-codex.git
    ```
 
-2. 取得した `skills/define/` を、使いたいプロジェクト内の次の場所へ、ディレクトリごとコピーする。
+2. 取得した `skills/align/` を、使いたいプロジェクト内の次の場所へ、ディレクトリごとコピーする。
 
    | エージェント | プロジェクト内の配置先 | 呼び出し |
    | --- | --- | --- |
-   | [Codex][codex-skills] | `.agents/skills/define/` | `$define` |
-   | [Claude Code][claude-skills] | `.claude/skills/define/` | `/define` |
+   | [Codex][codex-skills] | `.agents/skills/align/` | `$align` |
+   | [Claude Code][claude-skills] | `.claude/skills/align/` | `/align` |
 
 3. 対象のプロジェクトをエージェントで開き、新しい会話で依頼する。
 
    ```text
-   $define
-   このプロジェクトで改善したいことを、実装前に相談したい。
+   $align
+   このプロジェクトで改善したいことについて、実装前に認識を合わせたい。
    ```
 
-   自分の困りごとを続けて書く。Claude Code では、先頭を `/define` に置き換える。
+   自分の困りごとを続けて書く。Claude Code では、先頭を `/align` に置き換える。
 
 ほかの skill も、使いたいディレクトリを同じように追加できます。`babysit` は、`fix-ci` と一緒に追加します。
 自動起動する skill は、導入後、該当する場面でエージェントが使います。
-`define` で合意した仕様を実装まで進める場合は、`what-breaks`・`tdd`・`prove-it` も追加します。
+`align` で認識を合わせた内容を実装まで進める場合は、`what-breaks`・`tdd`・`prove-it` も追加します。
 
 ## 目的に合う文書へ進む
 

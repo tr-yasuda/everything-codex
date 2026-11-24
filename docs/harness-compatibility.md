@@ -54,14 +54,12 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 
 | skill | 確認した前提と扱い |
 | --- | --- |
-| [define] | 特定の agent・モデルを要求しない。困りごとと仕様の合意まで行う。合意後の実装は what-breaks → tdd → prove-it に引き継ぎ、各 skill の前提に従う |
-| [design-interface] | 特定の agent を要求しない。未合意の契約に関わる実装は始めない |
+| [align] | 特定の agent・モデルを要求しない。エージェントとユーザーの認識合わせまで行う。合意後の実装は what-breaks → tdd → prove-it に引き継ぎ、各 skill の前提に従う |
 | [write-spec] | 特定の agent を要求しない。合意前は仕様を保存しない |
 | [catch-up] | 特定の agent を要求しない。観察できた状態と判断待ちを伝える |
 | [check-twice] | 原文・コード・合意を確認し、確かめきれない前提を断定しない |
 | [make-it-clear] | 検出・点検の分担は任意。起動不可・結果未取得の範囲は自分で点検する |
 | [research] | 検索や資料へのアクセスが必要。原典に届かなければ資料と結論の限界を示す |
-| [how-and-why] | subagent への分担は任意。分担しなくても入口から結果まで調べる |
 | [what-breaks] | 読み取り専用の subagent は任意。起動不可・結果未取得の範囲は親が調べる |
 | [root-cause] | 並列調査は任意。使えなければ親が調べ、未確定・結果未取得の仮説も確認する |
 | [tdd] | 調査・検証の委譲は任意。同じ変更の実装サイクルは 1 担当が直列に進める |
@@ -114,14 +112,12 @@ subagent の代替は、元の手順が許す範囲で行います。
 [claude-settings]: https://code.claude.com/docs/en/settings
 [claude-agents]: https://code.claude.com/docs/en/sub-agents
 [claude-permissions]: https://code.claude.com/docs/en/permissions
-[define]: ../skills/define/SKILL.md
-[design-interface]: ../skills/design-interface/SKILL.md
+[align]: ../skills/align/SKILL.md
 [write-spec]: ../skills/write-spec/SKILL.md
 [catch-up]: ../skills/catch-up/SKILL.md
 [check-twice]: ../skills/check-twice/SKILL.md
 [make-it-clear]: ../skills/make-it-clear/SKILL.md
 [research]: ../skills/research/SKILL.md
-[how-and-why]: ../skills/how-and-why/SKILL.md
 [what-breaks]: ../skills/what-breaks/SKILL.md
 [root-cause]: ../skills/root-cause/SKILL.md
 [tdd]: ../skills/tdd/SKILL.md

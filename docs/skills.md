@@ -125,28 +125,18 @@ commit・push・公開は行いません。
 
 ## 理解を置き去りにしない
 
-### define
+### align
 
-実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめます。[SKILL.md][define]
+実装前に、エージェントとユーザーが同じ困りごと・ゴール・制約を、
+同じ意味で持てるよう、認識を合わせます。[SKILL.md][align]
 
-**起動：** 手動で `$define <困りごと>`。
+**起動：** 手動で `$align <困りごと>`。
 
-**実行範囲：** 相談と仕様の合意までです。実装手順や変更ファイル単位の計画には踏み込みません。
-実装や文書への保存は含みません。
+**実行範囲：** エージェントの理解を言い返し、ユーザーがズレを訂正し、
+合意した認識を短く残すところまでです。固定の仕様テンプレは使いません。
+実装手順や変更ファイル単位の計画には踏み込みません。文書への保存は含みません。
+仕様書が必要なら `write-spec` に引き継ぎます。
 合意後に実装を依頼された場合は、`what-breaks` → `tdd` → `prove-it` を使うよう引き継ぎます。
-
-### design-interface
-
-仕様を満たす、リポジトリ外から依存される契約を具体化して実装します。[SKILL.md][design-interface]
-
-**起動：** 手動で `$design-interface <作るもの>`。対象を省略した場合は会話から読み取ります。
-
-**実行範囲：** 公開 API・CLI・データ形式・失敗や互換性の扱いなどを決め、合意後に実装・検証します。
-既存仕組みの調査だけ Subagent に並列委譲できます。契約案の統合と合意は直列です。
-
-**承認：** まだ決まっていない契約は会話で示し、合意前はファイルに書かず、実装も始めません。
-すでに合意した内容は聞き直さず、決めるべき契約が残っていなければ実装へ進みます。
-内部の型・関数名・モジュール構成はエージェントが決めます。合意した契約を変える場合は、改めて合意を得ます。
 
 ### write-spec
 
@@ -168,15 +158,6 @@ commit・push・公開は行いません。
 
 **実行範囲：** 状況と選択肢を会話で説明します。情報を集める間は、コード変更や外部への投稿は行いません。
 合意を変える必要がある場合は、その作業を止め、ユーザーの判断を待ちます。
-
-### how-and-why
-
-コードの動き、設計や名前・書き方の理由を調べて説明します。[SKILL.md][how-and-why]
-
-**起動：** 手動で `$how-and-why <知りたいこと>`。
-省略時は現在の変更、変更がなければ既定ブランチとの分岐点からの差分を対象にします。
-
-**実行範囲：** コードや履歴を調べ、確認した理由・推測・不明な点を分けて会話で説明します。コードは変更しません。
 
 ### unslop
 
@@ -321,11 +302,9 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [fix-ci]: ../skills/fix-ci/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
-[define]: ../skills/define/SKILL.md
-[design-interface]: ../skills/design-interface/SKILL.md
+[align]: ../skills/align/SKILL.md
 [write-spec]: ../skills/write-spec/SKILL.md
 [catch-up]: ../skills/catch-up/SKILL.md
-[how-and-why]: ../skills/how-and-why/SKILL.md
 [unslop]: ../skills/unslop/SKILL.md
 [make-it-clear]: ../skills/make-it-clear/SKILL.md
 [check-twice]: ../skills/check-twice/SKILL.md

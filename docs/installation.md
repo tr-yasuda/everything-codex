@@ -67,10 +67,10 @@ npx skills ls -g -a codex
 Codex を起動し、`/skills` または `$` の候補に表示されることも確認してください。
 起動済みの Codex に反映されない場合は、再起動します。
 
-`define` を導入した場合は、次のように呼び出せます。
+`align` を導入した場合は、次のように呼び出せます。
 
 ```text
-$define 作りたいもの
+$align 作りたいもの
 ```
 
 ### OpenCode Go の profile を使う
@@ -153,7 +153,7 @@ subagent と skill は、次の組み合わせで接続します。
 | `research` | `docs-researcher` 上で実行する |
 | `tdd` | `implementer` が事前読み込みする |
 
-`define` で合意した仕様を実装まで進める場合は、`what-breaks`・`tdd`・`prove-it` も導入します。
+`align` で認識を合わせた内容を実装まで進める場合は、`what-breaks`・`tdd`・`prove-it` も導入します。
 
 `multi-scan` は元の会話で実行し、Phase 4 で独立した再確認が必要な場合は `reviewer` に個別の確認を委譲します。
 `prove-it` は差分を直す役割も持つため、subagent 上ではなく元の会話で実行します。
@@ -171,10 +171,10 @@ npx skills ls -g -a claude-code
 Claude Code を起動し、`/` の候補に表示されることも確認してください。
 起動済みの Claude Code に反映されない場合は、再起動します。
 
-`define` を導入した場合は、次のように呼び出せます。
+`align` を導入した場合は、次のように呼び出せます。
 
 ```text
-/define 作りたいもの
+/align 作りたいもの
 ```
 
 ## skill を更新する
@@ -209,7 +209,6 @@ Claude 用 subagent を更新するときは、`claude/agents/` から導入先�
 | `debug-failure` | `root-cause` |
 | `verify-change` | `prove-it` |
 | `prevent-recurrence` | `never-again` |
-| `explain-code` | `how-and-why` |
 | `code-review` | `multi-scan` |
 
 1. 導入コマンドを再実行し、新しい名前の skill を選んで導入する。

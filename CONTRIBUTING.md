@@ -113,9 +113,9 @@ subagent を起動するときは、役割を目安に依頼の難しさで推�
 優先順位の詳細は、[Codex の subagent 設定](https://learn.chatgpt.com/docs/agent-configuration/subagents#custom-agents) を参照してください。
 
 OpenCode Go 用の `go.config.toml` では、モデル別の推論量規約を使います。
-`glm-5.3` と `deepseek-v4.1-flash` は `low`、`high`、`max` を受け付けます。
+`deepseek-v4.1-flash` は `low`、`high`、`max` を受け付けます。
 通常の難易度には `high`、最も難しい調査・実装・レビューには `max` を使います。
-Go 用の agent にはこの 2 モデルだけを使い、subagent の既定の推論量を `high` にします。
+Go 用の agent にはこのモデルだけを使い、subagent の既定の推論量を `high` にします。
 文書調査用の agent は `high` に固定します。
 
 `go.config.toml` はモデル metadata を `go-models.json` から読み込みます。
