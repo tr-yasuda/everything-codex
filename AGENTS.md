@@ -8,7 +8,10 @@
 - `skills/<name>/SKILL.md`: skill の手順を定義する。
 - `skills/<name>/agents/openai.yaml`: skill の表示情報と呼び出し設定を定義する。
 - `skills/<name>/references/`: skill の補足資料を配置する。
-- `codex/config.toml`、`codex/openai-agents/`: Codex とエージェントを設定する。
+- `codex/config.toml`、`codex/openai-agents/`: OpenAI 用の Codex とエージェントを設定する。
+- `codex/go.config.toml`、`codex/go-agents/`: OpenCode Go 用の Codex とエージェントを設定する。
+- `claude/agents/`: Claude Code 用の subagent を定義する。
+- `cookbooks/`、`docs/`: 利用者向けの依頼例、導入手順、skill 一覧、対応状況を配置する。
 - `codex/AGENTS.md`: `codex/` 内の変更に適用する指示を記載する。
 - `.github/workflows/`: lint と Pinact のワークフローを配置する。
 - `.github/PULL_REQUEST_TEMPLATE.md`: PR の確認項目を定義する。

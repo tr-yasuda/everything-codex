@@ -92,15 +92,9 @@ ci: fix node setup for pnpm cache
 ```
 
 複数の CI の失敗が同じ根本原因から発生している場合は、1つの commit にまとめてよい。
+PR のブランチ以外へ push せず、Git の破壊的な操作も行わない。
 
-## Rules
-
-- PR のブランチ以外へ push しない
-- 原因を確認せずに修正しない
-- repository 外の問題をコード変更で無理に解決しない
-- Git の破壊的な操作を避ける
-
-## Completion
+## 完了時の報告
 
 完了時に以下を短く報告する。
 
