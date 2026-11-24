@@ -242,15 +242,6 @@ commit・push・公開は行いません。
 **実行範囲：** 状況と選択肢を会話で説明します。情報を集める間は、コード変更や外部への投稿は行いません。
 合意を変える必要がある場合は、その作業を止め、ユーザーの判断を待ちます。
 
-### how-and-why
-
-コードの動き、設計や名前・書き方の理由を調べて説明します。[SKILL.md][how-and-why]
-
-**起動：** 手動で `$how-and-why <知りたいこと>`。
-省略時は現在の変更、変更がなければ既定ブランチとの分岐点からの差分を対象にします。
-
-**実行範囲：** コードや履歴を調べ、確認した理由・推測・不明な点を分けて会話で説明します。コードは変更しません。
-
 ### unslop
 
 対象差分の処理を最後まで追える形に整理し、コメントには将来守るべき制約だけを残します。[SKILL.md][unslop]
@@ -403,7 +394,6 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [design-interface]: ../skills/design-interface/SKILL.md
 [write-spec]: ../skills/write-spec/SKILL.md
 [catch-up]: ../skills/catch-up/SKILL.md
-[how-and-why]: ../skills/how-and-why/SKILL.md
 [unslop]: ../skills/unslop/SKILL.md
 [make-it-clear]: ../skills/make-it-clear/SKILL.md
 [check-twice]: ../skills/check-twice/SKILL.md

@@ -62,7 +62,6 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [check-twice] | 原文・コード・合意を確認し、確かめきれない前提を断定しない |
 | [make-it-clear] | 検出・点検の分担は任意。起動不可・結果未取得の範囲は自分で点検する |
 | [research] | 検索や資料へのアクセスが必要。原典に届かなければ資料と結論の限界を示す |
-| [how-and-why] | subagent への分担は任意。分担しなくても入口から結果まで調べる |
 | [what-breaks] | 読み取り専用の subagent は任意。起動不可・結果未取得の範囲は親が調べる |
 | [root-cause] | 並列調査は任意。使えなければ親が調べ、未確定・結果未取得の仮説も確認する |
 | [tdd] | 調査・検証の委譲は任意。同じ変更の実装サイクルは 1 担当が直列に進める |
@@ -125,7 +124,6 @@ subagent の代替は、元の手順が許す範囲で行います。
 [check-twice]: ../skills/check-twice/SKILL.md
 [make-it-clear]: ../skills/make-it-clear/SKILL.md
 [research]: ../skills/research/SKILL.md
-[how-and-why]: ../skills/how-and-why/SKILL.md
 [what-breaks]: ../skills/what-breaks/SKILL.md
 [root-cause]: ../skills/root-cause/SKILL.md
 [tdd]: ../skills/tdd/SKILL.md
