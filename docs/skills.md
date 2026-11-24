@@ -205,19 +205,6 @@ commit・push・公開は行いません。
 実装や文書への保存は含みません。
 合意後に実装を依頼された場合は、`what-breaks` → `tdd` → `prove-it` を使うよう引き継ぎます。
 
-### design-interface
-
-仕様を満たす、リポジトリ外から依存される契約を具体化して実装します。[SKILL.md][design-interface]
-
-**起動：** 手動で `$design-interface <作るもの>`。対象を省略した場合は会話から読み取ります。
-
-**実行範囲：** 公開 API・CLI・データ形式・失敗や互換性の扱いなどを決め、合意後に実装・検証します。
-既存仕組みの調査だけ Subagent に並列委譲できます。契約案の統合と合意は直列です。
-
-**承認：** まだ決まっていない契約は会話で示し、合意前はファイルに書かず、実装も始めません。
-すでに合意した内容は聞き直さず、決めるべき契約が残っていなければ実装へ進みます。
-内部の型・関数名・モジュール構成はエージェントが決めます。合意した契約を変える場合は、改めて合意を得ます。
-
 ### write-spec
 
 全体像から一部分ずつ合意し、理解して説明できる仕様書を作成・更新します。[SKILL.md][write-spec]
@@ -397,7 +384,6 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [self-drive]: ../skills/self-drive/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
 [define]: ../skills/define/SKILL.md
-[design-interface]: ../skills/design-interface/SKILL.md
 [write-spec]: ../skills/write-spec/SKILL.md
 [catch-up]: ../skills/catch-up/SKILL.md
 [how-and-why]: ../skills/how-and-why/SKILL.md

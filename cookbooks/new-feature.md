@@ -50,9 +50,8 @@ subagent を使えない場合は、実装したエージェントが要求か�
 完了報告で、重要な設計判断とその理由、検証結果、未解決の問題を理解できれば、この例の実装は完了です。
 共有する場合は、[PR 作成の例](review-and-pr.md) を参照してください。
 
-公開 API やデータの形式など、リポジトリの外から依存される形を決める必要があれば、
-実装の前に `$design-interface` を使います。[仕様書も作る例](large-feature.md) に流れがあります。
-機能が大きく、他の人にも仕様を伝える必要がある場合も、同じ例を使います。
+機能が大きく、他の人にも仕様を伝える必要がある場合は、
+[仕様書も作る例](large-feature.md) に流れがあります。
 
 関連する skill: [define](../docs/skills.md#define)、
 [what-breaks](../docs/skills.md#what-breaks)、[tdd](../docs/skills.md#tdd)、

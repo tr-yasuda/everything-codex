@@ -1,7 +1,0 @@
-interface:
-  display_name: "design-interface"
-  short_description: "リポジトリの外から依存される契約を合意してから実装する"
-  default_prompt: "$design-interface を使い、実装の前に、仕様を満たす、リポジトリの外から依存される公開インターフェースと契約を決めて合意してから実装してください。内部の設計は任せます。"
-
-policy:
-  allow_implicit_invocation: false

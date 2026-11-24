@@ -270,7 +270,7 @@ const agreedScope = [
   "契約に当たるか判断がつかなければ、契約として扱う。",
 ].join("\n");
 
-const skills = ["catch-up", "design-interface", "tdd", "what-breaks"];
+const skills = ["catch-up", "tdd", "what-breaks"];
 
 for (const skill of skills) {
   test(`${skill} が合意の対象の定義を同じ文で持つ`, () => {
