@@ -135,7 +135,6 @@ disable-model-invocation: true
 ファイルには保存しない。
 
 仕様書が必要なら `write-spec` に引き継ぐ。
-公開インターフェースやデータ形式の契約が必要なら `design-interface` に引き継ぐ。
 
 ## 実装への引き継ぎ
 
@@ -167,6 +166,6 @@ disable-model-invocation: true
 - ユーザーに要約や言い直しを求めず、理解度を試す質問をしない
 - 固定の見出しやテンプレを使わない
 - 合意した内容は会話に短く残し、ファイルには保存しない
-- 仕様書は `write-spec`、公開契約は `design-interface` に引き継ぐ
+- 仕様書は `write-spec` に引き継ぐ
 - 実装手順や変更ファイル単位の計画には踏み込まない
 - 合意後の実装では `what-breaks` → `tdd` → `prove-it` を使う
