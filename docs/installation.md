@@ -155,7 +155,8 @@ subagent と skill は、次の組み合わせで接続します。
 
 `align` で認識を合わせた内容を実装まで進める場合は、`what-breaks`・`tdd`・`prove-it` も導入します。
 
-`multi-scan` は元の会話で実行し、Phase 4 で独立した再確認が必要な場合は `reviewer` に個別の確認を委譲します。
+`multi-scan` は元の会話で実行し、Phase 4 または Phase 5 で独立した再確認が必要な場合は
+`reviewer` に個別の確認を委譲します。
 `prove-it` は差分を直す役割も持つため、subagent 上ではなく元の会話で実行します。
 
 `explorer` は調査用、`implementer` は実装用、`reviewer` はレビュー用です。

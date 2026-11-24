@@ -1,7 +1,7 @@
 interface:
   display_name: "multi-scan"
-  short_description: "PRやローカル変更を8観点でコードレビューする"
-  default_prompt: "$multi-scan を使い、指定された PR・diff・ローカル変更をレビューしてください。"
+  short_description: "PRやローカル変更を8観点でレビューし、直せるものは直す"
+  default_prompt: "$multi-scan を使い、指定された PR・diff・ローカル変更をレビューし、直せるものは直して、判断が必要なものだけを提示してください。"
 
 policy:
   allow_implicit_invocation: false
