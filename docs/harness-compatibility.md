@@ -68,7 +68,6 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [tdd] | 調査・検証の委譲は任意。同じ変更の実装サイクルは 1 担当が直列に進める |
 | [unslop] | 変更・検証用のツールが必要。振る舞いを保てる根拠がなければ推測で書き換えない |
 | [update-deps] | 更新と検証に使うツールが必要。目標に届かなければ残った制約と理由を報告する |
-| [never-again] | 履歴・レビュー・検査手段が必要。確認した繰り返しだけを対象にして防ぎ方を合意する |
 | [prove-it] | reviewer が使えなければ親が点検する。verifier の代替は独立検証に数えない |
 | [multi-scan] | 8 観点を確認し、リスクから再確認の要否を判断する。必要な独立した再確認ができなければ一部未完了とする |
 | [create-pr] | GitHub 操作と検証が必要。環境で検証できない範囲を明記し、チェック欄は空にする |
@@ -131,7 +130,6 @@ subagent の代替は、元の手順が許す範囲で行います。
 [tdd]: ../skills/tdd/SKILL.md
 [unslop]: ../skills/unslop/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
-[never-again]: ../skills/never-again/SKILL.md
 [prove-it]: ../skills/prove-it/SKILL.md
 [multi-scan]: ../skills/multi-scan/SKILL.md
 [create-pr]: ../skills/create-pr/SKILL.md

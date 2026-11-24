@@ -375,18 +375,6 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 
 **Claude Code:** 元の会話で実行し、Phase 4 で独立した再確認が必要な場合は `reviewer` に個別の確認を委譲します。
 
-### never-again
-
-繰り返す指摘を、構造・型・lint・テストなどで防げる状態にします。[SKILL.md][never-again]
-
-**起動：** 手動で `$never-again <繰り返している指摘>`。
-省略時は現在の会話と直近 7 日の履歴から、同じ種類で 2 回以上起きた間違いを探します。
-
-**実行範囲：** 防ぎ方に合意してから、コード・検査・関連する指示を変更して検証します。
-対象がなければ変更せずに報告します。commit は明示的に頼まれた場合だけ行い、検証のための push はしません。
-
-**承認：** 種類ごとの防ぎ方と、検査の例外はユーザーに確認します。
-
 [coordinator]: ../skills/coordinator/SKILL.md
 [create-pr]: ../skills/create-pr/SKILL.md
 [fix-pr]: ../skills/fix-pr/SKILL.md
@@ -410,4 +398,3 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [prove-it]: ../skills/prove-it/SKILL.md
 [tdd]: ../skills/tdd/SKILL.md
 [multi-scan]: ../skills/multi-scan/SKILL.md
-[never-again]: ../skills/never-again/SKILL.md
