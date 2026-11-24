@@ -208,7 +208,6 @@ Claude 用 subagent を更新するときは、`claude/agents/` から導入先�
 | `analyze-impact` | `what-breaks` |
 | `debug-failure` | `root-cause` |
 | `verify-change` | `prove-it` |
-| `prevent-recurrence` | `never-again` |
 | `code-review` | `multi-scan` |
 
 1. 導入コマンドを再実行し、新しい名前の skill を選んで導入する。
