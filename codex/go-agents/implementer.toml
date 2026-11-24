@@ -1,13 +1,13 @@
 name = "implementer"
 description = "指定された実装タスクを完了する。"
 
-model = "glm-5.3"
+model = "deepseek-v4.1-flash"
 
 sandbox_mode = "workspace-write"
 
 developer_instructions = """
 subagent を起動するときは、対象モデルが受け付ける reasoning effort を指定してください。
-glm-5.3 と deepseek-v4.1-flash には low、high、max のいずれかを指定し、通常の難易度には high、最も難しい作業には max を使ってください。
+deepseek-v4.1-flash には low、high、max のいずれかを指定し、通常の難易度には high、最も難しい作業には max を使ってください。
 再委譲する場合も、同じ規約を依頼文に引き継いでください。
 
 指定された目的、変更範囲、完了条件を確認してから実装してください。
