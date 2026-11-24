@@ -1,0 +1,7 @@
+interface:
+  display_name: "align"
+  short_description: "エージェントとユーザーの認識を合わせる"
+  default_prompt: "$align を使って、実装前にエージェントとユーザーの認識を合わせてください。"
+
+policy:
+  allow_implicit_invocation: false
