@@ -14,7 +14,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [新機能の追加][feature] | `$align` → 認識を合わせて実装を依頼 | `$align` この機能の困りごととゴールを確認して |
 | [大きめの仕様追加][large] | `$align → $write-spec` → 合意して実装を依頼 | `$align` まず認識を合わせたい |
 | [技術の採用判断][research] | 調査を依頼 → 採用判断 | X を採用すべきか公式情報を調べて判断材料を出して |
-| [変更を PR にして、マージまで任せる][pr] | `$multi-scan` → 必要な修正を依頼 → `$babysit` | `$multi-scan` この変更をレビューして |
+| [変更を PR にして、マージまで任せる][pr] | `$multi-scan` → 判断が必要な事項に回答 → `$babysit` | `$multi-scan` この変更をレビューして。直せるものは直して |
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
 | [PR の対応をまとめて任せる][babysit] | `$babysit` → 報告を確認、返信案を承認 | `$babysit pr#123` |
 | [文章を読み手向けに直す][text] | `$make-it-clear` → 必要なら反映を依頼 | `$make-it-clear pr#123` |
