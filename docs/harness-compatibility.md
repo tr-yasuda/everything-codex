@@ -40,7 +40,8 @@ Claude Code では、skill の `context: fork` と `agent` で独立した subag
 subagent の `skills` は、agent の起動時に skill 内容を読み込みます。
 このリポジトリでは、`research` を skill から agent へ接続します。
 `tdd` を `implementer` に事前読み込みします。同じ skill を両方向に接続すると内容が二重になるため避けます。
-`multi-scan` は元の会話で実行し、Phase 4 で独立した再確認が必要な場合は `reviewer` に個別の確認を委譲します。
+`multi-scan` は元の会話で実行し、Phase 4 または Phase 5 で独立した再確認が必要な場合は
+`reviewer` に個別の確認を委譲します。
 
 Codex の [subagent 設定][codex-agents] にも、有効・無効、同時起動数、モデルなどの条件があります。
 モデルや推論量が違うことだけでは問題と判定せず、必要な作業と制約を満たせるかを確かめます。
@@ -68,7 +69,7 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [update-deps] | 更新と検証に使うツールが必要。目標に届かなければ残った制約と理由を報告する |
 | [never-again] | 履歴・レビュー・検査手段が必要。確認した繰り返しだけを対象にして防ぎ方を合意する |
 | [prove-it] | reviewer が使えなければ親が点検する。verifier の代替は独立検証に数えない |
-| [multi-scan] | 8 観点を確認し、リスクから再確認の要否を判断する。必要な独立した再確認ができなければ一部未完了とする |
+| [multi-scan] | 8 観点を確認し、直せるものは直す。判断が必要なものだけを材料付きで示す。必要な独立した再確認ができなければ一部未完了とする |
 | [create-pr] | GitHub 操作と検証が必要。環境で検証できない範囲を明記し、チェック欄は空にする |
 | [fix-ci] | GitHub のログ取得・修正・検証・push が必要。外部環境が原因なら原因を報告する |
 | [fix-conflicts] | Git の取得・merge・検証・push が必要。検証不可なら代替検証を行う |
