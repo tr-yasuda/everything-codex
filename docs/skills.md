@@ -195,14 +195,17 @@ commit・push・公開は行いません。
 
 ## 理解を置き去りにしない
 
-### define
+### align
 
-実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめます。[SKILL.md][define]
+実装前に、エージェントとユーザーが同じ困りごと・ゴール・制約を、
+同じ意味で持てるよう、認識を合わせます。[SKILL.md][align]
 
-**起動：** 手動で `$define <困りごと>`。
+**起動：** 手動で `$align <困りごと>`。
 
-**実行範囲：** 相談と仕様の合意までです。実装手順や変更ファイル単位の計画には踏み込みません。
-実装や文書への保存は含みません。
+**実行範囲：** エージェントの理解を言い返し、ユーザーがズレを訂正し、
+合意した認識を短く残すところまでです。固定の仕様テンプレは使いません。
+実装手順や変更ファイル単位の計画には踏み込みません。文書への保存は含みません。
+仕様書が必要なら `write-spec` に引き継ぎます。
 合意後に実装を依頼された場合は、`what-breaks` → `tdd` → `prove-it` を使うよう引き継ぎます。
 
 ### write-spec
@@ -225,15 +228,6 @@ commit・push・公開は行いません。
 
 **実行範囲：** 状況と選択肢を会話で説明します。情報を集める間は、コード変更や外部への投稿は行いません。
 合意を変える必要がある場合は、その作業を止め、ユーザーの判断を待ちます。
-
-### how-and-why
-
-コードの動き、設計や名前・書き方の理由を調べて説明します。[SKILL.md][how-and-why]
-
-**起動：** 手動で `$how-and-why <知りたいこと>`。
-省略時は現在の変更、変更がなければ既定ブランチとの分岐点からの差分を対象にします。
-
-**実行範囲：** コードや履歴を調べ、確認した理由・推測・不明な点を分けて会話で説明します。コードは変更しません。
 
 ### unslop
 
@@ -383,10 +377,9 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [babysit]: ../skills/babysit/SKILL.md
 [self-drive]: ../skills/self-drive/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
-[define]: ../skills/define/SKILL.md
+[align]: ../skills/align/SKILL.md
 [write-spec]: ../skills/write-spec/SKILL.md
 [catch-up]: ../skills/catch-up/SKILL.md
-[how-and-why]: ../skills/how-and-why/SKILL.md
 [unslop]: ../skills/unslop/SKILL.md
 [make-it-clear]: ../skills/make-it-clear/SKILL.md
 [check-twice]: ../skills/check-twice/SKILL.md
