@@ -1,16 +1,16 @@
-model = "glm-5.3"
+model = "deepseek-v4.1-flash"
 model_provider = "opencode-go"
 model_reasoning_effort = "high"
 model_catalog_json = "go-models.json"
 
 developer_instructions = """
 subagent を起動するときは、対象モデルが受け付ける reasoning effort を指定してください。
-- glm-5.3 と deepseek-v4.1-flash: low、high、max。通常の難易度には high、最も難しい作業には max を使う。
+- deepseek-v4.1-flash: low、high、max。通常の難易度には high、最も難しい作業には max を使う。
 再委譲する場合も、同じ規約を依頼文に引き継いでください。
 """
 
 [agents]
-default_subagent_model = "glm-5.3"
+default_subagent_model = "deepseek-v4.1-flash"
 default_subagent_reasoning_effort = "high"
 
 [agents.explorer]
