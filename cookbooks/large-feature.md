@@ -1,24 +1,25 @@
 # 大きめの機能を、仕様を固めてから作りたい
 
-自分が送る依頼: `$define → $write-spec → $design-interface` → 契約に合意して実装を依頼。
+自分が送る依頼: `$align → $write-spec → $design-interface` → 契約に合意して実装を依頼。
 
 自動で使われる skill: `coordinator`、`what-breaks`、`tdd`、`prove-it`。
 
 個人用のタスク管理に、チームで共有する機能を追加したい例です。
 誰が見たり編集したりできるかなど、実装前に決めて文書に残すことがあります。
 
-## 1. 作る範囲を決める
+## 1. 認識を合わせる
 
 ```text
-$define
+$align
 個人用のタスク管理に、チームでタスクを共有する機能を追加したいです。
-まず、欲しい状態と今回作る範囲を整理してください。
+まず、困りごとと今回作る範囲の認識を合わせたいです。
 ```
 
-共有相手、閲覧・編集できる範囲、今回は扱わないことなどを相談します。
-例えば「同じチームの全員が閲覧でき、担当者だけが編集できる」範囲で合意したとします。
+エージェントの理解を確かめ、共有相手、閲覧・編集できる範囲、
+今回は扱わないことを合わせます。
+例えば「同じチームの全員が閲覧でき、担当者だけが編集できる」という認識で合ったとします。
 
-## 2. 合意した内容を仕様書にする
+## 2. 合意した認識を仕様書にする
 
 ```text
 $write-spec
@@ -68,7 +69,7 @@ API の契約が確定したあと、互いの結果を待たずに進められ�
 仕様を文書化するだけが目的なら、仕様書を仕上げたところで終えられます。
 共有する場合は、[PR 作成の例](review-and-pr.md) を参照してください。
 
-関連する skill: [define](../docs/skills.md#define)、[write-spec](../docs/skills.md#write-spec)、
+関連する skill: [align](../docs/skills.md#align)、[write-spec](../docs/skills.md#write-spec)、
 [design-interface](../docs/skills.md#design-interface)、[coordinator](../docs/skills.md#coordinator)。
 
 [レシピ一覧に戻る](README.md)

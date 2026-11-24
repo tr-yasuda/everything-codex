@@ -195,14 +195,17 @@ commit・push・公開は行いません。
 
 ## 理解を置き去りにしない
 
-### define
+### align
 
-実装前に困りごとを確かめ、本当に欲しいものを短い仕様にまとめます。[SKILL.md][define]
+実装前に、エージェントとユーザーが同じ困りごと・ゴール・制約を、
+同じ意味で持てるよう、認識を合わせます。[SKILL.md][align]
 
-**起動：** 手動で `$define <困りごと>`。
+**起動：** 手動で `$align <困りごと>`。
 
-**実行範囲：** 相談と仕様の合意までです。実装手順や変更ファイル単位の計画には踏み込みません。
-実装や文書への保存は含みません。
+**実行範囲：** エージェントの理解を言い返し、ユーザーがズレを訂正し、
+合意した認識を短く残すところまでです。固定の仕様テンプレは使いません。
+実装手順や変更ファイル単位の計画には踏み込みません。文書への保存は含みません。
+仕様書が必要なら `write-spec`、公開契約が必要なら `design-interface` に引き継ぎます。
 合意後に実装を依頼された場合は、`what-breaks` → `tdd` → `prove-it` を使うよう引き継ぎます。
 
 ### design-interface
@@ -396,7 +399,7 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [babysit]: ../skills/babysit/SKILL.md
 [self-drive]: ../skills/self-drive/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
-[define]: ../skills/define/SKILL.md
+[align]: ../skills/align/SKILL.md
 [design-interface]: ../skills/design-interface/SKILL.md
 [write-spec]: ../skills/write-spec/SKILL.md
 [catch-up]: ../skills/catch-up/SKILL.md
