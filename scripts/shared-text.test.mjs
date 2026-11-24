@@ -81,9 +81,6 @@ for (const [id, skill, targets] of [
   ["fix-pr-approval", "fix-pr", [
     "README.md", "docs/skills.md", "cookbooks/maintain-pr.md",
   ]],
-  ["recheck-pr-approval", "recheck-pr", [
-    "docs/skills.md", "cookbooks/recheck-pr.md",
-  ]],
   ["babysit-approval", "babysit", [
     "docs/skills.md", "cookbooks/maintain-pr.md",
   ]],

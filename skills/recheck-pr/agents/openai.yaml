@@ -1,7 +1,0 @@
-interface:
-  display_name: "recheck-pr"
-  short_description: "PR に出した指摘を再確認し、resolve・返信案・approve まで進める"
-  default_prompt: "$recheck-pr を使って対象 PR に自分が出したレビュー指摘を再確認し、解消したスレッドを resolve し、返信案を作成し、すべて解消していれば approve してください。"
-
-policy:
-  allow_implicit_invocation: false

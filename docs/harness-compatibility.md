@@ -73,7 +73,6 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [fix-ci] | GitHub のログ取得・修正・検証・push が必要。外部環境が原因なら原因を報告する |
 | [fix-conflicts] | Git の取得・merge・検証・push が必要。検証不可なら代替検証を行う |
 | [fix-pr] | GitHub の取得・修正・検証・push が必要。返信は文面の承認後に送信する |
-| [recheck-pr] | GitHub の取得・操作が必要。確認や操作が失敗した場合は resolve・approve しない |
 | [babysit] | 指定の 3 skill を相対パスで読む。読めなければ始めず、取得・操作の失敗でも止まる |
 
 subagent の代替は、元の手順が許す範囲で行います。
@@ -134,5 +133,4 @@ subagent の代替は、元の手順が許す範囲で行います。
 [fix-ci]: ../skills/fix-ci/SKILL.md
 [fix-conflicts]: ../skills/fix-conflicts/SKILL.md
 [fix-pr]: ../skills/fix-pr/SKILL.md
-[recheck-pr]: ../skills/recheck-pr/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md
