@@ -60,6 +60,7 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [catch-up] | 特定の agent を要求しない。観察できた状態と判断待ちを伝える |
 | [check-twice] | 原文・コード・合意を確認し、確かめきれない前提を断定しない |
 | [make-it-clear] | 検出・点検の分担は任意。起動不可・結果未取得の範囲は自分で点検する |
+| [refine-instructions] | 特定の agent を要求しない。lint などの検証を実行できなければ、未検証の範囲を報告する |
 | [research] | 検索や資料へのアクセスが必要。原典に届かなければ資料と結論の限界を示す |
 | [what-breaks] | 読み取り専用の subagent は任意。起動不可・結果未取得の範囲は親が調べる |
 | [root-cause] | 並列調査は任意。使えなければ親が調べ、未確定・結果未取得の仮説も確認する |
@@ -116,6 +117,7 @@ subagent の代替は、元の手順が許す範囲で行います。
 [catch-up]: ../skills/catch-up/SKILL.md
 [check-twice]: ../skills/check-twice/SKILL.md
 [make-it-clear]: ../skills/make-it-clear/SKILL.md
+[refine-instructions]: ../skills/refine-instructions/SKILL.md
 [research]: ../skills/research/SKILL.md
 [what-breaks]: ../skills/what-breaks/SKILL.md
 [root-cause]: ../skills/root-cause/SKILL.md

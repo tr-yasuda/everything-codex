@@ -1,0 +1,7 @@
+interface:
+  display_name: "refine-instructions"
+  short_description: "CLAUDE.md・AGENTS.md を、チームが管理しやすく役立つ指示書に改善する"
+  default_prompt: "$refine-instructions を使い、このリポジトリの CLAUDE.md と AGENTS.md を改善してください。足りない事実の追記、曖昧な記述の具体化、古い記述の修正、ツールやコードで代わりが利く記述の削減を行ってください。報告は、私にしか判断できないことだけにしてください。"
+
+policy:
+  allow_implicit_invocation: false
