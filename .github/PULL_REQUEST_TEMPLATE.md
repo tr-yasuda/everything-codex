@@ -14,6 +14,8 @@
 - [ ] ローカル環境で `pnpm lint:md` がパスすること
 - [ ] ローカル環境で `pnpm lint:spell` がパスすること
 - [ ] ローカル環境で `pnpm lint:text` がパスすること
+- [ ] ローカル環境で `pnpm test:claude-agents` がパスすること
+- [ ] ローカル環境で `pnpm test:shared-text` がパスすること
 - [ ] 変更内容に関連するドキュメントやコメントを更新したこと
 
 ## 備考
