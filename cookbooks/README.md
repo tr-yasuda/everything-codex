@@ -18,6 +18,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 | [CI の失敗を直す][maintain] | `$fix-ci` | `$fix-ci pr#123` |
 | [PR の対応をまとめて任せる][babysit] | `$babysit` → 報告を確認、返信案を承認 | `$babysit pr#123` |
 | [文章を読み手向けに直す][text] | `$make-it-clear` → 必要なら反映を依頼 | `$make-it-clear pr#123` |
+| [CLAUDE.md・AGENTS.md を改善する][instructions] | `$refine-instructions` → 差分を確認して PR へ | `$refine-instructions` |
 | [実装と文書を揃える][docs] | 文書の更新を依頼 | 今回の変更で古くなった説明や使用例を揃えて |
 | [状況と判断事項を知る][status] | 状況の説明を依頼 | 今の状況と、私が判断する必要のあることを説明して |
 | [依存関係を更新][deps] | `$update-deps` | `$update-deps` typescript を最新の安定版へ更新して |
@@ -30,6 +31,7 @@ skill を導入済みの人向けに、よくある依頼と、その進め方�
 [maintain]: maintain-pr.md
 [babysit]: maintain-pr.md#まとめて任せたい
 [text]: rewrite-for-reader.md
+[instructions]: refine-instructions.md
 [docs]: sync-docs.md
 [status]: catch-up.md
 [deps]: update-deps.md
