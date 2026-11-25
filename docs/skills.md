@@ -154,6 +154,25 @@ commit・push・公開は行いません。
 分担が有効なら検出・点検を並列化し、書き直しは一人が統合します。
 コードの構造の変更や、原文の事実関係そのものの検証は行いません。
 
+### refine-instructions
+
+CLAUDE.md・AGENTS.md を見直し、チームが管理しやすく、エージェントが正しく動ける指示書に改善します。[SKILL.md][refine-instructions]
+
+**起動：** 手動で `$refine-instructions` または `$refine-instructions <対象の指示書>`。
+省略時は、Git が追跡している CLAUDE.md・AGENTS.md が対象です。サブディレクトリのものも含みます。
+個人の指示書は、指定したときだけ対象にします。
+
+**実行範囲：** 指示書を作業ツリー上で直接編集します。
+報告するのはユーザーにしか判断できないことだけで、それ以外は修正したファイルと検証の結果だけを伝えます。
+
+- 足りない事実を追記する。根拠は、リポジトリから確かめられる事実と、その会話での訂正や繰り返した間違い
+- 曖昧な記述を具体化し、古い記述をコードや設定に合わせる
+- ツールで検出済みのルール、手本のあるコード例、コードや設定から分かる内容を減らす
+
+基準を確かめられない記述や、どちらが正しいか判断できない記述は残し、確認事項として報告します。
+まだツールで検出していないルールや、別の場所へ移せる指示も残し、候補として報告します。
+lint 設定や移動先は作成しません。commit・push も行いません。
+
 ## 正確な情報で進める
 
 ### check-twice
@@ -266,6 +285,7 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 [catch-up]: ../skills/catch-up/SKILL.md
 [unslop]: ../skills/unslop/SKILL.md
 [make-it-clear]: ../skills/make-it-clear/SKILL.md
+[refine-instructions]: ../skills/refine-instructions/SKILL.md
 [check-twice]: ../skills/check-twice/SKILL.md
 [research]: ../skills/research/SKILL.md
 [root-cause]: ../skills/root-cause/SKILL.md
