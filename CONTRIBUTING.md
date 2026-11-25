@@ -18,7 +18,8 @@ skill の導入と最初の使い方は、[README](README.md#使い始める) �
 | `codex/config.toml`、`codex/openai-agents/`、`codex/go.config.toml`、`codex/go-agents/` | Codex とエージェントの設定 |
 | `claude/agents/` | Claude Code 用の subagent 定義 |
 | `scripts/` | 共通の条件説明と Claude 用 subagent の検証・同期スクリプト |
-| `AGENTS.md`、`codex/AGENTS.md` | 作業時の指示 |
+| `AGENTS.md` | このリポジトリでの作業規約 |
+| `codex/AGENTS.md` | 利用者が個人用ルールへ取り込む共通ルールの正本 |
 | `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
 | `.github/PULL_REQUEST_TEMPLATE.md` | PR の記載項目と確認事項 |
 
