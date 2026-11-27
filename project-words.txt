@@ -32,3 +32,5 @@ applypatch
 scanability
 Lline
 Ccolumn
+nixpkgs
+pkgs

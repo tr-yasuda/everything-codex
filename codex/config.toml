@@ -28,9 +28,12 @@ web_search = "live"
 network_access = true
 writable_roots = [
   "~/.cache/mise",
+  "~/.cache/nix",
+  "~/.cache/node",
+  "~/.cache/pnpm",
   "~/.local/share/mise",
+  "~/.local/share/pnpm",
   "~/.local/state/mise",
-  "~/.local/share/pnpm/store",
 ]
 
 [windows]
