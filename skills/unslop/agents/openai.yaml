@@ -1,7 +1,7 @@
 interface:
   display_name: "unslop"
-  short_description: "処理を追いやすくし、コメントには将来守る制約だけを残す"
-  default_prompt: "$unslop を使い、対象差分の処理を最後まで追いやすくしてください。コメントには将来守るべき制約だけを残し、振る舞いと public API は維持してください。"
+  short_description: "一時コードとデバッグ用コードを削除し、処理を追いやすくする"
+  default_prompt: "$unslop を使い、対象差分に残った一時コードとデバッグ用コードを削除してください。処理を最後まで追いやすくし、コメントには将来守るべき制約だけを残してください。通常の利用者向けの振る舞いと public API は維持し、変わる場合は確認してください。"
 
 policy:
   allow_implicit_invocation: false
