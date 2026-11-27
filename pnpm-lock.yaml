@@ -9,44 +9,44 @@ importers:
   .:
     devDependencies:
       '@textlint-ja/textlint-rule-preset-ai-writing':
-        specifier: ^1.7.0
-        version: 1.7.0
+        specifier: ^1.7.2
+        version: 1.7.2
       cspell:
-        specifier: ^10.5.1
-        version: 10.5.1
+        specifier: ^10.5.2
+        version: 10.5.2
       js-yaml:
         specifier: ^5.5.0
         version: 5.5.0
       markdownlint-cli2:
-        specifier: ^0.24.1
-        version: 0.24.1
+        specifier: ^0.24.2
+        version: 0.24.2
       textlint:
-        specifier: ^16.1.1
-        version: 16.1.1
+        specifier: ^16.1.3
+        version: 16.1.3
       textlint-rule-preset-ja-technical-writing:
-        specifier: ^12.0.2
-        version: 12.0.2
+        specifier: ^12.1.0
+        version: 12.1.0
       textlint-rule-preset-japanese:
-        specifier: ^10.0.4
-        version: 10.0.4
+        specifier: ^10.1.0
+        version: 10.1.0
 
 packages:
 
-  '@babel/helper-string-parser@7.29.7':
-    resolution: {integrity: sha512-Pb5ijPrZ89GDH8223L4UP8i6QApWxs04RbPQJTeWDV0/keR2E36MeKnyr6LYmUUvqRRI+Iv87SuF1W6ErINzYw==}
+  '@babel/helper-string-parser@7.29.15':
+    resolution: {integrity: sha512-C2FuapQ2Kh1OnVHAoLi5rD3GBJ8COb9Q609T6HEpLqaBAo560PDP5OxBE5dCI/h951MBO/+bCUYU5SZ+8ZlV+w==}
     engines: {node: '>=6.9.0'}
 
   '@babel/helper-validator-identifier@7.29.7':
     resolution: {integrity: sha512-qehxGkRj55h/ff8EMaJ+cYhyaKlHIxqYDn682wQD7RNp9UujOQsHog2uS0r2vzr4pW+sXf90NeeayjcNaX3fFg==}
     engines: {node: '>=6.9.0'}
 
-  '@babel/parser@7.29.9':
-    resolution: {integrity: sha512-CjXrNHTnvqBVqHgdBysY3vk2T8tpJHb5/RMeHJBTyVa9xgugCB0CJTx/3oO8RV2QRQP391RWpB7D6hLjm8V9uA==}
+  '@babel/parser@7.29.15':
+    resolution: {integrity: sha512-RpKWyisHoP81twtSCgmE02iU0RnPcq1DN5bBEbpUePrjA9Q3wXhufnCJrrayPpoZieqFh3zyZQqwtSK0gGccRA==}
     engines: {node: '>=6.0.0'}
     hasBin: true
 
-  '@babel/types@7.29.8':
-    resolution: {integrity: sha512-Vj1jF3cPfxg7OAfoI7QnVKLoILlm2JF9pnVHrX8qx7AHMiYWT+NDAA7jChlNgRS4WTLc/fD1lXLmPixluj+3Gg==}
+  '@babel/types@7.29.15':
+    resolution: {integrity: sha512-/XKpKDakL//LZ66bq1XsZOswuqeI5MZqPLDu18o3XdkU1fNJ7bdPtzgnc4ZNS+bBGHV0FJG8jjb8SwcC3nNVQQ==}
     engines: {node: '>=6.9.0'}
 
   '@cacheable/memory@2.2.0':
@@ -55,36 +55,36 @@ packages:
   '@cacheable/utils@2.5.0':
     resolution: {integrity: sha512-buipgOVDkkPXNR5+xBpDw7Zk2n1EvU7qBJCNUcL7rhQ//kfpOXPAvQ511Os0vpLYJ1pZnvudNytkQt2hst3wqA==}
 
-  '@cspell/cspell-bundled-dicts@10.5.1':
-    resolution: {integrity: sha512-ydZ8qwJDW4KvU0EsGKUG+gSVYNyKinTV6PfL8JBzC05cjPLiYeZQzyTyMN60QpUahFmw8XdMYVt7A4mLnJBY2w==}
+  '@cspell/cspell-bundled-dicts@10.5.2':
+    resolution: {integrity: sha512-1EVGMy+/Ayjpu2r4i4x3K44kWoVbrdramIR+cX75fo5bDMgb1MXf7vIEfFKETY1h4eczd40SxM46twxrCxTwRw==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/cspell-json-reporter@10.5.1':
-    resolution: {integrity: sha512-ILox4CPt8aHbxYhys8ULSKJzBonCN5c+JC+6Hp6lOOJn0O1XI90XMRQlTYRNzrltIBUBsvxo8EVslKcC6n0c/w==}
+  '@cspell/cspell-json-reporter@10.5.2':
+    resolution: {integrity: sha512-ecpINoJ0qa1qP/PywhvcKQ2mA0fwhljSPvUn7+lw87dp4Ixa1qi7+re4SDGSqRr29FlJcKZRPfcRdK9iJPzbFA==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/cspell-performance-monitor@10.5.1':
-    resolution: {integrity: sha512-4ddFvBuvHtgiAm21KcCKGr3vfy7ux77easo+NXnkFo9/jDxgDdpejaR4/uKI2yZzRrZQRyq2wZ51EmICu3/v+g==}
+  '@cspell/cspell-performance-monitor@10.5.2':
+    resolution: {integrity: sha512-wQVHhjMd5BCum9oeBmncdu2h3i9FcWLbrKAInQafgAb0ASOLRJiaGMeH3HkjOIWgHXmoJYlrfw/MjWj3iLJp9g==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/cspell-pipe@10.5.1':
-    resolution: {integrity: sha512-WW6dXr/GooCnCNC4eyIEJRoqSOvaavv7gxBjpUe6RXMKY+Kz9By1H9GhGz5ZmYgOsHCT4Iq6ba3AM/a6S0/Avw==}
+  '@cspell/cspell-pipe@10.5.2':
+    resolution: {integrity: sha512-iwPHCMtFsIskUFijqTmaypLCRkazjjJViolJRreZycWMz+ts6JaY3iE8jtWbLZ8nTMp5nyIca6H4AdYoxuftjA==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/cspell-resolver@10.5.1':
-    resolution: {integrity: sha512-gW89eP7HbBWo9CVTBkYjwsOUsIkt1QIJbjoFbKIiz4xJKfalNXEyOMdTrDB9AGVyTEylY/Us1fFfPpWv8nfRsQ==}
+  '@cspell/cspell-resolver@10.5.2':
+    resolution: {integrity: sha512-Ia/4+nNqQFECHZo+sSrnO+Ogzom+0FrCUErWEfV660HT8DWX90sR97v6sQsDy9Rc2nI+7lt7Q9vWEk7uhHuV3g==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/cspell-service-bus@10.5.1':
-    resolution: {integrity: sha512-D99QG/KiW0gwW8z6dK1V1YvR7zY6+tBuZ69UEYJzgKy36KTwq71ZeWdxl1qwZPQRvQy9B+uObHQmU/KZFtXt9A==}
+  '@cspell/cspell-service-bus@10.5.2':
+    resolution: {integrity: sha512-SRJU7/dk0wGDaEp4v5VRG7WAxk8nueTIVqzC2uR2YjFSqYvOyGrvE0u2TDyD8j1H4dfam4WLcmCD7yCjl2hSuQ==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/cspell-types@10.5.1':
-    resolution: {integrity: sha512-Kz1w5YZysZNtDwp67kmPftI7Od2ZQMVbZerjnzPLVyWDsSg8KNImLYCMF+/va08WHq1wVi3tvedP0vb/LuZHkA==}
+  '@cspell/cspell-types@10.5.2':
+    resolution: {integrity: sha512-vSxzSbGny4eCCWImCEzU2OhxUrNMOkl05KCDVBwkDKEb9JHIzGOeUddoRtgPA6O7e74VOIbzFwedGkJfoiLLxQ==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/cspell-worker@10.5.1':
-    resolution: {integrity: sha512-UEiZO8Jc+gzU9uv+HyqEZApoqbz5suwCetApjWuZlKutiKZitlm2d6wu7L5R8drQaTFlR19R3vyUWzU2qXdflA==}
+  '@cspell/cspell-worker@10.5.2':
+    resolution: {integrity: sha512-xO8MyZ4We5eGe5pfDJBrMUd7fU0j4HRUbtemnBE1Sc5ax2Ze/ucz5RZtOYRsRiY2gmZjDIWfc065HuMQx2r45g==}
     engines: {node: '>=22.18.0'}
 
   '@cspell/dict-ada@4.1.1':
@@ -102,8 +102,8 @@ packages:
   '@cspell/dict-companies@3.2.14':
     resolution: {integrity: sha512-3EeCXEjd6ocbKNEHsPHViHJrDduJsVo9ixr0EMrzUO6OVCXlLSCLosDUzeANQidu/u6WA1ln63uRJ9fAGAKHzw==}
 
-  '@cspell/dict-cpp@7.2.0':
-    resolution: {integrity: sha512-hxz+OyQKV96/Bk2JYGsDuSOheYA5gd8KybXnoZMMu/mhZPnwhPi+qiS0Kjc0gLNbXjJ6wbBuXIQWi1UWpQBU/g==}
+  '@cspell/dict-cpp@7.2.1':
+    resolution: {integrity: sha512-3H/WCyYuI59AaCbHcgL3gSQV4oI4yaNZM4EjXJeeoAMKw1tg0+TdXWG+Vpk8vdOJYlbQv59vXA8n2r0oEfdfmA==}
 
   '@cspell/dict-cryptocurrencies@5.0.5':
     resolution: {integrity: sha512-R68hYYF/rtlE6T/dsObStzN5QZw+0aQBinAXuWCVqwdS7YZo0X33vGMfChkHaiCo3Z2+bkegqHlqxZF4TD3rUA==}
@@ -132,8 +132,8 @@ packages:
   '@cspell/dict-elixir@4.0.8':
     resolution: {integrity: sha512-CyfphrbMyl4Ms55Vzuj+mNmd693HjBFr9hvU+B2YbFEZprE5AG+EXLYTMRWrXbpds4AuZcvN3deM2XVB80BN/Q==}
 
-  '@cspell/dict-en-common-misspellings@2.2.6':
-    resolution: {integrity: sha512-RMOmCPOJuBfcC8IVLKjs9aqssjLKmhwVI8Yw/xgEnO9trWAiUzESassDATE229xqi1sdtRIIMGHyuxlkL75Xjg==}
+  '@cspell/dict-en-common-misspellings@2.2.7':
+    resolution: {integrity: sha512-hZhLJ8QEXNkKXz0GyUXCD0DCp0V7+DtnGNfide0SUWdSNZK8bAWugBc/d2SJYx6jEXnJu6TxGT9KUAdEeYrbQQ==}
 
   '@cspell/dict-en-gb-mit@3.1.32':
     resolution: {integrity: sha512-bEASyTAzXLowmFWrZIJjeAeCpY9g3jcYDO3tVyFDL/UaAuz0UvCVgOEyg+Ym7bclijqvXmj0xXOD/cW2XWG8iw==}
@@ -162,8 +162,8 @@ packages:
   '@cspell/dict-git@3.1.1':
     resolution: {integrity: sha512-XvuGVYj9YEu4EzntqyhH8XlTRyy57C6j8oxkIbUQfR2UYzxZGAP77XHl7qY7eC/40r/haDwnBaccyFR6BRmUCg==}
 
-  '@cspell/dict-golang@6.0.29':
-    resolution: {integrity: sha512-EZCgfxrr5lPnYQLmSvB6YtpfoDFt2KKxAD4ppq2xGSIgDFXAF7Mv4doiXIFUQaynCBIEfAMl3f/uDfrIUo4fyQ==}
+  '@cspell/dict-golang@6.0.30':
+    resolution: {integrity: sha512-GSRjlql6o/exczHcPF7y7Xo5J4uH9q4Ct5MGnzEqAufQrctk48CC9S/4N94f/Hq+fr25RhiFfqMrsv+sxLZ7pA==}
 
   '@cspell/dict-google@1.0.9':
     resolution: {integrity: sha512-biL65POqialY0i4g6crj7pR6JnBkbsPovB2WDYkj3H4TuC/QXv7Pu5pdPxeUJA6TSCHI7T5twsO4VSVyRxD9CA==}
@@ -215,8 +215,8 @@ packages:
   '@cspell/dict-node@5.0.9':
     resolution: {integrity: sha512-hO+ga+uYZ/WA4OtiMEyKt5rDUlUyu3nXMf8KVEeqq2msYvAPdldKBGH7lGONg6R/rPhv53Rb+0Y1SLdoK1+7wQ==}
 
-  '@cspell/dict-npm@5.2.56':
-    resolution: {integrity: sha512-VqN/f97X64gYR7zVXLu2PN6t5Sm6EljZEFp4htmbOL9tGqs0XVErl9B9kwfaLlKJqfLU6vYcupjRBjqTQ6rQ4Q==}
+  '@cspell/dict-npm@5.2.58':
+    resolution: {integrity: sha512-N5MP/cnKNFprTwImMxCv3kGtk6LsKzY5U9pc9f/4vDf61+67rY1kwn02/j3BWG1ganWoqelvGIQ40xFdh0Vu6Q==}
 
   '@cspell/dict-php@4.1.3':
     resolution: {integrity: sha512-41oKzl7rLVrrVZA/Gs0ESnP6KliEX7c+IwaaNmOL3PAoHasFDVEmIFeENIzuDdM12UcHT+MlLkAm3Qw/lS/ERA==}
@@ -227,8 +227,8 @@ packages:
   '@cspell/dict-public-licenses@2.0.17':
     resolution: {integrity: sha512-Asdumgg3oZ4ki//b2a+beiVIsNZA5thim4t4v3lTDLY/6a8VAPmTjzC3Y2t0x7ywC/bzAhi1KW/fg8JlwHDgig==}
 
-  '@cspell/dict-python@4.5.3':
-    resolution: {integrity: sha512-I226HEEJW4fleE0HMxRaecnzcJICFK6TOqIjqVkOJZzaVZTTjE7fojM+f5XECAwhf4BImW7HVOKMu4rMtza6ZA==}
+  '@cspell/dict-python@4.5.4':
+    resolution: {integrity: sha512-OmmvMWHABbftDMgtNMX9Ub4K1/5GpWVVumoJ5hlwZe0HkfUXRT/kV8qxthLdNG9G3Z6rfJ/74Ud2et3GIaqD7A==}
 
   '@cspell/dict-r@2.1.1':
     resolution: {integrity: sha512-71Ka+yKfG4ZHEMEmDxc6+blFkeTTvgKbKAbwiwQAuKl3zpqs1Y0vUtwW2N4b3LgmSPhV3ODVY0y4m5ofqDuKMw==}
@@ -245,8 +245,8 @@ packages:
   '@cspell/dict-shell@1.2.0':
     resolution: {integrity: sha512-PVctvT22lJ49niMiakO8xieY7ELCAzjSqhejWR7bAMb5AZ9F4WDEs+XdGMnoVHWeXq7K5rcepLPmEJb+37zzIw==}
 
-  '@cspell/dict-software-terms@5.4.9':
-    resolution: {integrity: sha512-bB5L+OGW0F8Vt83j0XFcMEWCbCNqquLgjlQjm/iCp1jcYi/pQbqDLkXIPbINgbeG0vRqiu5yCPDFCsv4Qb6miQ==}
+  '@cspell/dict-software-terms@5.4.11':
+    resolution: {integrity: sha512-gWQypOjzpMqyhnExsLRjhjaD2xkgUNNacOxdUGM+o/jhHv0NWO3axv+dWZKSQOEfffOHbj+O+wVlLyCxHhu9mQ==}
 
   '@cspell/dict-sql@2.2.1':
     resolution: {integrity: sha512-qDHF8MpAYCf4pWU8NKbnVGzkoxMNrFqBHyG/dgrlic5EQiKANCLELYtGlX5auIMDLmTf1inA0eNtv74tyRJ/vg==}
@@ -269,24 +269,24 @@ packages:
   '@cspell/dict-zig@1.0.0':
     resolution: {integrity: sha512-XibBIxBlVosU06+M6uHWkFeT0/pW5WajDRYdXG2CgHnq85b0TI/Ks0FuBJykmsgi2CAD3Qtx8UHFEtl/DSFnAQ==}
 
-  '@cspell/dynamic-import@10.5.1':
-    resolution: {integrity: sha512-SJycERkcVwnB8XgI0cfYJ9zzw132Ez7Op66+F4h/woEFNkv8Nzw2Ng2LDtf0wrdVWlKE5LrcTHe0cG0ZaonYmA==}
+  '@cspell/dynamic-import@10.5.2':
+    resolution: {integrity: sha512-sXOxhv+NoLW9k9YPvsNULjugSkIt2/EPnBnuKLDFrdyG5F0MNcgIM3Y6j/u3OGbRNOD+2OIF+Exh/Lh4E4YVEA==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/filetypes@10.5.1':
-    resolution: {integrity: sha512-HS6KRk25IfowrHxbw3RgMHNjkFX/e9Lp9c44lKs1oGF08cFAa5u5l6dWFj7THZPOItt/0vnKOkwk2pm9dBmPMQ==}
+  '@cspell/filetypes@10.5.2':
+    resolution: {integrity: sha512-AVkl2lf0jobYxXWqxRDAmR73hmAeyEIV8DfdW7xeheC5vZ9SrbzgWhtk3AMtPLCuDGkCEoNvi4ahcDsu3IwQ4A==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/rpc@10.5.1':
-    resolution: {integrity: sha512-WtEiqdneESOk+fxaBwCqpJQbbnAhLmytCz38hGxMIqqHMNBnFlpAr8sOgu8IN1OpGe8iq58eBRTm6I1ubO9AOQ==}
+  '@cspell/rpc@10.5.2':
+    resolution: {integrity: sha512-4EBIBqUlaRE8NuwA8MmUR2HsqjlX3anRFiy7Sr+gNwso/njPnqKr6EeTxFapGZOR+ShrwN3dL8En7ROJtyD/kg==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/strong-weak-map@10.5.1':
-    resolution: {integrity: sha512-arwqtPy9o/IhKep1gfeyggYTCybUmVsJWTfIJKw+r2ZPaxoo3vYEy+s25JxQwFRpo2ZHIDOS6V2pKKvD9eHLsA==}
+  '@cspell/strong-weak-map@10.5.2':
+    resolution: {integrity: sha512-8+uJw+DZnN84/Cd1urbb5ETp+2LDX71Xa+gjyrgZne74VRy02oXIC1etk+GwQMpjOe+iE6TQC/hfw/DIlsQ9sg==}
     engines: {node: '>=22.18.0'}
 
-  '@cspell/url@10.5.1':
-    resolution: {integrity: sha512-XIV8qZtR/FWgQerEGOBIQp2Si3GAQ/5Efr8TxtOeGvs7obuYB5Py+lx+q7nZlbXmYBst02NjuMXUe8tGNfg31Q==}
+  '@cspell/url@10.5.2':
+    resolution: {integrity: sha512-Uu02E4n52vivBApl8kLh16+9F6VMNIZheU3G44yg7yZoXyh1R7qtwvyTWtvBfuV091ENSh85EirI4ws4kmJudg==}
     engines: {node: '>=22.18.0'}
 
   '@keyv/bigmap@1.3.1':
@@ -297,21 +297,6 @@ packages:
 
   '@keyv/serialize@1.1.1':
     resolution: {integrity: sha512-dXn3FZhPv0US+7dtJsIi2R+c7qWYiReoEh5zUntWCf4oSpMNib8FDhSoed6m3QyZdx5hK7iLFkYk3rNxwt8vTA==}
-
-  '@kvs/env@2.2.2':
-    resolution: {integrity: sha512-tvy6eb1IHiQWqgSBjOxJp+gQ8wI/1bT5pWKU0VJL9d8SwAflOpN9777wQ3RY3jUtEUpcQOUtxrxcrMs9VYiNBw==}
-
-  '@kvs/indexeddb@2.2.2':
-    resolution: {integrity: sha512-h9Fom6YvbRzMHhBLZKdNNJ/bgla0aBbmVBzUBLUoeEwT3C16Yx5eGA+spUQ69ZoRbsArZufX84qX/wRbyvjtrg==}
-
-  '@kvs/node-localstorage@2.2.2':
-    resolution: {integrity: sha512-e6r2CBWAQznaLEAmYSNNPGXUkSRP+yffSZNJYfgR4II8vjDFtGj1gByo2yk7pQsRiiId6IZ5dwDl1Tib3bNaqw==}
-
-  '@kvs/storage@2.2.2':
-    resolution: {integrity: sha512-jThnhLTcT0w1SHzhr/PFTzzkKl+V3J6X07NyARceT02mIu5+tBWwtUhS68UNOaD7CTQ07rMFgb5UHoolies94g==}
-
-  '@kvs/types@2.2.2':
-    resolution: {integrity: sha512-5lmBuah+wOdypBf0O9t6BoHrnq5hX5MlhEPTDPBNKN38ayQwVc5gYgJOBR3Dg4EF7OwL+1c7JNtWXQEJXXVXlg==}
 
   '@modelcontextprotocol/core@2.4.0':
     resolution: {integrity: sha512-z8QBKqdfXLPzkLQuG4xp8hrVEMm1PZ1IgxMN2sMbJiFiAKOWXnAzogXn2W4aqIBlP1ea6U5yiqVquvUNM1Cj6Q==}
@@ -341,8 +326,8 @@ packages:
     resolution: {integrity: sha512-ZXfg7MT3AT9ZOq/hgzbqNc01zVPG+PFkr+kbB2OHlMcNrtvK10ZPkNgy38MqTErjNeajh4VG1sSSv5zIyjOXxg==}
     engines: {node: '>=22.18.0'}
 
-  '@textlint-ja/textlint-rule-preset-ai-writing@1.7.0':
-    resolution: {integrity: sha512-xq+y592q4qP4SK5Vs40JRi98BmpJJoIaUO8/U+puOErCyazQvoZqDswIuKsFi1IEFmZ/wNn8OkfJ/5GNhrppNw==}
+  '@textlint-ja/textlint-rule-preset-ai-writing@1.7.2':
+    resolution: {integrity: sha512-Fac3wKhbX5ZptCA6FQXTuaApBr8ZbiR1HYOEZ/ybagINm2cYasjsfLZeywx7fLtptHpRaSzfLQfCyrdg929aBA==}
 
   '@textlint-rule/textlint-rule-no-invalid-control-character@3.0.0':
     resolution: {integrity: sha512-2o9n4z49ntSPtJPlcJtxakyB4dAg2MKSvR9ZCZEHjye0ee27oWYzK6yHz2HjsXQqt9VeCwxNHDOIGIx2CQX0Dw==}
@@ -356,100 +341,97 @@ packages:
   '@textlint/ast-node-types@15.8.0':
     resolution: {integrity: sha512-5CiH9COYmovWmExQgs7763DzX6Gy9zjkjJ7JxCC95wyTcjwQn/8poNF6fv3qzRlmx8CRRde8DHr9FcgAAiPzgw==}
 
-  '@textlint/ast-node-types@16.1.1':
-    resolution: {integrity: sha512-61wYGuMgBRPZM+3w7Bx0ipnxv9/ltw+7p7esc1kTZxlo84pE96D5ktgj/HbVPwXxk1IGaa3mVds58IkBaP1pvw==}
+  '@textlint/ast-node-types@16.1.3':
+    resolution: {integrity: sha512-qtQgSsxHht8QO4FS5uCvSG7fSrraZ37ZMKYS2KsIibjiqqTMMpvxwC3HnD8aKn9Rz/CdQFRTWKxEd/qT2rrq5w==}
 
   '@textlint/ast-tester@13.4.1':
     resolution: {integrity: sha512-YSHUR1qDgMPGF5+nvrquEhif6zRJ667xUnfP/9rTNtThIhoTQINvczr5/7xa43F1PDWplL6Curw+2jrE1qHwGQ==}
 
-  '@textlint/ast-tester@16.1.1':
-    resolution: {integrity: sha512-e52+hLlhYHUL6Dcza+CgCjU/w2kRc2rhTAEguJKMtcgZuIct2e4l85XBewkVuPsP1B7C4LW3US3/2avvwK7VUQ==}
+  '@textlint/ast-tester@16.1.3':
+    resolution: {integrity: sha512-Jb/JfsLcDMYrqORtvW7S4BgtErhhsT26CTQl4laSa4bc0quKBx1wAcQhFOptH7V3agFpRDawJ7wJydDMPDZ/zA==}
 
   '@textlint/ast-traverse@13.4.1':
     resolution: {integrity: sha512-uucuC7+NHWkXx2TX5vuyreuHeb+GFiA83V65I+FnYP5EC4dAMOQ86rTSPrZmCwLz+qIWgfDgihGzPccpj3EZGg==}
 
-  '@textlint/ast-traverse@16.1.1':
-    resolution: {integrity: sha512-cLQAFW53dYcEfMD8luMe9u4lIAa2EnMKfHQn/lU4ReNfvOOVLpQsk9M52WuI6+5o1HhB6gVh+dV5sEjw5U9/1A==}
+  '@textlint/ast-traverse@16.1.3':
+    resolution: {integrity: sha512-DEOlREgWZImvasxtvERHOMFq/K0MxO7eu+HOBH6ozDRlNVa88F0kN8CcU1Y2isTOVS4IaIBK4Tcn9E4HEjMhXw==}
 
-  '@textlint/config-loader@16.1.1':
-    resolution: {integrity: sha512-nkmAGoZ3GDgBNiCjeF2+uujCZFpsC0xxUL/81ohVpg8yqwkMjtijW9QV15DQETUCENKxen4Fdvqr4iztuFGcPQ==}
+  '@textlint/config-loader@16.1.3':
+    resolution: {integrity: sha512-0HcSfVFKEP3SovuGjS970azU5jEp50IyvzoR0YYoaYGbhXZIoVZg6GoVJHvGciETVZ7m9veT8HsuTaIqTNraTw==}
 
   '@textlint/feature-flag@13.4.1':
     resolution: {integrity: sha512-qY8gKUf30XtzWMTkwYeKytCo6KPx6milpz8YZhuRsEPjT/5iNdakJp5USWDQWDrwbQf7RbRncQdU+LX5JbM9YA==}
 
-  '@textlint/feature-flag@16.1.1':
-    resolution: {integrity: sha512-yr8hAb1DfTe6rHx3ppajYGxsRYeWMrJxgZtJAOZDlc8lnJrTGzmU8pKTBHHWBtG+HAVlgzVUrDIthi2f40sQ1w==}
+  '@textlint/feature-flag@16.1.3':
+    resolution: {integrity: sha512-a9h8/7aZfDPOTw+GySo5APrTrqAJ/VnKmfzc+9U+hqaxyk+xG2E7kyFlT3RzO6OAVAVhTLwQEJalbs785pWSBA==}
 
-  '@textlint/fixer-formatter@16.1.1':
-    resolution: {integrity: sha512-EzRqMNJLZnQ16HBmuVoHFTDzdTgOrc5DstO+QzfMSXXbgnPMxF9PIQgzoVveMBArlI5oJeBTYvRTkR3QPDS42A==}
+  '@textlint/fixer-formatter@16.1.3':
+    resolution: {integrity: sha512-F2pQQaMR6amRcL6smf19JkoBAIp8tptJoTeloLUe2IOrP4icoOEtgf7GjQ4QCd8x7CgzuNtn797xrgcXs2/6kg==}
     engines: {node: '>=22.12.0'}
 
   '@textlint/kernel@13.4.1':
     resolution: {integrity: sha512-r2sUhjPysFjl2Ax37x9AfWkJM8jgKN0bL4SX3xRzOukdcj69Dst5On5qBZtULaVMX1LDkwkdxA6ZEADmq27qQA==}
 
-  '@textlint/kernel@16.1.1':
-    resolution: {integrity: sha512-WwLbRa7u3uz9NKx6hZoRd9BzjSbW6oD1Dy0cvDAMEHSd+eaIPKuAn3rFTacZPA4oTqJenkos4J9F7CQoPTY08w==}
+  '@textlint/kernel@16.1.3':
+    resolution: {integrity: sha512-x4GpE8EIyuSqeKpYIYUmdu8uWJ8qkivGYW0WxXLMPEFLOJT/adDvitagAtJenpunTtNTLLQds8LgDfHUG/AjRg==}
 
-  '@textlint/linter-formatter@16.1.1':
-    resolution: {integrity: sha512-Jv1Z7zK1GmoQLPlcOoVz24uV7xNQgA5V80rNkhs+hvnHvBC+EiMAHpsmMDn+Qo/Uao3+4eAtb/FO+hERkLwFnA==}
+  '@textlint/linter-formatter@16.1.3':
+    resolution: {integrity: sha512-BwJz58W1uQC/tRY3htwC3V/0kuqrIo9QCE023tG948IQHYRkR0+/BcpGpQ+UA8G7P90Ysh/PT4LiwPxuG/MEMw==}
     engines: {node: '>=22.12.0'}
 
   '@textlint/markdown-to-ast@13.4.1':
     resolution: {integrity: sha512-jUa5bTNmxjEgfCXW4xfn7eSJqzUXyNKiIDWLKtI4MUKRNhT3adEaa/NuQl0Mii3Hu3HraZR7hYhRHLh+eeM43w==}
 
-  '@textlint/markdown-to-ast@16.1.1':
-    resolution: {integrity: sha512-Nfrk2txfvmp3MGiC1GndjPxVoLIUSpMvKRyD0+zAPnczW0FaOxB39xGb8onRAm9lu+35XWzQatA39XczQs3YDg==}
+  '@textlint/markdown-to-ast@16.1.3':
+    resolution: {integrity: sha512-y71nzolxuU6RBKlxGVvT8ew+Wi0wh9yXNn6bXfN3Gz4ErjGmaAbFM4klWXEEIQ+sPNwzFv/7FNsctW92BvT1fg==}
 
-  '@textlint/module-interop@14.8.4':
-    resolution: {integrity: sha512-1LdPYLAVpa27NOt6EqvuFO99s4XLB0c19Hw9xKSG6xQ1K82nUEyuWhzTQKb3KJ5Qx7qj14JlXZLfnEuL6A16Bw==}
-
-  '@textlint/module-interop@16.1.1':
-    resolution: {integrity: sha512-zNsxcMZAIWzGsrLfTPKtB49ZZMhqiSk2jsbpwnBQjJ4dbiqtUoBbe/yLx0z6G1lstcfxeYeQhIuRP0GxYV0bog==}
+  '@textlint/module-interop@16.1.3':
+    resolution: {integrity: sha512-crr+7P2zX4Q8ZvTdx5socF1qe8wqaHv8RWOtQlJWT34Q1BUFMBFL0U6qtSdxIi+u01wuzW59auCc7KWUrJOeJA==}
 
   '@textlint/regexp-string-matcher@1.1.1':
     resolution: {integrity: sha512-rrNUCKGKYBrZALotSF8D5A8xD05VHX6kxv0BP805Ig2M73Ha6LK+de31+ZocGm4CO+sikVFYyMCPPJhp7bCXcw==}
 
-  '@textlint/regexp-string-matcher@2.0.2':
-    resolution: {integrity: sha512-OXLD9XRxMhd3S0LWuPHpiARQOI7z9tCOs0FsynccW2lmyZzHHFJ9/eR6kuK9xF459Qf+740qI5h+/0cx+NljzA==}
+  '@textlint/regexp-string-matcher@2.0.4':
+    resolution: {integrity: sha512-wK/RrUO/UsfxKa/Flhu2583n2Om38w4Ds5uh4nMedIX/+wL1uL9FH8vgK9YDlsO4jNkp5LbjTp5XDnQTd1VYPg==}
 
-  '@textlint/resolver@16.1.1':
-    resolution: {integrity: sha512-IH56DQ03YM0S3bap9KPjjanCZZMpckL5QnbWuBeYBpHphXnJEcr9Tx+W+nGJyiu5CN0nTlHNhT+qXmrABInuwA==}
+  '@textlint/resolver@16.1.3':
+    resolution: {integrity: sha512-bOeZA57uFFLa1LHTGl0dWQlCaqJ9fiFwz7sICre55gCN8r+h8A5DUfbypCpQLaQPtuwWaESaElRYxpFSrtyyZQ==}
 
   '@textlint/source-code-fixer@13.4.1':
     resolution: {integrity: sha512-Sl29f3Tpimp0uVE3ysyJBjxaFTVYLOXiJX14eWCQ/kC5ZhIXGosEbStzkP1n8Urso1rs1W4p/2UemVAm3NH2ng==}
 
-  '@textlint/source-code-fixer@16.1.1':
-    resolution: {integrity: sha512-Zh1oxbr9I9zeXz15wKnADmHWnt7vo91Q0wB+pTHSTMFXgx8xhWuXzZORgZRkfh4dIVTz3jeCvDnQb19wkitliQ==}
+  '@textlint/source-code-fixer@16.1.3':
+    resolution: {integrity: sha512-TVO6Tly1VoXOL06mI50fBNE3kBIPGQzIOn6EMGrmQmr0j6shBGs+ezZ0zesVtNcN8J2rTf8q1ZoqhAo/a8pMqg==}
 
   '@textlint/text-to-ast@13.4.1':
     resolution: {integrity: sha512-vCA7uMmbjRv06sEHPbwxTV5iS8OQedC5s7qwmXnWAn2LLWxg4Yp98mONPS1o4D5cPomzYyKNCSfbLwu6yJBUQA==}
 
-  '@textlint/text-to-ast@16.1.1':
-    resolution: {integrity: sha512-jHy+UuFq2hjHbt6XeXxwDmLpeMVoHspcRgA8sY48249WHlee7YEoN7yGiqsCQ2QbnbvtsNQ1Vif8N2Np4P5RNw==}
+  '@textlint/text-to-ast@16.1.3':
+    resolution: {integrity: sha512-O6wT5ko6+jD/MiI17Jk+fXZS42/zQrVJzxeHIs8Sz2wQfHExkL3+zINKdBExbfv/txl9k7vw0Z6e54RTjfbkkw==}
 
   '@textlint/textlint-plugin-markdown@13.4.1':
     resolution: {integrity: sha512-OcLkFKYmbYeGJ0kj2487qcicCYTiE2vJLwfPcUDJrNoMYak5JtvHJfWffck8gON2mEM00DPkHH0UdxZpFjDfeg==}
 
-  '@textlint/textlint-plugin-markdown@16.1.1':
-    resolution: {integrity: sha512-LrHEQ2okVUMYJsKNqNmvFtmm4UQ0UXIIBVdG+rJcUgsM3P26pevoeuWfCbt+laxVEbH30o/zH9E+So7kvCQAkA==}
+  '@textlint/textlint-plugin-markdown@16.1.3':
+    resolution: {integrity: sha512-50/Em75JV9MngQBKOPb7pZtlaefGseYl2NCgtIK0Z3bYiwRUARWdRNZ3/kN7w3dXHqw6JX7KIwmILFjsSnt8fA==}
 
   '@textlint/textlint-plugin-text@13.4.1':
     resolution: {integrity: sha512-z0p5B8WUfTCIRmhjVHFfJv719oIElDDKWOIZei4CyYkfMGo0kq8fkrYBkUR6VZ6gofHwc+mwmIABdUf1rDHzYA==}
 
-  '@textlint/textlint-plugin-text@16.1.1':
-    resolution: {integrity: sha512-gj8ncZ3aJrCfGdszkGCfVbi8hPDSPdTIQoJjgzjyMlUr6GolCEFBUDWRvWpCmsduE0gvAy/jBaDp1OUCnh9NIg==}
+  '@textlint/textlint-plugin-text@16.1.3':
+    resolution: {integrity: sha512-/s+WzriM8+Y+iuH4+bVBJYHu6vzTW8caWKx0nW+pEThng83LxKZ+PekIS/sgaZ//Qhh3d7dBJK3Bo1Y0ymiVlA==}
 
   '@textlint/types@13.4.1':
     resolution: {integrity: sha512-1ApwQa31sFmiJeJ5yTNFqjbb2D1ICZvIDW0tFSM0OtmQCSDFNcKD3YrrwDBgSokZ6gWQq/FpNjlhi6iETUWt0Q==}
 
-  '@textlint/types@16.1.1':
-    resolution: {integrity: sha512-K8VmOG8ZnNtTlH4iS4TygnU6cMQr9zciHB55sg/c892xPgnELdld2UngibS5V3vT+SDHf5glxuhWcbYeQFYW7A==}
+  '@textlint/types@16.1.3':
+    resolution: {integrity: sha512-SM+QmDYIHQHpdu4e9z/vt8jMG4QXq5Q7s2Rv51nviLFWDoT+NbikqoxlyjcKmmCxNgO53DZ3tpBOVS+KPso3Ig==}
 
   '@textlint/utils@13.4.1':
     resolution: {integrity: sha512-wX8RT1ejHAPTDmqlzngf0zI5kYoe3QvGDcj+skoTxSv+m/wOs/NyEr92d+ahCP32YqFYzXlqU7aDx2FkULKT+g==}
 
-  '@textlint/utils@16.1.1':
-    resolution: {integrity: sha512-hiQVXlRGrGbKF9gfa3+agIR1En7zxe7AyZaRKM9/gD32y7Yo57sJb1bxiORx3ogkatlBlc5zVuWfL+i7qg7dwA==}
+  '@textlint/utils@16.1.3':
+    resolution: {integrity: sha512-9ZU/rfeuqa7/BIACLsCa69kk1h2+mXQAKXZXl9vZOjBvqihgYXB/nZFvhEuUex7nOZZZ2tpHS2FnqbpdZ82KaA==}
 
   '@types/debug@4.1.13':
     resolution: {integrity: sha512-KSVgmQmzMwPlmtljOomayoR89W4FynCAi3E8PPs7vmDVPe84hT+vGPKkJfThkmXs0x0jAaa9U8uW8bbfyS2fWw==}
@@ -476,10 +458,6 @@ packages:
     resolution: {integrity: sha512-XZ5apbzreCbXSKwPjJstu8R0zOi247w3XYwWxtwBXgpZrCyc1Ka7p9/xY0A9/diMewmHbEKz+FIraWaEWjlN5g==}
     engines: {node: '>=12'}
 
-  app-root-path@3.1.0:
-    resolution: {integrity: sha512-biN3PwB2gUtjaYy/isrU3aNWI5w+fAfvHkSvCKeQGxhmYpwKFUxudR3Yya+KqVRHBmEDYh+/lTozYCFbmzX4nA==}
-    engines: {node: '>= 6.0.0'}
-
   argparse@1.0.10:
     resolution: {integrity: sha512-o5Roy6tNG4SL/FOkCAN6RzjiakZS25RLYFrcMttJqbdd8BWrnA+fGz57iN5Pb06pvBGvl5gQ0B48dJlslXvoTg==}
 
@@ -505,9 +483,6 @@ packages:
     resolution: {integrity: sha512-hsU18Ae8CDTR6Kgu9DYf0EbCr/a5iGL0rytQDobUcdpYOKokk8LEjVphnXkDkgpi0wYVsqrXuP0bZxJaTqdgoA==}
     engines: {node: '>= 0.4'}
 
-  async@2.6.4:
-    resolution: {integrity: sha512-mzo5dfJYwAn29PeiJ0zvwTo04zj8HDJj0Mn8TD7sno7q12prdbnasKJHhkm2c1LgrhlJ0teaea8860oxi51mGA==}
-
   available-typed-arrays@1.0.7:
     resolution: {integrity: sha512-wvUjBtSGN7+7SjNpq/9M2Tg350UZD3q62IFZLbRAR1bSMlCo1ZaeW+BJ+D090e4hIIZLBcTDWe4Mh4jvUDajzQ==}
     engines: {node: '>= 0.4'}
@@ -522,8 +497,8 @@ packages:
   boundary@2.0.0:
     resolution: {integrity: sha512-rJKn5ooC9u8q13IMCrW0RSp31pxBCHE3y9V/tp3TdWSLf8Em3p6Di4NBpfzbJge9YjjFEsD0RtFEjtvHL5VyEA==}
 
-  brace-expansion@5.0.13:
-    resolution: {integrity: sha512-Vh3dmFbc4wZeox7M9I/0L9GfFd83Su4+yCck/OF9Gi/P/dAHn0RT7X4K9R7gMNMhDck3DvhR6QXsnQdjjgwNvQ==}
+  brace-expansion@5.1.0:
+    resolution: {integrity: sha512-aa11Dv491GKnYqxaul3aRJ0szew7yMJMfZPnqD44NjGrZXoj62l41OEDDpdpC4eE2P88vBFfLuSyRhpG91NUvg==}
     engines: {node: 20 || >=22}
 
   braces@3.0.3:
@@ -603,44 +578,44 @@ packages:
     resolution: {integrity: sha512-uiqLcOiVDJtBP8WGkZHEP+FZIhTzP1dxvn59EfoYUi9gqupjrBWVQkO2atDrbnKPwLeotFYDsuNb26uBMqB+hw==}
     engines: {node: '>= 6'}
 
-  cspell-config-lib@10.5.1:
-    resolution: {integrity: sha512-VnqnlHFKEmIEkLSp62UDFoQ7/tVfliIdiiYFcX8O3OQ5lj+D2RjEnKUOhSW7qHITI8CAFa0LpYPPoHJhGM/rYw==}
+  cspell-config-lib@10.5.2:
+    resolution: {integrity: sha512-FJyqkD3eMGjxGSEiXW5V2ayCI/1su/9OHEKBNPq7YvkIb1HXVe27w1up/CXjE8fNSPet9YRz1xTeS6NcRY6mCA==}
     engines: {node: '>=22.18.0'}
 
-  cspell-dictionary@10.5.1:
-    resolution: {integrity: sha512-4dHK2v4U5H57XK2Iq8Fb81agcbTvnMGePpv417AVJQwKCQbGmjOWhzQ6lbanhbH/j9zlz3HaCiHryrdc8jKwQw==}
+  cspell-dictionary@10.5.2:
+    resolution: {integrity: sha512-mmnvKDVZdbusX6P+wGY+HMiZGvpLbz/kJfWTXsWtWWhEHqoB22cqGXigWaS0lHtYJyoNXJ+SkqO/wvRXfL8C7Q==}
     engines: {node: '>=22.18.0'}
 
-  cspell-gitignore@10.5.1:
-    resolution: {integrity: sha512-sN1+zPJUF6QciUQNH0LI3Eg5Cffz+opyf4K29nN3V00pQ0jSAy3tbF6Ps6++yQM+tsZxORZ5LB9BHK4bQBHNVQ==}
-    engines: {node: '>=22.18.0'}
-    hasBin: true
-
-  cspell-glob@10.5.1:
-    resolution: {integrity: sha512-spW2LJLuRegMdnzjeMBv1zgUtYgZmMIpdkLNsMuRiGS3ovlcHUfg9nuW+VdynTV/8RewA9j6gmuBdXXdKs5E2Q==}
-    engines: {node: '>=22.18.0'}
-
-  cspell-grammar@10.5.1:
-    resolution: {integrity: sha512-8AuX8APLSYEn4rB9GpkgZ5a+VXsdR+WF/imCz2QaXqTepWINXdLszeERwX7k/G2euLbULn9oHAWwXOMNq7pw9g==}
+  cspell-gitignore@10.5.2:
+    resolution: {integrity: sha512-O+2jqfFwIxJ4MY26eE6JpR7Hz4bRegOdlTeclCm/4Q/8Oi+ajnsnruCDXI/Kt4oM/3gCPEY4ZB6HhcFKUaWPHQ==}
     engines: {node: '>=22.18.0'}
     hasBin: true
 
-  cspell-io@10.5.1:
-    resolution: {integrity: sha512-llte96Q2s3MicWNtA+8McvzUXee1XDmmKSdA8J4bZMllUBNo1UG/mKs+vFU1uqRcxoJ2AxyPY9NySpTmvLTM4w==}
+  cspell-glob@10.5.2:
+    resolution: {integrity: sha512-dxzd26V9ppHk1NYImqMwF8hZ5bxyLCaLX+35uxua2QUWXTsg0YAMdmLD2A0XKr9manfryBaeVp0RltKsqCGCHw==}
     engines: {node: '>=22.18.0'}
 
-  cspell-lib@10.5.1:
-    resolution: {integrity: sha512-o6/M+w8ynF9MoiWvETzo7aGrVoKR7zuNpC7IKNLMZ0A4QwBe2uTGsXMta28g71sEFRejYxmGcX+IHMavLgCjTg==}
+  cspell-grammar@10.5.2:
+    resolution: {integrity: sha512-wvNktzzcF/yz3WzyaD1cM7QRkSUO01fqWp/XsAakwVtY46v3VA/Ifob6Nbq0RYPyxXMTMK6v7btm2Fx5nfXtHQ==}
+    engines: {node: '>=22.18.0'}
+    hasBin: true
+
+  cspell-io@10.5.2:
+    resolution: {integrity: sha512-VhNKpbHHGxkDF7O4NWZni/e6HfNzSDsd+VKtJKs5qEmX5NBFcfLwc2/I5N7AxQPTU+vBlSx0LPNoCGWQxAgrnA==}
     engines: {node: '>=22.18.0'}
 
-  cspell-trie-lib@10.5.1:
-    resolution: {integrity: sha512-nB6MLCzJfStH88MjvzpMfXvg7sdp1fvAPFv+f174UobwCPUheA9BmCxPlxXphhxU+zQ4n082rn+OLq6aUifXVA==}
+  cspell-lib@10.5.2:
+    resolution: {integrity: sha512-D9WeCDj+ZmHz2Hu+H/Gc6C7PYhsVchJvIXTA8X/sOrG+kvXnsYF6eGcOJV1HGhVGxJpJ3CzFcTWqXUixYdh1ow==}
+    engines: {node: '>=22.18.0'}
+
+  cspell-trie-lib@10.5.2:
+    resolution: {integrity: sha512-cyvmveYXmKxkBVGVO/HzITnuKBqgR1fpFZXqYIRUoz5F8VbVFO0jKOVsFma+cFytWv2e2bQgcRyn3WX8kHNeRw==}
     engines: {node: '>=22.18.0'}
     peerDependencies:
-      '@cspell/cspell-types': 10.5.1
+      '@cspell/cspell-types': 10.5.2
 
-  cspell@10.5.1:
-    resolution: {integrity: sha512-nqXOFQyHlSBDwWqQHmXvR0vomrjrTctFs73SJCSAvtIgPahq0SVyRWZS856TGDBY63z0gS/h4+GKymLKnLoZ8w==}
+  cspell@10.5.2:
+    resolution: {integrity: sha512-PUfaJuF58PNok13Xo3aoCrIOCCEcLzV4W0pUK630taMmnbl8OzRths6ya9ooZ6gmJF8Y0zaAZt5IV+Dx27GHlA==}
     engines: {node: '>=22.18.0'}
     hasBin: true
 
@@ -697,9 +672,6 @@ packages:
   diff@8.0.4:
     resolution: {integrity: sha512-DPi0FmjiSU5EvQV0++GFDOJ9ASQUVFh5kD+OzOnYdi7n3Wpm9hWWGfB/O2blfHcMVTL5WkQXSnRiK9makhrcnw==}
     engines: {node: '>=0.3.1'}
-
-  doublearray@0.0.2:
-    resolution: {integrity: sha512-aw55FtZzT6AmiamEj2kvmR6BuFqvYgKZUkfQ7teqVRNqD5UE0rw8IeW/3gieHNKQ5sPuDKlljWEn4bzv5+1bHw==}
 
   dunder-proto@1.0.1:
     resolution: {integrity: sha512-KIN/nDJBQRcXw0MLVhZE9iQHmG68qAVIBg9CqmUYjmQIhgij9U5MFvrqkUL5FbtyyzZuOeOt0zdeRe4UY7ct+A==}
@@ -771,8 +743,8 @@ packages:
   fast-equals@4.0.3:
     resolution: {integrity: sha512-G3BSX9cfKttjr+2o1O22tYMLq0DPluZnYtq1rXumE1SpL/F/SLIfHx08WYQoWSIpeMYf8sRbJ8++71+v6Pnxfg==}
 
-  fast-equals@6.4.0:
-    resolution: {integrity: sha512-WueHOj7IYeH9WWwr5lZ0UaDUhG35cz7Dh2SkDMNjiinPy7Dc7CbKP+1aP5YPLjG+BQ7MA1LDxUk78exLMjDxig==}
+  fast-equals@6.4.1:
+    resolution: {integrity: sha512-qHLxdeRmasP83VXLGXCyUh7D2bo2WFI/IEB+T0WSf3mwuTD2A5F+HQQmeF+UXCfuLPmqUNYcFJjwAN9JabA6+Q==}
     engines: {node: '>=6.0.0'}
 
   fast-glob@3.3.3:
@@ -876,9 +848,6 @@ packages:
     resolution: {integrity: sha512-ZUKRh6/kUFoAiTAtTYPZJ3hw9wNxx+BIBOijnlG9PnrJsCcSjs1wyyD6vJpaYtgnzDrKYRSqf3OO6Rfa93xsRg==}
     engines: {node: '>= 0.4'}
 
-  graceful-fs@4.2.11:
-    resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
-
   has-bigints@1.1.0:
     resolution: {integrity: sha512-R3pbpkcIqv2Pm3dUwgjclDRVmWpTJW2DcMzcIhEXEx1oh/CEMObMm3KLmRJOdvhM7o4uQBnwr8pzRK2sJWIqfg==}
     engines: {node: '>= 0.4'}
@@ -921,8 +890,8 @@ packages:
   hookified@2.2.0:
     resolution: {integrity: sha512-p/LgFzRN5FeoD3DLS6bkUapeye6E4SI6yJs6KetENd18S+FBthqYq2amJUWpt5z0EQwwHemidjY5OqJGEKm5uA==}
 
-  ignore@7.0.16:
-    resolution: {integrity: sha512-52N+Y4HRMOJmbLmr+DqO4iSRyyB7N52gm7PWCT6h0p978+oKbqHCB7gIJIwZvBUsjlSdWbrBFqUSmIFNZMpn0A==}
+  ignore@7.0.17:
+    resolution: {integrity: sha512-0c3zcBRlWmcKhcIQWckzkYncJRv5HHB8O32wO/FcWL8DDXWDJgiEF6SX9ThbTv5h/eZ+xJK+VvDjjQ+cQJhp3Q==}
     engines: {node: '>= 4'}
 
   import-fresh@4.0.1:
@@ -931,10 +900,6 @@ packages:
 
   import-meta-resolve@4.2.0:
     resolution: {integrity: sha512-Iqv2fzaTQN28s/FwZAoFq0ZSs/7hMAHJVX+w8PZl3cY19Pxk6jFFalxQoIfW2826i/fDLXv8IiEZRIT0lDuWcg==}
-
-  imurmurhash@0.1.4:
-    resolution: {integrity: sha512-JmXMZ6wuvDmLiHEml9ykzqO6lwFbof0GG4IkcGaENdCRDDmMVnny7s5HsIgHCbaq0w2MyPhDqkhTUgS2LU2PHA==}
-    engines: {node: '>=0.8.19'}
 
   ini@6.0.0:
     resolution: {integrity: sha512-IBTdIkzZNOpqm7q3dRqJvMaldXjDHWkEDfrwGEQTs5eaQMWV+djAhR+wahyNNMAa+qpbDUhBMVt4ZKNwpPm7xQ==}
@@ -1145,11 +1110,8 @@ packages:
   keyv@5.6.0:
     resolution: {integrity: sha512-CYDD3SOtsHtyXeEORYRx2qBtpDJFjRTGXUtmNEMGyzYOKj1TE3tycdlho7kA1Ufx9OYWZzg52QFBGALTirzDSw==}
 
-  kuromoji@0.1.2:
-    resolution: {integrity: sha512-V0dUf+C2LpcPEXhoHLMAop/bOht16Dyr+mDiIE39yX3vqau7p80De/koFqpiTcL1zzdZlc3xuHZ8u5gjYRfFaQ==}
-
-  kuromojin@3.0.1:
-    resolution: {integrity: sha512-E4rLmbTid8ZGH8Fw421UXvfgCe0IXGFKhUw/IosBVW6ootxVGKGbtb0UPQAvPswgsXX/8UuPiE+amz1NN11Uzg==}
+  kuromojin@3.1.0:
+    resolution: {integrity: sha512-czp55A9IINhX8uGjD5zE9IKr+/oy4q8mUtUQi/xUkUkE93ER3COB92PONzX0CHiY4mrzjyuPeTg2swn7mUWEkg==}
 
   levn@0.4.1:
     resolution: {integrity: sha512-+bT2uH4E5LGE7h/n3evcS/sQlJXCpIp6ym8OWJ5eV6+67Dsql/LaaT7qJBAt2rzfoa/5QBGBhxDix1dMt2kQKQ==}
@@ -1167,18 +1129,12 @@ packages:
   lodash.uniqwith@4.5.0:
     resolution: {integrity: sha512-7lYL8bLopMoy4CTICbxygAUq6CdRJ36vFc80DucPueUee+d5NBRxz3FdT9Pes/HEx5mPoT9jwnsEJWz1N7uq7Q==}
 
-  lodash@4.18.1:
-    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
-
   longest-streak@2.0.4:
     resolution: {integrity: sha512-vM6rUVCVUJJt33bnmHiZEvr7wPT78ztX7rojL+LW51bHtLh6HTjx84LA5W4+oa6aKEJA7jJu5LR6vQRBpA5DVg==}
 
   lru-cache@11.5.3:
     resolution: {integrity: sha512-U4N8FgzmWxc8k1VH8Kr6lQg18U7Fjvby6wXHVRX/ZZ7IwWbRMgrRbP0Wrb5q5NVinryp4SQampHKdvtecItxUg==}
     engines: {node: 20 || >=22}
-
-  lru_map@0.4.1:
-    resolution: {integrity: sha512-I+lBvqMMFfqaV8CJCISjI3wbjmwVu/VyOoU7+qtu9d7ioW5klMgsTTiUOUp+DJvfTTzKXoPbyC6YfgkNcyPSOg==}
 
   markdown-it@15.0.3:
     resolution: {integrity: sha512-+Az7Ojz3iRGu8KYMvJ6xVhvrxP3eE+vEtJX75Ow88XBpcQNV/0lGX5ZynIIBftREo4DC2jsveAMDaeltmm8QvQ==}
@@ -1192,17 +1148,17 @@ packages:
     peerDependencies:
       markdownlint-cli2: '>=0.0.4'
 
-  markdownlint-cli2@0.24.1:
-    resolution: {integrity: sha512-nLhes/MIPJQLm+Gmh+3jQEnwMOaalaN0wfCD2qz1247zNZ7R3r2WDHJB191x4hcy6soKAUTybp1bFK7aJGw/WA==}
+  markdownlint-cli2@0.24.2:
+    resolution: {integrity: sha512-bgxzhJkgR7t2puRgePHZYVqKzC90etPzxOC+9ZNATjAVJB2zs7EAolfF1inVsrkgYN+ykVIHIxk0WypG2VVLZA==}
     engines: {node: '>=22'}
     hasBin: true
 
-  markdownlint@0.42.1:
-    resolution: {integrity: sha512-Otolm9JX12iO2NG5cetlKfzGygpiLSlHuqXKxoT6HGhN5HtbxprJPicKZqqCQd88qOvUi/TEs3o1AmcYioVscA==}
+  markdownlint@0.42.2:
+    resolution: {integrity: sha512-IhlUBVT+kHBX+u3EjEsQdFB4q0Rl0Hx+JsGsvVkonNut1/n8Kv8yXzwk0pazC9uF35JlwMZ+LxV4CQ9YNAbG8w==}
     engines: {node: '>=22'}
 
-  match-index@1.0.3:
-    resolution: {integrity: sha512-1XjyBWqCvEFFUDW/MPv0RwbITRD4xQXOvKoPYtLDq8IdZTfdF/cQSo5Yn4qvhfSSZgjgkTFsqJD2wOUG4ovV8Q==}
+  match-index@1.0.4:
+    resolution: {integrity: sha512-19YL6AzgZmZSu/mJvPr3GPH13Lgu7+wXpzKVVzHdOSMUVBPUq6kI2FfPW2h5wsqtArk4Z4vDCHgi/53+8MqbtQ==}
 
   math-intrinsics@1.1.0:
     resolution: {integrity: sha512-/IXtbwEk5HTPyEwyKX6hGkYXxM9nbj64B+ilVJnC/R6B0pH5G4V3b0pVbL7DBj4tkhBAppbQUlf6F6Xl9LHu1g==}
@@ -1380,16 +1336,12 @@ packages:
   ms@2.1.3:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
 
-  node-localstorage@2.2.1:
-    resolution: {integrity: sha512-vv8fJuOUCCvSPjDjBLlMqYMHob4aGjkmrkaE42/mZr0VT+ZAU10jRF8oTnX9+pgU9/vYJ8P7YT3Vd6ajkmzSCw==}
-    engines: {node: '>=0.12'}
-
   object-assign@3.0.0:
     resolution: {integrity: sha512-jHP15vXVGeVh1HuaA2wY6lxk+whK/x4KBG88VXeRma7CCun7iGD5qPc4eYykQ9sdQvg8jkwFKsSxHln2ybW3xQ==}
     engines: {node: '>=0.10.0'}
 
-  object-inspect@1.13.4:
-    resolution: {integrity: sha512-W67iLl4J2EXEGTbfeHCffrjDfitvLANg0UlX3wFUUSTx92KXRFegMHUVgSqE+wvhAbi4WqjGg9czysTV2Epbew==}
+  object-inspect@1.14.0:
+    resolution: {integrity: sha512-IVgHNlp/jwQX271+Xzoq9LZNTWXxZK+cEOrGBOBxXNbn7fapnZ+Ts6TVMgNOuAezwG2wdtnMX97tTPK6VEnuOQ==}
     engines: {node: '>= 0.4'}
 
   object-keys@1.1.1:
@@ -1538,8 +1490,8 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
-  sentence-splitter@5.0.1:
-    resolution: {integrity: sha512-Eu9l95hQfI0WdhXTznuBzqsFjTuL6UnPq341Ro1s2bjE3DMoBuhE0wk4z+rwbwVXfOAeuOQM0UF30HR2+66VuQ==}
+  sentence-splitter@5.1.0:
+    resolution: {integrity: sha512-Zt4F1K7KF3QQQOVgdJ0Of6WYGI9t3aSiGRI6/DpXj1FXvL5wiOobhRbYceDZnNmnuYWfwd4l+wfyLB+nUax5ow==}
 
   set-function-length@1.2.2:
     resolution: {integrity: sha512-pgRc4hJ4/sNjWCSS9AmnS40x3bNMDTknHgL5UaMBTMyJnU90EgWh1Rz+MC9eFu4BuN/UwZjKQuY/1v3rM7HMfg==}
@@ -1572,9 +1524,6 @@ packages:
   slash@5.1.0:
     resolution: {integrity: sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg==}
     engines: {node: '>=14.16'}
-
-  slide@1.1.6:
-    resolution: {integrity: sha512-NwrtjCg+lZoqhFU8fOwl4ay2ei8PaqCBOUV3/ektPY9trO1yQ1oXEfmHAhKArUVUr/hOHvy5f6AdP17dCM0zMw==}
 
   smol-toml@1.9.1:
     resolution: {integrity: sha512-j7WyPdf0CJoutMzMoPLF/bVXHtKZIT9Rb4eGeEbWw8X2t5oirjPgpL+OpaENZrILYaXqYwnVH+qgUwVbl+pUJQ==}
@@ -1613,23 +1562,23 @@ packages:
   structured-source@4.0.0:
     resolution: {integrity: sha512-qGzRFNJDjFieQkl/sVOI2dUjHKRyL9dAJi2gCPGJLbJHBIkyOHxjuocpIEfbLioX+qSJpvbYdT49/YCdMznKxA==}
 
-  textlint-rule-helper@2.5.0:
-    resolution: {integrity: sha512-QIbFPtyqLy0g5BJn8mryk9iHzGYicNaFIpLFPiEnb4RXxrEGeQ2W2aARQ9yEXLIAqo+OwK4ndWBAWkbgJEPzTQ==}
+  textlint-rule-helper@2.6.0:
+    resolution: {integrity: sha512-xmMYSJKI/LVKyEcda275/PyqR3NbHQwWGO+DOQuE7fOhZenaonV9ocptW7/Qj4vwI52YRyOYzTdqPi3oG5vOXA==}
 
-  textlint-rule-ja-no-abusage@3.0.0:
-    resolution: {integrity: sha512-DIqPZgYTwTsvjX6Bgj7GA8vlwGMObagJpNoUtkucOaoy7E7GwUOL+knqFjcTtlkWSmoKpIkw5OWW5CV3kivlfQ==}
+  textlint-rule-ja-no-abusage@3.0.1:
+    resolution: {integrity: sha512-fcKUbRGOm5gNUUIJQjAQ+sNxSVA9na9RCTjPqEnhRIUl14WIuZTAkZnN+AaWlXZnjjvTVvZaduUuAPAR/rajug==}
 
   textlint-rule-ja-no-mixed-period@3.0.2:
     resolution: {integrity: sha512-/WHRvbAXPJxjDAmVYjIp5qBHPS7Uqv3H+fH0oGMWzujEV4n2URtXmxqTUv7nd4giTRqeV2yuMZWYRRgA9Mh0Sg==}
 
-  textlint-rule-ja-no-redundant-expression@4.0.1:
-    resolution: {integrity: sha512-r8Qe6S7u9N97wD0gcrASqBUdZs5CMEVlgc8Ul+D2NQFiOi1BoseOMo5I9yUsEZMAL46yh/eaw9+EWz6IDlPWeA==}
+  textlint-rule-ja-no-redundant-expression@4.0.2:
+    resolution: {integrity: sha512-x3F3aBIlUs24mxpWBfgEcMbgOyyeA/lPA2PwAw7b13Ss62Z2aY7T/j45RxCA0jnjRRF8STwB/wkijEZM2uOoPw==}
 
-  textlint-rule-ja-no-successive-word@2.0.1:
-    resolution: {integrity: sha512-XKTXkHwMu86SnGaj73B67U4apDdTquDKF3SfG24tRbzMyJoGe/Iba5VMId8sp8QHeTonp1bYOSxjZsbkpGyCNw==}
+  textlint-rule-ja-no-successive-word@2.1.0:
+    resolution: {integrity: sha512-c9DVpR6kk9DuVi8yysR/lay4wEwHisBoyR648fTbePb/NDpKjJo/XpltcjD73KgpJysZNt0SKBd6PZT12tB09Q==}
 
-  textlint-rule-ja-no-weak-phrase@2.0.0:
-    resolution: {integrity: sha512-jZ1/3VnE8Bz/p0CCe/+BVOmWE1cZwpDkjKb6hnq39nGk3OD4XPW7biYavK/4/mZhk4bh2+Vtu1xV26lg8d+vBw==}
+  textlint-rule-ja-no-weak-phrase@2.0.1:
+    resolution: {integrity: sha512-PzyudFjnYQKTxzvMBJXqPPrqwoe5zt05pJ9emOg++WiYYu6ZsIPflq6lQH1nd896DcOjFdknQsPbOH7kdDYyoA==}
 
   textlint-rule-ja-unnatural-alphabet@2.0.1:
     resolution: {integrity: sha512-n93V8qh6OKdh8OB6yLT+9Xl8DSoZ7gWi51tWdhlLEPIWgBm18nLMgm6Ck+nVc3eENOdRcQURWUpCGotI8wTemA==}
@@ -1640,23 +1589,23 @@ packages:
   textlint-rule-max-kanji-continuous-len@1.1.1:
     resolution: {integrity: sha512-os+p7dS9Op4PtZV7B9/wnzN5qpDO2WR2kj7nTnqEPbApS06AXX+qf5eH3fKdm4blzUCcPF5ozMN8zbs3AJUAug==}
 
-  textlint-rule-max-ten@5.0.0:
-    resolution: {integrity: sha512-EWOvbEa3Ukxz0+GAUEJ91DYFSC3IkyJ10dBcsU6VlL33k1BvTRoFr3m26w6upnXJffXQUI70Etn39I++2duyhA==}
+  textlint-rule-max-ten@5.0.1:
+    resolution: {integrity: sha512-G15kd67NJHoJXhyivKcdlEETkZKrX3h8MzLJJCXSc02jSNLKcmvdY18sRJokYuVlLDuST6lUDUJ2aROwcXABWQ==}
 
-  textlint-rule-no-double-negative-ja@2.0.1:
-    resolution: {integrity: sha512-LRofmNt+nd2mp+AHmG0ltk9AlbzKbWPE+EToYQ1zORCd8N8suE1YxNEplz9OeQ59ea9ITtudDIWoqeHaZnbDsg==}
+  textlint-rule-no-double-negative-ja@2.0.2:
+    resolution: {integrity: sha512-OjqRZrs/W61wwJp6iUG5tsESy4LcZmPOkSd76GPEO3dejAJE/R0oM6mDT/0UE5X2Q6aUwDKXQvVgh4wL5AGYQw==}
 
-  textlint-rule-no-doubled-conjunction@3.0.1:
-    resolution: {integrity: sha512-fRJEiy0rkrmUDVdgzGiUKAgGngziUfsjL4eqY4a3YfFxXwtczOP+hyHfvLNrHOUI58Y6lNoLZpa5lNNXbzFyNg==}
+  textlint-rule-no-doubled-conjunction@3.0.2:
+    resolution: {integrity: sha512-2lacG0cHDal37ty+cZmOq5e/PDvosw8oYCaOgVg7rIfF3KJSTph4Sq0wClXoi0/ftZvlmycpgqgnQ0URVjtS9A==}
 
-  textlint-rule-no-doubled-conjunctive-particle-ga@3.0.0:
-    resolution: {integrity: sha512-4IowX2YlTlD9VifThZwpENRh918BpPNTks0i4bOL7Gn82jUiXK0EZuV8Jtksm7i+RYG1xsO0U7P9AnxmuSxeDg==}
+  textlint-rule-no-doubled-conjunctive-particle-ga@3.0.1:
+    resolution: {integrity: sha512-foQPltDu+V0eDiV06/DSXUEDCcQ86ACI9/2HC2Wmemh63TnTaOJ1XdXxoIw1rV9/U4I50hjg4oujucE/EYGF/g==}
 
-  textlint-rule-no-doubled-joshi@5.1.1:
-    resolution: {integrity: sha512-bxiuqZiHE9ZZGHDX+O6J4vzhre7ghb7NBkPi/5TAWVvnQLULgY3COx/KXJgFItPmSrpYF8/AT/uTHC4QOg59qw==}
+  textlint-rule-no-doubled-joshi@5.1.2:
+    resolution: {integrity: sha512-6/02QbRjHTpgKivQZpcyFAjMWj3nOEKYagtQb1OekI5q6Wt9sjnO0ACCmrruOVEAumsOEjpgedyJNxKdVuScgg==}
 
-  textlint-rule-no-dropping-the-ra@3.0.0:
-    resolution: {integrity: sha512-KbSIlcxj1kLs4sGSMSLGA8OmgRoaPAWtodJaGEyEUiy7uiZM/VPqYALpuD8vf16N1OR5SM/bXXeZFME65r8ZgQ==}
+  textlint-rule-no-dropping-the-ra@3.0.1:
+    resolution: {integrity: sha512-JUo/LTlsYD7YSFInebj3LJpVSorbH0iN7JxC1zsEW/mCy792mtTbGl8EohrySyzoVMw0rw0CJw8+1i+KJV64TQ==}
 
   textlint-rule-no-exclamation-question-mark@1.1.0:
     resolution: {integrity: sha512-FcBH3uH2qp5VG7I9LKwolUCcPigONcsdam1JhAFPcu10YZNYX0r1l2y9Hzg+E4+1fXLgtGyiObWwfsfelTx8Bw==}
@@ -1673,23 +1622,20 @@ packages:
   textlint-rule-no-nfd@2.0.2:
     resolution: {integrity: sha512-lIUvcQ+wqtConpPQU2YwEJl2dRcRyyrxPYZ3V76UwnkVg++XPLIrE5mLDgyNE/UIQ34e/KitJfMLqKWvnkFbNQ==}
 
-  textlint-rule-no-zero-width-spaces@1.0.1:
-    resolution: {integrity: sha512-AkxpzBILGB4YsXddzHx2xqpXmqMv5Yd+PQm4anUV+ADSJuwLP1Jd6yHf/LOtu9j3ps8K3XM9vQrXRK73z0bU3A==}
+  textlint-rule-no-zero-width-spaces@1.0.2:
+    resolution: {integrity: sha512-COHfv3SP9DfsjdNrbHQxqzalB5viq5C7KwovGJ7c7kUFw2FMCOh2ajxn37Sgr45X239ebax4sEi2AC5vFR2uhw==}
 
-  textlint-rule-preset-ja-technical-writing@12.0.2:
-    resolution: {integrity: sha512-BBVY6oA5V799k5wRfP+gCpDHsp6vWjWX2UT+/KLlAFFsNdmRB8Z6qyOnqiOjfzmLGIRgoMcPI1dXj5upOqnD6Q==}
+  textlint-rule-preset-ja-technical-writing@12.1.0:
+    resolution: {integrity: sha512-YeQZV8Iv7TEplW6HAPDBqJ10FKtZy2fphd3nhobFvOpj/HYMTccGbBMoDP4+SQEuF+L9VLRjnR7frxH5dK9BdQ==}
 
-  textlint-rule-preset-japanese@10.0.4:
-    resolution: {integrity: sha512-xoQvGKhHCm2ZQqZAlSCgaeJI0cFSO4jleki1e8s/3FscuIr6SWcB3dB2tA+1TkOTd6X6MawC8Wah9+Z7+xaqrQ==}
+  textlint-rule-preset-japanese@10.1.0:
+    resolution: {integrity: sha512-CGjRxnokT03evyoCFsb05s9TcGlxw4ihOH0IX+uvEVxHrpQ89R0zeXIj/VkYFHV1zQa7N3qci5+DuN6NTpIREQ==}
 
-  textlint-rule-preset-jtf-style@3.0.3:
-    resolution: {integrity: sha512-NTvqjg3oMTGjSDoH6MnYu+DDWW6cEghA66Lb8N0bheTphAj99aaG10HGhwTfDbaH2P6NfPQvRP5ISxiXCT9zdg==}
+  textlint-rule-preset-jtf-style@3.1.0:
+    resolution: {integrity: sha512-HyVbZb3fH6PzWTkUAfUS0SRfqE1n+8iiunDkHj8IE3+ji7TxajepS37aQ+UKnSGglsbQhjJMHz4HuJAMVQ/3bA==}
 
   textlint-rule-prh@5.3.0:
     resolution: {integrity: sha512-gdod+lL1SWUDyXs1ICEwvQawaSshT3mvPGufBIjF2R5WFPdKQDMsiuzsjkLm+aF+9d97dA6pFsiyC8gSW7mSgg==}
-
-  textlint-rule-prh@6.1.0:
-    resolution: {integrity: sha512-KrchADHw1/LZ/tAQ2XwL/XdUhunKCvlNmwgp+6hdyzuWX7uojOkDdJWWV0KAN4XWsK6Te5w/SZcYwQ7X6i3B0A==}
 
   textlint-rule-sentence-length@5.2.1:
     resolution: {integrity: sha512-z4HylabPy+e1I5DcuzDmcT65hvyytTlsD+uM49JkCBTSJBWqzQQ3kCGk4b1cF+kANS2HifWNnpTG/jfSOeavIw==}
@@ -1697,11 +1643,11 @@ packages:
   textlint-tester@13.4.1:
     resolution: {integrity: sha512-Ubm9kUZ/NyY0Ggo1RkW2o5QSx6EJ/ogMT1kD5b5pk4cdFTWpUSs8StDMROgcz29wPhvS6sY/35qYALzqyZh8ew==}
 
-  textlint-util-to-string@3.3.4:
-    resolution: {integrity: sha512-XF4Qfw0ES+czKy03BwuvBUoXC8NAg920VuRxW0pd72fW76zMeMbPI/bRN5PHq3SbCdOm7U69/Pk+DX34xqIYqA==}
+  textlint-util-to-string@3.3.6:
+    resolution: {integrity: sha512-RAv7PRb9VEHq9m4aNFHAjHLXbPLeLQF0EZ1MtuDknAOXUTLO+N7if0uhYZjFlY86N9stPNulgp+Qw36Umb5VRw==}
 
-  textlint@16.1.1:
-    resolution: {integrity: sha512-oZfdcmRdfhBCr8v2KG35hDt3kQydFX0NoRI1c74vXp0Ey+iSi/gUKU/GHFoCGCi2fgPp2H/PeFFTyXlzfJKGFQ==}
+  textlint@16.1.3:
+    resolution: {integrity: sha512-jlLTSH2aXiKerM+5XELiqtFuxyrKnXVbib+FmizzKajos72OyYUfj8Sj8P+ewt1gDmI9BgWp//ex93bNyjzE1Q==}
     engines: {node: '>=22.12.0'}
     hasBin: true
 
@@ -1717,8 +1663,8 @@ packages:
     resolution: {integrity: sha512-FWtleNAtZ/Ki2qtqej2CXTOayOH9bHDQF+Q48VpWyDXjbYxA4Yz8iDB31zXOBUlOHHKidDbqGVrTUvQMPmBGBw==}
     engines: {node: '>=0.10.0'}
 
-  traverse@0.6.11:
-    resolution: {integrity: sha512-vxXDZg8/+p3gblxB6BhhG5yWVn1kGRlaL8O78UDXc3wRnPizB5g83dcvWV1jpDMIPnjZjOFuxlMmE82XJ4407w==}
+  traverse@0.6.14:
+    resolution: {integrity: sha512-CYRAVGfnSSe+4Wlof62oUH6y9fGwo0NNS84hMq76MTZtwXQU7Oqna9SgWfrCGj5JPUtHQudnIEt1BP7PInPkPQ==}
     engines: {node: '>= 0.4'}
 
   trough@1.0.5:
@@ -1744,8 +1690,8 @@ packages:
     resolution: {integrity: sha512-phPGCwqr2+Qo0fwniCE8e4pKnGu/yFb5nD5Y8bf0EEeiI5GklnACYA9GFy/DrAeRrKHXvHn+1SUsOWgJp6RO+g==}
     engines: {node: '>= 0.4'}
 
-  typedarray.prototype.slice@1.0.5:
-    resolution: {integrity: sha512-q7QNVDGTdl702bVFiI5eY4l/HkgCM6at9KhcFbgUAzezHFbOVy4+0O/lCjsABEQwbZPravVfBIiBVGo89yzHFg==}
+  typedarray.prototype.slice@1.0.6:
+    resolution: {integrity: sha512-r+7YvGfM5TkTiDQ5EqWi/Z4L4KP3jUI+YCmTtWg1tmTHUw6xladLJqzR2heMaHBIM0TTFLZmn/EkIaEHYs/bIA==}
     engines: {node: '>= 0.4'}
 
   uc.micro@3.0.0:
@@ -1773,9 +1719,6 @@ packages:
 
   unist-util-visit-parents@3.1.1:
     resolution: {integrity: sha512-1KROIZWo6bcMrZEwiH2UrXDyalAa0uqzWCxCJj6lPOvTve2WkfgCytoDTPaMnodXh1WrXOq0haVYHj99ynJlsg==}
-
-  unist-util-visit@2.0.3:
-    resolution: {integrity: sha512-iJ4/RczbJMkD0712mGktuGpm/U4By4FfDonL7N/9tATGIF4imikjOuagyMY53tnZq3NP6BcmlrHhEKAfGWjh7Q==}
 
   untildify@3.0.3:
     resolution: {integrity: sha512-iSk/J8efr8uPT/Z4eSUywnqyrQU7DSdMfdqK4iWEaUVVmcP5JcnpRqmVMwcwcnmI1ATFNgC5V90u09tBynNFKA==}
@@ -1816,9 +1759,6 @@ packages:
     resolution: {integrity: sha512-BN22B5eaMMI9UMtjrGd5g5eCYPpCPDUy0FJXbYsaT5zYxjFOckS53SQDE3pWkVoWpHXVb3BrYcEN4Twa55B5cA==}
     engines: {node: '>=0.10.0'}
 
-  write-file-atomic@1.3.4:
-    resolution: {integrity: sha512-SdrHoC/yVBPpV0Xq/mUZQIpW2sWXAShb/V4pomcJXh92RuaO+f3UTWItiR3Px+pLnV2PvC2/bfn5cwr5X6Vfxw==}
-
   xdg-basedir@5.1.0:
     resolution: {integrity: sha512-GCPAHLvrIH13+c0SuacwvRYj2SxJXQ4kaVTT5xgL3kPrz56XxkF21IGhjSE1+W0aw7gpBWRGXLCPnPby6lSpmQ==}
     engines: {node: '>=12'}
@@ -1832,9 +1772,6 @@ packages:
     engines: {node: '>= 14.6'}
     hasBin: true
 
-  zlibjs@0.3.1:
-    resolution: {integrity: sha512-+J9RrgTKOmlxFSDHo0pI1xM6BLVUv+o0ZT9ANtCxGkjIVCCUdx9alUF8Gm+dGLKbkkkidWIHFDZHDMpfITt4+w==}
-
   zod@4.6.7:
     resolution: {integrity: sha512-g8W2D2kU6a8untc053fX1uVBKzM7yqAxW/3zwk83+6RyF2+SKOuV+c0wBDhUwzV1PaGapmZH+rmcUzPf+3CGwg==}
 
@@ -1843,17 +1780,17 @@ packages:
 
 snapshots:
 
-  '@babel/helper-string-parser@7.29.7': {}
+  '@babel/helper-string-parser@7.29.15': {}
 
   '@babel/helper-validator-identifier@7.29.7': {}
 
-  '@babel/parser@7.29.9':
+  '@babel/parser@7.29.15':
     dependencies:
-      '@babel/types': 7.29.8
+      '@babel/types': 7.29.15
 
-  '@babel/types@7.29.8':
+  '@babel/types@7.29.15':
     dependencies:
-      '@babel/helper-string-parser': 7.29.7
+      '@babel/helper-string-parser': 7.29.15
       '@babel/helper-validator-identifier': 7.29.7
 
   '@cacheable/memory@2.2.0':
@@ -1868,14 +1805,14 @@ snapshots:
       hashery: 1.5.1
       keyv: 5.6.0
 
-  '@cspell/cspell-bundled-dicts@10.5.1':
+  '@cspell/cspell-bundled-dicts@10.5.2':
     dependencies:
       '@cspell/dict-ada': 4.1.1
       '@cspell/dict-al': 1.1.1
       '@cspell/dict-aws': 4.0.17
       '@cspell/dict-bash': 4.2.3
       '@cspell/dict-companies': 3.2.14
-      '@cspell/dict-cpp': 7.2.0
+      '@cspell/dict-cpp': 7.2.1
       '@cspell/dict-cryptocurrencies': 5.0.5
       '@cspell/dict-csharp': 4.0.8
       '@cspell/dict-css': 4.1.2
@@ -1885,7 +1822,7 @@ snapshots:
       '@cspell/dict-docker': 1.1.17
       '@cspell/dict-dotnet': 5.0.15
       '@cspell/dict-elixir': 4.0.8
-      '@cspell/dict-en-common-misspellings': 2.2.6
+      '@cspell/dict-en-common-misspellings': 2.2.7
       '@cspell/dict-en-gb-mit': 3.1.32
       '@cspell/dict-en_us': 4.4.43
       '@cspell/dict-filetypes': 3.0.18
@@ -1895,7 +1832,7 @@ snapshots:
       '@cspell/dict-fullstack': 3.2.9
       '@cspell/dict-gaming-terms': 1.1.3
       '@cspell/dict-git': 3.1.1
-      '@cspell/dict-golang': 6.0.29
+      '@cspell/dict-golang': 6.0.30
       '@cspell/dict-google': 1.0.9
       '@cspell/dict-haskell': 4.0.6
       '@cspell/dict-html': 4.0.16
@@ -1911,17 +1848,17 @@ snapshots:
       '@cspell/dict-markdown': 2.0.18(@cspell/dict-css@4.1.2)(@cspell/dict-html-symbol-entities@4.0.5)(@cspell/dict-html@4.0.16)(@cspell/dict-typescript@3.2.3)
       '@cspell/dict-monkeyc': 1.1.2
       '@cspell/dict-node': 5.0.9
-      '@cspell/dict-npm': 5.2.56
+      '@cspell/dict-npm': 5.2.58
       '@cspell/dict-php': 4.1.3
       '@cspell/dict-powershell': 5.0.17
       '@cspell/dict-public-licenses': 2.0.17
-      '@cspell/dict-python': 4.5.3
+      '@cspell/dict-python': 4.5.4
       '@cspell/dict-r': 2.1.1
       '@cspell/dict-ruby': 5.1.4
       '@cspell/dict-rust': 4.1.2
       '@cspell/dict-scala': 5.0.11
       '@cspell/dict-shell': 1.2.0
-      '@cspell/dict-software-terms': 5.4.9
+      '@cspell/dict-software-terms': 5.4.11
       '@cspell/dict-sql': 2.2.1
       '@cspell/dict-svelte': 1.0.7
       '@cspell/dict-swift': 2.0.6
@@ -1930,25 +1867,25 @@ snapshots:
       '@cspell/dict-vue': 3.0.5
       '@cspell/dict-zig': 1.0.0
 
-  '@cspell/cspell-json-reporter@10.5.1':
+  '@cspell/cspell-json-reporter@10.5.2':
     dependencies:
-      '@cspell/cspell-types': 10.5.1
+      '@cspell/cspell-types': 10.5.2
 
-  '@cspell/cspell-performance-monitor@10.5.1': {}
+  '@cspell/cspell-performance-monitor@10.5.2': {}
 
-  '@cspell/cspell-pipe@10.5.1': {}
+  '@cspell/cspell-pipe@10.5.2': {}
 
-  '@cspell/cspell-resolver@10.5.1':
+  '@cspell/cspell-resolver@10.5.2':
     dependencies:
       global-directory: 5.0.0
 
-  '@cspell/cspell-service-bus@10.5.1': {}
+  '@cspell/cspell-service-bus@10.5.2': {}
 
-  '@cspell/cspell-types@10.5.1': {}
+  '@cspell/cspell-types@10.5.2': {}
 
-  '@cspell/cspell-worker@10.5.1':
+  '@cspell/cspell-worker@10.5.2':
     dependencies:
-      cspell-lib: 10.5.1
+      cspell-lib: 10.5.2
 
   '@cspell/dict-ada@4.1.1': {}
 
@@ -1962,7 +1899,7 @@ snapshots:
 
   '@cspell/dict-companies@3.2.14': {}
 
-  '@cspell/dict-cpp@7.2.0': {}
+  '@cspell/dict-cpp@7.2.1': {}
 
   '@cspell/dict-cryptocurrencies@5.0.5': {}
 
@@ -1982,7 +1919,7 @@ snapshots:
 
   '@cspell/dict-elixir@4.0.8': {}
 
-  '@cspell/dict-en-common-misspellings@2.2.6': {}
+  '@cspell/dict-en-common-misspellings@2.2.7': {}
 
   '@cspell/dict-en-gb-mit@3.1.32': {}
 
@@ -2002,7 +1939,7 @@ snapshots:
 
   '@cspell/dict-git@3.1.1': {}
 
-  '@cspell/dict-golang@6.0.29': {}
+  '@cspell/dict-golang@6.0.30': {}
 
   '@cspell/dict-google@1.0.9': {}
 
@@ -2039,7 +1976,7 @@ snapshots:
 
   '@cspell/dict-node@5.0.9': {}
 
-  '@cspell/dict-npm@5.2.56': {}
+  '@cspell/dict-npm@5.2.58': {}
 
   '@cspell/dict-php@4.1.3': {}
 
@@ -2047,7 +1984,7 @@ snapshots:
 
   '@cspell/dict-public-licenses@2.0.17': {}
 
-  '@cspell/dict-python@4.5.3':
+  '@cspell/dict-python@4.5.4':
     dependencies:
       '@cspell/dict-data-science': 2.0.17
 
@@ -2061,7 +1998,7 @@ snapshots:
 
   '@cspell/dict-shell@1.2.0': {}
 
-  '@cspell/dict-software-terms@5.4.9': {}
+  '@cspell/dict-software-terms@5.4.11': {}
 
   '@cspell/dict-sql@2.2.1': {}
 
@@ -2077,18 +2014,18 @@ snapshots:
 
   '@cspell/dict-zig@1.0.0': {}
 
-  '@cspell/dynamic-import@10.5.1':
+  '@cspell/dynamic-import@10.5.2':
     dependencies:
-      '@cspell/url': 10.5.1
+      '@cspell/url': 10.5.2
       import-meta-resolve: 4.2.0
 
-  '@cspell/filetypes@10.5.1': {}
+  '@cspell/filetypes@10.5.2': {}
 
-  '@cspell/rpc@10.5.1': {}
+  '@cspell/rpc@10.5.2': {}
 
-  '@cspell/strong-weak-map@10.5.1': {}
+  '@cspell/strong-weak-map@10.5.2': {}
 
-  '@cspell/url@10.5.1': {}
+  '@cspell/url@10.5.2': {}
 
   '@keyv/bigmap@1.3.1(keyv@5.6.0)':
     dependencies:
@@ -2097,31 +2034,6 @@ snapshots:
       keyv: 5.6.0
 
   '@keyv/serialize@1.1.1': {}
-
-  '@kvs/env@2.2.2':
-    dependencies:
-      '@kvs/indexeddb': 2.2.2
-      '@kvs/node-localstorage': 2.2.2
-      '@kvs/storage': 2.2.2
-      '@kvs/types': 2.2.2
-
-  '@kvs/indexeddb@2.2.2':
-    dependencies:
-      '@kvs/storage': 2.2.2
-      '@kvs/types': 2.2.2
-
-  '@kvs/node-localstorage@2.2.2':
-    dependencies:
-      '@kvs/storage': 2.2.2
-      '@kvs/types': 2.2.2
-      app-root-path: 3.1.0
-      node-localstorage: 2.2.1
-
-  '@kvs/storage@2.2.2':
-    dependencies:
-      '@kvs/types': 2.2.2
-
-  '@kvs/types@2.2.2': {}
 
   '@modelcontextprotocol/core@2.4.0':
     dependencies:
@@ -2148,24 +2060,24 @@ snapshots:
 
   '@streetsidesoftware/unindent@1.0.1': {}
 
-  '@textlint-ja/textlint-rule-preset-ai-writing@1.7.0':
+  '@textlint-ja/textlint-rule-preset-ai-writing@1.7.2':
     dependencies:
-      '@textlint/regexp-string-matcher': 2.0.2
-      kuromojin: 3.0.1
-      textlint-util-to-string: 3.3.4
+      '@textlint/regexp-string-matcher': 2.0.4
+      kuromojin: 3.1.0
+      textlint-util-to-string: 3.3.6
 
   '@textlint-rule/textlint-rule-no-invalid-control-character@3.0.0': {}
 
   '@textlint-rule/textlint-rule-no-unmatched-pair@2.0.4':
     dependencies:
-      sentence-splitter: 5.0.1
-      textlint-rule-helper: 2.5.0
+      sentence-splitter: 5.1.0
+      textlint-rule-helper: 2.6.0
 
   '@textlint/ast-node-types@13.4.1': {}
 
   '@textlint/ast-node-types@15.8.0': {}
 
-  '@textlint/ast-node-types@16.1.1': {}
+  '@textlint/ast-node-types@16.1.3': {}
 
   '@textlint/ast-tester@13.4.1':
     dependencies:
@@ -2174,9 +2086,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/ast-tester@16.1.1':
+  '@textlint/ast-tester@16.1.3':
     dependencies:
-      '@textlint/ast-node-types': 16.1.1
+      '@textlint/ast-node-types': 16.1.3
       debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
@@ -2185,30 +2097,30 @@ snapshots:
     dependencies:
       '@textlint/ast-node-types': 13.4.1
 
-  '@textlint/ast-traverse@16.1.1':
+  '@textlint/ast-traverse@16.1.3':
     dependencies:
-      '@textlint/ast-node-types': 16.1.1
+      '@textlint/ast-node-types': 16.1.3
 
-  '@textlint/config-loader@16.1.1':
+  '@textlint/config-loader@16.1.3':
     dependencies:
-      '@textlint/kernel': 16.1.1
-      '@textlint/module-interop': 16.1.1
-      '@textlint/resolver': 16.1.1
-      '@textlint/types': 16.1.1
-      '@textlint/utils': 16.1.1
+      '@textlint/kernel': 16.1.3
+      '@textlint/module-interop': 16.1.3
+      '@textlint/resolver': 16.1.3
+      '@textlint/types': 16.1.3
+      '@textlint/utils': 16.1.3
       rc-config-loader: 4.2.0
     transitivePeerDependencies:
       - supports-color
 
   '@textlint/feature-flag@13.4.1': {}
 
-  '@textlint/feature-flag@16.1.1': {}
+  '@textlint/feature-flag@16.1.3': {}
 
-  '@textlint/fixer-formatter@16.1.1':
+  '@textlint/fixer-formatter@16.1.3':
     dependencies:
-      '@textlint/module-interop': 16.1.1
-      '@textlint/resolver': 16.1.1
-      '@textlint/types': 16.1.1
+      '@textlint/module-interop': 16.1.3
+      '@textlint/resolver': 16.1.3
+      '@textlint/types': 16.1.3
       debug: 4.4.3
       diff: 8.0.4
     transitivePeerDependencies:
@@ -2229,25 +2141,25 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/kernel@16.1.1':
+  '@textlint/kernel@16.1.3':
     dependencies:
-      '@textlint/ast-node-types': 16.1.1
-      '@textlint/ast-tester': 16.1.1
-      '@textlint/ast-traverse': 16.1.1
-      '@textlint/feature-flag': 16.1.1
-      '@textlint/source-code-fixer': 16.1.1
-      '@textlint/types': 16.1.1
-      '@textlint/utils': 16.1.1
+      '@textlint/ast-node-types': 16.1.3
+      '@textlint/ast-tester': 16.1.3
+      '@textlint/ast-traverse': 16.1.3
+      '@textlint/feature-flag': 16.1.3
+      '@textlint/source-code-fixer': 16.1.3
+      '@textlint/types': 16.1.3
+      '@textlint/utils': 16.1.3
       debug: 4.4.3
       fast-equals: 4.0.3
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/linter-formatter@16.1.1':
+  '@textlint/linter-formatter@16.1.3':
     dependencies:
-      '@textlint/module-interop': 16.1.1
-      '@textlint/resolver': 16.1.1
-      '@textlint/types': 16.1.1
+      '@textlint/module-interop': 16.1.3
+      '@textlint/resolver': 16.1.3
+      '@textlint/types': 16.1.3
       debug: 4.4.3
       js-yaml: 5.5.0
     transitivePeerDependencies:
@@ -2262,18 +2174,16 @@ snapshots:
       remark-frontmatter: 3.0.0
       remark-gfm: 1.0.0
       remark-parse: 9.0.0
-      traverse: 0.6.11
+      traverse: 0.6.14
       unified: 9.2.2
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/markdown-to-ast@16.1.1':
+  '@textlint/markdown-to-ast@16.1.3':
     dependencies:
-      '@textlint/ast-node-types': 16.1.1
+      '@textlint/ast-node-types': 16.1.3
 
-  '@textlint/module-interop@14.8.4': {}
-
-  '@textlint/module-interop@16.1.1': {}
+  '@textlint/module-interop@16.1.3': {}
 
   '@textlint/regexp-string-matcher@1.1.1':
     dependencies:
@@ -2284,14 +2194,9 @@ snapshots:
       lodash.uniqwith: 4.5.0
       to-regex: 3.0.2
 
-  '@textlint/regexp-string-matcher@2.0.2':
-    dependencies:
-      escape-string-regexp: 4.0.0
-      lodash.sortby: 4.7.0
-      lodash.uniq: 4.5.0
-      lodash.uniqwith: 4.5.0
+  '@textlint/regexp-string-matcher@2.0.4': {}
 
-  '@textlint/resolver@16.1.1': {}
+  '@textlint/resolver@16.1.3': {}
 
   '@textlint/source-code-fixer@13.4.1':
     dependencies:
@@ -2300,9 +2205,9 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/source-code-fixer@16.1.1':
+  '@textlint/source-code-fixer@16.1.3':
     dependencies:
-      '@textlint/types': 16.1.1
+      '@textlint/types': 16.1.3
       debug: 4.4.3
     transitivePeerDependencies:
       - supports-color
@@ -2311,9 +2216,9 @@ snapshots:
     dependencies:
       '@textlint/ast-node-types': 13.4.1
 
-  '@textlint/text-to-ast@16.1.1':
+  '@textlint/text-to-ast@16.1.3':
     dependencies:
-      '@textlint/ast-node-types': 16.1.1
+      '@textlint/ast-node-types': 16.1.3
 
   '@textlint/textlint-plugin-markdown@13.4.1':
     dependencies:
@@ -2321,31 +2226,31 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@textlint/textlint-plugin-markdown@16.1.1':
+  '@textlint/textlint-plugin-markdown@16.1.3':
     dependencies:
-      '@textlint/markdown-to-ast': 16.1.1
-      '@textlint/types': 16.1.1
+      '@textlint/markdown-to-ast': 16.1.3
+      '@textlint/types': 16.1.3
 
   '@textlint/textlint-plugin-text@13.4.1':
     dependencies:
       '@textlint/text-to-ast': 13.4.1
 
-  '@textlint/textlint-plugin-text@16.1.1':
+  '@textlint/textlint-plugin-text@16.1.3':
     dependencies:
-      '@textlint/text-to-ast': 16.1.1
-      '@textlint/types': 16.1.1
+      '@textlint/text-to-ast': 16.1.3
+      '@textlint/types': 16.1.3
 
   '@textlint/types@13.4.1':
     dependencies:
       '@textlint/ast-node-types': 13.4.1
 
-  '@textlint/types@16.1.1':
+  '@textlint/types@16.1.3':
     dependencies:
-      '@textlint/ast-node-types': 16.1.1
+      '@textlint/ast-node-types': 16.1.3
 
   '@textlint/utils@13.4.1': {}
 
-  '@textlint/utils@16.1.1': {}
+  '@textlint/utils@16.1.3': {}
 
   '@types/debug@4.1.13':
     dependencies:
@@ -2365,11 +2270,9 @@ snapshots:
 
   analyze-desumasu-dearu@5.0.2:
     dependencies:
-      kuromojin: 3.0.1
+      kuromojin: 3.1.0
 
   ansi-regex@6.6.0: {}
-
-  app-root-path@3.1.0: {}
 
   argparse@1.0.10:
     dependencies:
@@ -2398,10 +2301,6 @@ snapshots:
 
   async-function@1.0.0: {}
 
-  async@2.6.4:
-    dependencies:
-      lodash: 4.18.1
-
   available-typed-arrays@1.0.7:
     dependencies:
       possible-typed-array-names: 1.1.0
@@ -2412,7 +2311,7 @@ snapshots:
 
   boundary@2.0.0: {}
 
-  brace-expansion@5.0.13:
+  brace-expansion@5.1.0:
     dependencies:
       balanced-match: 4.0.4
 
@@ -2488,60 +2387,60 @@ snapshots:
       array-timsort: 1.0.3
       esprima: 4.0.1
 
-  cspell-config-lib@10.5.1:
+  cspell-config-lib@10.5.2:
     dependencies:
-      '@cspell/cspell-types': 10.5.1
+      '@cspell/cspell-types': 10.5.2
       comment-json: 5.0.0
       smol-toml: 1.9.1
       yaml: 2.9.1
 
-  cspell-dictionary@10.5.1:
+  cspell-dictionary@10.5.2:
     dependencies:
-      '@cspell/cspell-performance-monitor': 10.5.1
-      '@cspell/cspell-pipe': 10.5.1
-      '@cspell/cspell-types': 10.5.1
-      cspell-trie-lib: 10.5.1(@cspell/cspell-types@10.5.1)
-      fast-equals: 6.4.0
+      '@cspell/cspell-performance-monitor': 10.5.2
+      '@cspell/cspell-pipe': 10.5.2
+      '@cspell/cspell-types': 10.5.2
+      cspell-trie-lib: 10.5.2(@cspell/cspell-types@10.5.2)
+      fast-equals: 6.4.1
 
-  cspell-gitignore@10.5.1:
+  cspell-gitignore@10.5.2:
     dependencies:
-      '@cspell/url': 10.5.1
-      cspell-glob: 10.5.1
-      cspell-io: 10.5.1
+      '@cspell/url': 10.5.2
+      cspell-glob: 10.5.2
+      cspell-io: 10.5.2
 
-  cspell-glob@10.5.1:
+  cspell-glob@10.5.2:
     dependencies:
-      '@cspell/url': 10.5.1
+      '@cspell/url': 10.5.2
       picomatch: 4.0.7
 
-  cspell-grammar@10.5.1:
+  cspell-grammar@10.5.2:
     dependencies:
-      '@cspell/cspell-pipe': 10.5.1
-      '@cspell/cspell-types': 10.5.1
+      '@cspell/cspell-pipe': 10.5.2
+      '@cspell/cspell-types': 10.5.2
 
-  cspell-io@10.5.1:
+  cspell-io@10.5.2:
     dependencies:
-      '@cspell/cspell-service-bus': 10.5.1
-      '@cspell/url': 10.5.1
+      '@cspell/cspell-service-bus': 10.5.2
+      '@cspell/url': 10.5.2
 
-  cspell-lib@10.5.1:
+  cspell-lib@10.5.2:
     dependencies:
-      '@cspell/cspell-bundled-dicts': 10.5.1
-      '@cspell/cspell-performance-monitor': 10.5.1
-      '@cspell/cspell-pipe': 10.5.1
-      '@cspell/cspell-resolver': 10.5.1
-      '@cspell/cspell-types': 10.5.1
-      '@cspell/dynamic-import': 10.5.1
-      '@cspell/filetypes': 10.5.1
-      '@cspell/rpc': 10.5.1
-      '@cspell/strong-weak-map': 10.5.1
-      '@cspell/url': 10.5.1
-      cspell-config-lib: 10.5.1
-      cspell-dictionary: 10.5.1
-      cspell-glob: 10.5.1
-      cspell-grammar: 10.5.1
-      cspell-io: 10.5.1
-      cspell-trie-lib: 10.5.1(@cspell/cspell-types@10.5.1)
+      '@cspell/cspell-bundled-dicts': 10.5.2
+      '@cspell/cspell-performance-monitor': 10.5.2
+      '@cspell/cspell-pipe': 10.5.2
+      '@cspell/cspell-resolver': 10.5.2
+      '@cspell/cspell-types': 10.5.2
+      '@cspell/dynamic-import': 10.5.2
+      '@cspell/filetypes': 10.5.2
+      '@cspell/rpc': 10.5.2
+      '@cspell/strong-weak-map': 10.5.2
+      '@cspell/url': 10.5.2
+      cspell-config-lib: 10.5.2
+      cspell-dictionary: 10.5.2
+      cspell-glob: 10.5.2
+      cspell-grammar: 10.5.2
+      cspell-io: 10.5.2
+      cspell-trie-lib: 10.5.2(@cspell/cspell-types@10.5.2)
       env-paths: 4.0.0
       gensequence: 8.0.8
       import-fresh: 4.0.1
@@ -2550,30 +2449,30 @@ snapshots:
       vscode-uri: 3.2.0
       xdg-basedir: 5.1.0
 
-  cspell-trie-lib@10.5.1(@cspell/cspell-types@10.5.1):
+  cspell-trie-lib@10.5.2(@cspell/cspell-types@10.5.2):
     dependencies:
-      '@cspell/cspell-types': 10.5.1
+      '@cspell/cspell-types': 10.5.2
 
-  cspell@10.5.1:
+  cspell@10.5.2:
     dependencies:
-      '@cspell/cspell-json-reporter': 10.5.1
-      '@cspell/cspell-performance-monitor': 10.5.1
-      '@cspell/cspell-pipe': 10.5.1
-      '@cspell/cspell-types': 10.5.1
-      '@cspell/cspell-worker': 10.5.1
-      '@cspell/dynamic-import': 10.5.1
-      '@cspell/url': 10.5.1
+      '@cspell/cspell-json-reporter': 10.5.2
+      '@cspell/cspell-performance-monitor': 10.5.2
+      '@cspell/cspell-pipe': 10.5.2
+      '@cspell/cspell-types': 10.5.2
+      '@cspell/cspell-worker': 10.5.2
+      '@cspell/dynamic-import': 10.5.2
+      '@cspell/url': 10.5.2
       '@streetsidesoftware/unindent': 1.0.1
       ansi-regex: 6.6.0
       chalk: 6.0.1
       chalk-template: 1.1.3
       commander: 15.1.0
-      cspell-config-lib: 10.5.1
-      cspell-dictionary: 10.5.1
-      cspell-gitignore: 10.5.1
-      cspell-glob: 10.5.1
-      cspell-io: 10.5.1
-      cspell-lib: 10.5.1
+      cspell-config-lib: 10.5.2
+      cspell-dictionary: 10.5.2
+      cspell-gitignore: 10.5.2
+      cspell-glob: 10.5.2
+      cspell-io: 10.5.2
+      cspell-lib: 10.5.2
       flatted: 3.4.4
       semver: 7.8.6
       tinyglobby: 0.2.17
@@ -2633,8 +2532,6 @@ snapshots:
 
   diff@8.0.4: {}
 
-  doublearray@0.0.2: {}
-
   dunder-proto@1.0.1:
     dependencies:
       call-bind-apply-helpers: 1.0.2
@@ -2654,7 +2551,7 @@ snapshots:
       es-errors: 1.3.0
       es-object-atoms: 1.1.2
       is-callable: 1.2.7
-      object-inspect: 1.13.4
+      object-inspect: 1.14.0
 
   es-abstract@1.24.2:
     dependencies:
@@ -2693,7 +2590,7 @@ snapshots:
       is-typed-array: 1.1.15
       is-weakref: 1.1.1
       math-intrinsics: 1.1.0
-      object-inspect: 1.13.4
+      object-inspect: 1.14.0
       object-keys: 1.1.1
       object.assign: 4.1.7
       own-keys: 1.0.2
@@ -2756,7 +2653,7 @@ snapshots:
 
   fast-equals@4.0.3: {}
 
-  fast-equals@6.4.0: {}
+  fast-equals@6.4.1: {}
 
   fast-glob@3.3.3:
     dependencies:
@@ -2871,15 +2768,13 @@ snapshots:
     dependencies:
       '@sindresorhus/merge-streams': 4.0.0
       fast-glob: 3.3.3
-      ignore: 7.0.16
+      ignore: 7.0.17
       is-path-inside: 4.0.0
       micromatch: 4.0.8
       slash: 5.1.0
       unicorn-magic: 0.4.1
 
   gopd@1.2.0: {}
-
-  graceful-fs@4.2.11: {}
 
   has-bigints@1.1.0: {}
 
@@ -2926,13 +2821,11 @@ snapshots:
 
   hookified@2.2.0: {}
 
-  ignore@7.0.16: {}
+  ignore@7.0.17: {}
 
   import-fresh@4.0.1: {}
 
   import-meta-resolve@4.2.0: {}
-
-  imurmurhash@0.1.4: {}
 
   ini@6.0.0: {}
 
@@ -3132,17 +3025,7 @@ snapshots:
     dependencies:
       '@keyv/serialize': 1.1.1
 
-  kuromoji@0.1.2:
-    dependencies:
-      async: 2.6.4
-      doublearray: 0.0.2
-      zlibjs: 0.3.1
-
-  kuromojin@3.0.1:
-    dependencies:
-      '@kvs/env': 2.2.2
-      kuromoji: 0.1.2
-      lru_map: 0.4.1
+  kuromojin@3.1.0: {}
 
   levn@0.4.1:
     dependencies:
@@ -3159,13 +3042,9 @@ snapshots:
 
   lodash.uniqwith@4.5.0: {}
 
-  lodash@4.18.1: {}
-
   longest-streak@2.0.4: {}
 
   lru-cache@11.5.3: {}
-
-  lru_map@0.4.1: {}
 
   markdown-it@15.0.3:
     dependencies:
@@ -3180,25 +3059,25 @@ snapshots:
     dependencies:
       repeat-string: 1.6.1
 
-  markdownlint-cli2-formatter-default@0.0.6(markdownlint-cli2@0.24.1):
+  markdownlint-cli2-formatter-default@0.0.6(markdownlint-cli2@0.24.2):
     dependencies:
-      markdownlint-cli2: 0.24.1
+      markdownlint-cli2: 0.24.2
 
-  markdownlint-cli2@0.24.1:
+  markdownlint-cli2@0.24.2:
     dependencies:
       globby: 16.2.4
       js-yaml: 5.5.0
       jsonc-parser: 3.3.1
       jsonpointer: 5.0.1
       markdown-it: 15.0.3
-      markdownlint: 0.42.1
-      markdownlint-cli2-formatter-default: 0.0.6(markdownlint-cli2@0.24.1)
+      markdownlint: 0.42.2
+      markdownlint-cli2-formatter-default: 0.0.6(markdownlint-cli2@0.24.2)
       micromatch: 4.0.8
       smol-toml: 1.9.1
     transitivePeerDependencies:
       - supports-color
 
-  markdownlint@0.42.1:
+  markdownlint@0.42.2:
     dependencies:
       micromark: 4.0.3
       micromark-core-commonmark: 2.0.4
@@ -3213,7 +3092,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  match-index@1.0.3:
+  match-index@1.0.4:
     dependencies:
       regexp.prototype.flags: 1.5.4
 
@@ -3531,7 +3410,7 @@ snapshots:
 
   minimatch@10.2.6:
     dependencies:
-      brace-expansion: 5.0.13
+      brace-expansion: 5.1.0
 
   minipass@7.1.3: {}
 
@@ -3552,13 +3431,9 @@ snapshots:
 
   ms@2.1.3: {}
 
-  node-localstorage@2.2.1:
-    dependencies:
-      write-file-atomic: 1.3.4
-
   object-assign@3.0.0: {}
 
-  object-inspect@1.13.4: {}
+  object-inspect@1.14.0: {}
 
   object-keys@1.1.1: {}
 
@@ -3749,10 +3624,9 @@ snapshots:
 
   semver@7.8.6: {}
 
-  sentence-splitter@5.0.1:
+  sentence-splitter@5.1.0:
     dependencies:
-      '@textlint/ast-node-types': 13.4.1
-      structured-source: 4.0.0
+      '@textlint/ast-node-types': 15.8.0
 
   set-function-length@1.2.2:
     dependencies:
@@ -3779,34 +3653,32 @@ snapshots:
   side-channel-list@1.0.1:
     dependencies:
       es-errors: 1.3.0
-      object-inspect: 1.13.4
+      object-inspect: 1.14.0
 
   side-channel-map@1.0.1:
     dependencies:
       call-bound: 1.0.4
       es-errors: 1.3.0
       get-intrinsic: 1.3.0
-      object-inspect: 1.13.4
+      object-inspect: 1.14.0
 
   side-channel-weakmap@1.0.2:
     dependencies:
       call-bound: 1.0.4
       es-errors: 1.3.0
       get-intrinsic: 1.3.0
-      object-inspect: 1.13.4
+      object-inspect: 1.14.0
       side-channel-map: 1.0.1
 
   side-channel@1.1.1:
     dependencies:
       es-errors: 1.3.0
-      object-inspect: 1.13.4
+      object-inspect: 1.14.0
       side-channel-list: 1.0.1
       side-channel-map: 1.0.1
       side-channel-weakmap: 1.0.2
 
   slash@5.1.0: {}
-
-  slide@1.1.6: {}
 
   smol-toml@1.9.1: {}
 
@@ -3856,199 +3728,190 @@ snapshots:
     dependencies:
       boundary: 2.0.0
 
-  textlint-rule-helper@2.5.0:
+  textlint-rule-helper@2.6.0:
     dependencies:
       '@textlint/ast-node-types': 15.8.0
       structured-source: 4.0.0
-      unist-util-visit: 2.0.3
 
-  textlint-rule-ja-no-abusage@3.0.0:
+  textlint-rule-ja-no-abusage@3.0.1:
     dependencies:
-      kuromojin: 3.0.1
+      kuromojin: 3.1.0
       morpheme-match-textlint: 2.0.6
       textlint-rule-prh: 5.3.0
 
   textlint-rule-ja-no-mixed-period@3.0.2:
     dependencies:
       check-ends-with-period: 3.0.2
-      textlint-rule-helper: 2.5.0
+      textlint-rule-helper: 2.6.0
 
-  textlint-rule-ja-no-redundant-expression@4.0.1:
+  textlint-rule-ja-no-redundant-expression@4.0.2:
     dependencies:
       '@textlint/regexp-string-matcher': 1.1.1
-      kuromojin: 3.0.1
+      kuromojin: 3.1.0
       morpheme-match: 2.0.4
       morpheme-match-all: 2.0.5
-      textlint-rule-helper: 2.5.0
-      textlint-util-to-string: 3.3.4
+      textlint-rule-helper: 2.6.0
+      textlint-util-to-string: 3.3.6
 
-  textlint-rule-ja-no-successive-word@2.0.1:
+  textlint-rule-ja-no-successive-word@2.1.0:
     dependencies:
       '@textlint/regexp-string-matcher': 1.1.1
-      kuromojin: 3.0.1
+      kuromojin: 3.1.0
 
-  textlint-rule-ja-no-weak-phrase@2.0.0:
+  textlint-rule-ja-no-weak-phrase@2.0.1:
     dependencies:
-      kuromojin: 3.0.1
+      kuromojin: 3.1.0
       morpheme-match: 2.0.4
       morpheme-match-all: 2.0.5
 
   textlint-rule-ja-unnatural-alphabet@2.0.1:
     dependencies:
       '@textlint/regexp-string-matcher': 1.1.1
-      match-index: 1.0.3
+      match-index: 1.0.4
       regx: 1.0.4
 
   textlint-rule-max-comma@4.0.0:
     dependencies:
-      sentence-splitter: 5.0.1
-      textlint-util-to-string: 3.3.4
+      sentence-splitter: 5.1.0
+      textlint-util-to-string: 3.3.6
 
   textlint-rule-max-kanji-continuous-len@1.1.1:
     dependencies:
-      match-index: 1.0.3
-      textlint-rule-helper: 2.5.0
+      match-index: 1.0.4
+      textlint-rule-helper: 2.6.0
 
-  textlint-rule-max-ten@5.0.0:
+  textlint-rule-max-ten@5.0.1:
     dependencies:
-      kuromojin: 3.0.1
-      sentence-splitter: 5.0.1
-      textlint-rule-helper: 2.5.0
-      textlint-util-to-string: 3.3.4
+      kuromojin: 3.1.0
+      sentence-splitter: 5.1.0
+      textlint-rule-helper: 2.6.0
+      textlint-util-to-string: 3.3.6
 
-  textlint-rule-no-double-negative-ja@2.0.1:
+  textlint-rule-no-double-negative-ja@2.0.2:
     dependencies:
-      kuromojin: 3.0.1
+      kuromojin: 3.1.0
 
-  textlint-rule-no-doubled-conjunction@3.0.1:
+  textlint-rule-no-doubled-conjunction@3.0.2:
     dependencies:
-      kuromojin: 3.0.1
-      sentence-splitter: 5.0.1
-      textlint-rule-helper: 2.5.0
+      kuromojin: 3.1.0
+      sentence-splitter: 5.1.0
+      textlint-rule-helper: 2.6.0
 
-  textlint-rule-no-doubled-conjunctive-particle-ga@3.0.0:
+  textlint-rule-no-doubled-conjunctive-particle-ga@3.0.1:
     dependencies:
-      kuromojin: 3.0.1
-      sentence-splitter: 5.0.1
-      textlint-rule-helper: 2.5.0
-      textlint-util-to-string: 3.3.4
+      kuromojin: 3.1.0
+      sentence-splitter: 5.1.0
+      textlint-rule-helper: 2.6.0
+      textlint-util-to-string: 3.3.6
 
-  textlint-rule-no-doubled-joshi@5.1.1:
+  textlint-rule-no-doubled-joshi@5.1.2:
     dependencies:
-      kuromojin: 3.0.1
-      sentence-splitter: 5.0.1
-      textlint-rule-helper: 2.5.0
-      textlint-util-to-string: 3.3.4
+      kuromojin: 3.1.0
+      sentence-splitter: 5.1.0
+      textlint-rule-helper: 2.6.0
+      textlint-util-to-string: 3.3.6
 
-  textlint-rule-no-dropping-the-ra@3.0.0:
+  textlint-rule-no-dropping-the-ra@3.0.1:
     dependencies:
-      kuromojin: 3.0.1
-      textlint-rule-helper: 2.5.0
+      kuromojin: 3.1.0
+      textlint-rule-helper: 2.6.0
 
   textlint-rule-no-exclamation-question-mark@1.1.0:
     dependencies:
       '@textlint/regexp-string-matcher': 1.1.1
-      match-index: 1.0.3
-      textlint-rule-helper: 2.5.0
+      match-index: 1.0.4
+      textlint-rule-helper: 2.6.0
 
   textlint-rule-no-hankaku-kana@2.0.1:
     dependencies:
-      textlint-rule-helper: 2.5.0
+      textlint-rule-helper: 2.6.0
       textlint-tester: 13.4.1
     transitivePeerDependencies:
       - supports-color
 
   textlint-rule-no-kangxi-radicals@0.2.2:
     dependencies:
-      match-index: 1.0.3
+      match-index: 1.0.4
 
   textlint-rule-no-mix-dearu-desumasu@6.0.4:
     dependencies:
       analyze-desumasu-dearu: 5.0.2
-      textlint-rule-helper: 2.5.0
+      textlint-rule-helper: 2.6.0
 
   textlint-rule-no-nfd@2.0.2:
     dependencies:
-      match-index: 1.0.3
-      textlint-rule-helper: 2.5.0
+      match-index: 1.0.4
+      textlint-rule-helper: 2.6.0
 
-  textlint-rule-no-zero-width-spaces@1.0.1: {}
+  textlint-rule-no-zero-width-spaces@1.0.2: {}
 
-  textlint-rule-preset-ja-technical-writing@12.0.2:
+  textlint-rule-preset-ja-technical-writing@12.1.0:
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 3.0.0
       '@textlint-rule/textlint-rule-no-unmatched-pair': 2.0.4
-      '@textlint/module-interop': 14.8.4
-      textlint-rule-ja-no-abusage: 3.0.0
+      '@textlint/module-interop': 16.1.3
+      textlint-rule-ja-no-abusage: 3.0.1
       textlint-rule-ja-no-mixed-period: 3.0.2
-      textlint-rule-ja-no-redundant-expression: 4.0.1
-      textlint-rule-ja-no-successive-word: 2.0.1
-      textlint-rule-ja-no-weak-phrase: 2.0.0
+      textlint-rule-ja-no-redundant-expression: 4.0.2
+      textlint-rule-ja-no-successive-word: 2.1.0
+      textlint-rule-ja-no-weak-phrase: 2.0.1
       textlint-rule-ja-unnatural-alphabet: 2.0.1
       textlint-rule-max-comma: 4.0.0
       textlint-rule-max-kanji-continuous-len: 1.1.1
-      textlint-rule-max-ten: 5.0.0
-      textlint-rule-no-double-negative-ja: 2.0.1
-      textlint-rule-no-doubled-conjunction: 3.0.1
-      textlint-rule-no-doubled-conjunctive-particle-ga: 3.0.0
-      textlint-rule-no-doubled-joshi: 5.1.1
-      textlint-rule-no-dropping-the-ra: 3.0.0
+      textlint-rule-max-ten: 5.0.1
+      textlint-rule-no-double-negative-ja: 2.0.2
+      textlint-rule-no-doubled-conjunction: 3.0.2
+      textlint-rule-no-doubled-conjunctive-particle-ga: 3.0.1
+      textlint-rule-no-doubled-joshi: 5.1.2
+      textlint-rule-no-dropping-the-ra: 3.0.1
       textlint-rule-no-exclamation-question-mark: 1.1.0
       textlint-rule-no-hankaku-kana: 2.0.1
       textlint-rule-no-mix-dearu-desumasu: 6.0.4
       textlint-rule-no-nfd: 2.0.2
-      textlint-rule-no-zero-width-spaces: 1.0.1
-      textlint-rule-preset-jtf-style: 3.0.3
+      textlint-rule-no-zero-width-spaces: 1.0.2
+      textlint-rule-preset-jtf-style: 3.1.0
       textlint-rule-sentence-length: 5.2.1
     transitivePeerDependencies:
       - supports-color
 
-  textlint-rule-preset-japanese@10.0.4:
+  textlint-rule-preset-japanese@10.1.0:
     dependencies:
       '@textlint-rule/textlint-rule-no-invalid-control-character': 3.0.0
-      '@textlint/module-interop': 14.8.4
-      textlint-rule-max-ten: 5.0.0
-      textlint-rule-no-double-negative-ja: 2.0.1
-      textlint-rule-no-doubled-conjunction: 3.0.1
-      textlint-rule-no-doubled-conjunctive-particle-ga: 3.0.0
-      textlint-rule-no-doubled-joshi: 5.1.1
-      textlint-rule-no-dropping-the-ra: 3.0.0
+      '@textlint/module-interop': 16.1.3
+      textlint-rule-max-ten: 5.0.1
+      textlint-rule-no-double-negative-ja: 2.0.2
+      textlint-rule-no-doubled-conjunction: 3.0.2
+      textlint-rule-no-doubled-conjunctive-particle-ga: 3.0.1
+      textlint-rule-no-doubled-joshi: 5.1.2
+      textlint-rule-no-dropping-the-ra: 3.0.1
       textlint-rule-no-kangxi-radicals: 0.2.2
       textlint-rule-no-mix-dearu-desumasu: 6.0.4
       textlint-rule-no-nfd: 2.0.2
-      textlint-rule-no-zero-width-spaces: 1.0.1
+      textlint-rule-no-zero-width-spaces: 1.0.2
       textlint-rule-sentence-length: 5.2.1
 
-  textlint-rule-preset-jtf-style@3.0.3:
+  textlint-rule-preset-jtf-style@3.1.0:
     dependencies:
       analyze-desumasu-dearu: 2.1.5
       japanese-numerals-to-number: 1.0.2
-      match-index: 1.0.3
+      match-index: 1.0.4
       moji: 0.5.1
       regexp.prototype.flags: 1.5.4
-      regx: 1.0.4
-      textlint-rule-helper: 2.5.0
-      textlint-rule-prh: 6.1.0
+      textlint-rule-helper: 2.6.0
 
   textlint-rule-prh@5.3.0:
     dependencies:
-      '@babel/parser': 7.29.9
+      '@babel/parser': 7.29.15
       prh: 5.4.4
-      textlint-rule-helper: 2.5.0
+      textlint-rule-helper: 2.6.0
       untildify: 3.0.3
-
-  textlint-rule-prh@6.1.0:
-    dependencies:
-      '@babel/parser': 7.29.9
-      prh: 5.4.4
-      textlint-rule-helper: 2.5.0
 
   textlint-rule-sentence-length@5.2.1:
     dependencies:
-      '@textlint/regexp-string-matcher': 2.0.2
-      sentence-splitter: 5.0.1
-      textlint-rule-helper: 2.5.0
-      textlint-util-to-string: 3.3.4
+      '@textlint/regexp-string-matcher': 2.0.4
+      sentence-splitter: 5.1.0
+      textlint-rule-helper: 2.6.0
+      textlint-util-to-string: 3.3.6
 
   textlint-tester@13.4.1:
     dependencies:
@@ -4059,27 +3922,27 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  textlint-util-to-string@3.3.4:
+  textlint-util-to-string@3.3.6:
     dependencies:
-      '@textlint/ast-node-types': 13.4.1
+      '@textlint/ast-node-types': 16.1.3
       rehype-parse: 6.0.2
       structured-source: 4.0.0
       unified: 8.4.2
 
-  textlint@16.1.1:
+  textlint@16.1.3:
     dependencies:
       '@modelcontextprotocol/server': 2.4.0
-      '@textlint/config-loader': 16.1.1
-      '@textlint/feature-flag': 16.1.1
-      '@textlint/fixer-formatter': 16.1.1
-      '@textlint/kernel': 16.1.1
-      '@textlint/linter-formatter': 16.1.1
-      '@textlint/module-interop': 16.1.1
-      '@textlint/resolver': 16.1.1
-      '@textlint/textlint-plugin-markdown': 16.1.1
-      '@textlint/textlint-plugin-text': 16.1.1
-      '@textlint/types': 16.1.1
-      '@textlint/utils': 16.1.1
+      '@textlint/config-loader': 16.1.3
+      '@textlint/feature-flag': 16.1.3
+      '@textlint/fixer-formatter': 16.1.3
+      '@textlint/kernel': 16.1.3
+      '@textlint/linter-formatter': 16.1.3
+      '@textlint/module-interop': 16.1.3
+      '@textlint/resolver': 16.1.3
+      '@textlint/textlint-plugin-markdown': 16.1.3
+      '@textlint/textlint-plugin-text': 16.1.3
+      '@textlint/types': 16.1.3
+      '@textlint/utils': 16.1.3
       debug: 4.4.3
       file-entry-cache: 10.1.4
       glob: 13.0.7
@@ -4105,10 +3968,12 @@ snapshots:
       regex-not: 1.0.2
       safe-regex: 1.1.0
 
-  traverse@0.6.11:
+  traverse@0.6.14:
     dependencies:
+      define-data-property: 1.1.4
+      es-to-primitive: 1.3.4
       gopd: 1.2.0
-      typedarray.prototype.slice: 1.0.5
+      typedarray.prototype.slice: 1.0.6
       which-typed-array: 1.1.24
 
   trough@1.0.5: {}
@@ -4149,7 +4014,7 @@ snapshots:
       possible-typed-array-names: 1.1.0
       reflect.getprototypeof: 1.0.10
 
-  typedarray.prototype.slice@1.0.5:
+  typedarray.prototype.slice@1.0.6:
     dependencies:
       call-bind: 1.0.9
       define-properties: 1.2.1
@@ -4200,12 +4065,6 @@ snapshots:
     dependencies:
       '@types/unist': 2.0.11
       unist-util-is: 4.1.0
-
-  unist-util-visit@2.0.3:
-    dependencies:
-      '@types/unist': 2.0.11
-      unist-util-is: 4.1.0
-      unist-util-visit-parents: 3.1.1
 
   untildify@3.0.3: {}
 
@@ -4270,19 +4129,11 @@ snapshots:
 
   word-wrap@1.2.5: {}
 
-  write-file-atomic@1.3.4:
-    dependencies:
-      graceful-fs: 4.2.11
-      imurmurhash: 0.1.4
-      slide: 1.1.6
-
   xdg-basedir@5.1.0: {}
 
   xtend@4.0.2: {}
 
   yaml@2.9.1: {}
-
-  zlibjs@0.3.1: {}
 
   zod@4.6.7: {}
 

@@ -22,12 +22,12 @@
     "node": "24.14.1"
   },
   "devDependencies": {
-    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.0",
-    "cspell": "^10.5.1",
+    "@textlint-ja/textlint-rule-preset-ai-writing": "^1.7.2",
+    "cspell": "^10.5.2",
     "js-yaml": "^5.5.0",
-    "markdownlint-cli2": "^0.24.1",
-    "textlint": "^16.1.1",
-    "textlint-rule-preset-ja-technical-writing": "^12.0.2",
-    "textlint-rule-preset-japanese": "^10.0.4"
+    "markdownlint-cli2": "^0.24.2",
+    "textlint": "^16.1.3",
+    "textlint-rule-preset-ja-technical-writing": "^12.1.0",
+    "textlint-rule-preset-japanese": "^10.1.0"
   }
 }
