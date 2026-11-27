@@ -62,11 +62,12 @@ skill の追加・削除・改名では、skill 一覧と関連する使用例�
 
 複数の文書で使う条件説明の一部は、`SKILL.md` を更新元として同期します。
 対象と反映先は [`scripts/sync-shared-text.mjs`](scripts/sync-shared-text.mjs) の冒頭で管理します。
+以下のコマンドは `pnpm` を直接使います。mise を使う場合は `mise run <task>` に読み替えてください。
 
 1. 更新元の `SKILL.md` で、`shared-text` の開始・終了マーカーに囲まれた説明を編集する。
-2. `mise run sync:shared-text` で、登録された反映先の同じ範囲だけを更新する。
+2. `pnpm sync:shared-text` で、登録された反映先の同じ範囲だけを更新する。
 3. 差分を読み、前後の文章と自然につながることを確認する。
-4. `mise run test:shared-text` で不一致がないことを確認する。CI でも同じ条件を検査する。
+4. `pnpm test:shared-text` で不一致がないことを確認する。CI でも同じ条件を検査する。
 
 新しい説明を共通管理する場合は、更新元と反映先に同じ ID のマーカーを 1 組ずつ置き、スクリプトに登録します。
 次の例のように、マーカーの間には条件や制約だけを書き、紹介文や使用例は含めません。
@@ -132,8 +133,16 @@ OpenCode Go 用の選択基準は [`codex/go.config.toml`](codex/go.config.toml)
 
 ## セットアップと検証
 
+次のいずれかの方法でセットアップし、lint とテストを実行します。
+検証項目の正本は `package.json` の scripts です。
+`mise.toml` のタスクは同じ scripts を呼び出します。CI も同じ pnpm scripts を使います。
+
+### mise を使う場合
+
 Node.js のバージョンは `mise.toml`、pnpm のバージョンは `package.json` の `packageManager` で指定します。
 mise は `idiomatic_version_file_enable_tools` の設定により、この pnpm の指定を読みます。
+
+次のコマンドを使います。
 
 ```bash
 mise install
@@ -145,13 +154,23 @@ mise run test:claude-agents # Claude 用 subagent と skill の接続
 mise run test:shared-text # 共通の条件説明・定義、起動設定、skill 間の参照先
 ```
 
-実行の入口は `mise.toml` のタスクです。lint とテストのコマンド本体は `package.json` の scripts で管理します。
-CI も同じ pnpm scripts を使います。
+### mise を使えない場合
 
-### Nix を使う場合
+Node.js 24 と `package.json` の `packageManager` と同じ pnpm を用意します。
+そのうえで、`pnpm` を直接使います。
 
-Nix の flake を有効にした環境では、mise を入れずに同じ検証ができます。
-`flake.nix` の devShell は Node.js 24 を提供します。
+```bash
+pnpm install --frozen-lockfile
+pnpm lint:md
+pnpm lint:spell
+pnpm lint:text
+pnpm test:claude-agents
+pnpm test:shared-text
+```
+
+### Nix の devShell を使う場合
+
+Nix の flake を有効にした環境では、devShell が Node.js 24 を提供します。
 pnpm は corepack 経由で `package.json` の `packageManager` と同じ版を使います。
 
 ```bash
@@ -169,10 +188,16 @@ Node.js のメジャーバージョンは `mise.toml` と `flake.nix` の両方�
 
 Codex のサンドボックスから Nix を使う場合は、`~/.cache/nix` と `~/.cache/node` への書き込みを許可します。
 Linux の標準構成では、`codex/config.toml` に追加済みです。
+`~/.cache/node` を許可できない場合は、corepack のキャッシュ先を一時ディレクトリへ変更します。
+次の例のように、`nix develop` の前に `COREPACK_HOME` を指定します。
 
-### worktree と mise の書き込み先
+```bash
+COREPACK_HOME=/tmp/corepack nix develop --command pnpm lint:md
+```
 
-通常の開発では、同じユーザーの worktree 間で mise の標準ディレクトリを共有します。
+### mise を使う場合の書き込み先
+
+mise を使う場合、同じユーザーの worktree 間で標準ディレクトリを共有します。
 ツールのバージョンは実行先の worktree の設定で選ばれるため、cache や shims の分離は不要です。
 `mise run` は必要なツールを選んでタスクを実行するため、シェルの有効化も不要です。
 
