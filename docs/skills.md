@@ -64,6 +64,7 @@ PR の失敗している CI を調査し、原因を修正します。[SKILL.md]
 
 **実行範囲：** 現在の変更の検証・commit・push、Draft PR の作成・更新をします。
 対象 PR への merge・コード変更・検証・commit・push と、CI・競合・レビュー指摘への対応を続けます。
+Draft かどうかに関係なく open な PR を監視し、Draft のままでも監視を続けます。
 merge-ready の後も監視を続け、PR がマージまたは close されるか、判断が必要な状態、進展がない状態などで止まります。
 PR のマージ、Draft の解除、approve、resolve は行いません。
 

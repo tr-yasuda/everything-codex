@@ -53,6 +53,7 @@ PR が merge-ready、レビュー待ち、CI の実行中になっても、自�
 
 ## 対象とブランチ
 
+open な PR は、Draft かどうかに関係なく対象にする。
 open の PR は、PR の最新 commit を HEAD として扱う。
 手元のブランチが HEAD と異なる場合は、作業の前に揃える。
 
@@ -270,7 +271,9 @@ rebase と force push は行わない。
 
 ## 監視
 
+open な PR は、Draft かどうかに関係なく監視を続ける。
 PR が merge-ready、レビュー待ち、CI の実行中でも監視を続ける。
+Draft のまま Ready for review にされず、CI とレビューの動きがない状態で待っても監視を続ける。
 状態が変わったときだけ短く報告する。
 
 待つ時間の上限は、この skill では決めない。
