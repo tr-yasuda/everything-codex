@@ -18,6 +18,7 @@ skill の導入と最初の使い方は、[README](README.md#使い始める) �
 | `codex/config.toml`、`codex/openai-agents/`、`codex/go.config.toml`、`codex/go-agents/` | Codex とエージェントの設定 |
 | `claude/agents/` | Claude Code 用の subagent 定義 |
 | `scripts/` | 共通の条件説明と Claude 用 subagent の検証・同期スクリプト |
+| `flake.nix`、`flake.lock` | Nix の devShell と固定した nixpkgs |
 | `AGENTS.md` | このリポジトリでの作業規約 |
 | `codex/AGENTS.md` | 利用者が個人用ルールへ取り込む共通ルールの正本 |
 | `.github/workflows/` | lint と GitHub Actions の参照先固定の検証・更新 |
@@ -147,6 +148,28 @@ mise run test:shared-text # 共通の条件説明・定義、起動設定、skil
 実行の入口は `mise.toml` のタスクです。lint とテストのコマンド本体は `package.json` の scripts で管理します。
 CI も同じ pnpm scripts を使います。
 
+### Nix を使う場合
+
+Nix の flake を有効にした環境では、mise を入れずに同じ検証ができます。
+`flake.nix` の devShell は Node.js 24 を提供します。
+pnpm は corepack 経由で `package.json` の `packageManager` と同じ版を使います。
+
+```bash
+nix develop
+pnpm install --frozen-lockfile
+pnpm lint:md
+pnpm lint:spell
+pnpm lint:text
+pnpm test:claude-agents
+pnpm test:shared-text
+```
+
+シェルを開かずに実行するときは、各コマンドへ `nix develop -c` を付けます。
+Node.js のメジャーバージョンは `mise.toml` と `flake.nix` の両方で指定しているため、変更するときは両方を更新します。
+
+Codex のサンドボックスから Nix を使う場合は、`~/.cache/nix` と `~/.cache/node` への書き込みを許可します。
+Linux の標準構成では、`codex/config.toml` に追加済みです。
+
 ### worktree と mise の書き込み先
 
 通常の開発では、同じユーザーの worktree 間で mise の標準ディレクトリを共有します。
@@ -160,7 +183,8 @@ Linux の標準構成で mise と pnpm に必要な書き込み先は、[`codex/
 | `~/.cache/mise` | バージョン情報などのキャッシュとロック |
 | `~/.local/share/mise` | ツール、プラグイン、ダウンロード、shims |
 | `~/.local/state/mise` | 設定の信頼状態やタスクの実行状態 |
-| `~/.local/share/pnpm/store` | pnpm が依存パッケージを共有するストア |
+| `~/.cache/pnpm` | pnpm のメタデータキャッシュ |
+| `~/.local/share/pnpm` | pnpm のストアとグローバルな保存先 |
 
 `mise install` は、ツールが導入済みでも shims を更新するため、書き込み権限が必要です。
 macOS や XDG の設定などで保存先を変更した環境では、実際の保存先に合わせて許可を調整してください。
