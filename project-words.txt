@@ -24,6 +24,8 @@ nonblock
 unslop
 deepseek
 DeepSeek
+direnv
+envrc
 opencode
 OpenCode
 OPENCODE
