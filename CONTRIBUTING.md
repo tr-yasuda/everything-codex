@@ -172,6 +172,8 @@ pnpm test:shared-text
 
 Nix の flake を有効にした環境では、devShell が Node.js 24 を提供します。
 pnpm は corepack 経由で `package.json` の `packageManager` と同じ版を使います。
+direnv を導入済みの環境では、リポジトリ直下の `.envrc` が devShell を自動で適用します。
+初回と `.envrc` の変更後は `direnv allow` を実行します。
 
 ```bash
 nix develop
