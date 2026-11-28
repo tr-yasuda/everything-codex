@@ -69,8 +69,7 @@ Claude Code でも [ツールの許可と承認][claude-permissions] を別に�
 | [update-deps] | 更新と検証に使うツールが必要。目標に届かなければ残った制約と理由を報告する |
 | [prove-it] | reviewer が使えなければ親が点検する。verifier の代替は独立検証に数えない |
 | [multi-scan] | 8 観点を確認し、直せるものは直す。判断が必要なものだけを材料付きで示す。必要な独立した再確認ができなければ一部未完了とする |
-| [fix-ci] | GitHub のログ取得・修正・検証・push が必要。外部環境が原因なら原因を報告する |
-| [babysit] | GitHub 操作・検証・push と `fix-ci` の手順ファイルが必要。読めなければ始めない |
+| [babysit] | GitHub 操作・ログ取得・修正・検証・push が必要。外部環境が原因なら原因を報告する |
 
 subagent の代替は、元の手順が許す範囲で行います。
 親による点検・検証は、別の担当による独立した確認には数えません。
@@ -126,5 +125,4 @@ subagent の代替は、元の手順が許す範囲で行います。
 [update-deps]: ../skills/update-deps/SKILL.md
 [prove-it]: ../skills/prove-it/SKILL.md
 [multi-scan]: ../skills/multi-scan/SKILL.md
-[fix-ci]: ../skills/fix-ci/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md

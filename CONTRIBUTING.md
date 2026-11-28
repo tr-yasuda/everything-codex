@@ -56,7 +56,6 @@ README と cookbook には、紹介する使い方に必要な説明を残しま
 
 機能・呼び出し方・起動条件を変える場合は、`agents/openai.yaml` の表示情報と呼び出し設定も確認します。
 skill の追加・削除・改名では、skill 一覧と関連する使用例・リンクを更新します。
-`fix-ci` の手順を変える場合は、それを読む `babysit` の手順も確認します。
 
 ### 共通の条件説明を更新する
 
@@ -151,6 +150,7 @@ mise run lint:md     # Markdown の記法
 mise run lint:spell  # スペルと登録語
 mise run lint:text   # 日本語の文章
 mise run test:claude-agents # Claude 用 subagent と skill の接続
+mise run test:skill-spec # skill の frontmatter と長さ
 mise run test:shared-text # 共通の条件説明・定義、起動設定、skill 間の参照先
 ```
 
@@ -165,6 +165,7 @@ pnpm lint:md
 pnpm lint:spell
 pnpm lint:text
 pnpm test:claude-agents
+pnpm test:skill-spec
 pnpm test:shared-text
 ```
 
@@ -182,6 +183,7 @@ pnpm lint:md
 pnpm lint:spell
 pnpm lint:text
 pnpm test:claude-agents
+pnpm test:skill-spec
 pnpm test:shared-text
 ```
 

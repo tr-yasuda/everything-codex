@@ -27,7 +27,7 @@
 
 ### PR とレビュー対象の指定
 
-`fix-ci`・`babysit` は、次の指定方法に対応します。
+`babysit` は、次の指定方法に対応します。
 
 | 呼び出し例 | 対象 |
 | --- | --- |
@@ -35,22 +35,9 @@
 | `$babysit pr#123` | 現在のリポジトリの指定 PR |
 | `$babysit owner/repo#123` | 指定リポジトリの指定 PR |
 
-`fix-ci` も、`pr#123` または `owner/repo#123` を指定できます。
 `multi-scan` も PR 番号の指定方法は同じです。引数を省略すると、現在のリポジトリのローカル変更をレビューします。
 
 ## 楽をする
-
-### fix-ci
-
-PR の失敗している CI を調査し、原因を修正します。[SKILL.md][fix-ci]
-
-**起動：** 手動で `$fix-ci pr#123`。対象の指定は[共通の方法](#pr-とレビュー対象の指定)を使います。
-
-**実行範囲：** コード・テスト・CI 設定で解決できる問題を修正し、検証して対象 PR へ commit・push します。
-リポジトリ外の環境・権限・外部サービスが原因の場合は、原因を報告します。
-独立した複数の CI 失敗は、原因調査だけ Subagent に並列委譲できます。修正・検証・commit・push は直列です。
-
-**承認：** 呼び出しをコード変更・commit・push の許可として扱います。
 
 ### babysit
 
@@ -59,11 +46,10 @@ PR の失敗している CI を調査し、原因を修正します。[SKILL.md]
 **起動：** 手動で `$babysit`、`$babysit pr#123`、`$babysit owner/repo#123`。
 引数なしでは現在のブランチの変更から PR を作成または更新し、PR 番号を指定するとその PR が対象です。
 
-**導入条件：** `fix-ci` も一緒に導入します。
-`fix-ci` は起動せず、`SKILL.md` を CI 修正の手順として読みます。手順ファイルを読めなければ開始しません。
-
 **実行範囲：** 現在の変更の検証・commit・push、Draft PR の作成・更新をします。
 対象 PR への merge・コード変更・検証・commit・push と、CI・競合・レビュー指摘への対応を続けます。
+失敗している CI は、この skill の CI 手順で原因を分けて修正します。
+Draft でも監視・修正を続けます。
 Draft かどうかに関係なく open な PR を監視し、Draft のままでも監視を続けます。
 merge-ready の後も監視を続け、PR がマージまたは close されるか、判断が必要な状態、進展がない状態などで止まります。
 PR のマージ、Draft の解除、approve、resolve は行いません。
@@ -283,7 +269,6 @@ subagent を使えない観点は自分で点検しますが、必要な確認�
 **Claude Code:** 元の会話で実行し、Phase 4 または Phase 5 で独立した再確認が必要な場合は
 `reviewer` に個別の確認を委譲します。
 
-[fix-ci]: ../skills/fix-ci/SKILL.md
 [babysit]: ../skills/babysit/SKILL.md
 [update-deps]: ../skills/update-deps/SKILL.md
 [align]: ../skills/align/SKILL.md
