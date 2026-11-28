@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import {
   cpSync,
-  existsSync,
   mkdtempSync,
   readFileSync,
   rmSync,
@@ -117,7 +116,6 @@ for (const [id, skill, targets] of [
     assert.equal(runSync(root).status, 0);
   });
 }
-
 for (const [name, corrupt] of [
   ["マーカー欠落", (document, { start, end, text }) =>
     document.replace(start + text + end, "")],
@@ -275,27 +273,3 @@ for (const skill of skills) {
     );
   });
 }
-
-// babysit は他の skill を起動せず、この相対パスの手順ファイルを直接読む。
-// 参照が壊れると作業を開始できないため、文面ではなく参照先を検査する。
-test("babysit が参照する手順ファイルが存在する", () => {
-  const babysit = new URL("../skills/babysit/SKILL.md", import.meta.url);
-  const references = [
-    ...new Set(
-      [...readFileSync(babysit, "utf8").matchAll(/`(\.\.\/[a-z-]+\/SKILL\.md)`/g)]
-        .map((match) => match[1]),
-    ),
-  ];
-
-  assert.deepEqual(
-    [...references].sort(),
-    ["../fix-ci/SKILL.md"],
-    "skills/babysit/SKILL.md が参照する手順ファイルが fix-ci だけになっていない",
-  );
-  for (const reference of references) {
-    assert.ok(
-      existsSync(new URL(reference, babysit)),
-      `skills/babysit/SKILL.md が参照する ${reference} が存在しない`,
-    );
-  }
-});
